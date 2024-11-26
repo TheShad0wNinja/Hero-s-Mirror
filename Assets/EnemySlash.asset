@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemySlash
   m_EditorClassIdentifier: 
   targetType: 3
-  isOffensive: 0
+  isOffensive: 1
   damage: 2

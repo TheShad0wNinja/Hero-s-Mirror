@@ -373,6 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941674411}
   - component: {fileID: 1941674410}
+  - component: {fileID: 1941674412}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -393,6 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatEvent: {fileID: 11400000, guid: bdb4e20b2836840d2ad04758bc0b52f1, type: 2}
+  actionQueueManager: {fileID: 1941674412}
   units:
   - {fileID: 955116099}
   - {fileID: 1547014941}
@@ -421,6 +423,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1941674412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941674409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a95ae1cece6498e8d3667c6320c4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3790514431080398384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -485,7 +499,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3354991108471372194, guid: 270596a98c25d4639a0fbe1c2bf5c9ec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

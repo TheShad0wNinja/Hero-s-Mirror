@@ -18,6 +18,7 @@ public class CombatManager : MonoBehaviour
 {
     [Header("Initilize combat")]
     public CombatEvent combatEvent;
+    public ActionQueueManager actionQueueManager;
     public List<Character> units;
     public List<Character> playerUnits = new();
     public List<Character> enemyUnits = new();
@@ -49,8 +50,13 @@ public class CombatManager : MonoBehaviour
 
     public void PerformUnitAction()
     {
-        GetUnit(selectedUnit).PerformSkill(GetUnit(selectedTarget, true), skillIdx);
-        AdvanceTurn();
+        Character c = GetUnit(selectedUnit);
+        Character t = GetUnit(selectedTarget, true);
+        if (c && t) 
+        {
+            actionQueueManager.EnqueueAction(c, c.skills[skillIdx], t);
+            AdvanceTurn();
+        }
     }
 
     public void AdvanceTurn()

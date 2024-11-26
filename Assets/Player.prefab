@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1650791428526840586}
   - component: {fileID: 1379615319214849606}
   - component: {fileID: 1447032606138953662}
+  - component: {fileID: 3354991108471372194}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -52,10 +53,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 99a55bae0656847df9f2ce1cc38dbed6, type: 2}
   - {fileID: 11400000, guid: 3f652ab705f5144e880f52b6f825b761, type: 2}
   - {fileID: 11400000, guid: ea88fbc80245c4776960f06fc15a53ac, type: 2}
-  passives:
-  - {fileID: 11400000, guid: 286292efbd5e647a193a5114658e1fb0, type: 2}
-  _passives: []
-  effects: []
+  activeEffects: []
+  currentHealth: 0
+  currentMana: 0
+  shield: 0
+  attackbonus: 1
+  critChance: 0.1
 --- !u!212 &1379615319214849606
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -153,3 +156,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &3354991108471372194
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775871603483523113}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 45cdae68012eb4f7a84dad4fea861db7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

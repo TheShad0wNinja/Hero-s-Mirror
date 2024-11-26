@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -18,6 +19,7 @@ public abstract class Character : MonoBehaviour
     public bool IsEnemy => characterData.isEnemy;
 
     SpriteRenderer sr;
+    Animator anim;
     public int currentHealth;
     public int currentMana;
     public int shield = 0;
@@ -27,6 +29,7 @@ public abstract class Character : MonoBehaviour
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         sr.sprite = characterData.sprite;
 
         if (characterData.flipped)
@@ -118,5 +121,13 @@ public abstract class Character : MonoBehaviour
     void Kill()
     {
         combatEvent.RaiseOnKillEvent(this, this);
+    }
+
+    public IEnumerator AnimateAction(SkillSO skill)
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 16);
+        yield return new WaitForSeconds(0.5f);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        yield return null;
     }
 }

@@ -31,7 +31,7 @@ public class ActionQueueManager : MonoBehaviour
     IEnumerator ExecuteAction(ActionQueueItem actionItem)
     {
         yield return StartCoroutine(actionItem.character.AnimateAction(actionItem.skill));
-        actionItem.character.PerformSkill(actionItem.target, 0);
+        actionItem.character.PerformSkill(actionItem.target, actionItem.skill);
         yield return null;
     }
 }

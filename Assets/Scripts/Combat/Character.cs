@@ -79,10 +79,17 @@ public abstract class Character : MonoBehaviour
         skills[idx].ExecuteSkill(this, target.ToArray());
     }
 
-    public void PerformSkill(Character target, int idx)
+    public void PerformSkill(Character target, SkillSO s)
     {
         combatEvent.RaiseOnAttackEvent(this, target);
-        skills[idx].ExecuteSkill(this, target);
+        foreach (var skill in skills)
+        {
+            if (skill == s)
+            {
+                skill.ExecuteSkill(this, target);
+                return;
+            }
+        }
     }
 
     public virtual void TakeRawDamage(int damage)

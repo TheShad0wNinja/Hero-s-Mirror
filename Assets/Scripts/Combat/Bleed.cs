@@ -17,6 +17,6 @@ public class Bleed : StatusEffectSO
 
     public override void TickEffect(Character target)
     {
-        target.TakeRawDamage(bleedDamage);
+        target.TakeRawDamage(null, bleedDamage);
     }
 }

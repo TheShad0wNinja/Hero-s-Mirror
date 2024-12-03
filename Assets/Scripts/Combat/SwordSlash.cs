@@ -7,6 +7,7 @@ public class SwordSlash : SkillSO
 
     protected override void Execute(Character owner, Character target)
     {
-        target.TakeDamage(owner, damage);
+        ActionQueueManager.Instance.EnqueueAction(target, damage);
+        // target.TakeDamage(owner, damage);
     }
 }

@@ -5,46 +5,54 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Combat Event", fileName = "Combat Event")]
 public class CombatEvent : ScriptableObject
 {
-    public UnityEvent<Character, Character> OnKill;
+    public UnityEvent<Character, Character> OnDeath;
     public UnityEvent<Character, StatusEffect> OnEffect;
-    public UnityEvent<Character> OnDamage;
-    public UnityEvent<Character> OnShieldDamage;
-    public UnityEvent<Character, Character> OnAttack;
+    public UnityEvent<Character, int> OnDamage;
+    public UnityEvent<Character, int> OnShieldDamage;
+    public UnityEvent<Character, SkillSO, Character> OnSkill;
     public UnityEvent<CombatManager> OnNewTurn;
+
+
+    public static CombatEvent Instance { get; private set; }
 
     void OnEnable()
     {
-        OnKill = new();
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
+            Destroy(this);
+
+        OnDeath = new();
         OnEffect = new();
         OnDamage = new();
-        OnAttack = new();
+        OnSkill = new();
         OnNewTurn = new();
     }
 
-    public void RaiseOnKillEvent(Character killer, Character victim)
+    public void RaiseOnDeathEvent(Character killer, Character victim)
     {
-        Debug.Log("OnKill Event Raised");
-        OnKill?.Invoke(killer, victim);
+        Debug.Log("OnDeath Event Raised");
+        OnDeath?.Invoke(killer, victim);
     }
     public void RaiseOnEffectEvent(Character owner, StatusEffect effect)
     {
-        Debug.Log("OnEffect Event Raised");
+        Debug.Log($"OnEffect Event Raised: {owner.name} -> {effect.name}");
         OnEffect?.Invoke(owner, effect);
     }
-    public void RaiseOnDamageEvent(Character owner)
+    public void RaiseOnDamageEvent(Character owner, int damage)
     {
         Debug.Log("OnDamage Event Raised");
-        OnDamage?.Invoke(owner);
+        OnDamage?.Invoke(owner, damage);
     }
-    public void RaiseOnShieldDamageEvent(Character owner)
+    public void RaiseOnShieldDamageEvent(Character owner, int damage)
     {
         Debug.Log($"OnShieldDamage Event Raised: {owner.name}");
-        OnShieldDamage?.Invoke(owner);
+        OnShieldDamage?.Invoke(owner, damage);
     }
-    public void RaiseOnAttackEvent(Character attacker, Character victim)
+    public void RaiseOnSkillEvent(Character attacker, SkillSO skill, Character victim)
     {
-        Debug.Log($"OnAttack Event Raised: {attacker.name} -> {victim.name}");
-        OnAttack?.Invoke(attacker, victim);
+        Debug.Log($"OnSkill Event Raised: {attacker.name} -> {victim.name} = {skill.name}");
+        OnSkill?.Invoke(attacker, skill, victim);
     }
     public void RaiseOnNewTurnEvent(CombatManager combatManager)
     {

@@ -12,6 +12,7 @@ public class StatusEffect
     {
         effectData = effectSO;
         duration = effectData.duration;
+        name = effectSO.name;
     }
 
     public void ApplyEffect(Character target)

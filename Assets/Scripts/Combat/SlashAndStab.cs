@@ -6,6 +6,7 @@ public class SlashAndStab : SkillSO
     public Bleed bleedSO;
     protected override void Execute(Character owner, Character target)
     {
-        target.AddStatusEffect(new StatusEffect(bleedSO));
+        // target.AddStatusEffect( new StatusEffect(bleedSO));
+        ActionQueueManager.Instance.EnqueueAction(target, new StatusEffect(bleedSO));
     }
 }

@@ -12,6 +12,7 @@ public abstract class SkillSO : ScriptableObject
 {
     public TargetType targetType;
     public bool isOffensive = false;
+    public Sprite sprite;
     public void ExecuteSkill(Character owner, params Character[] targets)
     {
         foreach (Character target in targets)

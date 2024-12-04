@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455e5857a879a450ea242e84d5c2a79e, type: 3}
   m_Name: New Double Strike
   m_EditorClassIdentifier: 
-  probability: 0.25
-  debug: 0
+  probability: 1
+  repeatableSkil: {fileID: 11400000, guid: 99a55bae0656847df9f2ce1cc38dbed6, type: 2}

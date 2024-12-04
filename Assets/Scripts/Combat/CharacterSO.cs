@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Character", menuName = "Combat/Character")]
-public class CharacterSO : ScriptableObject
+[CreateAssetMenu(fileName = "Unit", menuName = "Combat/Unit")]
+public class UnitSO : ScriptableObject
 {
     [Header("Attributes")]
-    public string characterName;
+    public string unitName;
     public Sprite sprite;
     public bool flipped;
     public bool isEnemy;

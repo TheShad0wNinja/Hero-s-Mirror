@@ -1,23 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Timeline;
 
-public abstract class Character : MonoBehaviour
+public abstract class Unit : MonoBehaviour
 {
 
-    [Header("Character Information")]
-    [SerializeField] CharacterSO characterData;
+    [Header("Unit Information")]
+    [SerializeField] UnitSO unitData;
     [SerializeField] CombatEvent combatEvent;
     [SerializeField] public List<SkillSO> skills;
     [SerializeField] public List<PassiveSO> passives;
     [SerializeField] List<StatusEffect> activeEffects;
 
-    public string CharacterName => characterData.characterName;
-    public bool IsEnemy => characterData.isEnemy;
+    public string UnitName => unitData.unitName;
+    public bool IsEnemy => unitData.isEnemy;
 
-    public int Shield { get ; set; }
+   public int Shield { get ; set; }
 
     SpriteRenderer sr;
     Animator anim;
@@ -32,16 +32,16 @@ public abstract class Character : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        sr.sprite = characterData.sprite;
+        sr.sprite = unitData.sprite;
 
-        if (characterData.flipped)
+        if (unitData.flipped)
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
 
-        currentHealth = characterData.baseHealth;
-        currentMana = characterData.baseMana;
-        Shield = characterData.baseShield;
-        attackbonus = characterData.baseAttackBonus;
-        critChance = characterData.baseCritChance;
+        currentHealth = unitData.baseHealth;
+        currentMana = unitData.baseMana;
+        Shield = unitData.baseShield;
+        attackbonus = unitData.baseAttackBonus;
+        critChance = unitData.baseCritChance;
 
         SetupEvents();
     }
@@ -60,10 +60,10 @@ public abstract class Character : MonoBehaviour
     {
         foreach (var effect in activeEffects.ToList())
         {
-            ActionQueueManager.Instance.EnqueueAction(this, effect, StatusEffectAction.EffectAction.TICK);
+            ActionQueueManager.EnqueueStatusEffectAction(this, effect, StatusEffectAction.EffectAction.TICK);
 
             if (effect.IsExpired)
-                ActionQueueManager.Instance.EnqueueAction(this, effect, StatusEffectAction.EffectAction.REMOVE);
+                ActionQueueManager.EnqueueStatusEffectAction(this, effect, StatusEffectAction.EffectAction.REMOVE);
         }
     }
 
@@ -77,20 +77,20 @@ public abstract class Character : MonoBehaviour
         activeEffects.Remove(effect);
     }
 
-    public virtual void TakeRawDamage(Character attacker, int damage)
+    public virtual void TakeRawDamage(Unit attacker, int damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
             Kill(attacker);
     }
 
-    private void Kill(Character attacker)
+    private void Kill(Unit attacker)
     {
-        ActionQueueManager.Instance.EnqueueAction(attacker, this);
+        ActionQueueManager.EnqueueDeathAction(attacker, this);
     }
 
     /// <summary>
-    /// Calculates the damage that will affect the character and how much shield is left after if any
+    /// Calculates the damage that will affect the unit and how much shield is left after if any
     /// </summary>
     /// <param name="damage"></param>
     /// <returns>(The amount of damage, the amount of shield left)</returns>

@@ -22,42 +22,57 @@ public class ActionQueueManager : MonoBehaviour
         }
     }
 
-    public void EnqueueAction(Character character, SkillSO skillSO, Character target)
+    public static void EnqueueSkillAction(Unit character, SkillSO skillSO, Unit target)
     {
-        actionQueue.Enqueue(new SkillAction(character, skillSO, target));
+        if (Instance != null)
+        {
+            Instance.actionQueue.Enqueue(new SkillAction(character, skillSO, target));
+            Instance.StartQueue();
+        }
+    }
+
+    public static void EnqueueStatusEffectAction(Unit character, StatusEffect statusEffect)
+    {
+        if (Instance != null)
+        {
+            Instance.actionQueue.Enqueue(new StatusEffectAction(character, statusEffect));
+            Instance.StartQueue();
+        }
+    }
+
+    public static void EnqueueStatusEffectAction(Unit character, StatusEffect statusEffect, StatusEffectAction.EffectAction effectAction)
+    {
+        if (Instance != null)
+        {
+            Instance.actionQueue.Enqueue(new StatusEffectAction(character, statusEffect, effectAction));
+            Instance.StartQueue();
+        }
+    }
+
+    public static void EnqueueDamageAction(Unit character, int damage)
+    {
+        if (Instance != null)
+        {
+            Instance.actionQueue.Enqueue(new DamageAction(character, damage));
+            Instance.StartQueue();
+        }
+    }
+
+    public static void EnqueueDeathAction(Unit killer, Unit victim)
+    {
+        if (Instance != null)
+        {
+            Instance.actionQueue.Enqueue(new DeathAction(killer, victim));
+            Instance.StartQueue();
+        }
+    }
+
+    void StartQueue()
+    {
         if (!isProcessing)
             StartCoroutine(ProcessQueue());
     }
 
-    public void EnqueueAction(Character character, StatusEffect statusEffect)
-    {
-        actionQueue.Enqueue(new StatusEffectAction(character, statusEffect));
-        CheckQueue();
-    }
-
-    public void EnqueueAction(Character character, StatusEffect statusEffect, StatusEffectAction.EffectAction effectAction)
-    {
-        actionQueue.Enqueue(new StatusEffectAction(character, statusEffect, effectAction));
-        CheckQueue();
-    }
-
-    public void EnqueueAction(Character character, int damage)
-    {
-        actionQueue.Enqueue(new DamageAction(character, damage));
-        CheckQueue();
-    }
-
-    public void EnqueueAction(Character killer, Character victim)
-    {
-        actionQueue.Enqueue(new DeathAction(killer, victim));
-        CheckQueue();
-    }
-
-    void CheckQueue()
-    {
-        if (!isProcessing)
-            StartCoroutine(ProcessQueue());
-    }
     IEnumerator ProcessQueue()
     {
         isProcessing = true;
@@ -79,10 +94,10 @@ public abstract class ActionQueueItem
 
 public class SkillAction : ActionQueueItem
 {
-    public Character character;
+    public Unit character;
     public SkillSO skill;
-    public Character target;
-    public SkillAction(Character character, SkillSO skill, Character target)
+    public Unit target;
+    public SkillAction(Unit character, SkillSO skill, Unit target)
     {
         this.character = character;
         this.skill = skill;
@@ -106,18 +121,18 @@ public class StatusEffectAction : ActionQueueItem
         TICK
     };
 
-    Character character;
+    Unit character;
     StatusEffect statusEffect;
     EffectAction effectAction;
 
-    public StatusEffectAction(Character character, StatusEffect statusEffect)
+    public StatusEffectAction(Unit character, StatusEffect statusEffect)
     {
         this.character = character;
         this.statusEffect = statusEffect;
         this.effectAction = EffectAction.APPLY;
     }
 
-    public StatusEffectAction(Character character, StatusEffect statusEffect, EffectAction effectAction)
+    public StatusEffectAction(Unit character, StatusEffect statusEffect, EffectAction effectAction)
     {
         this.character = character;
         this.statusEffect = statusEffect;
@@ -147,10 +162,10 @@ public class StatusEffectAction : ActionQueueItem
 
 public class DamageAction : ActionQueueItem
 {
-    Character character;
+    Unit character;
     int damage;
 
-    public DamageAction(Character character, int damage)
+    public DamageAction(Unit character, int damage)
     {
         this.character = character;
         this.damage = damage;
@@ -160,8 +175,9 @@ public class DamageAction : ActionQueueItem
     {
         yield return character.StartCoroutine(character.AnimateAction(true));
         var (actualDamage, shieldLeft) = character.CalculateDamage(damage);
-        if (character.Shield != 0) {
-            character.Shield = shieldLeft; 
+        if (character.Shield != 0)
+        {
+            character.Shield = shieldLeft;
             CombatEvent.Instance.RaiseOnShieldDamageEvent(character, actualDamage);
         }
         character.TakeRawDamage(character, actualDamage);
@@ -172,10 +188,10 @@ public class DamageAction : ActionQueueItem
 
 public class DeathAction : ActionQueueItem
 {
-    Character attacker;
-    Character victim;
+    Unit attacker;
+    Unit victim;
 
-    public DeathAction(Character attacker, Character victim)
+    public DeathAction(Unit attacker, Unit victim)
     {
         this.attacker = attacker;
         this.victim = victim;
@@ -183,7 +199,6 @@ public class DeathAction : ActionQueueItem
 
     public override IEnumerator ExecuteAction()
     {
-        // UnityEngine.Object.Destroy(victim.gameObject);
         victim.isDead = true;
         CombatEvent.Instance.RaiseOnDeathEvent(attacker, victim);
         yield return null;

@@ -10,8 +10,9 @@ public class CombatUIChannel : ScriptableObject
 {
     public UnityAction<SkillSO> OnSkillSelected;
     public UnityAction<List<SkillSO>> OnAssignSkills;
-    public UnityAction<CurrentTurn, List<Character>> OnTurnChange;
-    public UnityAction<Character> OnUnitSelect;
+    public UnityAction<CurrentTurn, List<Unit>> OnTurnChange;
+    public UnityAction<Unit> OnUnitSelect;
+    public UnityAction<Unit> OnUnitHover;
 
     public void RaiseOnSkillEvent(SkillSO skill)
     {
@@ -25,17 +26,23 @@ public class CombatUIChannel : ScriptableObject
         OnAssignSkills?.Invoke(skills);
     }
 
-    public void RaiseOnTurnChange(CurrentTurn turn,List<Character> characters)
+    public void RaiseOnTurnChange(CurrentTurn turn,List<Unit> characters)
     {
         Debug.Log("TURN CHANGED " + turn);
-        string characterNames = string.Join("|", characters.Select(c => c.CharacterName));
+        string characterNames = string.Join("|", characters.Select(c => c.UnitName));
         Debug.Log(characterNames);
         OnTurnChange?.Invoke(turn, characters);
     }
 
-    public void RaiseOnUnitSelect(Character character)
+    public void RaiseOnUnitSelect(Unit character)
     {
         Debug.Log($"{character} selected");
         OnUnitSelect.Invoke(character);
+    }
+
+    public void RaiseOnUnitHover(Unit character)
+    {
+        Debug.Log($"{character} hovered");
+        OnUnitHover.Invoke(character);
     }
 }

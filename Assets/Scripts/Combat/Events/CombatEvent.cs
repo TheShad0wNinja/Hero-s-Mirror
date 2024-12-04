@@ -5,11 +5,11 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Combat Event", fileName = "Combat Event")]
 public class CombatEvent : ScriptableObject
 {
-    public UnityEvent<Character, Character> OnDeath;
-    public UnityEvent<Character, StatusEffect> OnEffect;
-    public UnityEvent<Character, int> OnDamage;
-    public UnityEvent<Character, int> OnShieldDamage;
-    public UnityEvent<Character, SkillSO, Character> OnSkill;
+    public UnityEvent<Unit, Unit> OnDeath;
+    public UnityEvent<Unit, StatusEffect> OnEffect;
+    public UnityEvent<Unit, int> OnDamage;
+    public UnityEvent<Unit, int> OnShieldDamage;
+    public UnityEvent<Unit, SkillSO, Unit> OnSkill;
     public UnityEvent<CombatManager> OnNewTurn;
 
 
@@ -29,27 +29,27 @@ public class CombatEvent : ScriptableObject
         OnNewTurn = new();
     }
 
-    public void RaiseOnDeathEvent(Character killer, Character victim)
+    public void RaiseOnDeathEvent(Unit killer, Unit victim)
     {
         Debug.Log("OnDeath Event Raised");
         OnDeath?.Invoke(killer, victim);
     }
-    public void RaiseOnEffectEvent(Character owner, StatusEffect effect)
+    public void RaiseOnEffectEvent(Unit owner, StatusEffect effect)
     {
         Debug.Log($"OnEffect Event Raised: {owner.name} -> {effect.name}");
         OnEffect?.Invoke(owner, effect);
     }
-    public void RaiseOnDamageEvent(Character owner, int damage)
+    public void RaiseOnDamageEvent(Unit owner, int damage)
     {
         Debug.Log("OnDamage Event Raised");
         OnDamage?.Invoke(owner, damage);
     }
-    public void RaiseOnShieldDamageEvent(Character owner, int damage)
+    public void RaiseOnShieldDamageEvent(Unit owner, int damage)
     {
         Debug.Log($"OnShieldDamage Event Raised: {owner.name}");
         OnShieldDamage?.Invoke(owner, damage);
     }
-    public void RaiseOnSkillEvent(Character attacker, SkillSO skill, Character victim)
+    public void RaiseOnSkillEvent(Unit attacker, SkillSO skill, Unit victim)
     {
         Debug.Log($"OnSkill Event Raised: {attacker.name} -> {victim.name} = {skill.name}");
         OnSkill?.Invoke(attacker, skill, victim);

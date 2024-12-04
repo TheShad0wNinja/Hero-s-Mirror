@@ -15,15 +15,15 @@ public class StatusEffect
         name = effectSO.name;
     }
 
-    public void ApplyEffect(Character target)
+    public void ApplyEffect(Unit target)
     {
         effectData.ApplyEffect(target);
     }
-    public void RemoveEffect(Character target)
+    public void RemoveEffect(Unit target)
     {
         effectData.RemoveEffect(target);
     }
-    public void TickEffect(Character target)
+    public void TickEffect(Unit target)
     {
         effectData.TickEffect(target);
         duration--;

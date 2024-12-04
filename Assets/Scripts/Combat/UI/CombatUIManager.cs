@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class CombatUIManager : MonoBehaviour
 {
-    public Character test;
+    public Unit test;
     public GameObject selector;
     public GameObject selectorSelected;
     public TextMeshProUGUI notifactionText;
@@ -18,8 +18,10 @@ public class CombatUIManager : MonoBehaviour
     public GameObject skillBoxPrefap;
     public GameObject skillsPanel;
     public CombatUIChannel uiChannel;
+    public MouseChannel mouseChannel;
 
     List<GameObject> currentSelectors = new();
+    GameObject currentHoverSelector;
     List<GameObject> currentSkills = new();
 
     void Start()
@@ -33,10 +35,56 @@ public class CombatUIManager : MonoBehaviour
         {
             uiChannel.OnTurnChange += HandleCurrentTurn;
             uiChannel.OnAssignSkills += AddNewSkills;
+            uiChannel.OnUnitHover += HandleUnitHover;
+            uiChannel.OnUnitSelect += HandleUnitSelect;
+        }
+
+        if (mouseChannel != null)
+        {
+            mouseChannel.OnUnitUnhover += HandleUnitUnhover;
         }
     }
 
-    void HandleCurrentTurn(CurrentTurn currentTurn, List<Character> characters)
+    private void HandleUnitUnhover(Unit arg0)
+    {
+        RemoveHoverSelector();
+    }
+
+    private void RemoveHoverSelector()
+    {
+        if (currentHoverSelector != null)
+            Destroy(currentHoverSelector);
+        currentHoverSelector = null;
+    }
+
+    private void HandleUnitSelect(Unit character)
+    {
+        RemoveAllSelectors();
+        var characterScale = GetUnitUIScale(character);
+        var characterCenter = GetUnitUICenter(character);
+
+        var newSelector = Instantiate(selectorSelected, characterCenter, Quaternion.identity, selectorCanvas.transform);
+        currentSelectors.Add(newSelector);
+
+        var selectorRectTransform = newSelector.GetComponent<RectTransform>();
+        selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, characterScale.y);
+        selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 150f);
+    }
+
+    private void HandleUnitHover(Unit character)
+    {
+        var characterScale = GetUnitUIScale(character);
+        var characterCenter = GetUnitUICenter(character);
+
+        var newSelector = Instantiate(selector, characterCenter, Quaternion.identity, selectorCanvas.transform);
+        currentHoverSelector = newSelector;
+
+        var selectorRectTransform = newSelector.GetComponent<RectTransform>();
+        selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, characterScale.y);
+        selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 150f);
+    }
+
+    void HandleCurrentTurn(CurrentTurn currentTurn, List<Unit> characters)
     {
         currentTurnText.text = currentTurn switch
         {
@@ -45,31 +93,16 @@ public class CombatUIManager : MonoBehaviour
             _ => ""
         };
 
-        RemoveCurrentSelectors();
-        if (currentTurn == CurrentTurn.PLAYER_TURN || currentTurn == CurrentTurn.PLAYER_SKILL_SELECTED)
+        switch (currentTurn)
         {
-            foreach (var character in characters)
-            {
-                var newSelctor = Instantiate(selector, GetCharacterUIBottom(character), Quaternion.identity, selectorCanvas.transform);
-                currentSelectors.Add(newSelctor);
-            }
+            case CurrentTurn.ENEMY_TURN:
+                RemoveAllSkills();
+                RemoveAllSelectors();
+                break;
         }
-        else if (currentTurn == CurrentTurn.PLAYER_UNIT_SELECTED)
-        {
-            var characterScale = GetCharacterUIScale(characters[0]);
-            var characterCenter = GetCharacterUICenter(characters[0]);
-
-            var newSelector = Instantiate(selectorSelected, characterCenter, Quaternion.identity, selectorCanvas.transform);
-            currentSelectors.Add(newSelector);
-
-            var selectorRectTransform = newSelector.GetComponent<RectTransform>();
-            selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, characterScale.y);
-            selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 150f);
-        } else if (currentTurn == CurrentTurn.ENEMY_TURN)
-            RemoveAllSkills();
     }
 
-    Vector3 GetCharacterUIScale(Character character)
+    Vector3 GetUnitUIScale(Unit character)
     {
         const float screenPointToRectRelativeMargin = 1.9f;
         const float relativeWidth = 150f;
@@ -83,7 +116,7 @@ public class CombatUIManager : MonoBehaviour
         return new Vector3(relativeWidth, height);
     }
 
-    Vector3 GetCharacterUICenter(Character character)
+    Vector3 GetUnitUICenter(Unit character)
     {
         var bounds = character.GetComponent<SpriteRenderer>().bounds;
 
@@ -91,7 +124,7 @@ public class CombatUIManager : MonoBehaviour
         return uiPosition;
     }
 
-    Vector3 GetCharacterUIBottom(Character character)
+    Vector3 GetCharacterUIBottom(Unit character)
     {
         var bounds = character.GetComponent<SpriteRenderer>().bounds;
         var bottomPosition = new Vector3(bounds.center.x, bounds.max.y, 0);
@@ -99,16 +132,19 @@ public class CombatUIManager : MonoBehaviour
         return uiPosition;
     }
 
-    void RemoveCurrentSelectors()
+    void RemoveAllSelectors()
     {
         currentSelectors.ForEach(s => Destroy(s));
         currentSelectors.Clear();
+        Destroy(currentHoverSelector);
+        currentHoverSelector = null;
     }
 
     public void AddNewSkill(SkillSO skill)
     {
         var instance = Instantiate(skillBoxPrefap, skillsPanel.transform);
         instance.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => uiChannel.RaiseOnSkillEvent(skill));
+        instance.GetComponent<SkillItemController>().SetSkillTitle(skill.skillName);
         currentSkills.Add(instance);
     }
 
@@ -124,22 +160,22 @@ public class CombatUIManager : MonoBehaviour
         currentSkills.Clear();
     }
 
-    private void TriggerStatusEffectEffect(Character arg0, StatusEffect arg1)
+    private void TriggerStatusEffectEffect(Unit arg0, StatusEffect arg1)
     {
         CreateText(arg0.transform.position + Vector3.up * 2, $"{arg0.name} inflicted with {arg1.name}", 2f);
     }
 
-    void TriggerSkillEffect(Character attacker, SkillSO skill, Character target)
+    void TriggerSkillEffect(Unit attacker, SkillSO skill, Unit target)
     {
         CreateText(attacker.transform.position, $"{attacker.name} user {skill.name}", 1f);
     }
 
-    void TriggerDamageEffect(Character character, int damage)
+    void TriggerDamageEffect(Unit character, int damage)
     {
         CreateText(character.transform.position, $"{character.name} took {damage} damage", 1.2f);
     }
 
-    private void TriggerDeathEffect(Character arg0, Character arg1)
+    private void TriggerDeathEffect(Unit arg0, Unit arg1)
     {
         CreateText(arg1.transform.position + Vector3.down * 3, $"{arg1.name} Died", 3f);
     }

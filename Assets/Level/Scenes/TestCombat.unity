@@ -562,7 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   test: {fileID: 955116099}
-  selector: {fileID: 3263999354613086486, guid: 1156463c8a96e412592f87c87f21d64c, type: 3}
+  selector: {fileID: 7290184973511175953, guid: 9baa6faf16f9c4b2e93e9e7a535f339a, type: 3}
   selectorSelected: {fileID: 7290184973511175953, guid: cd4ae8d3932d049da95c0bcdec01d749, type: 3}
   notifactionText: {fileID: 1243287430}
   canvas: {fileID: 1881537279}
@@ -571,6 +571,7 @@ MonoBehaviour:
   skillBoxPrefap: {fileID: 6660589799843262561, guid: 8d70640a4e9d842429244ed866680287, type: 3}
   skillsPanel: {fileID: 1225436449}
   uiChannel: {fileID: 11400000, guid: 1d068324b7dd146058c9f6638c6e70a6, type: 2}
+  mouseChannel: {fileID: 11400000, guid: b38deb10ff3cc4f1fa18b56b441a9d6d, type: 2}
 --- !u!4 &637844246
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +1000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03f001b067394ada860c45292d09e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiChannel: {fileID: 11400000, guid: 1d068324b7dd146058c9f6638c6e70a6, type: 2}
+  channel: {fileID: 11400000, guid: b38deb10ff3cc4f1fa18b56b441a9d6d, type: 2}
 --- !u!4 &1088537390
 Transform:
   m_ObjectHideFlags: 0
@@ -6696,6 +6697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiChannel: {fileID: 11400000, guid: 1d068324b7dd146058c9f6638c6e70a6, type: 2}
+  mouseChannel: {fileID: 11400000, guid: b38deb10ff3cc4f1fa18b56b441a9d6d, type: 2}
   combatEvent: {fileID: 11400000, guid: bdb4e20b2836840d2ad04758bc0b52f1, type: 2}
   actionQueueManager: {fileID: 1941674412}
   units:

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Cain Slash and Stab
   m_EditorClassIdentifier: 
   targetType: 0
-  movesCharacter: 0
+  isOffensive: 0
+  sprite: {fileID: 0}
+  skillName: Slash And Stab
   bleedSO: {fileID: 11400000, guid: ac81345adb9c7468db4f1359ae4e0132, type: 2}

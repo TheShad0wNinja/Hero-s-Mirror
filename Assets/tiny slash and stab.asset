@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: tiny slash and stab
   m_EditorClassIdentifier: 
   targetType: 0
-  movesCharacter: 0
+  isOffensive: 0
+  sprite: {fileID: 0}
+  skillName: Slash & Stab
   bleedSO: {fileID: 11400000, guid: 03bc7782982db43f5a445caecfb820d1, type: 2}

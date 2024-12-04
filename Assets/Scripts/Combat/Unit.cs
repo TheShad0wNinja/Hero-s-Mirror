@@ -17,7 +17,7 @@ public abstract class Unit : MonoBehaviour
     public string UnitName => unitData.unitName;
     public bool IsEnemy => unitData.isEnemy;
 
-   public int Shield { get ; set; }
+    public int Shield { get ; set; }
 
     SpriteRenderer sr;
     Animator anim;

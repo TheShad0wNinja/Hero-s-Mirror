@@ -1443,6 +1443,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 201458958803697835, guid: 765e62fcee6b34ed5a29e424b228b7c4, type: 3}
+      propertyPath: unitData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f8a884bb0f52457a9af8d70e3ef0fa5, type: 2}
     - target: {fileID: 1640989128477114663, guid: 765e62fcee6b34ed5a29e424b228b7c4, type: 3}
       propertyPath: m_FlipY
       value: 1
@@ -1520,6 +1524,10 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1650791428526840586, guid: 270596a98c25d4639a0fbe1c2bf5c9ec, type: 3}
+      propertyPath: unitData
+      value: 
+      objectReference: {fileID: 11400000, guid: 930b3433cb9204ae7a42c4bcbf750598, type: 2}
     - target: {fileID: 1650791428526840586, guid: 270596a98c25d4639a0fbe1c2bf5c9ec, type: 3}
       propertyPath: skills.Array.size
       value: 1
@@ -6715,12 +6723,12 @@ MonoBehaviour:
   - {fileID: 232124943}
   - {fileID: 255161955}
   - {fileID: 1380337122}
-  selectedSkill: 0
+  selectedSkillIdx: 0
   triggerSkill: 0
   triggerEffects: 0
   triggerPassives: 0
   currentTurn: 0
-  selectedTarget: 0
+  selectedTargetIdx: 0
   currentTurnNumber: 1
 --- !u!4 &1941674411
 Transform:
@@ -6999,6 +7007,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Unit
       objectReference: {fileID: 0}
+    - target: {fileID: 1650791428526840586, guid: 270596a98c25d4639a0fbe1c2bf5c9ec, type: 3}
+      propertyPath: unitData
+      value: 
+      objectReference: {fileID: 11400000, guid: 930b3433cb9204ae7a42c4bcbf750598, type: 2}
     - target: {fileID: 3777977692043678322, guid: 270596a98c25d4639a0fbe1c2bf5c9ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.05
@@ -7052,6 +7064,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 201458958803697835, guid: 765e62fcee6b34ed5a29e424b228b7c4, type: 3}
+      propertyPath: unitData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f8a884bb0f52457a9af8d70e3ef0fa5, type: 2}
     - target: {fileID: 5883957708535727237, guid: 765e62fcee6b34ed5a29e424b228b7c4, type: 3}
       propertyPath: m_Name
       value: Enemy

@@ -8,21 +8,21 @@ public class MouseChannel : ScriptableObject
     public UnityAction<Unit> OnUnitSelect;
     public UnityAction<Unit> OnUnitHover;
     public UnityAction<Unit> OnUnitUnhover;
-    public void RaiseOnUnitHover(Unit character)
+    public void RaiseOnUnitHover(Unit unit)
     {
         Debug.Log("Mouse Hover");
-        OnUnitHover.Invoke(character);
+        OnUnitHover.Invoke(unit);
     }
 
-    public void RaiseOnUnitSelect(Unit character)
+    public void RaiseOnUnitSelect(Unit unit)
     {
         Debug.Log("Mouse Select");
-        OnUnitSelect.Invoke(character);
+        OnUnitSelect.Invoke(unit);
     }
 
-    public void RaiseOnUnitUnhover(Unit character)
+    public void RaiseOnUnitUnhover(Unit unit)
     {
         Debug.Log("Mouse Unhover");
-        OnUnitUnhover.Invoke(character);
+        OnUnitUnhover.Invoke(unit);
     }
 }

@@ -18,11 +18,11 @@ public class DoubleStrike : PassiveSO
         hasRepeatedThisTurn = false;
     }
 
-    void HandleEvent(Unit character, SkillSO skill, Unit target)
+    void HandleEvent(Unit unit, SkillSO skill, Unit target)
     {
         if (UnityEngine.Random.value <= probability && skill == repeatableSkil && !hasRepeatedThisTurn)
         {
-            ActionQueueManager.EnqueueSkillAction(character, skill, target);
+            ActionQueueManager.EnqueueSkillAction(unit, skill, target);
             hasRepeatedThisTurn = true;
         }
     }

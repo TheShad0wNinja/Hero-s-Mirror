@@ -19,22 +19,22 @@ public class MouseHandler : MonoBehaviour
                 }
             }
         } else {
-            Unit character = null;
+            Unit unit = null;
             foreach(var hit in hits)
             {
                 if (hit.collider.CompareTag("Unit"))
                 {
-                    character = hit.collider.GetComponent<Unit>();
+                    unit = hit.collider.GetComponent<Unit>();
                 }
             }
 
-            if (character == null && isHovered)
+            if (unit == null && isHovered)
             {
-                channel.RaiseOnUnitUnhover(character);
+                channel.RaiseOnUnitUnhover(unit);
                 isHovered = false;
-            } else if (character != null && !isHovered)
+            } else if (unit != null && !isHovered)
             {
-                channel.RaiseOnUnitHover(character);
+                channel.RaiseOnUnitHover(unit);
                 isHovered = true;
             }
 

@@ -22,38 +22,38 @@ public class ActionQueueManager : MonoBehaviour
         }
     }
 
-    public static void EnqueueSkillAction(Unit character, SkillSO skillSO, Unit target)
+    public static void EnqueueSkillAction(Unit unit, SkillSO skillSO, Unit target)
     {
         if (Instance != null)
         {
-            Instance.actionQueue.Enqueue(new SkillAction(character, skillSO, target));
+            Instance.actionQueue.Enqueue(new SkillAction(unit, skillSO, target));
             Instance.StartQueue();
         }
     }
 
-    public static void EnqueueStatusEffectAction(Unit character, StatusEffect statusEffect)
+    public static void EnqueueStatusEffectAction(Unit unit, StatusEffect statusEffect)
     {
         if (Instance != null)
         {
-            Instance.actionQueue.Enqueue(new StatusEffectAction(character, statusEffect));
+            Instance.actionQueue.Enqueue(new StatusEffectAction(unit, statusEffect));
             Instance.StartQueue();
         }
     }
 
-    public static void EnqueueStatusEffectAction(Unit character, StatusEffect statusEffect, StatusEffectAction.EffectAction effectAction)
+    public static void EnqueueStatusEffectAction(Unit unit, StatusEffect statusEffect, StatusEffectAction.EffectAction effectAction)
     {
         if (Instance != null)
         {
-            Instance.actionQueue.Enqueue(new StatusEffectAction(character, statusEffect, effectAction));
+            Instance.actionQueue.Enqueue(new StatusEffectAction(unit, statusEffect, effectAction));
             Instance.StartQueue();
         }
     }
 
-    public static void EnqueueDamageAction(Unit character, int damage)
+    public static void EnqueueDamageAction(Unit unit, int damage)
     {
         if (Instance != null)
         {
-            Instance.actionQueue.Enqueue(new DamageAction(character, damage));
+            Instance.actionQueue.Enqueue(new DamageAction(unit, damage));
             Instance.StartQueue();
         }
     }
@@ -94,20 +94,20 @@ public abstract class ActionQueueItem
 
 public class SkillAction : ActionQueueItem
 {
-    public Unit character;
+    public Unit unit;
     public SkillSO skill;
     public Unit target;
-    public SkillAction(Unit character, SkillSO skill, Unit target)
+    public SkillAction(Unit unit, SkillSO skill, Unit target)
     {
-        this.character = character;
+        this.unit = unit;
         this.skill = skill;
         this.target = target;
     }
     public override IEnumerator ExecuteAction()
     {
-        yield return character.StartCoroutine(character.AnimateAction(skill));
-        skill.ExecuteSkill(character, target);
-        CombatEvent.Instance.RaiseOnSkillEvent(character, skill, target);
+        yield return unit.StartCoroutine(unit.AnimateAction(skill));
+        skill.ExecuteSkill(unit, target);
+        CombatEvent.Instance.RaiseOnSkillEvent(unit, skill, target);
         yield return null;
     }
 }
@@ -121,20 +121,20 @@ public class StatusEffectAction : ActionQueueItem
         TICK
     };
 
-    Unit character;
+    Unit unit;
     StatusEffect statusEffect;
     EffectAction effectAction;
 
-    public StatusEffectAction(Unit character, StatusEffect statusEffect)
+    public StatusEffectAction(Unit unit, StatusEffect statusEffect)
     {
-        this.character = character;
+        this.unit = unit;
         this.statusEffect = statusEffect;
         this.effectAction = EffectAction.APPLY;
     }
 
-    public StatusEffectAction(Unit character, StatusEffect statusEffect, EffectAction effectAction)
+    public StatusEffectAction(Unit unit, StatusEffect statusEffect, EffectAction effectAction)
     {
-        this.character = character;
+        this.unit = unit;
         this.statusEffect = statusEffect;
         this.effectAction = effectAction;
     }
@@ -144,44 +144,44 @@ public class StatusEffectAction : ActionQueueItem
         switch (effectAction)
         {
             case EffectAction.APPLY:
-                character.AddStatusEffect(statusEffect);
-                statusEffect.ApplyEffect(character);
+                unit.AddStatusEffect(statusEffect);
+                statusEffect.ApplyEffect(unit);
                 break;
             case EffectAction.REMOVE:
-                character.RemoveStatusEffect(statusEffect);
-                statusEffect.RemoveEffect(character);
+                unit.RemoveStatusEffect(statusEffect);
+                statusEffect.RemoveEffect(unit);
                 break;
             case EffectAction.TICK:
-                statusEffect.TickEffect(character);
+                statusEffect.TickEffect(unit);
                 break;
         }
-        CombatEvent.Instance.RaiseOnEffectEvent(character, statusEffect);
+        CombatEvent.Instance.RaiseOnEffectEvent(unit, statusEffect);
         yield return null;
     }
 }
 
 public class DamageAction : ActionQueueItem
 {
-    Unit character;
+    Unit unit;
     int damage;
 
-    public DamageAction(Unit character, int damage)
+    public DamageAction(Unit unit, int damage)
     {
-        this.character = character;
+        this.unit = unit;
         this.damage = damage;
     }
 
     public override IEnumerator ExecuteAction()
     {
-        yield return character.StartCoroutine(character.AnimateAction(true));
-        var (actualDamage, shieldLeft) = character.CalculateDamage(damage);
-        if (character.Shield != 0)
+        yield return unit.StartCoroutine(unit.AnimateAction(true));
+        var (actualDamage, shieldLeft) = unit.CalculateDamage(damage);
+        if (unit.Shield != 0)
         {
-            character.Shield = shieldLeft;
-            CombatEvent.Instance.RaiseOnShieldDamageEvent(character, actualDamage);
+            unit.Shield = shieldLeft;
+            CombatEvent.Instance.RaiseOnShieldDamageEvent(unit, actualDamage);
         }
-        character.TakeRawDamage(character, actualDamage);
-        CombatEvent.Instance.RaiseOnDamageEvent(character, actualDamage);
+        unit.TakeRawDamage(unit, actualDamage);
+        CombatEvent.Instance.RaiseOnDamageEvent(unit, actualDamage);
         yield return null;
     }
 }

@@ -125,67 +125,67 @@ public class CombatManager : MonoBehaviour
         // uiChannel.RaiseOnTurnChange(currentTurn, enemyUnits);
     }
 
-    private void HandleUnitSelect(Unit character)
+    private void HandleUnitSelect(Unit unit)
     {
         switch (currentTurn)
         {
             case CurrentTurn.PLAYER_TURN or CurrentTurn.PLAYER_UNIT_SELECTED:
-                if (!character.IsEnemy && character.hasTurn && character != SelectedUnit)
+                if (!unit.IsEnemy && unit.hasTurn && unit != SelectedUnit)
                 {
-                    uiChannel.RaiseOnUnitSelect(character);
+                    uiChannel.RaiseOnUnitSelect(unit);
                     currentTurn = CurrentTurn.PLAYER_UNIT_SELECTED;
-                    SelectedUnit = character;
-                    uiChannel.RaiseOnAssignSkills(character.skills);
-                    uiChannel.RaiseOnTurnChange(currentTurn, new List<Unit> { character });
+                    SelectedUnit = unit;
+                    uiChannel.RaiseOnAssignSkills(unit.skills);
+                    uiChannel.RaiseOnTurnChange(currentTurn, new List<Unit> { unit });
                 }
                 break;
             case CurrentTurn.PLAYER_SKILL_SELECTED:
-                if (character.IsEnemy && !character.isDead)
+                if (unit.IsEnemy && !unit.isDead)
                 {
-                    ActionQueueManager.EnqueueSkillAction(SelectedUnit, selectedSkill, character);
+                    ActionQueueManager.EnqueueSkillAction(SelectedUnit, selectedSkill, unit);
                     SelectedUnit = null;
                 }
                 break;
         }
-        // if (!character.IsEnemy && (currentTurn == CurrentTurn.PLAYER_TURN || currentTurn == CurrentTurn.PLAYER_UNIT_SELECTED) && character.hasTurn)
+        // if (!unit.IsEnemy && (currentTurn == CurrentTurn.PLAYER_TURN || currentTurn == CurrentTurn.PLAYER_UNIT_SELECTED) && unit.hasTurn)
         // {
         //     currentTurn = CurrentTurn.PLAYER_UNIT_SELECTED;
-        //     selectedUnit = playerUnits.FindIndex(c => c.Equals(character));
+        //     selectedUnit = playerUnits.FindIndex(c => c.Equals(unit));
         //     Debug.Log($"Selected Unit: ${selectedUnit}");
         //     selectedSkill = -1;
-        //     uiChannel.RaiseOnAssignSkills(character.skills);
-        //     uiChannel.RaiseOnTurnChange(currentTurn, new List<Character> { character });
+        //     uiChannel.RaiseOnAssignSkills(unit.skills);
+        //     uiChannel.RaiseOnTurnChange(currentTurn, new List<Character> { unit });
         // }
-        // if (currentTurn == CurrentTurn.PLAYER_SKILL_SELECTED && character.IsEnemy)
+        // if (currentTurn == CurrentTurn.PLAYER_SKILL_SELECTED && unit.IsEnemy)
         // {
-        //     ActionQueueManager.EnqueueSkillAction(GetUnit(selectedUnit), GetUnit(selectedUnit).skills[selectedSkill], character);
+        //     ActionQueueManager.EnqueueSkillAction(GetUnit(selectedUnit), GetUnit(selectedUnit).skills[selectedSkill], unit);
         // }
     }
 
-    private void HandleUnitHover(Unit character)
+    private void HandleUnitHover(Unit unit)
     {
         switch (currentTurn)
         {
             case CurrentTurn.PLAYER_TURN or CurrentTurn.PLAYER_UNIT_SELECTED:
-                if (!character.IsEnemy && character.hasTurn && character != SelectedUnit)
+                if (!unit.IsEnemy && unit.hasTurn && unit != SelectedUnit)
                 {
-                    uiChannel.RaiseOnUnitHover(character);
+                    uiChannel.RaiseOnUnitHover(unit);
                 }
                 break;
             case CurrentTurn.PLAYER_SKILL_SELECTED:
-                if (character.IsEnemy && !character.isDead)
+                if (unit.IsEnemy && !unit.isDead)
                 {
-                    uiChannel.RaiseOnUnitHover(character);
+                    uiChannel.RaiseOnUnitHover(unit);
                 }
                 break;
         }
-        // if (!character.IsEnemy && (currentTurn == CurrentTurn.PLAYER_TURN || currentTurn == CurrentTurn.PLAYER_UNIT_SELECTED) && character.hasTurn)
+        // if (!unit.IsEnemy && (currentTurn == CurrentTurn.PLAYER_TURN || currentTurn == CurrentTurn.PLAYER_UNIT_SELECTED) && unit.hasTurn)
         // {
-        //     uiChannel.RaiseOnTurnChange(currentTurn, new List<Character> { character });
+        //     uiChannel.RaiseOnTurnChange(currentTurn, new List<Character> { unit });
         // }
-        // if (currentTurn == CurrentTurn.PLAYER_SKILL_SELECTED && character.IsEnemy)
+        // if (currentTurn == CurrentTurn.PLAYER_SKILL_SELECTED && unit.IsEnemy)
         // {
-        //     ActionQueueManager.EnqueueSkillAction(GetUnit(selectedUnit), GetUnit(selectedUnit).skills[selectedSkill], character);
+        //     ActionQueueManager.EnqueueSkillAction(GetUnit(selectedUnit), GetUnit(selectedUnit).skills[selectedSkill], unit);
         // }
     }
 

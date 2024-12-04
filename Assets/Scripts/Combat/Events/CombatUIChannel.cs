@@ -26,23 +26,23 @@ public class CombatUIChannel : ScriptableObject
         OnAssignSkills?.Invoke(skills);
     }
 
-    public void RaiseOnTurnChange(CurrentTurn turn,List<Unit> characters)
+    public void RaiseOnTurnChange(CurrentTurn turn,List<Unit> units)
     {
         Debug.Log("TURN CHANGED " + turn);
-        string characterNames = string.Join("|", characters.Select(c => c.UnitName));
-        Debug.Log(characterNames);
-        OnTurnChange?.Invoke(turn, characters);
+        string unitNames = string.Join("|", units.Select(c => c.UnitName));
+        Debug.Log(unitNames);
+        OnTurnChange?.Invoke(turn, units);
     }
 
-    public void RaiseOnUnitSelect(Unit character)
+    public void RaiseOnUnitSelect(Unit unit)
     {
-        Debug.Log($"{character} selected");
-        OnUnitSelect.Invoke(character);
+        Debug.Log($"{unit} selected");
+        OnUnitSelect.Invoke(unit);
     }
 
-    public void RaiseOnUnitHover(Unit character)
+    public void RaiseOnUnitHover(Unit unit)
     {
-        Debug.Log($"{character} hovered");
-        OnUnitHover.Invoke(character);
+        Debug.Log($"{unit} hovered");
+        OnUnitHover.Invoke(unit);
     }
 }

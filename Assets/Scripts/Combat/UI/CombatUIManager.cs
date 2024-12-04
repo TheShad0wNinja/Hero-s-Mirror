@@ -57,34 +57,34 @@ public class CombatUIManager : MonoBehaviour
         currentHoverSelector = null;
     }
 
-    private void HandleUnitSelect(Unit character)
+    private void HandleUnitSelect(Unit unit)
     {
         RemoveAllSelectors();
-        var characterScale = GetUnitUIScale(character);
-        var characterCenter = GetUnitUICenter(character);
+        var unitScale = GetUnitUIScale(unit);
+        var unitCenter = GetUnitUICenter(unit);
 
-        var newSelector = Instantiate(selectorSelected, characterCenter, Quaternion.identity, selectorCanvas.transform);
+        var newSelector = Instantiate(selectorSelected, unitCenter, Quaternion.identity, selectorCanvas.transform);
         currentSelectors.Add(newSelector);
 
         var selectorRectTransform = newSelector.GetComponent<RectTransform>();
-        selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, characterScale.y);
+        selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, unitScale.y);
         selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 150f);
     }
 
-    private void HandleUnitHover(Unit character)
+    private void HandleUnitHover(Unit unit)
     {
-        var characterScale = GetUnitUIScale(character);
-        var characterCenter = GetUnitUICenter(character);
+        var unitScale = GetUnitUIScale(unit);
+        var unitCenter = GetUnitUICenter(unit);
 
-        var newSelector = Instantiate(selector, characterCenter, Quaternion.identity, selectorCanvas.transform);
+        var newSelector = Instantiate(selector, unitCenter, Quaternion.identity, selectorCanvas.transform);
         currentHoverSelector = newSelector;
 
         var selectorRectTransform = newSelector.GetComponent<RectTransform>();
-        selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, characterScale.y);
+        selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, unitScale.y);
         selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 150f);
     }
 
-    void HandleCurrentTurn(CurrentTurn currentTurn, List<Unit> characters)
+    void HandleCurrentTurn(CurrentTurn currentTurn, List<Unit> units)
     {
         currentTurnText.text = currentTurn switch
         {
@@ -102,12 +102,12 @@ public class CombatUIManager : MonoBehaviour
         }
     }
 
-    Vector3 GetUnitUIScale(Unit character)
+    Vector3 GetUnitUIScale(Unit unit)
     {
         const float screenPointToRectRelativeMargin = 1.9f;
         const float relativeWidth = 150f;
 
-        var bounds = character.GetComponent<SpriteRenderer>().bounds;
+        var bounds = unit.GetComponent<SpriteRenderer>().bounds;
 
         var topPoint = Camera.main.WorldToScreenPoint(new(bounds.center.x, bounds.max.y));
         var bottomPoint = Camera.main.WorldToScreenPoint(new(bounds.center.x, bounds.min.y));
@@ -116,17 +116,17 @@ public class CombatUIManager : MonoBehaviour
         return new Vector3(relativeWidth, height);
     }
 
-    Vector3 GetUnitUICenter(Unit character)
+    Vector3 GetUnitUICenter(Unit unit)
     {
-        var bounds = character.GetComponent<SpriteRenderer>().bounds;
+        var bounds = unit.GetComponent<SpriteRenderer>().bounds;
 
         var uiPosition = Camera.main.WorldToScreenPoint(bounds.center);
         return uiPosition;
     }
 
-    Vector3 GetCharacterUIBottom(Unit character)
+    Vector3 GetUnitUIBottom(Unit unit)
     {
-        var bounds = character.GetComponent<SpriteRenderer>().bounds;
+        var bounds = unit.GetComponent<SpriteRenderer>().bounds;
         var bottomPosition = new Vector3(bounds.center.x, bounds.max.y, 0);
         var uiPosition = Camera.main.WorldToScreenPoint(bottomPosition);
         return uiPosition;
@@ -170,9 +170,9 @@ public class CombatUIManager : MonoBehaviour
         CreateText(attacker.transform.position, $"{attacker.name} user {skill.name}", 1f);
     }
 
-    void TriggerDamageEffect(Unit character, int damage)
+    void TriggerDamageEffect(Unit unit, int damage)
     {
-        CreateText(character.transform.position, $"{character.name} took {damage} damage", 1.2f);
+        CreateText(unit.transform.position, $"{unit.name} took {damage} damage", 1.2f);
     }
 
     private void TriggerDeathEffect(Unit arg0, Unit arg1)

@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ef82c6e24d274b069dda6d6e9a86ad2, type: 3}
-  m_Name: SwordSlash
+  m_Name: Multi SwordSlash
   m_EditorClassIdentifier: 
   targetType: 3
+  numberOfTargets: 2
   isOffensive: 1
   sprite: {fileID: 0}
   skillName: Sword Slash

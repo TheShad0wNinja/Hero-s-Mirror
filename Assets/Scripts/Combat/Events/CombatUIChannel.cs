@@ -8,41 +8,53 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Test")]
 public class CombatUIChannel : ScriptableObject
 {
-    public UnityAction<SkillSO> OnSkillSelected;
-    public UnityAction<List<SkillSO>> OnAssignSkills;
-    public UnityAction<CurrentTurn, List<Unit>> OnTurnChange;
-    public UnityAction<Unit> OnUnitSelect;
-    public UnityAction<Unit> OnUnitHover;
+    public UnityAction<SkillSO> SkillSelected;
+    public UnityAction<List<SkillSO>> AssignSkills;
+    public UnityAction<TurnState, List<Unit>> TurnChanged;
+    public UnityAction<Unit> UnitSelected;
+    public UnityAction<Unit> UnitHovered;
+    public UnityAction<int> NewTurn;
 
-    public void RaiseOnSkillEvent(SkillSO skill)
+    public UnityAction RemoveSelectors;
+
+    public void OnSkillSelected(SkillSO skill)
     {
         Debug.Log($"SKILL {skill.name} SELECTED");
-        OnSkillSelected?.Invoke(skill);
+        SkillSelected?.Invoke(skill);
     }
 
-    public void RaiseOnAssignSkills(List<SkillSO> skills)
+    public void OnAssignSkills(List<SkillSO> skills)
     {
         Debug.Log($"ASSIGNING SKILLS");
-        OnAssignSkills?.Invoke(skills);
+        AssignSkills?.Invoke(skills);
     }
 
-    public void RaiseOnTurnChange(CurrentTurn turn,List<Unit> units)
+    public void OnTurnChange(TurnState turn,List<Unit> units)
     {
         Debug.Log("TURN CHANGED " + turn);
-        string unitNames = string.Join("|", units.Select(c => c.UnitName));
-        Debug.Log(unitNames);
-        OnTurnChange?.Invoke(turn, units);
+        TurnChanged?.Invoke(turn, units);
     }
 
-    public void RaiseOnUnitSelect(Unit unit)
+    public void OnUnitSelect(Unit unit)
     {
         Debug.Log($"{unit} selected");
-        OnUnitSelect.Invoke(unit);
+        UnitSelected.Invoke(unit);
     }
 
-    public void RaiseOnUnitHover(Unit unit)
+    public void OnUnitHover(Unit unit)
     {
         Debug.Log($"{unit} hovered");
-        OnUnitHover.Invoke(unit);
+        UnitHovered.Invoke(unit);
+    }
+
+    public void OnRemoveSelectors()
+    {
+        RemoveSelectors?.Invoke();
+    }
+
+    public void OnNewTurn(int roundNumber)
+    {
+        Debug.Log("OnNewTurn Event Raised");
+        NewTurn?.Invoke(roundNumber);
     }
 }

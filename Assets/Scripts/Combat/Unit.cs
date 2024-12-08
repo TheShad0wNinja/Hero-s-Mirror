@@ -14,6 +14,7 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] public List<PassiveSO> passives;
     [SerializeField] List<StatusEffect> activeEffects;
 
+    public bool animationFinished = true;
     public string UnitName => unitData.unitName;
     public bool IsEnemy => unitData.isEnemy;
 
@@ -48,7 +49,7 @@ public abstract class Unit : MonoBehaviour
 
     void SetupEvents()
     {
-        combatEvent.OnNewTurn.AddListener(TriggerEffects);
+        combatEvent.NewTurn += TriggerEffects;
 
         foreach(var passive in passives)
         {
@@ -114,14 +115,16 @@ public abstract class Unit : MonoBehaviour
 
     public IEnumerator AnimateAction(SkillSO skill)
     {
-        transform.rotation = Quaternion.Euler(0, 0, 16);
-        yield return new WaitForSeconds(0.5f);
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-        yield return null;
+        // transform.rotation = Quaternion.Euler(0, 0, 16);
+        // yield return new WaitForSeconds(0.5f);
+        // transform.rotation = Quaternion.Euler(0, 0, 0);
+        // yield return null;
+        yield return AnimateAction(false);
     }
 
     public IEnumerator AnimateAction(bool hit)
     {
+        animationFinished = false;
         if (hit)
         {
             transform.rotation = Quaternion.Euler(0, 0, -16);
@@ -132,6 +135,7 @@ public abstract class Unit : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             transform.rotation = Quaternion.Euler(0, 0, 0);       {
         }
+        animationFinished = true;
         yield return null;
     }
 }

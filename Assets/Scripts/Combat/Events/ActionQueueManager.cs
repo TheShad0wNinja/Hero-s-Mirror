@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -27,6 +28,15 @@ public class ActionQueueManager : MonoBehaviour
         if (Instance != null)
         {
             Instance.actionQueue.Enqueue(new SkillAction(unit, skillSO, target));
+            Instance.StartQueue();
+        }
+    }
+
+    public static void EnqueueSkillAction(Unit unit, SkillSO skillSO, List<Unit> targets)
+    {
+        if (Instance != null)
+        {
+            Instance.actionQueue.Enqueue(new SkillAction(unit, skillSO, targets));
             Instance.StartQueue();
         }
     }
@@ -80,10 +90,11 @@ public class ActionQueueManager : MonoBehaviour
         while (actionQueue.Count > 0)
         {
             ActionQueueItem actionItem = actionQueue.Dequeue();
-            yield return StartCoroutine(actionItem.ExecuteAction());
+            yield return actionItem.ExecuteAction();
         }
 
         isProcessing = false;
+        CombatEvent.OnActionsCompleted();
     }
 }
 
@@ -94,20 +105,59 @@ public abstract class ActionQueueItem
 
 public class SkillAction : ActionQueueItem
 {
-    public Unit unit;
-    public SkillSO skill;
-    public Unit target;
+    Unit unit;
+    SkillSO skill;
+    Unit target;
+    List<Unit> targets;
+    bool isMultipleTargets;
     public SkillAction(Unit unit, SkillSO skill, Unit target)
     {
         this.unit = unit;
         this.skill = skill;
         this.target = target;
+        isMultipleTargets = false;
     }
+
+    public SkillAction(Unit unit, SkillSO skill, List<Unit> targets)
+    {
+        this.unit = unit;
+        this.skill = skill;
+        this.targets = targets;
+        isMultipleTargets = true;
+    }
+
     public override IEnumerator ExecuteAction()
     {
-        yield return unit.StartCoroutine(unit.AnimateAction(skill));
-        skill.ExecuteSkill(unit, target);
-        CombatEvent.Instance.RaiseOnSkillEvent(unit, skill, target);
+        if (isMultipleTargets)
+        {
+            List<Unit> localTargetsList = targets.ToList();
+            if (skill.attackEachTarget == false)
+            {
+                yield return unit.AnimateAction(skill);
+
+                foreach (var target in localTargetsList)
+                {
+                    skill.ExecuteSkill(unit, target);
+                    CombatEvent.OnSkillPerformed(unit, skill, target);
+                    target.StartCoroutine(target.AnimateAction(true));
+                }
+                yield return new WaitUntil(() => localTargetsList.All(t => t.animationFinished));
+            }
+            else
+            {
+                foreach (Unit target in localTargetsList)
+                {
+                    ActionQueueManager.EnqueueSkillAction(unit, skill, target);
+                }
+            }
+        }
+        else
+        {
+            yield return unit.AnimateAction(false);
+            skill.ExecuteSkill(unit, target);
+            CombatEvent.OnSkillPerformed(unit, skill, target);
+            yield return target.AnimateAction(true);
+        }
         yield return null;
     }
 }
@@ -155,7 +205,7 @@ public class StatusEffectAction : ActionQueueItem
                 statusEffect.TickEffect(unit);
                 break;
         }
-        CombatEvent.Instance.RaiseOnEffectEvent(unit, statusEffect);
+        CombatEvent.Instance.OnUnitStatusEffect(unit, statusEffect);
         yield return null;
     }
 }
@@ -178,10 +228,10 @@ public class DamageAction : ActionQueueItem
         if (unit.Shield != 0)
         {
             unit.Shield = shieldLeft;
-            CombatEvent.Instance.RaiseOnShieldDamageEvent(unit, actualDamage);
+            CombatEvent.OnUnitShieldDamage(unit, actualDamage);
         }
         unit.TakeRawDamage(unit, actualDamage);
-        CombatEvent.Instance.RaiseOnDamageEvent(unit, actualDamage);
+        CombatEvent.OnUnitDamage(unit, actualDamage);
         yield return null;
     }
 }
@@ -200,7 +250,7 @@ public class DeathAction : ActionQueueItem
     public override IEnumerator ExecuteAction()
     {
         victim.isDead = true;
-        CombatEvent.Instance.RaiseOnDeathEvent(attacker, victim);
+        CombatEvent.OnUnitDeath(attacker, victim);
         yield return null;
     }
 }

@@ -9,16 +9,18 @@ using UnityEngine.UIElements;
 public class CombatUIManager : MonoBehaviour
 {
     public Unit test;
-    public GameObject selector;
-    public GameObject selectorSelected;
+    public GameObject hoverSelector;
+    public GameObject selectSelector;
     public TextMeshProUGUI notifactionText;
     public Canvas canvas;
     public Canvas selectorCanvas;
     public TextMeshProUGUI currentTurnText;
+    public TextMeshProUGUI currentRoundText;
     public GameObject skillBoxPrefap;
     public GameObject skillsPanel;
     public CombatUIChannel uiChannel;
     public MouseChannel mouseChannel;
+    public CombatEvent combatEvent;
 
     List<GameObject> currentSelectors = new();
     GameObject currentHoverSelector;
@@ -26,81 +28,98 @@ public class CombatUIManager : MonoBehaviour
 
     void Start()
     {
-        CombatEvent.Instance.OnDamage.AddListener(TriggerDamageEffect);
-        CombatEvent.Instance.OnSkill.AddListener(TriggerSkillEffect);
-        CombatEvent.Instance.OnEffect.AddListener(TriggerStatusEffectEffect);
-        CombatEvent.Instance.OnDeath.AddListener(TriggerDeathEffect);
+        SetupEvents();
+    }
+
+    void SetupEvents()
+    {
+        // CombatEvent.Instance.UnitDamage += TriggerDamageEffect;
+        // CombatEvent.Instance.SkillPerformed += TriggerSkillEffect;
+        // CombatEvent.Instance.UnitStatusEffect += TriggerStatusEffectEffect;
+        // CombatEvent.Instance.UnitDeath += TriggerDeathEffect;
+        // combatEvent.NewTurn += HandleCurrentTurn;
 
         if (uiChannel != null)
         {
-            uiChannel.OnTurnChange += HandleCurrentTurn;
-            uiChannel.OnAssignSkills += AddNewSkills;
-            uiChannel.OnUnitHover += HandleUnitHover;
-            uiChannel.OnUnitSelect += HandleUnitSelect;
+            uiChannel.NewTurn += HandleNewTurn;            
+
+            uiChannel.TurnChanged += HandleTurnChange;
+            uiChannel.AssignSkills += AddNewSkills;
+
+            uiChannel.UnitHovered += HandleUnitHover;
+            uiChannel.UnitSelected += HandleUnitSelect;
+            uiChannel.RemoveSelectors += RemoveAllSelectors;
         }
 
         if (mouseChannel != null)
         {
             mouseChannel.OnUnitUnhover += HandleUnitUnhover;
         }
+
     }
 
-    private void HandleUnitUnhover(Unit arg0)
+    void HandleNewTurn(int currentRound)
     {
-        RemoveHoverSelector();
+        currentRoundText.text = $"Round: {currentRound}";
     }
 
-    private void RemoveHoverSelector()
+    void HandleTurnChange(TurnState turnState, List<Unit> units)
+    {
+        currentTurnText.text = turnState switch
+        {
+            TurnState.PLAYER_TURN or TurnState.PLAYER_UNIT_SELECTED or TurnState.PLAYER_SKILL_SELECTED => "Player's Turn",
+            TurnState.ENEMY_TURN => "Enemy's Turn",
+            _ => ""
+        };
+
+        switch (turnState)
+        {
+            case TurnState.ENEMY_TURN or TurnState.PLAYER_TURN:
+                RemoveAllSkills();
+                RemoveAllSelectors();
+                break;
+        }
+    }
+
+    void RemoveHoverSelector()
     {
         if (currentHoverSelector != null)
             Destroy(currentHoverSelector);
         currentHoverSelector = null;
     }
 
-    private void HandleUnitSelect(Unit unit)
+    void CreateUnitSelector(Unit unit, bool isHover)
     {
-        RemoveAllSelectors();
-        var unitScale = GetUnitUIScale(unit);
-        var unitCenter = GetUnitUICenter(unit);
+        Vector3 unitScale = GetUnitUIScale(unit);
+        Vector3 unitCenter = GetUnitUICenter(unit);
 
-        var newSelector = Instantiate(selectorSelected, unitCenter, Quaternion.identity, selectorCanvas.transform);
-        currentSelectors.Add(newSelector);
+        GameObject newSelector = Instantiate(isHover ? hoverSelector : selectSelector, unitCenter, Quaternion.identity, selectorCanvas.transform);
+        if (isHover)
+            currentHoverSelector = newSelector;
+        else
+            currentSelectors.Add(newSelector);
 
         var selectorRectTransform = newSelector.GetComponent<RectTransform>();
         selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, unitScale.y);
         selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 150f);
+    }
+
+    private void HandleUnitSelect(Unit unit)
+    {
+        RemoveHoverSelector();
+        CreateUnitSelector(unit, false);
+    }
+
+    private void HandleUnitUnhover(Unit unit)
+    {
+        RemoveHoverSelector();
     }
 
     private void HandleUnitHover(Unit unit)
     {
-        var unitScale = GetUnitUIScale(unit);
-        var unitCenter = GetUnitUICenter(unit);
-
-        var newSelector = Instantiate(selector, unitCenter, Quaternion.identity, selectorCanvas.transform);
-        currentHoverSelector = newSelector;
-
-        var selectorRectTransform = newSelector.GetComponent<RectTransform>();
-        selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, unitScale.y);
-        selectorRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 150f);
+        CreateUnitSelector(unit, true);
     }
 
-    void HandleCurrentTurn(CurrentTurn currentTurn, List<Unit> units)
-    {
-        currentTurnText.text = currentTurn switch
-        {
-            CurrentTurn.PLAYER_TURN or CurrentTurn.PLAYER_UNIT_SELECTED or CurrentTurn.PLAYER_SKILL_SELECTED => "Player's Turn",
-            CurrentTurn.ENEMY_TURN => "Enemy's Turn",
-            _ => ""
-        };
-
-        switch (currentTurn)
-        {
-            case CurrentTurn.ENEMY_TURN:
-                RemoveAllSkills();
-                RemoveAllSelectors();
-                break;
-        }
-    }
 
     Vector3 GetUnitUIScale(Unit unit)
     {
@@ -136,19 +155,21 @@ public class CombatUIManager : MonoBehaviour
     {
         currentSelectors.ForEach(s => Destroy(s));
         currentSelectors.Clear();
-        Destroy(currentHoverSelector);
+
+        if (currentHoverSelector != null)
+            Destroy(currentHoverSelector);
         currentHoverSelector = null;
     }
 
-    public void AddNewSkill(SkillSO skill)
+    void AddNewSkill(SkillSO skill)
     {
         var instance = Instantiate(skillBoxPrefap, skillsPanel.transform);
-        instance.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => uiChannel.RaiseOnSkillEvent(skill));
+        instance.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => uiChannel.OnSkillSelected(skill));
         instance.GetComponent<SkillItemController>().SetSkillTitle(skill.skillName);
         currentSkills.Add(instance);
     }
 
-    public void AddNewSkills(List<SkillSO> skills)
+    void AddNewSkills(List<SkillSO> skills)
     {
         RemoveAllSkills();
         skills.ForEach(skill => AddNewSkill(skill));
@@ -159,6 +180,7 @@ public class CombatUIManager : MonoBehaviour
         currentSkills.ForEach(s => Destroy(s));
         currentSkills.Clear();
     }
+
 
     private void TriggerStatusEffectEffect(Unit arg0, StatusEffect arg1)
     {

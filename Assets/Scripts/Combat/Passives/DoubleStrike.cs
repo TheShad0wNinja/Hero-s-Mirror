@@ -9,8 +9,8 @@ public class DoubleStrike : PassiveSO
     bool hasRepeatedThisTurn;
     public override void SubscribeToEvent(Passive instance)
     {
-        CombatEvent.Instance.OnSkill.AddListener(HandleEvent);
-        CombatEvent.Instance.OnNewTurn.AddListener(ResetRepeat);
+        CombatEvent.Instance.SkillPerformed += HandleEvent;
+        CombatEvent.Instance.NewTurn += ResetRepeat;
     }
 
     private void ResetRepeat(CombatManager arg0)

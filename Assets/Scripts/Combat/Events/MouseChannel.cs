@@ -10,19 +10,19 @@ public class MouseChannel : ScriptableObject
     public UnityAction<Unit> OnUnitUnhover;
     public void RaiseOnUnitHover(Unit unit)
     {
-        Debug.Log("Mouse Hover");
-        OnUnitHover.Invoke(unit);
+        // Debug.Log("Mouse Hover");
+        OnUnitHover?.Invoke(unit);
     }
 
     public void RaiseOnUnitSelect(Unit unit)
     {
-        Debug.Log("Mouse Select");
-        OnUnitSelect.Invoke(unit);
+        // Debug.Log("Mouse Select");
+        OnUnitSelect?.Invoke(unit);
     }
 
     public void RaiseOnUnitUnhover(Unit unit)
     {
-        Debug.Log("Mouse Unhover");
-        OnUnitUnhover.Invoke(unit);
+        // Debug.Log("Mouse Unhover");
+        OnUnitUnhover?.Invoke(unit);
     }
 }

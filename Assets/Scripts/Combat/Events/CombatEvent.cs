@@ -1,17 +1,16 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Combat Event", fileName = "Combat Event")]
 public class CombatEvent : ScriptableObject
 {
-    public UnityEvent<Unit, Unit> OnDeath;
-    public UnityEvent<Unit, StatusEffect> OnEffect;
-    public UnityEvent<Unit, int> OnDamage;
-    public UnityEvent<Unit, int> OnShieldDamage;
-    public UnityEvent<Unit, SkillSO, Unit> OnSkill;
-    public UnityEvent<CombatManager> OnNewTurn;
-
+    public UnityAction<Unit, Unit> UnitDeath;
+    public UnityAction<Unit, StatusEffect> UnitStatusEffect;
+    public UnityAction<Unit, int> UnitDamage;
+    public UnityAction<Unit, int> UnitShieldDamage;
+    public UnityAction<Unit, SkillSO, Unit> SkillPerformed;
+    public UnityAction<CombatManager> NewTurn;
+    public UnityAction ActionsCompleted; 
 
     public static CombatEvent Instance { get; private set; }
 
@@ -21,42 +20,50 @@ public class CombatEvent : ScriptableObject
             Instance = this;
         else if (Instance != this)
             Destroy(this);
-
-        OnDeath = new();
-        OnEffect = new();
-        OnDamage = new();
-        OnSkill = new();
-        OnNewTurn = new();
     }
 
-    public void RaiseOnDeathEvent(Unit killer, Unit victim)
+    public static void OnUnitDeath(Unit killer, Unit victim)
     {
+        if (Instance == null) return;
         Debug.Log("OnDeath Event Raised");
-        OnDeath?.Invoke(killer, victim);
+        Instance.UnitDeath?.Invoke(killer, victim);
     }
-    public void RaiseOnEffectEvent(Unit owner, StatusEffect effect)
+
+    public void OnUnitStatusEffect (Unit owner, StatusEffect effect)
     {
+        if (Instance == null) return;
         Debug.Log($"OnEffect Event Raised: {owner.name} -> {effect.name}");
-        OnEffect?.Invoke(owner, effect);
+        Instance.UnitStatusEffect?.Invoke(owner, effect);
     }
-    public void RaiseOnDamageEvent(Unit owner, int damage)
+    public static void OnUnitDamage(Unit owner, int damage)
     {
+        if (Instance == null) return;
         Debug.Log("OnDamage Event Raised");
-        OnDamage?.Invoke(owner, damage);
+        Instance.UnitDamage?.Invoke(owner, damage);
     }
-    public void RaiseOnShieldDamageEvent(Unit owner, int damage)
+    public static void OnUnitShieldDamage(Unit owner, int damage)
     {
+        if (Instance == null) return;
         Debug.Log($"OnShieldDamage Event Raised: {owner.name}");
-        OnShieldDamage?.Invoke(owner, damage);
+        Instance.UnitShieldDamage?.Invoke(owner, damage);
     }
-    public void RaiseOnSkillEvent(Unit attacker, SkillSO skill, Unit victim)
+    public static void OnSkillPerformed(Unit attacker, SkillSO skill, Unit victim)
     {
+        if (Instance == null) return;
         Debug.Log($"OnSkill Event Raised: {attacker.name} -> {victim.name} = {skill.name}");
-        OnSkill?.Invoke(attacker, skill, victim);
+        Instance.SkillPerformed?.Invoke(attacker, skill, victim);
     }
-    public void RaiseOnNewTurnEvent(CombatManager combatManager)
+    public static void OnNewTurn(CombatManager combatManager)
     {
+        if (Instance == null) return;
         Debug.Log("OnNewTurn Event Raised");
-        OnNewTurn?.Invoke(combatManager);
+        Instance.NewTurn?.Invoke(combatManager);
+    }
+
+    public static void OnActionsCompleted()
+    {
+        if (Instance == null) return;
+        Debug.Log("Actions Completed");
+        Instance.ActionsCompleted?.Invoke();
     }
 }

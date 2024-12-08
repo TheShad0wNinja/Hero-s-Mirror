@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Passives/DoubleStrike")]
 public class DoubleStrike : PassiveSO
 {
     [SerializeField] float probability = 0.25f;
-    [SerializeField] SkillSO repeatableSkil;
     bool hasRepeatedThisTurn;
     public override void SubscribeToEvent(Passive instance)
     {
@@ -20,7 +18,8 @@ public class DoubleStrike : PassiveSO
 
     void HandleEvent(Unit unit, SkillSO skill, Unit target)
     {
-        if (UnityEngine.Random.value <= probability && skill == repeatableSkil && !hasRepeatedThisTurn)
+        float randValue = Random.Range(0f, 1f);
+        if (randValue <= probability && !hasRepeatedThisTurn)
         {
             ActionQueueManager.EnqueueSkillAction(unit, skill, target);
             hasRepeatedThisTurn = true;

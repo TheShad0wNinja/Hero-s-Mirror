@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetType: 4
   numberOfTargets: 2
-  attackEachTarget: 0
+  attackEachTarget: 1
   sprite: {fileID: 0}
   skillName: Multi Slash
+  animationName: 
   damage: 2

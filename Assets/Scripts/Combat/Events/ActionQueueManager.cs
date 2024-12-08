@@ -153,7 +153,7 @@ public class SkillAction : ActionQueueItem
         }
         else
         {
-            yield return unit.AnimateAction(false);
+            yield return unit.AnimateAction(skill);
             skill.ExecuteSkill(unit, target);
             CombatEvent.OnSkillPerformed(unit, skill, target);
             yield return target.AnimateAction(true);

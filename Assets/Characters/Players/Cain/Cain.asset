@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
-  m_Name: TestPlayer
+  m_Name: Cain
   m_EditorClassIdentifier: 
-  characterName: Cain
-  sprite: {fileID: 21300000, guid: 0b3c69bdd50c7462c89db5df62a2e069, type: 3}
+  unitName: Cain
+  sprite: {fileID: 0}
   flipped: 1
   isEnemy: 0
   baseMana: 10
-  maxMana: 10
-  baseHealth: 4
-  maxHealth: 10
-  baseShield: 4
+  maxMana: 20
+  baseHealth: 10
+  maxHealth: 20
+  baseShield: 2
   baseAttackBonus: 1
   baseCritChance: 0.1

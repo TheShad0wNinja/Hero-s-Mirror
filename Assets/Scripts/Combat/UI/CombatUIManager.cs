@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class CombatUIManager : MonoBehaviour
 {
@@ -33,11 +32,10 @@ public class CombatUIManager : MonoBehaviour
 
     void SetupEvents()
     {
-        // CombatEvent.Instance.UnitDamage += TriggerDamageEffect;
-        // CombatEvent.Instance.SkillPerformed += TriggerSkillEffect;
-        // CombatEvent.Instance.UnitStatusEffect += TriggerStatusEffectEffect;
-        // CombatEvent.Instance.UnitDeath += TriggerDeathEffect;
-        // combatEvent.NewTurn += HandleCurrentTurn;
+        CombatEvent.Instance.UnitDamage += TriggerDamageEffect;
+        CombatEvent.Instance.SkillPerformed += TriggerSkillEffect;
+        CombatEvent.Instance.UnitStatusEffect += TriggerStatusEffectEffect;
+        CombatEvent.Instance.UnitDeath += TriggerDeathEffect;
 
         if (uiChannel != null)
         {
@@ -165,7 +163,10 @@ public class CombatUIManager : MonoBehaviour
     {
         var instance = Instantiate(skillBoxPrefap, skillsPanel.transform);
         instance.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => uiChannel.OnSkillSelected(skill));
-        instance.GetComponent<SkillItemController>().SetSkillTitle(skill.skillName);
+        SkillItemController itemController = instance.GetComponent<SkillItemController>();
+        itemController.SetSkillTitle(skill.skillName);
+        if (skill.sprite != null)
+            itemController.SetImageSprite(skill.sprite);
         currentSkills.Add(instance);
     }
 

@@ -17,6 +17,7 @@ public abstract class SkillSO : ScriptableObject
     public bool attackEachTarget = false;
     public Sprite sprite;
     public string skillName;
+    public string animationName;
     public void ExecuteSkill(Unit owner, params Unit[] targets)
     {
         foreach (Unit target in targets)

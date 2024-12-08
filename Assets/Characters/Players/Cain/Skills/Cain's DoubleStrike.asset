@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0687417656bf548c69e0b9924b71c6b1, type: 3}
-  m_Name: Khalid's Slash and stab
+  m_Script: {fileID: 11500000, guid: 455e5857a879a450ea242e84d5c2a79e, type: 3}
+  m_Name: Cain's DoubleStrike
   m_EditorClassIdentifier: 
-  targetType: 0
-  isOffensive: 0
-  sprite: {fileID: 0}
-  skillName: Slash & Stab
-  bleedSO: {fileID: 11400000, guid: 03bc7782982db43f5a445caecfb820d1, type: 2}
+  probability: 0.01

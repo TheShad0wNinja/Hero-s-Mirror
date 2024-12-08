@@ -9,11 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0687417656bf548c69e0b9924b71c6b1, type: 3}
-  m_Name: tiny slash and stab
+  m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
+  m_Name: Cain 1
   m_EditorClassIdentifier: 
-  targetType: 0
-  isOffensive: 0
+  unitName: Cain
   sprite: {fileID: 0}
-  skillName: Slash & Stab
-  bleedSO: {fileID: 11400000, guid: 03bc7782982db43f5a445caecfb820d1, type: 2}
+  flipped: 0
+  isEnemy: 1
+  baseMana: 10
+  maxMana: 20
+  baseHealth: 10
+  maxHealth: 20
+  baseShield: 2
+  baseAttackBonus: 1
+  baseCritChance: 0.1

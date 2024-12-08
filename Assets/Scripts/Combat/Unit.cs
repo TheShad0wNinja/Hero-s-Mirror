@@ -9,7 +9,6 @@ public abstract class Unit : MonoBehaviour
 
     [Header("Unit Information")]
     [SerializeField] UnitSO unitData;
-    [SerializeField] CombatEvent combatEvent;
     [SerializeField] public List<SkillSO> skills;
     [SerializeField] public List<PassiveSO> passives;
     [SerializeField] List<StatusEffect> activeEffects;
@@ -18,7 +17,7 @@ public abstract class Unit : MonoBehaviour
     public string UnitName => unitData.unitName;
     public bool IsEnemy => unitData.isEnemy;
 
-    public int Shield { get ; set; }
+    public int Shield { get; set; }
 
     SpriteRenderer sr;
     Animator anim;
@@ -49,9 +48,10 @@ public abstract class Unit : MonoBehaviour
 
     void SetupEvents()
     {
-        combatEvent.NewTurn += TriggerEffects;
+        if (CombatEvent.Instance != null)
+            CombatEvent.Instance.NewTurn += TriggerEffects;
 
-        foreach(var passive in passives)
+        foreach (var passive in passives)
         {
             passive.SubscribeToEvent(null);
         }
@@ -115,11 +115,13 @@ public abstract class Unit : MonoBehaviour
 
     public IEnumerator AnimateAction(SkillSO skill)
     {
-        // transform.rotation = Quaternion.Euler(0, 0, 16);
-        // yield return new WaitForSeconds(0.5f);
-        // transform.rotation = Quaternion.Euler(0, 0, 0);
-        // yield return null;
-        yield return AnimateAction(false);
+        animationFinished = false;
+
+        yield return Helper.WaitForAnimation(anim, 0, skill.animationName);
+
+        anim.Play("idle");
+
+        animationFinished = true;
     }
 
     public IEnumerator AnimateAction(bool hit)
@@ -130,10 +132,6 @@ public abstract class Unit : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, -16);
             yield return new WaitForSeconds(0.5f);
             transform.rotation = Quaternion.Euler(0, 0, 0);
-        } else
-             transform.rotation = Quaternion.Euler(0, 0, 16);
-            yield return new WaitForSeconds(0.5f);
-            transform.rotation = Quaternion.Euler(0, 0, 0);       {
         }
         animationFinished = true;
         yield return null;

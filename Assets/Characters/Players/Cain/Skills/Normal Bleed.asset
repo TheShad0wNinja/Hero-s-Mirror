@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a5b65ba38ab84952806ad196dd75388, type: 3}
-  m_Name: Default Bleed
+  m_Name: Normal Bleed
   m_EditorClassIdentifier: 
-  duration: 2
+  duration: 1
   isBuff: 0
   bleedDamage: 2

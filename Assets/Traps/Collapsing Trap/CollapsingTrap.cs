@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CollapsingTrap : MonoBehaviour
 {
-    public Transform teleportLocation;
-    public float collapseDelay = 2f;
+    [SerializeField] private Transform teleportLocation;
+    [SerializeField] private float collapseDelay = 2f;
     private bool isTriggered = false;
     private GameObject playerOnFloor = null;
     SpriteRenderer spriteRenderer;

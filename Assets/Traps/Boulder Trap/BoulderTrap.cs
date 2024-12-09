@@ -5,9 +5,9 @@ using UnityEngine;
 public class BoulderTrap : MonoBehaviour
 
 {
-    public GameObject boulder; // Reference to the boulder
-    public Transform targetPosition; // Position of the pressure plate where the boulder will roll to
-    public float speed = 2f;
+    [SerializeField] private GameObject boulder; // Reference to the boulder
+    [SerializeField] private Transform targetPosition; // Position of the pressure plate where the boulder will roll to
+    [SerializeField] private float speed = 2f;
     private bool isActivated = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,7 +31,7 @@ public class BoulderTrap : MonoBehaviour
         {
             Destroy(boulder);
         }
-        
+
         isActivated = false;
     }
 }

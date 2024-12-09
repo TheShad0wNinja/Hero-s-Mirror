@@ -5,6 +5,7 @@ public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 2f;
     Vector2 _movementInput;
+    Vector2 _prevInput;
     Rigidbody2D _rb;
     Animator _anim;
     // Start is called before the first frame update
@@ -34,17 +35,27 @@ public class PlayerMovementController : MonoBehaviour
     private void ChooseAnimation()
     {
         if (_rb.velocity.x > 0)
-            _anim.Play("right"); 
+            _anim.Play("walkRight"); 
         else if (_rb.velocity.x < 0)
-            _anim.Play("left");
+            _anim.Play("walkLeft");
         else if (_rb.velocity.y > 0)
-            _anim.Play("up");
+            _anim.Play("walkUp");
         else if (_rb.velocity.y < 0)
-            _anim.Play("down");
+            _anim.Play("walkDown");
+        else if (_prevInput.x > 0)
+            _anim.Play("idleRight"); 
+        else if (_prevInput.x < 0)
+            _anim.Play("idleLeft");
+        else if (_prevInput.y > 0)
+            _anim.Play("idleUp");
+        else 
+            _anim.Play("idleDown");
     }
 
     void GetKeyInput()
     {
+        if (_movementInput != Vector2.zero)
+            _prevInput = _movementInput;
         _movementInput.x = Input.GetAxisRaw("Horizontal");
         _movementInput.y = Input.GetAxisRaw("Vertical");
         _movementInput.Normalize();

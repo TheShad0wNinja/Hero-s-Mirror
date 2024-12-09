@@ -37,18 +37,19 @@ public class CombatUIChannel : ScriptableObject
 
     public void OnUnitSelect(Unit unit)
     {
-        Debug.Log($"{unit} selected");
+        // Debug.Log($"{unit} selected");
         UnitSelected.Invoke(unit);
     }
 
     public void OnUnitHover(Unit unit)
     {
-        Debug.Log($"{unit} hovered");
+        // Debug.Log($"{unit} hovered");
         UnitHovered.Invoke(unit);
     }
 
     public void OnRemoveSelectors()
     {
+        Debug.Log("Selector Removal: Invoke");
         RemoveSelectors?.Invoke();
     }
 

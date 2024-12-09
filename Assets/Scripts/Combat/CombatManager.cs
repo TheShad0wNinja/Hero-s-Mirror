@@ -87,8 +87,8 @@ public class CombatManager : MonoBehaviour
             case TurnState.PLAYER_ACTION_PERFORMING or TurnState.ENEMY_TURN:
                 AdvanceTurn();
                 break;
-        } 
-        
+        }
+
     }
 
     private void HandleOnDeath(Unit arg0, Unit arg1)
@@ -165,14 +165,13 @@ public class CombatManager : MonoBehaviour
                     uiChannel.OnUnitSelect(unit);
                 else
                 {
-                    uiChannel.OnRemoveSelectors();
                     ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, selectedTargets);
                     actionPerformed = true;
                     selectedTargets.Clear();
                 }
                 break;
             case TargetType.PLAYER_UNIT_SINGLE:
-                if (!unit.IsEnemy)
+                if (!unit.IsEnemy && unit != selectedUnit)
                 {
                     ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit);
                     actionPerformed = true;
@@ -181,6 +180,7 @@ public class CombatManager : MonoBehaviour
             case TargetType.PLAYER_UNIT_MULTIPLE:
                 if (
                     !unit.IsEnemy &&
+                    unit != selectedUnit &&
                     selectedTargets.Count < selectedSkill.numberOfTargets &&
                     selectedTargets.Find(u => u == unit)
                 )
@@ -194,13 +194,15 @@ public class CombatManager : MonoBehaviour
                     ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, selectedTargets);
                     actionPerformed = true;
                     selectedTargets.Clear();
-                    uiChannel.OnRemoveSelectors();
                 }
                 break;
         }
 
         if (actionPerformed)
+        {
+            uiChannel.OnRemoveSelectors();
             turnState = TurnState.PLAYER_ACTION_PERFORMING;
+        }
     }
 
     void HandleUnitHover(Unit unit)
@@ -229,7 +231,7 @@ public class CombatManager : MonoBehaviour
         switch (selectedSkill.targetType)
         {
             case TargetType.PLAYER_UNIT_SINGLE or TargetType.PLAYER_UNIT_MULTIPLE:
-                if (!unit.IsEnemy && !selectedTargets.Contains(unit))
+                if (!unit.IsEnemy && !selectedTargets.Contains(unit) && unit != selectedUnit)
                     uiChannel.OnUnitHover(unit);
                 break;
             case TargetType.ENEMY_UNIT_SINGLE or TargetType.ENEMY_UNIT_MULTIPLE:
@@ -247,7 +249,6 @@ public class CombatManager : MonoBehaviour
             selectedUnit.hasTurn = false;
             selectedUnit = null;
             var numOfAvailablePlayerUnits = playerUnits.Count(u => u.hasTurn);
-            Debug.Log("numOfAvailablePlayerUnits: " + numOfAvailablePlayerUnits);
 
             if (numOfAvailablePlayerUnits == 0)
             {

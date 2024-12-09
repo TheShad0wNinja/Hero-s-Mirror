@@ -27,7 +27,7 @@ public class ActionQueueManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Instance.actionQueue.Enqueue(new SkillAction(unit, skillSO, target));
+            Instance.actionQueue.Enqueue(new SkillAction(unit, skillSO, target, true));
             Instance.StartQueue();
         }
     }
@@ -36,7 +36,25 @@ public class ActionQueueManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Instance.actionQueue.Enqueue(new SkillAction(unit, skillSO, targets));
+            Instance.actionQueue.Enqueue(new SkillAction(unit, skillSO, targets, true));
+            Instance.StartQueue();
+        }
+    }
+
+    public static void EnqueueSkillAction(Unit unit, SkillSO skillSO, Unit target, bool isPlayerAction)
+    {
+        if (Instance != null)
+        {
+            Instance.actionQueue.Enqueue(new SkillAction(unit, skillSO, target, isPlayerAction));
+            Instance.StartQueue();
+        }
+    }
+
+    public static void EnqueueSkillAction(Unit unit, SkillSO skillSO, List<Unit> targets, bool isPlayerAction)
+    {
+        if (Instance != null)
+        {
+            Instance.actionQueue.Enqueue(new SkillAction(unit, skillSO, targets, isPlayerAction));
             Instance.StartQueue();
         }
     }
@@ -110,28 +128,32 @@ public class SkillAction : ActionQueueItem
     Unit target;
     List<Unit> targets;
     bool isMultipleTargets;
-    public SkillAction(Unit unit, SkillSO skill, Unit target)
+    bool isPlayerAction;
+
+    public SkillAction(Unit unit, SkillSO skill, Unit target, bool isPlayerAction)
     {
         this.unit = unit;
         this.skill = skill;
         this.target = target;
         isMultipleTargets = false;
+        this.isPlayerAction = isPlayerAction;
     }
 
-    public SkillAction(Unit unit, SkillSO skill, List<Unit> targets)
+    public SkillAction(Unit unit, SkillSO skill, List<Unit> targets, bool isPlayerAction)
     {
         this.unit = unit;
         this.skill = skill;
         this.targets = targets;
         isMultipleTargets = true;
+        this.isPlayerAction = isPlayerAction;
     }
 
     public override IEnumerator ExecuteAction()
     {
-        // CombatCameraManager.SwitchCamera();
         CombatCameraManager.SwitchCamera();
         if (isMultipleTargets)
         {
+            yield return CombatActionMovement.Instance.EngageUnits(unit, targets, isPlayerAction);
             List<Unit> localTargetsList = targets.ToList();
             if (skill.attackEachTarget == false)
             {
@@ -155,15 +177,20 @@ public class SkillAction : ActionQueueItem
         }
         else
         {
+            yield return CombatActionMovement.Instance.EngageUnits(unit, new List<Unit>() {target}, isPlayerAction);
             yield return unit.AnimateAction(skill);
             skill.ExecuteSkill(unit, target);
             CombatEvent.OnSkillPerformed(unit, skill, target);
             yield return target.AnimateAction(true);
+
+            Debug.Log("STARTING DISENGAGEMENT PROCESS");
+            yield return CombatActionMovement.Instance.DisengageUnits();
+            Debug.Log("FINISHED DISENGAGEMENT PROCESS");
+            CombatCameraManager.SwitchCamera();
+            yield return null;
         }
 
-        yield return new WaitForSeconds(1f);
-        CombatCameraManager.SwitchCamera();
-        yield return null;
+        
     }
 }
 

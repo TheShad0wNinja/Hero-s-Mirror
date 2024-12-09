@@ -32,10 +32,10 @@ public class CombatUIManager : MonoBehaviour
 
     void SetupEvents()
     {
-        CombatEvent.Instance.UnitDamage += TriggerDamageEffect;
-        CombatEvent.Instance.SkillPerformed += TriggerSkillEffect;
-        CombatEvent.Instance.UnitStatusEffect += TriggerStatusEffectEffect;
-        CombatEvent.Instance.UnitDeath += TriggerDeathEffect;
+        // CombatEvent.Instance.UnitDamage += TriggerDamageEffect;
+        // CombatEvent.Instance.SkillPerformed += TriggerSkillEffect;
+        // CombatEvent.Instance.UnitStatusEffect += TriggerStatusEffectEffect;
+        // CombatEvent.Instance.UnitDeath += TriggerDeathEffect;
 
         if (uiChannel != null)
         {
@@ -151,12 +151,13 @@ public class CombatUIManager : MonoBehaviour
 
     void RemoveAllSelectors()
     {
-        currentSelectors.ForEach(s => Destroy(s));
-        currentSelectors.Clear();
-
         if (currentHoverSelector != null)
             Destroy(currentHoverSelector);
         currentHoverSelector = null;
+
+        currentSelectors.ForEach(s => Destroy(s));
+        currentSelectors.Clear();
+
     }
 
     void AddNewSkill(SkillSO skill)

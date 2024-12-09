@@ -13560,11 +13560,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 154467551451868478, guid: b10f6aaf83d7d42e689081e2e1e7614e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.52
+      value: -12.764696
       objectReference: {fileID: 0}
     - target: {fileID: 154467551451868478, guid: b10f6aaf83d7d42e689081e2e1e7614e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.44
+      value: 20.739046
       objectReference: {fileID: 0}
     - target: {fileID: 154467551451868478, guid: b10f6aaf83d7d42e689081e2e1e7614e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13777,12 +13777,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &799525747 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6643897123783759999, guid: 20128ebf377914625ba38ffdf3d5389f, type: 3}
-  m_PrefabInstance: {fileID: 878353870}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &878353870
+--- !u!1001 &662695298
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -13792,15 +13787,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5601838445242624390, guid: 20128ebf377914625ba38ffdf3d5389f, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: ChibiCain
       objectReference: {fileID: 0}
     - target: {fileID: 6643897123783759999, guid: 20128ebf377914625ba38ffdf3d5389f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.52
+      value: -12.764696
       objectReference: {fileID: 0}
     - target: {fileID: 6643897123783759999, guid: 20128ebf377914625ba38ffdf3d5389f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.44
+      value: 20.739046
       objectReference: {fileID: 0}
     - target: {fileID: 6643897123783759999, guid: 20128ebf377914625ba38ffdf3d5389f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13839,6 +13834,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20128ebf377914625ba38ffdf3d5389f, type: 3}
+--- !u!4 &662695299 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6643897123783759999, guid: 20128ebf377914625ba38ffdf3d5389f, type: 3}
+  m_PrefabInstance: {fileID: 662695298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1006144360
 GameObject:
   m_ObjectHideFlags: 0
@@ -15502,11 +15502,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 851250261250595581, guid: a722c5ebd6e194fa8a9ca99f90bdc0ec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.52
+      value: -12.764696
       objectReference: {fileID: 0}
     - target: {fileID: 851250261250595581, guid: a722c5ebd6e194fa8a9ca99f90bdc0ec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.44
+      value: 20.739046
       objectReference: {fileID: 0}
     - target: {fileID: 851250261250595581, guid: a722c5ebd6e194fa8a9ca99f90bdc0ec, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15547,7 +15547,7 @@ PrefabInstance:
     - target: {fileID: 5642517845974817293, guid: a722c5ebd6e194fa8a9ca99f90bdc0ec, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 799525747}
+      objectReference: {fileID: 662695299}
     - target: {fileID: 5642517845974817293, guid: a722c5ebd6e194fa8a9ca99f90bdc0ec, type: 3}
       propertyPath: m_Lens.OrthographicSize
       value: 4
@@ -20019,5 +20019,5 @@ SceneRoots:
   - {fileID: 1123984186}
   - {fileID: 619394802}
   - {fileID: 1586563841}
-  - {fileID: 878353870}
   - {fileID: 439073732}
+  - {fileID: 662695298}

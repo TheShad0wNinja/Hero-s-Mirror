@@ -128,6 +128,8 @@ public class SkillAction : ActionQueueItem
 
     public override IEnumerator ExecuteAction()
     {
+        // CombatCameraManager.SwitchCamera();
+        CombatCameraManager.SwitchCamera();
         if (isMultipleTargets)
         {
             List<Unit> localTargetsList = targets.ToList();
@@ -158,6 +160,9 @@ public class SkillAction : ActionQueueItem
             CombatEvent.OnSkillPerformed(unit, skill, target);
             yield return target.AnimateAction(true);
         }
+
+        yield return new WaitForSeconds(1f);
+        CombatCameraManager.SwitchCamera();
         yield return null;
     }
 }

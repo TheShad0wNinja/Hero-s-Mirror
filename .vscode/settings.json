@@ -56,7 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Hero's Mirror.sln",
+    "dotnet.defaultSolution": "Heros-Mirror.sln",
     "editor.tabSize": 4,
     "editor.insertSpaces": true
 }

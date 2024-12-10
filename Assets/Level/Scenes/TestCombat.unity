@@ -7657,7 +7657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftLocation: {fileID: 1499198358}
   rightLocation: {fileID: 1822032656}
-  offsetAmount: 2
+  offsetAmount: 0.5
   movementDuration: 0.08
 --- !u!1 &1979142208
 GameObject:

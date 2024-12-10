@@ -18,6 +18,7 @@ public abstract class SkillSO : ScriptableObject
     public Sprite sprite;
     public string skillName;
     public string animationName;
+    public bool isOffensive = true;
     public void ExecuteSkill(Unit owner, params Unit[] targets)
     {
         foreach (Unit target in targets)

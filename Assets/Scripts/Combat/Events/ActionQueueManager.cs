@@ -153,44 +153,39 @@ public class SkillAction : ActionQueueItem
         CombatCameraManager.SwitchCamera();
         if (isMultipleTargets)
         {
-            yield return CombatActionMovement.Instance.EngageUnits(unit, targets, isPlayerAction);
             List<Unit> localTargetsList = targets.ToList();
-            if (skill.attackEachTarget == false)
-            {
-                yield return unit.AnimateAction(skill);
+            yield return CombatActionMovement.Instance.EngageUnits(unit, targets, isPlayerAction);
+            yield return unit.AnimateAction(skill);
 
-                foreach (var target in localTargetsList)
-                {
-                    skill.ExecuteSkill(unit, target);
-                    CombatEvent.OnSkillPerformed(unit, skill, target);
-                    target.StartCoroutine(target.AnimateAction(true));
-                }
-                yield return new WaitUntil(() => localTargetsList.All(t => t.animationFinished));
-            }
-            else
+            foreach (var target in localTargetsList)
             {
-                foreach (Unit target in localTargetsList)
-                {
-                    ActionQueueManager.EnqueueSkillAction(unit, skill, target);
-                }
+                skill.ExecuteSkill(unit, target);
+                CombatEvent.OnSkillPerformed(unit, skill, target);
+                if (skill.isOffensive)
+                    target.StartCoroutine(target.AnimateAction(true));
             }
+
+            if (skill.isOffensive)
+                yield return new WaitUntil(() => localTargetsList.All(t => t.animationFinished));
+            else
+                yield return new WaitForSeconds(0.2f);
         }
         else
         {
-            yield return CombatActionMovement.Instance.EngageUnits(unit, new List<Unit>() {target}, isPlayerAction);
+            yield return CombatActionMovement.Instance.EngageUnits(unit, new List<Unit>() { target }, isPlayerAction);
             yield return unit.AnimateAction(skill);
             skill.ExecuteSkill(unit, target);
             CombatEvent.OnSkillPerformed(unit, skill, target);
-            yield return target.AnimateAction(true);
-
-            Debug.Log("STARTING DISENGAGEMENT PROCESS");
-            yield return CombatActionMovement.Instance.DisengageUnits();
-            Debug.Log("FINISHED DISENGAGEMENT PROCESS");
-            CombatCameraManager.SwitchCamera();
-            yield return null;
+            if (skill.isOffensive)
+                yield return target.AnimateAction(true);
         }
 
-        
+
+        CombatCameraManager.SwitchCamera();
+        yield return CombatActionMovement.Instance.DisengageUnits();
+        yield return null;
+
+
     }
 }
 
@@ -255,7 +250,6 @@ public class DamageAction : ActionQueueItem
 
     public override IEnumerator ExecuteAction()
     {
-        yield return unit.StartCoroutine(unit.AnimateAction(true));
         var (actualDamage, shieldLeft) = unit.CalculateDamage(damage);
         if (unit.Shield != 0)
         {

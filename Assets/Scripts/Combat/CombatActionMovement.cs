@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CombatActionMovement : MonoBehaviour
@@ -18,8 +19,6 @@ public class CombatActionMovement : MonoBehaviour
     }
     List<EngagedUnitInformation> engagedUnits = new();
     public static CombatActionMovement Instance { get; private set; }
-    int numOfEngagedSelectedUnits = 0, numOfEngagedTargetUnits = 0;
-    Unit selectedUnit;
 
     void Start()
     {
@@ -32,74 +31,60 @@ public class CombatActionMovement : MonoBehaviour
     public IEnumerator EngageUnits(Unit selectedUnit, List<Unit> targetUnits, bool isPlayerAction)
     {
         if (isPlayerAction)
-            StartCoroutine(EngageLeftSide(selectedUnit));
+            StartCoroutine(EngageLeftSide(selectedUnit, 0));
         else
-            StartCoroutine(EngageRightSide(selectedUnit));
+            StartCoroutine(EngageRightSide(selectedUnit, 0));
 
-        this.selectedUnit = selectedUnit;
+
+        int offset = 0;
 
         foreach(var targetUnit in targetUnits)
         {
             if (isPlayerAction)
-                StartCoroutine(EngageRightSide(targetUnit));
+                StartCoroutine(EngageRightSide(targetUnit, offset));
             else 
-                StartCoroutine(EngageLeftSide(targetUnit));
+                StartCoroutine(EngageLeftSide(targetUnit, offset));
+
+            offset++;
         }
 
-        yield return new WaitUntil(() => numOfEngagedSelectedUnits == 1 && numOfEngagedTargetUnits == targetUnits.Count);
-
-        // int numOfPlayerUnits = 0, numOfEnemyUnits = 0;
-        // foreach (var unit in units)
-        // {
-        //     if (unit.IsEnemy)
-        //     {
-        //         numOfEnemyUnits++;
-        //         StartCoroutine(EngageEnemyUnit(unit));
-        //     }
-        //     else
-        //     {
-        //         numOfPlayerUnits++;
-        //         StartCoroutine(EngagePlayerUnit(unit));
-        //     }
-        // }
-
-        // yield return new WaitUntil(() => numOfEnemyUnits == numOfEngagedTargetUnits && numOfPlayerUnits == numOfEngagedSelectedUnits);
+        yield return new WaitUntil(() => engagedUnits.Count >= targetUnits.Count);
     }
 
-    IEnumerator EngageLeftSide(Unit unit)
+    IEnumerator EngageLeftSide(Unit unit, int unitOffset)
     {
-        engagedUnits.Add(new EngagedUnitInformation { oldLocation = unit.transform.position, unit = unit });
-        Vector2 newPosition = new Vector2(leftLocation.position.x - numOfEngagedSelectedUnits * offsetAmount, leftLocation.position.y);
-        // unit.transform.position = newPosition;
+        Debug.Log($"Engaging Left: {unit}");
+        Vector2 newPosition = new Vector2(leftLocation.position.x - unitOffset * offsetAmount, leftLocation.position.y);
+        Vector2 oldPosition = unit.transform.position;
 
         yield return MoveUnit(unit.transform.position, newPosition, unit.transform);
 
-        numOfEngagedSelectedUnits++;
+        engagedUnits.Add(new EngagedUnitInformation { oldLocation = oldPosition, unit = unit });
+
         yield return null;
     }
 
-    IEnumerator EngageRightSide(Unit unit)
+    IEnumerator EngageRightSide(Unit unit, int unitOffset)
     {
-        engagedUnits.Add(new EngagedUnitInformation { oldLocation = unit.transform.position, unit = unit });
-        Vector2 newPosition = new Vector2(rightLocation.position.x + numOfEngagedTargetUnits * offsetAmount, rightLocation.position.y);
-        // unit.transform.position = newPosition;
+        Debug.Log($"Engaging Right: {unit}");
+        Vector2 newPosition = new Vector2(rightLocation.position.x + unitOffset * offsetAmount, rightLocation.position.y);
+        Vector2 oldPosition = unit.transform.position;
 
         yield return MoveUnit(unit.transform.position, newPosition, unit.transform);
 
-        numOfEngagedTargetUnits++;
+        engagedUnits.Add(new EngagedUnitInformation { oldLocation = oldPosition, unit = unit });
+
         yield return null;
     }
 
     public IEnumerator DisengageUnits()
     {
-        Debug.Log("Disengaging");
-        foreach(var engagedUnit in engagedUnits)
+        foreach(var engagedUnit in engagedUnits.ToList())
         {
             StartCoroutine(DisengageUnit(engagedUnit));
         }
 
-        yield return new WaitUntil(() => numOfEngagedTargetUnits == 0 && numOfEngagedSelectedUnits == 0);
-        Debug.Log("FINISHED DISENGAGING");
+        yield return new WaitUntil(() => engagedUnits.Count == 0);
         engagedUnits.Clear();
         yield return null;
 
@@ -107,16 +92,12 @@ public class CombatActionMovement : MonoBehaviour
 
     IEnumerator DisengageUnit(EngagedUnitInformation engagedUnit)
     {
-        Debug.Log($"Disengage {engagedUnit.unit} at {engagedUnit.oldLocation}");
-        // engagedUnit.unit.transform.position = engagedUnit.oldLocation;
+        Debug.Log($"Disengage {engagedUnit.unit} to {engagedUnit.oldLocation}");
 
         yield return MoveUnit(engagedUnit.unit.transform.position, engagedUnit.oldLocation, engagedUnit.unit.transform);
 
-        if (engagedUnit.unit == selectedUnit)
-            numOfEngagedSelectedUnits--;
-        else
-            numOfEngagedTargetUnits--;
-        
+        engagedUnits.Remove(engagedUnit);
+
         yield return null;
     }
 

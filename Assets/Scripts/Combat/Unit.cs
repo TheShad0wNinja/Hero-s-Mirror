@@ -126,13 +126,13 @@ public abstract class Unit : MonoBehaviour
 
     public IEnumerator AnimateAction(bool hit)
     {
+        Debug.Log("ANIMATING HIT " + this.name);
         animationFinished = false;
         if (hit)
         {
             transform.rotation = Quaternion.Euler(0, 0, -16);
             yield return new WaitForSeconds(0.5f);
             transform.rotation = Quaternion.Euler(0, 0, 0);
-            yield return new WaitForSeconds(0.5f);
         }
         animationFinished = true;
         yield return null;

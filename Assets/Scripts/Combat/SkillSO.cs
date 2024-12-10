@@ -2,6 +2,10 @@ using UnityEngine;
 
 public enum TargetType
 {
+    SELF,
+    UNIT_ALL,
+    ENEMY_UNIT_RANDOM,
+    PLAYER_UNIT_RANDOM,
     PLAYER_UNIT_SINGLE,
     PLAYER_UNIT_MULTIPLE,
     PLAYER_UNIT_ALL,

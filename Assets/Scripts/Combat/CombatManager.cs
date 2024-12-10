@@ -119,13 +119,23 @@ public class CombatManager : MonoBehaviour
 
         selectedSkill = skill;
 
-        if (selectedSkill.targetType == TargetType.PLAYER_UNIT_ALL)
+        switch (selectedSkill.targetType)
         {
-            ExecuteSelectedSkill(playerUnits.ToList().FindAll(u => u != selectedUnit));
-        }
-        else if (selectedSkill.targetType == TargetType.ENEMY_UNIT_ALL)
-        {
-            ExecuteSelectedSkill(enemyUnits.ToList().FindAll(u => u != selectedUnit));
+            case TargetType.UNIT_ALL:
+                List<Unit> allUnits = new(enemyUnits.Count + playerUnits.Count);
+                allUnits.AddRange(enemyUnits);
+                allUnits.AddRange(playerUnits.FindAll(u => u != selectedUnit));
+                ExecuteSelectedSkill(allUnits);
+                break;
+            case TargetType.SELF:
+                ExecuteSelectedSkill(selectedUnit);
+                break;
+            case TargetType.PLAYER_UNIT_ALL:
+                ExecuteSelectedSkill(playerUnits.ToList().FindAll(u => u != selectedUnit));
+                break;
+            case TargetType.ENEMY_UNIT_ALL:
+                ExecuteSelectedSkill(enemyUnits.ToList().FindAll(u => u != selectedUnit));
+                break;
         }
     }
 

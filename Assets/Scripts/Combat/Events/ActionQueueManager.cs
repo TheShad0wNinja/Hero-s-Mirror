@@ -151,7 +151,15 @@ public class SkillAction : ActionQueueItem
     public override IEnumerator ExecuteAction()
     {
         CombatCameraManager.SwitchCamera();
-        if (isMultipleTargets)
+        if (isMultipleTargets && skill.targetType == TargetType.UNIT_ALL && skill is RandomSkill randomSkill)
+        {
+            List<Unit> localTargetsList = targets.ToList();
+
+            var (chosenSkill, targetList) = randomSkill.GetFate(localTargetsList);
+
+            ActionQueueManager.EnqueueSkillAction(unit, chosenSkill, targetList);
+        }
+        else if (isMultipleTargets)
         {
             List<Unit> localTargetsList = targets.ToList();
             yield return CombatActionMovement.Instance.EngageUnits(unit, targets, isPlayerAction);

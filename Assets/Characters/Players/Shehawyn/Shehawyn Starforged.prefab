@@ -51,6 +51,7 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: d4a1c8fe3e7d8422f8929734d4502672, type: 2}
   - {fileID: 11400000, guid: 62ff8215c3f7c4efda2e1787cbed6739, type: 2}
+  - {fileID: 11400000, guid: 4fca8acf860a44e94ae3c4fb7c0831f1, type: 2}
   passives: []
   activeEffects: []
 --- !u!95 &-5909693587686485137

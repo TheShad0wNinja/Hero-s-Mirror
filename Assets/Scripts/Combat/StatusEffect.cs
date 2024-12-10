@@ -28,4 +28,14 @@ public class StatusEffect
         effectData.TickEffect(target);
         duration--;
     }
+
+    public void ApplyMultiplier(float amount)
+    {
+        effectData.multiplier = amount;
+    }
+
+    public void RemoveMultiplier()
+    {
+        effectData.multiplier = 1;
+    }
 }

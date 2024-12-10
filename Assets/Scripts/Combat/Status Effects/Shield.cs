@@ -16,7 +16,7 @@ public class Shield : StatusEffectSO
         Debug.Log($"Added Shield to {target.name}");
         AppliedUnit appliedUnit = new() { unit = target, prevShieldValue = target.Shield };
         appliedUnits.Add(appliedUnit);
-        target.Shield = shieldAmount;
+        target.Shield += shieldAmount;
     }
 
     public override void RemoveEffect(Unit target)
@@ -25,11 +25,21 @@ public class Shield : StatusEffectSO
         AppliedUnit appliedUnit = appliedUnits.Find(au => au.unit = target);
         int currShield = target.Shield;
         int prevShield = appliedUnit.prevShieldValue;
-
+        
         if (currShield >= prevShield && currShield >= (prevShield + shieldAmount))
+        {
+            Debug.Log("1");
             target.Shield -= shieldAmount;
+        }
         else if (currShield >= prevShield && currShield < (prevShield + shieldAmount))
+        {
+            Debug.Log("2");
             target.Shield -= currShield - shieldAmount;
+        } 
+        else
+        {
+            Debug.Log("3");
+        }
     }
 
     public override void TickEffect(Unit target)

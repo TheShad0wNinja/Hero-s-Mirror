@@ -116,7 +116,17 @@ public class CombatManager : MonoBehaviour
     void HandleSkillSelected(SkillSO skill)
     {
         turnState = TurnState.PLAYER_SKILL_SELECTED;
+
         selectedSkill = skill;
+
+        if (selectedSkill.targetType == TargetType.PLAYER_UNIT_ALL)
+        {
+            ExecuteSelectedSkill(playerUnits.ToList().FindAll(u => u != selectedUnit));
+        }
+        else if (selectedSkill.targetType == TargetType.ENEMY_UNIT_ALL)
+        {
+            ExecuteSelectedSkill(enemyUnits.ToList().FindAll(u => u != selectedUnit));
+        }
     }
 
     void HandleUnitSelect(Unit unit)
@@ -147,14 +157,15 @@ public class CombatManager : MonoBehaviour
 
     void HandleTargetUnitSelect(Unit unit)
     {
-        bool actionPerformed = false;
+        // bool actionPerformed = false;
         switch (selectedSkill.targetType)
         {
             case TargetType.ENEMY_UNIT_SINGLE:
                 if (unit.IsEnemy)
                 {
-                    ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit);
-                    actionPerformed = true;
+                    ExecuteSelectedSkill(unit);
+                    // ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit);
+                    // actionPerformed = true;
                 }
                 break;
             case TargetType.ENEMY_UNIT_MULTIPLE:
@@ -165,44 +176,50 @@ public class CombatManager : MonoBehaviour
                     uiChannel.OnUnitSelect(unit);
                 else
                 {
-                    ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, selectedTargets);
-                    actionPerformed = true;
-                    selectedTargets.Clear();
+                    ExecuteSelectedSkill(selectedTargets);
+                    // ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, selectedTargets);
+                    // actionPerformed = true;
+                    // selectedTargets.Clear();
                 }
                 break;
             case TargetType.PLAYER_UNIT_SINGLE:
                 if (!unit.IsEnemy && unit != selectedUnit)
                 {
-                    ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit);
-                    actionPerformed = true;
+                    ExecuteSelectedSkill(unit);
+                    // ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit);
+                    // actionPerformed = true;
                 }
                 break;
             case TargetType.PLAYER_UNIT_MULTIPLE:
-                if (
-                    !unit.IsEnemy &&
-                    unit != selectedUnit &&
-                    selectedTargets.Count < selectedSkill.numberOfTargets &&
-                    selectedTargets.Find(u => u == unit)
-                )
-                {
+                if (!unit.IsEnemy && unit != selectedUnit && !selectedTargets.Contains(unit))
                     selectedTargets.Add(unit);
+
+                if (selectedTargets.Count < selectedSkill.numberOfTargets && playerUnits.Count > selectedSkill.numberOfTargets)
                     uiChannel.OnUnitSelect(unit);
-                }
-                else if (selectedTargets.Count == selectedSkill.numberOfTargets)
+                else
                 {
-                    selectedTargets.Add(unit);
-                    ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, selectedTargets);
-                    actionPerformed = true;
-                    selectedTargets.Clear();
+                    ExecuteSelectedSkill(selectedTargets);
+                    // ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, selectedTargets);
+                    // actionPerformed = true;
+                    // selectedTargets.Clear();
                 }
                 break;
         }
+    }
 
-        if (actionPerformed)
-        {
-            uiChannel.OnRemoveSelectors();
-            turnState = TurnState.PLAYER_ACTION_PERFORMING;
-        }
+    void ExecuteSelectedSkill(List<Unit> units)
+    {
+        ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, units);
+        units.Clear();
+        uiChannel.OnRemoveSelectors();
+        turnState = TurnState.PLAYER_ACTION_PERFORMING;
+    }
+
+    void ExecuteSelectedSkill(Unit unit)
+    {
+        ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit);
+        uiChannel.OnRemoveSelectors();
+        turnState = TurnState.PLAYER_ACTION_PERFORMING;
     }
 
     void HandleUnitHover(Unit unit)

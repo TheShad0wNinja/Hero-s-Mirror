@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94bd824293c894afc8b847b11d4a5ebe, type: 3}
-  m_Name: Shehawyn Warden Blessing
+  m_Script: {fileID: 11500000, guid: d6a1539b0739f4ca4a1b2da8245348f7, type: 3}
+  m_Name: Shehawyn Purrifying Light
   m_EditorClassIdentifier: 
-  targetType: 3
+  targetType: 2
   numberOfTargets: 1
-  sprite: {fileID: 21300000, guid: 16494e1282dc64011b30a18226e6a26a, type: 3}
-  skillName: Warden's Blessing
+  sprite: {fileID: 21300000, guid: 8a274307bd4154a9789ca0e42a8c1c18, type: 3}
+  skillName: Purifying Light
   animationName: 
   isOffensive: 0
-  buffEffect: {fileID: 11400000, guid: 067aa6edd5e394a14a85f45955e687a2, type: 2}

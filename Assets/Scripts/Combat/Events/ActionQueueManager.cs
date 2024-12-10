@@ -162,6 +162,7 @@ public class SkillAction : ActionQueueItem
             {
                 skill.ExecuteSkill(unit, target);
                 CombatEvent.OnSkillPerformed(unit, skill, target);
+
                 if (skill.isOffensive)
                     target.StartCoroutine(target.AnimateAction(true));
             }
@@ -169,25 +170,27 @@ public class SkillAction : ActionQueueItem
             if (skill.isOffensive)
                 yield return new WaitUntil(() => localTargetsList.All(t => t.AnimationFinished));
             else
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.4f);
         }
         else
         {
             yield return CombatActionMovement.Instance.EngageUnits(unit, new List<Unit>() { target }, isPlayerAction);
+
             if (skill.animationName != "")
                 yield return unit.AnimateAction(skill);
+
             skill.ExecuteSkill(unit, target);
             CombatEvent.OnSkillPerformed(unit, skill, target);
+
             if (skill.isOffensive)
                 yield return target.AnimateAction(true);
+            else
+                yield return new WaitForSeconds(0.4f);
         }
-
 
         CombatCameraManager.SwitchCamera();
         yield return CombatActionMovement.Instance.DisengageUnits();
         yield return null;
-
-
     }
 }
 

@@ -64,10 +64,14 @@ public abstract class Unit : MonoBehaviour
     {
         foreach (var effect in activeEffects.ToList())
         {
+            Debug.Log("TICKING EFFECT " + effect.name + " : " + effect.duration);
             ActionQueueManager.EnqueueStatusEffectAction(this, effect, StatusEffectAction.EffectAction.TICK);
 
             if (effect.IsExpired)
+            {
+                Debug.Log("REMOVING " + effect.name);
                 ActionQueueManager.EnqueueStatusEffectAction(this, effect, StatusEffectAction.EffectAction.REMOVE);
+            }
         }
     }
 
@@ -114,6 +118,14 @@ public abstract class Unit : MonoBehaviour
             }
         }
         return (damage, Shield);
+    }
+
+    public void Heal(int amount)
+    {
+        if (currentHealth + amount > unitData.baseHealth)
+            currentHealth = unitData.baseHealth;
+        else
+            currentHealth += amount;
     }
 
     public IEnumerator AnimateAction(SkillSO skill)

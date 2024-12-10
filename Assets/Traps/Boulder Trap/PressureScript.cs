@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoulderTrap : MonoBehaviour
+public class PressureScript : MonoBehaviour
 
 {
     [SerializeField] private GameObject boulder; // Reference to the boulder

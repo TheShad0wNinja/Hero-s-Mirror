@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpikeScript : MonoBehaviour
+public class BoulderScript : MonoBehaviour
 {
-    [SerializeField] private float activationTime = 2f;
-    private Animator anim;
     private HeroList heroList;
     private List<int> heroes;
-    private void Awake()
-    {
-        anim = GetComponent<Animator>();
-    }
+
 
     private void Start()
     {
@@ -29,29 +24,17 @@ public class SpikeScript : MonoBehaviour
         {
             Debug.LogError("HeroList not found!");
         }
-        StartCoroutine(ActivateTrap());
     }
 
-    private IEnumerator ActivateTrap()
-    {
-        while(true)
-        {
-        anim.SetBool("activated", true);
-        GetComponent<Collider2D>().enabled = true;
-        yield return new WaitForSeconds(activationTime);
-        GetComponent<Collider2D>().enabled = false;
-        anim.SetBool("activated", false);
-        yield return new WaitForSeconds(activationTime);
-        }
-    }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             int randomHero = heroes[Random.Range(0, heroes.Count)];
             damageHero(randomHero);
         }
+        Destroy(gameObject);
     }
 
     private void damageHero(int hero)

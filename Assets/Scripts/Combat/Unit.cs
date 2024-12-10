@@ -11,28 +11,28 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] UnitSO unitData;
     [SerializeField] public List<SkillSO> skills;
     [SerializeField] public List<PassiveSO> passives;
-    [SerializeField] List<StatusEffect> activeEffects;
+    [SerializeField] public List<StatusEffect> activeEffects;
 
-    public bool animationFinished = true;
+    public bool AnimationFinished { get; private set; }
     public string UnitName => unitData.unitName;
     public bool IsEnemy => unitData.isEnemy;
-
     public int Shield { get; set; }
+    public bool HasTurn { get; set; }
+    public bool IsDead { get; set; }
 
     SpriteRenderer sr;
     Animator anim;
-    public int currentHealth;
-    public int currentMana;
-    public float attackbonus = 1;
-    public float critChance = 0.1f;
-    public bool hasTurn = true;
-    public bool isDead = false;
+    int currentHealth;
+    int currentMana;
+    float attackbonus = 1;
+    float critChance = 0.1f;
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        sr.sprite = unitData.sprite;
+        if (unitData.sprite != null)
+            sr.sprite = unitData.sprite;
 
         if (unitData.flipped)
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
@@ -42,6 +42,9 @@ public abstract class Unit : MonoBehaviour
         Shield = unitData.baseShield;
         attackbonus = unitData.baseAttackBonus;
         critChance = unitData.baseCritChance;
+
+        HasTurn = true;
+        AnimationFinished = true;
 
         SetupEvents();
     }
@@ -115,26 +118,26 @@ public abstract class Unit : MonoBehaviour
 
     public IEnumerator AnimateAction(SkillSO skill)
     {
-        animationFinished = false;
+        AnimationFinished = false;
 
         yield return Helper.WaitForAnimation(anim, 0, skill.animationName);
 
-        anim.Play("idle");
+        anim.Play("Idle");
 
-        animationFinished = true;
+        AnimationFinished = true;
     }
 
     public IEnumerator AnimateAction(bool hit)
     {
         Debug.Log("ANIMATING HIT " + this.name);
-        animationFinished = false;
+        AnimationFinished = false;
         if (hit)
         {
             transform.rotation = Quaternion.Euler(0, 0, -16);
             yield return new WaitForSeconds(0.5f);
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        animationFinished = true;
+        AnimationFinished = true;
         yield return null;
     }
 }

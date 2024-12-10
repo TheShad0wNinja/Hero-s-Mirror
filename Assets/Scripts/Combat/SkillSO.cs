@@ -14,7 +14,6 @@ public abstract class SkillSO : ScriptableObject
 {
     public TargetType targetType;
     public int numberOfTargets = 1;
-    public bool attackEachTarget = false;
     public Sprite sprite;
     public string skillName;
     public string animationName;

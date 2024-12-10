@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
-  m_Name: Cain 1
+  m_Name: Shehawyn
   m_EditorClassIdentifier: 
-  unitName: Cain
+  unitName: Shehawyn Starforged
   sprite: {fileID: 0}
-  flipped: 0
-  isEnemy: 1
-  baseMana: 10
-  maxMana: 20
-  baseHealth: 10
-  maxHealth: 20
-  baseShield: 2
+  flipped: 1
+  isEnemy: 0
+  baseMana: 20
+  maxMana: 40
+  baseHealth: 20
+  maxHealth: 40
+  baseShield: 10
   baseAttackBonus: 1
   baseCritChance: 0.1

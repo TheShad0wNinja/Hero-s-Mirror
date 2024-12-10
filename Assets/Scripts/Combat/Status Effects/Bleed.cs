@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effects/Bleed")]
+[CreateAssetMenu(menuName = "Status Effects/Bleed")]
 public class Bleed : StatusEffectSO
 {
     [SerializeField] int bleedDamage = 1;

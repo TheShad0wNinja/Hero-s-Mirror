@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Unit", menuName = "Combat/Unit")]
+[CreateAssetMenu(fileName = "Unit", menuName = "Unit")]
 public class UnitSO : ScriptableObject
 {
     [Header("Attributes")]

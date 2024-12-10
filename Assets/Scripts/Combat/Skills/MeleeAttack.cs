@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/SwordSlash")]
-public class SwordSlash : SkillSO
+[CreateAssetMenu(menuName = "Skills/Melee Attack", fileName = "Melee Attack")]
+public class MeleeAttack : SkillSO
 {
     [SerializeField] int damage = 2;
 

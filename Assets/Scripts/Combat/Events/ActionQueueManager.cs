@@ -155,7 +155,8 @@ public class SkillAction : ActionQueueItem
         {
             List<Unit> localTargetsList = targets.ToList();
             yield return CombatActionMovement.Instance.EngageUnits(unit, targets, isPlayerAction);
-            yield return unit.AnimateAction(skill);
+            if (skill.animationName != "")
+                yield return unit.AnimateAction(skill);
 
             foreach (var target in localTargetsList)
             {
@@ -166,14 +167,15 @@ public class SkillAction : ActionQueueItem
             }
 
             if (skill.isOffensive)
-                yield return new WaitUntil(() => localTargetsList.All(t => t.animationFinished));
+                yield return new WaitUntil(() => localTargetsList.All(t => t.AnimationFinished));
             else
                 yield return new WaitForSeconds(0.2f);
         }
         else
         {
             yield return CombatActionMovement.Instance.EngageUnits(unit, new List<Unit>() { target }, isPlayerAction);
-            yield return unit.AnimateAction(skill);
+            if (skill.animationName != "")
+                yield return unit.AnimateAction(skill);
             skill.ExecuteSkill(unit, target);
             CombatEvent.OnSkillPerformed(unit, skill, target);
             if (skill.isOffensive)
@@ -275,7 +277,7 @@ public class DeathAction : ActionQueueItem
 
     public override IEnumerator ExecuteAction()
     {
-        victim.isDead = true;
+        victim.IsDead = true;
         CombatEvent.OnUnitDeath(attacker, victim);
         yield return null;
     }

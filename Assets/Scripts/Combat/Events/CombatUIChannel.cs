@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Test")]
+[CreateAssetMenu(menuName = "Event Channels/Combat UI Channel")]
 public class CombatUIChannel : ScriptableObject
 {
     public UnityAction<SkillSO> SkillSelected;

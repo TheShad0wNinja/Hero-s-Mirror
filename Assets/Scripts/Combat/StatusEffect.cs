@@ -6,7 +6,7 @@ public class StatusEffect
     public string name;
     public int duration;
     public bool IsExpired => duration <= 0;
-
+    public bool IsBuff => effectData.isBuff;
     StatusEffectSO effectData;
     public StatusEffect(StatusEffectSO effectSO)
     {

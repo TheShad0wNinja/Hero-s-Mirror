@@ -97,19 +97,19 @@ public class CombatManager : MonoBehaviour
         {
             foreach (var c in enemyUnits)
             {
-                if (c.isDead)
+                if (c.IsDead)
                     Destroy(c.gameObject);
             }
-            enemyUnits.RemoveAll(c => c.isDead);
+            enemyUnits.RemoveAll(c => c.IsDead);
         }
         else
         {
             foreach (var c in playerUnits)
             {
-                if (c.isDead)
+                if (c.IsDead)
                     Destroy(c.gameObject);
             }
-            playerUnits.RemoveAll(c => c.isDead);
+            playerUnits.RemoveAll(c => c.IsDead);
         }
     }
 
@@ -134,7 +134,7 @@ public class CombatManager : MonoBehaviour
 
     void HandleMainUnitSelect(Unit unit)
     {
-        if (!unit.IsEnemy && unit.hasTurn && unit != selectedUnit)
+        if (!unit.IsEnemy && unit.HasTurn && unit != selectedUnit)
         {
             uiChannel.OnRemoveSelectors();
             uiChannel.OnUnitSelect(unit);
@@ -161,7 +161,7 @@ public class CombatManager : MonoBehaviour
                 if (unit.IsEnemy && !selectedTargets.Contains(unit))
                     selectedTargets.Add(unit);
 
-                if (selectedTargets.Count < selectedSkill.numberOfTargets)
+                if (selectedTargets.Count < selectedSkill.numberOfTargets && enemyUnits.Count > selectedSkill.numberOfTargets)
                     uiChannel.OnUnitSelect(unit);
                 else
                 {
@@ -220,7 +220,7 @@ public class CombatManager : MonoBehaviour
 
     void HandleMainUnitHover(Unit unit)
     {
-        if (!unit.IsEnemy && unit.hasTurn && unit != selectedUnit)
+        if (!unit.IsEnemy && unit.HasTurn && unit != selectedUnit)
         {
             uiChannel.OnUnitHover(unit);
         }
@@ -246,9 +246,9 @@ public class CombatManager : MonoBehaviour
     {
         if (turnState == TurnState.ENEMY_TURN)
         {
-            selectedUnit.hasTurn = false;
+            selectedUnit.HasTurn = false;
             selectedUnit = null;
-            var numOfAvailablePlayerUnits = playerUnits.Count(u => u.hasTurn);
+            var numOfAvailablePlayerUnits = playerUnits.Count(u => u.HasTurn);
 
             if (numOfAvailablePlayerUnits == 0)
             {
@@ -256,7 +256,7 @@ public class CombatManager : MonoBehaviour
                 currentRound++;
                 uiChannel.OnNewTurn(currentRound);
 
-                playerUnits.ForEach(u => u.hasTurn = true);
+                playerUnits.ForEach(u => u.HasTurn = true);
             }
             turnState = TurnState.PLAYER_TURN;
             uiChannel.OnTurnChange(turnState, playerUnits);

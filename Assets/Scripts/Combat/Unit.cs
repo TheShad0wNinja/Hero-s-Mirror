@@ -15,6 +15,7 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] Transform rangedAttackSpawn;
     [SerializeField] GameObject projectile;
     [SerializeField] float rangeAttackDistance = 4f;
+    [SerializeField] float rangeAttackDuration = 0.2f;
 
     public bool AnimationFinished { get; private set; }
     public string UnitName => unitData.unitName;
@@ -157,7 +158,7 @@ public abstract class Unit : MonoBehaviour
         yield return Helper.MoveObject(
             rangedAttackSpawn.position,
             rangedAttackSpawn.position + direction * rangeAttackDistance,
-            p.transform, 0.2f);
+            p.transform, rangeAttackDuration);
 
         Destroy(p);
 

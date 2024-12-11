@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36afb4ec44fdf1341a029adb230cceee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HeroLists: 
 --- !u!1 &7841927735779874492
 GameObject:
   m_ObjectHideFlags: 0

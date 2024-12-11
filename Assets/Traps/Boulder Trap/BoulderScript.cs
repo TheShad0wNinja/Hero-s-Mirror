@@ -7,6 +7,7 @@ public class BoulderScript : MonoBehaviour
 {
     private HeroList heroList;
     private List<int> heroes;
+    [SerializeField] private float pushForce = 10f;
 
 
     private void Start()
@@ -31,10 +32,23 @@ public class BoulderScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            StartCoroutine(disableMovement(other.gameObject));
             int randomHero = heroes[Random.Range(0, heroes.Count)];
             damageHero(randomHero);
+            Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                Vector2 pushDirection = (other.transform.position - transform.position).normalized;
+                rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+            }
         }
-        Destroy(gameObject);
+    }
+
+    private IEnumerator disableMovement(GameObject player)
+    {
+        player.GetComponent<PlayerMovementController>().enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        player.GetComponent<PlayerMovementController>().enabled = true;
     }
 
     private void damageHero(int hero)

@@ -186,6 +186,8 @@ public class SkillAction : ActionQueueItem
 
             if (skill.animationName != "")
                 yield return unit.AnimateAction(skill);
+                // yield return unit.AnimateRangedAction(skill, rangedAttack.projectile);
+            // else if (skill.animationName != "")
 
             skill.ExecuteSkill(unit, target);
             CombatEvent.OnSkillPerformed(unit, skill, target);

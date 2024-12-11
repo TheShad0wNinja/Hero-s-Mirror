@@ -7,7 +7,7 @@ public class StatusEffect
     public int duration;
     public bool IsExpired => duration <= 0;
     public bool IsBuff => effectData.isBuff;
-    StatusEffectSO effectData;
+    public StatusEffectSO effectData;
     public StatusEffect(StatusEffectSO effectSO)
     {
         effectData = effectSO;

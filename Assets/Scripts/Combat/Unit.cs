@@ -12,6 +12,9 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] public List<SkillSO> skills;
     [SerializeField] public List<PassiveSO> passives;
     [SerializeField] public List<StatusEffect> activeEffects;
+    [SerializeField] Transform rangedAttackSpawn;
+    [SerializeField] GameObject projectile;
+    [SerializeField] float rangeAttackDistance = 4f;
 
     public bool AnimationFinished { get; private set; }
     public string UnitName => unitData.unitName;
@@ -135,6 +138,28 @@ public abstract class Unit : MonoBehaviour
         yield return Helper.WaitForAnimation(anim, 0, skill.animationName);
 
         anim.Play("Idle");
+
+        AnimationFinished = true;
+    }
+
+    public IEnumerator AnimateRangedProjectile()
+{
+        AnimationFinished = false;
+
+        Vector3 direction;
+        if (IsEnemy)
+            direction = new(-1, 0);
+        else
+            direction = new(1, 0);
+
+        var p = Instantiate(projectile, this.transform.position, projectile.transform.rotation);
+
+        yield return Helper.MoveObject(
+            rangedAttackSpawn.position,
+            rangedAttackSpawn.position + direction * rangeAttackDistance,
+            p.transform, 0.2f);
+
+        Destroy(p);
 
         AnimationFinished = true;
     }

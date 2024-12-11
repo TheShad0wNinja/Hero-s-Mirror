@@ -23,4 +23,17 @@ internal static class Helper
 
         yield return null;
     }
+
+    public static IEnumerator MoveObject(Vector2 origin, Vector2 destination, Transform objectTransform, float movementDuration)
+    {
+        float currentMovementTime = 0f;
+        while (Vector2.Distance(objectTransform.position, destination) > 0.01)
+        {
+            Debug.Log($"From {objectTransform.position} to {destination}");
+            currentMovementTime += Time.deltaTime;
+            objectTransform.localPosition = Vector3.Lerp(origin, destination, currentMovementTime / movementDuration);
+            yield return null;
+        }
+        Debug.Log("Movement: End");
+    }
 }

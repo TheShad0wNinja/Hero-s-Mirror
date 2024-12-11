@@ -63,7 +63,7 @@ public class CombatActionMovement : MonoBehaviour
         Vector2 newPosition = new Vector2(leftLocation.position.x - unitOffset * offsetAmount, leftLocation.position.y);
         Vector2 oldPosition = unit.transform.position;
 
-        yield return MoveUnit(unit.transform.position, newPosition, unit.transform);
+        yield return Helper.MoveObject(unit.transform.position, newPosition, unit.transform, movementDuration);
 
         engagedUnits.Add(new EngagedUnitInformation { oldLocation = oldPosition, unit = unit });
 
@@ -76,7 +76,7 @@ public class CombatActionMovement : MonoBehaviour
         Vector2 newPosition = new Vector2(rightLocation.position.x + unitOffset * offsetAmount, rightLocation.position.y);
         Vector2 oldPosition = unit.transform.position;
 
-        yield return MoveUnit(unit.transform.position, newPosition, unit.transform);
+        yield return Helper.MoveObject(unit.transform.position, newPosition, unit.transform, movementDuration);
 
         engagedUnits.Add(new EngagedUnitInformation { oldLocation = oldPosition, unit = unit });
 
@@ -103,22 +103,22 @@ public class CombatActionMovement : MonoBehaviour
     {
         Debug.Log($"Disengage {engagedUnit.unit} to {engagedUnit.oldLocation}");
 
-        yield return MoveUnit(engagedUnit.unit.transform.position, engagedUnit.oldLocation, engagedUnit.unit.transform);
+        yield return Helper.MoveObject(engagedUnit.unit.transform.position, engagedUnit.oldLocation, engagedUnit.unit.transform, movementDuration);
 
         engagedUnits.Remove(engagedUnit);
 
         yield return null;
     }
 
-    IEnumerator MoveUnit(Vector2 origin, Vector2 destination, Transform unit)
-    {
-        float currentMovementTime = 0f;
-        while (Vector2.Distance(unit.position, destination) > 0)
-        {
-            currentMovementTime += Time.deltaTime;
-            unit.localPosition = Vector3.Lerp(origin, destination, currentMovementTime / movementDuration);
-            yield return null;
-        }
-    }
+    // IEnumerator MoveUnit(Vector2 origin, Vector2 destination, Transform objectTransform)
+    // {
+    //     float currentMovementTime = 0f;
+    //     while (Vector2.Distance(objectTransform.position, destination) > 0)
+    //     {
+    //         currentMovementTime += Time.deltaTime;
+    //         objectTransform.localPosition = Vector3.Lerp(origin, destination, currentMovementTime / movementDuration);
+    //         yield return null;
+    //     }
+    // }
 
 }

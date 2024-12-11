@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae335619f5d6004aa68462b3bd7f987, type: 3}
+  m_Name: Shehawyen
+  m_EditorClassIdentifier: 
+  name: Shehaweyn
+  description: My muscles are getting bigger
+  pixelArt: {fileID: -2618103126432870012, guid: 0ebc435396ed36f428df5c4adebe45aa, type: 3}
+  image: {fileID: -2618103126432870012, guid: 0ebc435396ed36f428df5c4adebe45aa, type: 3}
+  rarity: 3
+  health: 1000
+  damage: 10
+  armor: 0
+  shield: 10000
+  regeneration: 0
+  dodge: 0
+  criticalChance: 0
+  mana: 0

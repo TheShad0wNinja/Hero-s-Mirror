@@ -7,7 +7,9 @@ public class RangedAndEffectSkill : SkillSO
     [SerializeField] int damageAmount;
     protected override void Execute(Unit owner, Unit target)
     {
-        ActionQueueManager.EnqueueDamageAction(target, damageAmount);
+        if (isParallel)
+            ActionQueueManager.Instance.parallelItemType = typeof(DamageAction);
+        ActionQueueManager.EnqueueDamageAction(owner, target, damageAmount);
         ActionQueueManager.EnqueueStatusEffectAction(target, new(statusEffect));
     }
 }

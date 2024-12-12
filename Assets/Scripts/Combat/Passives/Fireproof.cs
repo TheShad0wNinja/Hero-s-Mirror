@@ -12,9 +12,11 @@ public class Fireproof : PassiveSO
             CombatEvent.Instance.UnitStatusEffect += Execute;
     }
 
-    private void Execute(Unit unit, StatusEffect statusEffect)
+    private void Execute(Unit unit, StatusEffect statusEffect, StatusEffectAction.ActionType actionType)
     {
-        if (statusEffect.effectData is Flame flame && unit.UnitName == self.unitName) 
+        if (statusEffect.effectData is Flame flame && 
+            actionType == StatusEffectAction.ActionType.TICK 
+            && unit.UnitName == self.unitName)
         {
             unit.Heal(flame.flameDamage);
         }

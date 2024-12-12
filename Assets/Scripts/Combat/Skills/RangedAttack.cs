@@ -6,6 +6,6 @@ public class RangedAttack : SkillSO
     public int damage;
     protected override void Execute(Unit owner, Unit target)
     {
-        ActionQueueManager.EnqueueDamageAction(owner, damage);
+        ActionQueueManager.EnqueueDamageAction(owner, target, damage);
     }
 }

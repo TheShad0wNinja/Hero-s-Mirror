@@ -6,7 +6,6 @@ using UnityEngine;
 public class CombatCameraManager : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera defaultCamera, actionCamera;
-    CinemachineVirtualCamera currentCamera;
 
     public static CombatCameraManager Instance;
 
@@ -20,25 +19,25 @@ public class CombatCameraManager : MonoBehaviour
         defaultCamera.Priority = 20;
         actionCamera.Priority = 10;
 
-        currentCamera = defaultCamera;
+    }
+
+    public static void SwitchToDefaultCamera()
+    {
+        if (Instance == null) return;
+
+        Instance.defaultCamera.Priority = 20;
+        Instance.actionCamera.Priority = 10;
+    }
+
+    public static void SwitchToActionCamera()
+    {
+        if (Instance == null) return;
+
+        Instance.actionCamera.Priority = 20;
+        Instance.defaultCamera.Priority = 10;
     }
 
     public static void SwitchCamera()
     {
-        if (Instance == null) return;
-
-        if (Instance.currentCamera == Instance.defaultCamera) 
-        {
-            Instance.currentCamera.Priority = 10;
-            Instance.currentCamera = Instance.actionCamera;
-            Instance.currentCamera.Priority = 20;
-        }
-        else 
-        {
-
-            Instance.currentCamera.Priority = 10;
-            Instance.currentCamera = Instance.defaultCamera;
-            Instance.currentCamera.Priority = 20;
-        }
     }
 }

@@ -69,12 +69,12 @@ public abstract class Unit : MonoBehaviour
         foreach (var effect in activeEffects.ToList())
         {
             Debug.Log("TICKING EFFECT " + effect.name + " : " + effect.duration);
-            ActionQueueManager.EnqueueStatusEffectAction(this, effect, StatusEffectAction.EffectAction.TICK);
+            ActionQueueManager.EnqueueStatusEffectAction(this, effect, StatusEffectAction.ActionType.TICK);
 
             if (effect.IsExpired)
             {
                 Debug.Log("REMOVING " + effect.name);
-                ActionQueueManager.EnqueueStatusEffectAction(this, effect, StatusEffectAction.EffectAction.REMOVE);
+                ActionQueueManager.EnqueueStatusEffectAction(this, effect, StatusEffectAction.ActionType.REMOVE);
             }
         }
     }
@@ -89,7 +89,49 @@ public abstract class Unit : MonoBehaviour
         activeEffects.Remove(effect);
     }
 
-    public virtual void TakeRawDamage(Unit attacker, int damage)
+    public void TakeDamage (Unit attacker, int damage)
+    {
+        int damageLeft = DamageShield(damage);
+        if (damageLeft == 0)
+            return;
+
+        CombatEvent.OnUnitDamage(this, damageLeft);
+        // var (actualDamage, shieldLeft) = CalculateDamage(damage);
+        // if (actualDamage != damage)
+        // {
+
+        // }
+        // if (shieldLeft != 0)
+        // {
+            // unit.Shield = shieldLeft;
+            // CombatEvent.OnUnitShieldDamage(unit, actualDamage);
+        // }
+        // unit.TakeRawDamage(unit, actualDamage);
+        // CombatEvent.OnUnitDamage(unit, actualDamage);
+        // yield return null;
+    }
+
+    int DamageShield(int damage)
+    {
+        if (Shield > 0)
+        {
+            if (Shield < damage)
+            {
+                CombatEvent.OnUnitShieldDamage(this, Shield);
+                damage -= Shield;
+                Shield = 0;
+            }
+            else
+            {
+                CombatEvent.OnUnitShieldDamage(this, damage);
+                Shield -= damage;
+                damage = 0;
+            }
+        }
+        return damage;
+    }
+
+    public void TakeRawDamage(Unit attacker, int damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
@@ -101,28 +143,6 @@ public abstract class Unit : MonoBehaviour
         ActionQueueManager.EnqueueDeathAction(attacker, this);
     }
 
-    /// <summary>
-    /// Calculates the damage that will affect the unit and how much shield is left after if any
-    /// </summary>
-    /// <param name="damage"></param>
-    /// <returns>(The amount of damage, the amount of shield left)</returns>
-    public (int actualDamage, int shieldLeft) CalculateDamage(int damage)
-    {
-        if (Shield > 0)
-        {
-            if (Shield < damage)
-            {
-                damage -= Shield;
-                Shield = 0;
-            }
-            else
-            {
-                Shield -= damage;
-                damage = 0;
-            }
-        }
-        return (damage, Shield);
-    }
 
     public void Heal(int amount)
     {

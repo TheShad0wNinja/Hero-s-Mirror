@@ -7,6 +7,6 @@ public class MeleeAttack : SkillSO
 
     protected override void Execute(Unit owner, Unit target)
     {
-        ActionQueueManager.EnqueueDamageAction(target, damage);
+        ActionQueueManager.EnqueueDamageAction(owner, target, damage);
     }
 }

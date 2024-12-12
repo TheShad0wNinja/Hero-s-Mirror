@@ -49,7 +49,7 @@ public class CombatUIChannel : ScriptableObject
 
     public void OnRemoveSelectors()
     {
-        Debug.Log("Selector Removal: Invoke");
+        // Debug.Log("Selector Removal: Invoke");
         RemoveSelectors?.Invoke();
     }
 

@@ -65,9 +65,9 @@ public class CombatUIManager : MonoBehaviour
     {
         currentTurnText.text = turnState switch
         {
-            TurnState.PLAYER_TURN or TurnState.PLAYER_UNIT_SELECTED or TurnState.PLAYER_SKILL_SELECTED => "Player's Turn",
+            TurnState.PLAYER_TURN => "Player's Turn",
             TurnState.ENEMY_TURN => "Enemy's Turn",
-            _ => ""
+            _ => currentTurnText.text
         };
 
         switch (turnState)

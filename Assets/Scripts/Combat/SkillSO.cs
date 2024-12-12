@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public enum TargetType
@@ -22,10 +23,20 @@ public abstract class SkillSO : ScriptableObject
     public string skillName;
     public string animationName;
     public bool isOffensive = true;
+    protected bool isParallel = false;
     public void ExecuteSkill(Unit owner, params Unit[] targets)
     {
+        if (targets.Length > 1)
+        {
+            isParallel = true;
+            ActionQueueManager.Instance.hasParallel = true;
+        }
+
         foreach (Unit target in targets)
+        {
             Execute(owner, target);
+            CombatEvent.OnSkillPerformed(owner, this, target);
+        }
     }
     protected abstract void Execute(Unit owner, Unit target);
 

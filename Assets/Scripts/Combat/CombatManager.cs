@@ -11,6 +11,10 @@ public enum TurnState
     PLAYER_TARGET_SELECTED,
     PLAYER_ACTION_PERFORMING,
     ENEMY_TURN,
+    ENEMY_UNIT_SELECTED,
+    ENEMY_SKILL_SELECTED,
+    ENEMY_TARGET_SELECTED,
+    ENEMY_ACTION_PERFORMING,
 }
 
 public class CombatManager : MonoBehaviour
@@ -84,7 +88,8 @@ public class CombatManager : MonoBehaviour
     {
         switch (turnState)
         {
-            case TurnState.PLAYER_ACTION_PERFORMING or TurnState.ENEMY_TURN:
+            case TurnState.PLAYER_ACTION_PERFORMING or TurnState.ENEMY_ACTION_PERFORMING:
+                ActionQueueManager.EnqueueDisengageUnitsAction();
                 AdvanceTurn();
                 break;
         }
@@ -167,67 +172,56 @@ public class CombatManager : MonoBehaviour
 
     void HandleTargetUnitSelect(Unit unit)
     {
-        // bool actionPerformed = false;
         switch (selectedSkill.targetType)
         {
+
             case TargetType.ENEMY_UNIT_SINGLE:
                 if (unit.IsEnemy)
-                {
                     ExecuteSelectedSkill(unit);
-                    // ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit);
-                    // actionPerformed = true;
-                }
                 break;
+
             case TargetType.ENEMY_UNIT_MULTIPLE:
                 if (unit.IsEnemy && !selectedTargets.Contains(unit))
                     selectedTargets.Add(unit);
 
-                if (selectedTargets.Count < selectedSkill.numberOfTargets && enemyUnits.Count > selectedSkill.numberOfTargets)
+                if (selectedTargets.Count < selectedSkill.numberOfTargets && selectedTargets.Count < enemyUnits.Count)
                     uiChannel.OnUnitSelect(unit);
                 else
-                {
                     ExecuteSelectedSkill(selectedTargets);
-                    // ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, selectedTargets);
-                    // actionPerformed = true;
-                    // selectedTargets.Clear();
-                }
                 break;
+
             case TargetType.PLAYER_UNIT_SINGLE:
                 if (!unit.IsEnemy && unit != selectedUnit)
-                {
                     ExecuteSelectedSkill(unit);
-                    // ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit);
-                    // actionPerformed = true;
-                }
                 break;
+
             case TargetType.PLAYER_UNIT_MULTIPLE:
                 if (!unit.IsEnemy && unit != selectedUnit && !selectedTargets.Contains(unit))
                     selectedTargets.Add(unit);
 
-                if (selectedTargets.Count < selectedSkill.numberOfTargets && playerUnits.Count > selectedSkill.numberOfTargets)
+                if (selectedTargets.Count < selectedSkill.numberOfTargets && selectedTargets.Count < playerUnits.Count)
                     uiChannel.OnUnitSelect(unit);
                 else
-                {
                     ExecuteSelectedSkill(selectedTargets);
-                    // ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, selectedTargets);
-                    // actionPerformed = true;
-                    // selectedTargets.Clear();
-                }
                 break;
+
         }
     }
 
     void ExecuteSelectedSkill(List<Unit> units)
     {
-        ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, units);
-        units.Clear();
+        ActionQueueManager.EnqueueEngageUnitsAction(selectedUnit, units, !selectedUnit.IsEnemy);
+        ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, units, !selectedUnit.IsEnemy);
+
         uiChannel.OnRemoveSelectors();
         turnState = TurnState.PLAYER_ACTION_PERFORMING;
     }
 
     void ExecuteSelectedSkill(Unit unit)
     {
-        ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit);
+        ActionQueueManager.EnqueueEngageUnitsAction(selectedUnit, new List<Unit>() { unit }, !selectedUnit.IsEnemy);
+        ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit, !selectedUnit.IsEnemy);
+
         uiChannel.OnRemoveSelectors();
         turnState = TurnState.PLAYER_ACTION_PERFORMING;
     }
@@ -268,30 +262,66 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-
-    public void AdvanceTurn()
+    void HandleTurnChange()
     {
-        if (turnState == TurnState.ENEMY_TURN)
+        switch (turnState)
         {
-            selectedUnit.HasTurn = false;
-            selectedUnit = null;
-            var numOfAvailablePlayerUnits = playerUnits.Count(u => u.HasTurn);
+            case TurnState.ENEMY_TURN:
+                var numOfAvailableEnemyUnits = enemyUnits.Count(u => u.HasTurn);
 
-            if (numOfAvailablePlayerUnits == 0)
-            {
-                CombatEvent.OnNewTurn(this);
-                currentRound++;
-                uiChannel.OnNewTurn(currentRound);
+                if (numOfAvailableEnemyUnits == 0)
+                {
+                    enemyUnits.ForEach(u => u.HasTurn = true);
+                }
+                break;
 
-                playerUnits.ForEach(u => u.HasTurn = true);
-            }
-            turnState = TurnState.PLAYER_TURN;
-            uiChannel.OnTurnChange(turnState, playerUnits);
+            case TurnState.PLAYER_TURN:
+                var numOfAvailablePlayerUnits = playerUnits.Count(u => u.HasTurn);
+
+                if (numOfAvailablePlayerUnits == 0)
+                {
+                    currentRound++;
+                    CombatEvent.OnNewTurn(this);
+                    uiChannel.OnNewTurn(currentRound);
+
+                    playerUnits.ForEach(u => u.HasTurn = true);
+                }
+                break;
         }
-        else
+    }
+
+    public void GettoSkipEnemy()
+    {
+        turnState = TurnState.PLAYER_TURN;
+        uiChannel.OnTurnChange(turnState, playerUnits);
+        CombatEvent.OnTurnChanged(this);
+        HandleTurnChange();
+    }
+
+    void AdvanceTurn()
+    {
+        switch (turnState)
         {
-            turnState = TurnState.ENEMY_TURN;
-            uiChannel.OnTurnChange(turnState, null);
+            case TurnState.PLAYER_ACTION_PERFORMING:
+                selectedUnit.HasTurn = false;
+                selectedUnit = null;
+                selectedTargets.Clear();
+
+                turnState = TurnState.ENEMY_TURN;
+                uiChannel.OnTurnChange(turnState, playerUnits);
+                CombatEvent.OnTurnChanged(this);
+                break;
+
+            case TurnState.ENEMY_ACTION_PERFORMING:
+                selectedUnit.HasTurn = false;
+                selectedUnit = null;
+                selectedTargets.Clear();
+
+                turnState = TurnState.PLAYER_TURN;
+                uiChannel.OnTurnChange(turnState, playerUnits);
+                CombatEvent.OnTurnChanged(this);
+                break;
         }
+        HandleTurnChange();
     }
 }

@@ -19,7 +19,6 @@ public class CombatActionMovement : MonoBehaviour
     }
     List<EngagedUnitInformation> engagedUnits = new();
     public static CombatActionMovement Instance { get; private set; }
-    SpriteRenderer selectedUnitSpriteRenderer;
 
     void Start()
     {
@@ -109,16 +108,5 @@ public class CombatActionMovement : MonoBehaviour
 
         yield return null;
     }
-
-    // IEnumerator MoveUnit(Vector2 origin, Vector2 destination, Transform objectTransform)
-    // {
-    //     float currentMovementTime = 0f;
-    //     while (Vector2.Distance(objectTransform.position, destination) > 0)
-    //     {
-    //         currentMovementTime += Time.deltaTime;
-    //         objectTransform.localPosition = Vector3.Lerp(origin, destination, currentMovementTime / movementDuration);
-    //         yield return null;
-    //     }
-    // }
 
 }

@@ -24,4 +24,8 @@ public class RandomSkill : SkillSO
         else 
             return (negativeSkill, units.FindAll(u => u.IsEnemy));
     }
+
+    protected override void RegisterParallelTypes()
+    {
+    }
 }

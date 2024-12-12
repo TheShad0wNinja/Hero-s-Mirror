@@ -72,7 +72,7 @@ public class CombatManager : MonoBehaviour
         {
             CombatEvent.Instance.ActionsCompleted += HandleActionsCompleted;
             // CombatEvent.Instance.OnSkill.AddListener(HandleOnSkill);
-            // CombatEvent.Instance.OnUnitDeath.AddListener(HandleOnDeath);
+            CombatEvent.Instance.UnitDeath += HandleOnDeath;
         }
 
         if (uiChannel != null)
@@ -103,7 +103,7 @@ public class CombatManager : MonoBehaviour
             foreach (var c in enemyUnits)
             {
                 if (c.IsDead)
-                    Destroy(c.gameObject);
+                    c.gameObject.SetActive(false);
             }
             enemyUnits.RemoveAll(c => c.IsDead);
         }
@@ -112,7 +112,7 @@ public class CombatManager : MonoBehaviour
             foreach (var c in playerUnits)
             {
                 if (c.IsDead)
-                    Destroy(c.gameObject);
+                    c.gameObject.SetActive(false);
             }
             playerUnits.RemoveAll(c => c.IsDead);
         }

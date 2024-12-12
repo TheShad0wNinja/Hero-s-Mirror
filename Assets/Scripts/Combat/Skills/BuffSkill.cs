@@ -8,4 +8,9 @@ public class BuffSkill : SkillSO
     {
         ActionQueueManager.EnqueueStatusEffectAction(target, new StatusEffect(buffEffect));
     }
+
+    protected override void RegisterParallelTypes()
+    {
+        ActionQueueManager.EnqueueParallelType(typeof(StatusEffectAction));
+    }
 }

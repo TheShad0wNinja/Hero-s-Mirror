@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
+//TODO: USE HEALTH ENQUEU
 [CreateAssetMenu(menuName = "Skills/PurifyingLight")]
 public class PurifyingLight : SkillSO
 {
@@ -17,5 +18,9 @@ public class PurifyingLight : SkillSO
         }
 
         target.Heal(healAmount);
+    }
+
+    protected override void RegisterParallelTypes()
+    {
     }
 }

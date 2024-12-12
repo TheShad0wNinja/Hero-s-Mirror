@@ -8,4 +8,9 @@ public class RangedAttack : SkillSO
     {
         ActionQueueManager.EnqueueDamageAction(owner, target, damage);
     }
+
+    protected override void RegisterParallelTypes()
+    {
+        ActionQueueManager.EnqueueParallelType(typeof(DamageAction));
+    }
 }

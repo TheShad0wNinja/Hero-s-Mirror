@@ -89,26 +89,13 @@ public abstract class Unit : MonoBehaviour
         activeEffects.Remove(effect);
     }
 
-    public void TakeDamage (Unit attacker, int damage)
+    public void TakeDamage(Unit attacker, int damage)
     {
         int damageLeft = DamageShield(damage);
         if (damageLeft == 0)
             return;
 
-        CombatEvent.OnUnitDamage(this, damageLeft);
-        // var (actualDamage, shieldLeft) = CalculateDamage(damage);
-        // if (actualDamage != damage)
-        // {
-
-        // }
-        // if (shieldLeft != 0)
-        // {
-            // unit.Shield = shieldLeft;
-            // CombatEvent.OnUnitShieldDamage(unit, actualDamage);
-        // }
-        // unit.TakeRawDamage(unit, actualDamage);
-        // CombatEvent.OnUnitDamage(unit, actualDamage);
-        // yield return null;
+        TakeRawDamage(attacker, damageLeft);
     }
 
     int DamageShield(int damage)
@@ -133,6 +120,7 @@ public abstract class Unit : MonoBehaviour
 
     public void TakeRawDamage(Unit attacker, int damage)
     {
+        CombatEvent.OnUnitDamage(this, damage);
         currentHealth -= damage;
         if (currentHealth <= 0)
             Kill(attacker);
@@ -142,7 +130,6 @@ public abstract class Unit : MonoBehaviour
     {
         ActionQueueManager.EnqueueDeathAction(attacker, this);
     }
-
 
     public void Heal(int amount)
     {
@@ -164,7 +151,7 @@ public abstract class Unit : MonoBehaviour
     }
 
     public IEnumerator AnimateRangedProjectile()
-{
+    {
         AnimationFinished = false;
 
         Vector3 direction;

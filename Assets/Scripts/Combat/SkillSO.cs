@@ -23,13 +23,12 @@ public abstract class SkillSO : ScriptableObject
     public string skillName;
     public string animationName;
     public bool isOffensive = true;
-    protected bool isParallel = false;
     public void ExecuteSkill(Unit owner, params Unit[] targets)
     {
         if (targets.Length > 1)
         {
-            isParallel = true;
-            ActionQueueManager.Instance.hasParallel = true;
+            ActionQueueManager.Instance.hasParallelProcess = true;
+            RegisterParallelTypes(); 
         }
 
         foreach (Unit target in targets)
@@ -39,6 +38,7 @@ public abstract class SkillSO : ScriptableObject
         }
     }
     protected abstract void Execute(Unit owner, Unit target);
+    protected abstract void RegisterParallelTypes();
 
     public override bool Equals(object other)
     {

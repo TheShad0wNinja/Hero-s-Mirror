@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+// TODO: Use heal action
 [CreateAssetMenu(menuName = "Passives/Fireproof")]
 public class Fireproof : PassiveSO
 {

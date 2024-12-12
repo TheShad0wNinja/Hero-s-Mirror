@@ -8,24 +8,34 @@ using UnityEngine;
 
 public class ActionQueueManager : MonoBehaviour
 {
+    public static ActionQueueManager Instance { get; private set; }
+
     LinkedList<ActionQueueItem> actionQueue = new();
     bool isProcessing = false;
-
-    int parallelizationAttempts = 0;
+    
+    // Parallelization Variables
     const int parallelizationMaxAttempts = 3;
-    public bool hasParallel = false;
-    public Type parallelItemType = null;
-    List<ActionQueueItem> parallelItems = new();
+    int parallelizationAttempts = 0;
+    public bool hasParallelProcess = false;
+    Queue<Type> parallelItemTypes = new();
+    List<ActionQueueItem> currParallelItems = new();
+    Type currParallelItemType = null;
 
-    public static ActionQueueManager Instance { get; private set; }
 
     void Start()
     {
         if (Instance == null)
             Instance = this;
-        else
+        else if (Instance != this)
+            Destroy(this);
+    }
+
+    public static void EnqueueParallelType(params Type[] types)
+    {
+        if (Instance != null)
         {
-            Destroy(gameObject);
+            foreach (var type in types)
+                Instance.parallelItemTypes.Enqueue(type);
         }
     }
 
@@ -105,7 +115,16 @@ public class ActionQueueManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Instance.actionQueue.AddLast(new DamageAction(attacker, victim, damage));
+            Instance.actionQueue.AddLast(new DamageAction(attacker, victim, damage, false));
+            Instance.StartQueue();
+        }
+    }
+
+    public static void EnqueueRawDamageAction(Unit attacker, Unit victim, int damage)
+    {
+        if (Instance != null)
+        {
+            Instance.actionQueue.AddLast(new DamageAction(attacker, victim, damage, true));
             Instance.StartQueue();
         }
     }
@@ -129,23 +148,27 @@ public class ActionQueueManager : MonoBehaviour
     {
         isProcessing = true;
 
+
         while (actionQueue.Count > 0)
         {
             ActionQueueItem actionItem = actionQueue.First.Value;
             actionQueue.RemoveFirst();
 
             Debug.Log($"New Action: {actionItem}");
-            if (hasParallel)
+            if (hasParallelProcess)
             {
-                if (actionItem.GetType() == parallelItemType)
+                if (currParallelItemType == null)
+                    currParallelItemType = parallelItemTypes.Dequeue();
+
+                if (actionItem.GetType() == currParallelItemType)
                 {
-                    parallelItems.Add(actionItem);
+                    currParallelItems.Add(actionItem);
                     continue;
                 }
 
-                bool itemExistsInQueue = actionQueue.Any(it => it.GetType() == parallelItemType);
+                bool itemExistsInQueue = actionQueue.Any(it => it.GetType() == currParallelItemType);
 
-                if (parallelItems.Count > 0 && !itemExistsInQueue)
+                if (currParallelItems.Count > 0 && !itemExistsInQueue)
                 {
                     actionQueue.AddFirst(actionItem);
                     yield return ProcessParallelItems();
@@ -158,12 +181,12 @@ public class ActionQueueManager : MonoBehaviour
                 {
                     parallelizationAttempts++;
                     actionQueue.AddFirst(actionItem);
-                } 
-                else 
+                }
+                else
                 {
                     actionQueue.AddFirst(actionItem);
-                    hasParallel = false;
-                    parallelItemType = null;
+                    hasParallelProcess = false;
+                    currParallelItemType = null;
                     parallelizationAttempts = 0;
                 }
             }
@@ -173,7 +196,7 @@ public class ActionQueueManager : MonoBehaviour
             }
         }
 
-        if (hasParallel)
+        if (hasParallelProcess)
         {
             yield return ProcessParallelItems();
         }
@@ -184,14 +207,21 @@ public class ActionQueueManager : MonoBehaviour
 
     IEnumerator ProcessParallelItems()
     {
-        hasParallel = false;
-        foreach (var item in parallelItems)
+        foreach (var item in currParallelItems)
             StartCoroutine(item.ExecuteAction());
 
-        yield return new WaitUntil(() => parallelItems.All(i => i.hasFinished));
+        yield return new WaitUntil(() => currParallelItems.All(i => i.hasFinished));
 
-        parallelItems.Clear();
-        parallelItemType = null;
+        if (parallelItemTypes.Count == 0)
+        {
+            currParallelItems.Clear();
+            currParallelItemType = null;
+            hasParallelProcess = false;
+        }
+        else
+            currParallelItemType = parallelItemTypes.Dequeue();
+        
+        yield return null;
     }
 
 }
@@ -279,33 +309,7 @@ public class SkillAction : ActionQueueItem
             else
                 yield return new WaitForSeconds(0.2f);
 
-            // localTargetsList.ForEach(u => skill.ExecuteSkill(unit, target));
-
-            // ActionQueueManager.EnqueueParallelDamage(unit, localTargetsList);
-            // ActionQueueManager.Instance.hasParallel = true;
-            // ActionQueueManager.Instance.parallelItem = typeof(DamageAction);
             skill.ExecuteSkill(unit, localTargetsList.ToArray());
-            // localTargetsList.ForEach(t => skill.ExecuteSkill(unit, t));
-
-            // skill.ExecuteSkill(unit, localTargetsList.ToArray());
-
-            // yield return CombatActionMovement.Instance.EngageUnits(unit, targets, isPlayerAction);
-            // if (skill.animationName != "")
-            //     yield return unit.AnimateAction(skill);
-
-            // foreach (var target in localTargetsList)
-            // {
-            //     skill.ExecuteSkill(unit, target);
-            //     CombatEvent.OnSkillPerformed(unit, skill, target);
-
-            //     if (skill.isOffensive)
-            //         target.StartCoroutine(target.AnimateAction(true));
-            // }
-
-            // if (skill.isOffensive)
-            //     yield return new WaitUntil(() => localTargetsList.All(t => t.AnimationFinished));
-            // else
-            //     yield return new WaitForSeconds(0.4f);
         }
         else
         {
@@ -315,23 +319,8 @@ public class SkillAction : ActionQueueItem
                 yield return new WaitForSeconds(0.2f);
 
             skill.ExecuteSkill(unit, target);
-            // CombatEvent.OnSkillPerformed(unit, skill, target);
-            // yield return CombatActionMovement.Instance.EngageUnits(unit, new List<Unit>() { target }, isPlayerAction);
-
-            // // yield return unit.AnimateRangedAction(skill, rangedAttack.projectile);
-            // // else if (skill.animationName != "")
-
-            // skill.ExecuteSkill(unit, target);
-            // CombatEvent.OnSkillPerformed(unit, skill, target);
-
-            // if (skill.isOffensive)
-            //     yield return target.AnimateAction(true);
-            // else
-            //     yield return new WaitForSeconds(0.4f);
         }
 
-        // CombatCameraManager.SwitchCamera();
-        // yield return CombatActionMovement.Instance.DisengageUnits();
         hasFinished = true;
         yield return null;
     }
@@ -391,31 +380,28 @@ public class DamageAction : ActionQueueItem
 {
     Unit attacker, victim;
     int damage;
+    bool isRawDamage;
 
-    public DamageAction()
-    { }
-    public DamageAction(Unit attacker, Unit victim, int damage)
+    public DamageAction(Unit attacker, Unit victim, int damage, bool isRawDamage)
     {
         this.attacker = attacker;
         this.victim = victim;
         this.damage = damage;
+        this.isRawDamage = isRawDamage;
     }
 
     public override IEnumerator ExecuteAction()
     {
         hasFinished = false;
+
         Debug.Log($"BEFORE HIT {victim}");
-        victim.TakeDamage(attacker, damage);
+        if (isRawDamage)
+            victim.TakeRawDamage(attacker, damage);
+        else
+            victim.TakeDamage(attacker, damage);
         yield return victim.AnimateAction(true);
         Debug.Log($"AFTER HIT {victim}");
-        // var (actualDamage, shieldLeft) = unit.CalculateDamage(damage);
-        // if (unit.Shield != 0)
-        // {
-        //     unit.Shield = shieldLeft;
-        //     CombatEvent.OnUnitShieldDamage(unit, actualDamage);
-        // }
-        // unit.TakeRawDamage(unit, actualDamage);
-        // CombatEvent.OnUnitDamage(unit, actualDamage);
+
         hasFinished = true;
         yield return null;
     }

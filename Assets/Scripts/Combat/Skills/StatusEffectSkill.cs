@@ -6,8 +6,11 @@ public class StatusEffectSkill : SkillSO
     public StatusEffectSO statusEffectSO;
     protected override void Execute(Unit owner, Unit target)
     {
-        if (isParallel)
-            ActionQueueManager.Instance.parallelItemType = typeof(StatusEffectAction);
         ActionQueueManager.EnqueueStatusEffectAction(target, new StatusEffect(statusEffectSO));
+    }
+
+    protected override void RegisterParallelTypes()
+    {
+        ActionQueueManager.EnqueueParallelType(typeof(StatusEffectAction));
     }
 }

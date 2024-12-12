@@ -7,10 +7,12 @@ public class MeleeAndEffectSkill : SkillSO
     [SerializeField] int damageAmount;
     protected override void Execute(Unit owner, Unit target)
     {
-        if (isParallel)
-            ActionQueueManager.Instance.parallelItemType = typeof(DamageAction); 
-
         ActionQueueManager.EnqueueDamageAction(owner, target, damageAmount);
-        ActionQueueManager.EnqueueStatusEffectAction(target, new (statusEffect));
+        ActionQueueManager.EnqueueStatusEffectAction(target, new(statusEffect));
+    }
+
+    protected override void RegisterParallelTypes()
+    {
+        ActionQueueManager.EnqueueParallelType(typeof(DamageAction), typeof(StatusEffectAction));
     }
 }

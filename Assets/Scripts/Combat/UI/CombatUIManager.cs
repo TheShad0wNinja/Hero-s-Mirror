@@ -32,10 +32,11 @@ public class CombatUIManager : MonoBehaviour
 
     void SetupEvents()
     {
-        // CombatEvent.Instance.UnitDamage += TriggerDamageEffect;
-        // CombatEvent.Instance.SkillPerformed += TriggerSkillEffect;
-        // CombatEvent.Instance.UnitStatusEffect += TriggerStatusEffectEffect;
-        // CombatEvent.Instance.UnitDeath += TriggerDeathEffect;
+        CombatEvent.Instance.UnitDamage += TriggerDamageEffect;
+        CombatEvent.Instance.UnitShieldDamage += TriggerDamageEffect;
+        CombatEvent.Instance.SkillPerformed += TriggerSkillEffect;
+        CombatEvent.Instance.UnitStatusEffect += TriggerStatusEffectEffect;
+        CombatEvent.Instance.UnitDeath += TriggerDeathEffect;
 
         if (uiChannel != null)
         {
@@ -184,19 +185,24 @@ public class CombatUIManager : MonoBehaviour
     }
 
 
-    private void TriggerStatusEffectEffect(Unit arg0, StatusEffect arg1)
+    private void TriggerStatusEffectEffect(Unit arg0, StatusEffect arg1, StatusEffectAction.ActionType actionType)
     {
-        CreateText(arg0.transform.position + Vector3.up * 2, $"{arg0.name} inflicted with {arg1.name}", 2f);
+        CreateText(arg0.transform.position + Vector3.up * 3, $"{arg0.name} inflicted with {arg1.name} [{actionType}]", 2f);
     }
 
     void TriggerSkillEffect(Unit attacker, SkillSO skill, Unit target)
     {
-        CreateText(attacker.transform.position, $"{attacker.name} user {skill.name}", 1f);
+        CreateText(attacker.transform.position, $"{skill.name}", 1f);
     }
 
     void TriggerDamageEffect(Unit unit, int damage)
     {
-        CreateText(unit.transform.position, $"{unit.name} took {damage} damage", 1.2f);
+        CreateText(unit.transform.position + Vector3.down * 1, $"Health -{damage}", 1.5f);
+    }
+
+    void TriggerShieldDamageEffect(Unit unit, int damage)
+    {
+        CreateText(unit.transform.position + Vector3.up * 1, $"Shield -{damage}", 1.5f);
     }
 
     private void TriggerDeathEffect(Unit arg0, Unit arg1)

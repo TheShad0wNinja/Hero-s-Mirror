@@ -7,7 +7,12 @@ public class PiercingAndEffectSkill : SkillSO
     [SerializeField] int damage;
     protected override void Execute(Unit owner, Unit target)
     {
-        target.TakeRawDamage(owner, damage);
+        ActionQueueManager.EnqueueRawDamageAction(owner, target, damage);
         ActionQueueManager.EnqueueStatusEffectAction(target, new StatusEffect(statusEffect));
+    }
+
+    protected override void RegisterParallelTypes()
+    {
+        ActionQueueManager.EnqueueParallelType(typeof(DamageAction), typeof(StatusEffectAction));
     }
 }

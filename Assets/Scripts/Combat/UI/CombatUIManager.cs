@@ -33,6 +33,7 @@ public class CombatUIManager : MonoBehaviour
     void SetupEvents()
     {
         CombatEvent.Instance.UnitDamage += TriggerDamageEffect;
+        CombatEvent.Instance.UnitHeal += TriggerHealEffect;
         CombatEvent.Instance.UnitShieldDamage += TriggerDamageEffect;
         CombatEvent.Instance.SkillPerformed += TriggerSkillEffect;
         CombatEvent.Instance.UnitStatusEffect += TriggerStatusEffectEffect;
@@ -198,6 +199,11 @@ public class CombatUIManager : MonoBehaviour
     void TriggerDamageEffect(Unit unit, int damage)
     {
         CreateText(unit.transform.position + Vector3.down * 1, $"Health -{damage}", 1.5f);
+    }
+
+    void TriggerHealEffect(Unit unit, int damage)
+    {
+        CreateText(unit.transform.position + Vector3.down * 1, $"Health +{damage}", 1.5f);
     }
 
     void TriggerShieldDamageEffect(Unit unit, int damage)

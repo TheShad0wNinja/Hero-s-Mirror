@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a5b65ba38ab84952806ad196dd75388, type: 3}
-  m_Name: Fate's Gamble Bleed
+  m_Name: Jester Fortunes Favor Bleed
   m_EditorClassIdentifier: 
-  duration: 4
+  duration: 1
   isBuff: 0
   multiplier: 1
-  bleedDamage: 5
+  bleedDamage: 1

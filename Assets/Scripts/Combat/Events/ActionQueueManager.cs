@@ -12,12 +12,12 @@ public class ActionQueueManager : MonoBehaviour
 
     LinkedList<ActionQueueItem> actionQueue = new();
     bool isProcessing = false;
-    
+
     // Parallelization Variables
     const int parallelizationMaxAttempts = 3;
     int parallelizationAttempts = 0;
     public bool hasParallelProcess = false;
-    Queue<Type> parallelItemTypes = new();
+    List<Type> parallelItemTypes = new();
     List<ActionQueueItem> currParallelItems = new();
     Type currParallelItemType = null;
 
@@ -35,7 +35,7 @@ public class ActionQueueManager : MonoBehaviour
         if (Instance != null)
         {
             foreach (var type in types)
-                Instance.parallelItemTypes.Enqueue(type);
+                Instance.parallelItemTypes.Add(type);
         }
     }
 
@@ -138,6 +138,15 @@ public class ActionQueueManager : MonoBehaviour
         }
     }
 
+    public static void EnqueueHealAction(Unit unit, int healAmount)
+    {
+        if (Instance != null)
+        {
+            Instance.actionQueue.AddLast(new HealAction(unit, healAmount));
+            Instance.StartQueue();
+        }
+    }
+
     void StartQueue()
     {
         if (!isProcessing)
@@ -157,16 +166,20 @@ public class ActionQueueManager : MonoBehaviour
             Debug.Log($"New Action: {actionItem}");
             if (hasParallelProcess)
             {
-                if (currParallelItemType == null)
-                    currParallelItemType = parallelItemTypes.Dequeue();
+                // if (currParallelItemType == null && parallelItemTypes.Count > 0)
+                // {
+                //     currParallelItemType = parallelItemTypes[0];
+                //     parallelItemTypes.RemoveAt(0);
+                // }
 
-                if (actionItem.GetType() == currParallelItemType)
+                // if (actionItem.GetType() == currParallelItemType)
+                if (parallelItemTypes.Contains(actionItem.GetType()))
                 {
                     currParallelItems.Add(actionItem);
                     continue;
                 }
 
-                bool itemExistsInQueue = actionQueue.Any(it => it.GetType() == currParallelItemType);
+                bool itemExistsInQueue = actionQueue.Any(it => parallelItemTypes.Contains(actionItem.GetType()));
 
                 if (currParallelItems.Count > 0 && !itemExistsInQueue)
                 {
@@ -185,8 +198,13 @@ public class ActionQueueManager : MonoBehaviour
                 else
                 {
                     actionQueue.AddFirst(actionItem);
-                    hasParallelProcess = false;
+                    // hasParallelProcess = false;
+                    // currParallelItemType = null;
+                    currParallelItems.Clear();
+                    parallelItemTypes.Clear();
                     currParallelItemType = null;
+                    hasParallelProcess = false;
+
                     parallelizationAttempts = 0;
                 }
             }
@@ -212,15 +230,16 @@ public class ActionQueueManager : MonoBehaviour
 
         yield return new WaitUntil(() => currParallelItems.All(i => i.hasFinished));
 
-        if (parallelItemTypes.Count == 0)
-        {
-            currParallelItems.Clear();
-            currParallelItemType = null;
-            hasParallelProcess = false;
-        }
-        else
-            currParallelItemType = parallelItemTypes.Dequeue();
-        
+        // if (parallelItemTypes.Count == 0)
+        // {
+        currParallelItems.Clear();
+        parallelItemTypes.Clear();
+        currParallelItemType = null;
+        hasParallelProcess = false;
+        // }
+        // else
+        //     currParallelItemType = parallelItemTypes.Dequeue();
+
         yield return null;
     }
 
@@ -298,6 +317,8 @@ public class SkillAction : ActionQueueItem
             List<Unit> localTargetsList = targets.ToList();
 
             var (chosenSkill, targetList) = randomSkill.GetFate(localTargetsList);
+
+            ActionQueueManager.EnqueueEngageUnitsAction(unit, targetList, isPlayerAction);
 
             ActionQueueManager.EnqueueSkillAction(unit, chosenSkill, targetList);
         }
@@ -423,6 +444,26 @@ public class DeathAction : ActionQueueItem
         hasFinished = false;
         victim.IsDead = true;
         CombatEvent.OnUnitDeath(attacker, victim);
+        hasFinished = true;
+        yield return null;
+    }
+}
+
+public class HealAction : ActionQueueItem
+{
+    Unit unit;
+    int healAmount;
+
+    public HealAction(Unit unit, int healAmount)
+    {
+        this.unit = unit;
+        this.healAmount = healAmount;
+    }
+
+    public override IEnumerator ExecuteAction()
+    {
+        hasFinished = false;
+        unit.Heal(healAmount);
         hasFinished = true;
         yield return null;
     }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,6 +7,7 @@ public class CombatEvent : ScriptableObject
 {
     public UnityAction<Unit, Unit> UnitDeath;
     public UnityAction<Unit, StatusEffect, StatusEffectAction.ActionType> UnitStatusEffect;
+    public UnityAction<Unit, int> UnitHeal;
     public UnityAction<Unit, int> UnitDamage;
     public UnityAction<Unit, int> UnitShieldDamage;
     public UnityAction<Unit, SkillSO, Unit> SkillPerformed;
@@ -73,5 +75,11 @@ public class CombatEvent : ScriptableObject
         if (Instance == null) return;
         Debug.Log("Actions Completed");
         Instance.ActionsCompleted?.Invoke();
+    }
+
+    public static void OnUnitHeal(Unit unit, int amount)
+    {
+        if (Instance == null) return;
+        Instance.UnitHeal?.Invoke(unit, amount);
     }
 }

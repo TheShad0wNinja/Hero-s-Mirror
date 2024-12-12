@@ -11,6 +11,6 @@ public class Heal : SkillSO
 
     protected override void RegisterParallelTypes()
     {
-        throw new System.NotImplementedException();
+        ActionQueueManager.EnqueueParallelType(typeof(HealAction));
     }
 }

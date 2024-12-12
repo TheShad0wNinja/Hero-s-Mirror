@@ -133,6 +133,7 @@ public abstract class Unit : MonoBehaviour
 
     public void Heal(int amount)
     {
+        CombatEvent.OnUnitHeal(this, amount);
         if (currentHealth + amount > unitData.baseHealth)
             currentHealth = unitData.baseHealth;
         else

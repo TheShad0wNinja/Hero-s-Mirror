@@ -210,7 +210,9 @@ public class CombatManager : MonoBehaviour
 
     void ExecuteSelectedSkill(List<Unit> units)
     {
-        ActionQueueManager.EnqueueEngageUnitsAction(selectedUnit, units, !selectedUnit.IsEnemy);
+        if (selectedSkill.targetType != TargetType.UNIT_ALL && selectedSkill.targetType != TargetType.SELF)
+            ActionQueueManager.EnqueueEngageUnitsAction(selectedUnit, units, !selectedUnit.IsEnemy);
+
         ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, units, !selectedUnit.IsEnemy);
 
         uiChannel.OnRemoveSelectors();
@@ -219,7 +221,9 @@ public class CombatManager : MonoBehaviour
 
     void ExecuteSelectedSkill(Unit unit)
     {
-        ActionQueueManager.EnqueueEngageUnitsAction(selectedUnit, new List<Unit>() { unit }, !selectedUnit.IsEnemy);
+        if (selectedSkill.targetType != TargetType.UNIT_ALL && selectedSkill.targetType != TargetType.SELF)
+            ActionQueueManager.EnqueueEngageUnitsAction(selectedUnit, new List<Unit>() { unit }, !selectedUnit.IsEnemy);
+
         ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit, !selectedUnit.IsEnemy);
 
         uiChannel.OnRemoveSelectors();

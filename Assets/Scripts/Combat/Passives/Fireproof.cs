@@ -9,8 +9,8 @@ public class Fireproof : PassiveSO
 
     public override void SubscribeToEvent(Passive instance)
     {
-        if (CombatEvent.Instance != null)
-            CombatEvent.Instance.UnitStatusEffect += Execute;
+        // if (CombatEvent.Instance != null)
+        //     CombatEvent.Instance.UnitStatusEffect += Execute;
     }
 
     private void Execute(Unit unit, StatusEffect statusEffect, StatusEffectAction.ActionType actionType)

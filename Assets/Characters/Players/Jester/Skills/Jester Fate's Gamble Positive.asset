@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455e5857a879a450ea242e84d5c2a79e, type: 3}
-  m_Name: Cain's DoubleStrike
+  m_Script: {fileID: 11500000, guid: 13d35bcb0cf7d42618ab8439e30248ce, type: 3}
+  m_Name: Jester Fate's Gamble Positive
   m_EditorClassIdentifier: 
-  probability: 1
-  unitSO: {fileID: 11400000, guid: 89d627369dae84dd7a43c69d2facf138, type: 2}
-  repeatableSkill: {fileID: 11400000, guid: 7165ebd5fffeb4bcfb16d695369ee027, type: 2}
+  targetType: 6
+  numberOfTargets: 1
+  sprite: {fileID: 0}
+  skillName: 
+  animationName: Positive
+  isOffensive: 0
+  healingAmount: 99999

@@ -31,6 +31,8 @@ public class CombatManager : MonoBehaviour
     public List<Unit> enemyUnits = new();
 
     public List<Transform> playerLocations, enemyLocations;
+    public float scaleDownPercentage = 0.95f;
+    public float scaleDownPerUnit = 0.05f;
 
     [Header("Debugging a turn")]
     public TurnState turnState = TurnState.PLAYER_TURN;
@@ -50,11 +52,21 @@ public class CombatManager : MonoBehaviour
             {
                 enemyUnits.Add(unit);
                 unit.transform.position = enemyLocations[enemyIdx++].transform.position;
+                var currLocalScale = unit.transform.localScale;
+                var scaleDown = scaleDownPercentage - enemyIdx * scaleDownPerUnit;
+                currLocalScale.x *= scaleDown;
+                currLocalScale.y *= scaleDown;
+                unit.transform.localScale = currLocalScale;
             }
             else
             {
                 playerUnits.Add(unit);
                 unit.transform.position = playerLocations[playerIdx++].transform.position;
+                var currLocalScale = unit.transform.localScale;
+                var scaleDown = scaleDownPercentage - playerIdx * scaleDownPerUnit;
+                currLocalScale.x *= scaleDown;
+                currLocalScale.y *= scaleDown;
+                unit.transform.localScale = currLocalScale;
             }
         }
         SetupEvents();
@@ -127,7 +139,7 @@ public class CombatManager : MonoBehaviour
         {
             case TargetType.UNIT_ALL:
                 List<Unit> allUnits = new(enemyUnits.Count + playerUnits.Count);
-                allUnits.AddRange(enemyUnits);
+                allUnits.AddRange(enemyUnits.FindAll(u => u != selectedUnit));
                 allUnits.AddRange(playerUnits.FindAll(u => u != selectedUnit));
                 ExecuteSelectedSkill(allUnits);
                 break;

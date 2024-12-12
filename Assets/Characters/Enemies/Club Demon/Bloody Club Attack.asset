@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb7d76389717476082a69931d114c03, type: 3}
+  m_Name: Bloody Club Attack
+  m_EditorClassIdentifier: 
+  targetType: 4
+  numberOfTargets: 1
+  sprite: {fileID: 0}
+  skillName: Bloody Club Attack
+  animationName: Attack
+  isOffensive: 1
+  manaCost: 4
+  statusEffect: {fileID: 11400000, guid: 5858c15d6d3884421b6b6ca1bcc35b33, type: 2}
+  damageAmount: 4

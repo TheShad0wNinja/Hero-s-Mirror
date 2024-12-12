@@ -19,4 +19,7 @@ public class UnitSO : ScriptableObject
     public int baseShield = 0;
     public float baseAttackBonus = 1;
     public float baseCritChance = 0.1f;
+
+    [Header("Animation")]
+    public bool hasHitAnimation;
 }

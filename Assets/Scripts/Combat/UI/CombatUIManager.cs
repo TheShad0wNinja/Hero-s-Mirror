@@ -126,7 +126,7 @@ public class CombatUIManager : MonoBehaviour
         const float screenPointToRectRelativeMargin = 1.9f;
         const float relativeWidth = 150f;
 
-        var bounds = unit.GetComponent<SpriteRenderer>().bounds;
+        var bounds = unit.GetComponent<BoxCollider2D>().bounds;
 
         var topPoint = Camera.main.WorldToScreenPoint(new(bounds.center.x, bounds.max.y));
         var bottomPoint = Camera.main.WorldToScreenPoint(new(bounds.center.x, bounds.min.y));
@@ -137,7 +137,7 @@ public class CombatUIManager : MonoBehaviour
 
     Vector3 GetUnitUICenter(Unit unit)
     {
-        var bounds = unit.GetComponent<SpriteRenderer>().bounds;
+        var bounds = unit.GetComponent<BoxCollider2D>().bounds;
 
         var uiPosition = Camera.main.WorldToScreenPoint(bounds.center);
         return uiPosition;

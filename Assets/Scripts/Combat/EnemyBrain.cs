@@ -66,14 +66,14 @@ public class EnemyBrain : MonoBehaviour
     private void HandleEnemySkillSelection(CombatManager cm)
     {
         var availableSkills = cm.selectedUnit.skills;
-        var randIdx = UnityEngine.Random.Range(0, availableSkills.Count - 1);
+        var randIdx = UnityEngine.Random.Range(0, availableSkills.Count);
         cm.HandleSkillSelected(availableSkills[randIdx]);
     }
 
     private void HandleEnemyTurnStart(CombatManager cm)
     {
         var availableEnemyUnits = cm.enemyUnits.FindAll(u => u.HasTurn);
-        var randIdx = UnityEngine.Random.Range(0, availableEnemyUnits.Count - 1);
+        var randIdx = UnityEngine.Random.Range(0, availableEnemyUnits.Count);
 
         cm.HandleEnemyMainUnitSelect(cm.enemyUnits[randIdx]);
     }

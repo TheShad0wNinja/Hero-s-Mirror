@@ -23,6 +23,7 @@ public abstract class SkillSO : ScriptableObject
     public string skillName;
     public string animationName;
     public bool isOffensive = true;
+    public int manaCost = 1;
     public void ExecuteSkill(Unit owner, params Unit[] targets)
     {
         if (targets.Length > 1)

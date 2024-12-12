@@ -20,6 +20,8 @@ public class CombatActionMovement : MonoBehaviour
     List<EngagedUnitInformation> engagedUnits = new();
     public static CombatActionMovement Instance { get; private set; }
 
+    SpriteRenderer selectedUnitSr;
+
     void Start()
     {
         if (Instance == null)
@@ -34,6 +36,10 @@ public class CombatActionMovement : MonoBehaviour
             StartCoroutine(EngageLeftSide(selectedUnit, 0));
         else
             StartCoroutine(EngageRightSide(selectedUnit, 0));
+
+        selectedUnitSr = selectedUnit.GetComponent<SpriteRenderer>();
+        if (selectedUnitSr)
+            selectedUnitSr.sortingOrder = 50;
 
         // Debug.Log("ABVDLFJ");
         // selectedUnitSpriteRenderer = selectedUnit.GetComponent<SpriteRenderer>();
@@ -84,8 +90,10 @@ public class CombatActionMovement : MonoBehaviour
 
     public IEnumerator DisengageUnits()
     {
-        // selectedUnitSpriteRenderer.sortingOrder = 1;
-        // selectedUnitSpriteRenderer = null;
+        if (selectedUnitSr) {
+            selectedUnitSr.sortingOrder = 0;
+            selectedUnitSr = null;
+        }
 
         foreach(var engagedUnit in engagedUnits.ToList())
         {

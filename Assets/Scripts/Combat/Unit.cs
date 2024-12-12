@@ -52,7 +52,6 @@ public abstract class Unit : MonoBehaviour
 
         SetupEvents();
 
-        AdditionalInitilize();
     }
 
     void SetupEvents()
@@ -74,7 +73,6 @@ public abstract class Unit : MonoBehaviour
         }
     }
 
-    protected virtual void AdditionalInitilize() {}
 
     public void TriggerEffects(CombatManager m)
     {
@@ -185,16 +183,23 @@ public abstract class Unit : MonoBehaviour
         AnimationFinished = true;
     }
 
-    public IEnumerator AnimateAction(bool hit)
+    public IEnumerator AnimateHit()
     {
-        Debug.Log("ANIMATING HIT " + this.name);
         AnimationFinished = false;
-        if (hit)
+
+        if (unitData.hasHitAnimation)
+        {
+            yield return Helper.WaitForAnimation(anim, 0, "Hit");
+            anim.Play("Idle");
+        }
+        else
         {
             transform.rotation = Quaternion.Euler(0, 0, -16);
             yield return new WaitForSeconds(0.5f);
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+
+
         AnimationFinished = true;
         yield return null;
     }

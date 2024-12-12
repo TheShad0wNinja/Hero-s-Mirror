@@ -324,6 +324,8 @@ public class SkillAction : ActionQueueItem
             skill.ExecuteSkill(unit, target);
         }
 
+        yield return new WaitForSeconds(0.5f);
+
         hasFinished = true;
         yield return null;
     }
@@ -402,7 +404,7 @@ public class DamageAction : ActionQueueItem
             victim.TakeRawDamage(attacker, damage);
         else
             victim.TakeDamage(attacker, damage);
-        yield return victim.AnimateAction(true);
+        yield return victim.AnimateHit();
         Debug.Log($"AFTER HIT {victim}");
 
         hasFinished = true;

@@ -19,7 +19,6 @@ public class ActionQueueManager : MonoBehaviour
     public bool hasParallelProcess = false;
     List<Type> parallelItemTypes = new();
     List<ActionQueueItem> currParallelItems = new();
-    Type currParallelItemType = null;
 
 
     void Start()
@@ -166,13 +165,6 @@ public class ActionQueueManager : MonoBehaviour
             Debug.Log($"New Action: {actionItem}");
             if (hasParallelProcess)
             {
-                // if (currParallelItemType == null && parallelItemTypes.Count > 0)
-                // {
-                //     currParallelItemType = parallelItemTypes[0];
-                //     parallelItemTypes.RemoveAt(0);
-                // }
-
-                // if (actionItem.GetType() == currParallelItemType)
                 if (parallelItemTypes.Contains(actionItem.GetType()))
                 {
                     currParallelItems.Add(actionItem);
@@ -198,11 +190,8 @@ public class ActionQueueManager : MonoBehaviour
                 else
                 {
                     actionQueue.AddFirst(actionItem);
-                    // hasParallelProcess = false;
-                    // currParallelItemType = null;
                     currParallelItems.Clear();
                     parallelItemTypes.Clear();
-                    currParallelItemType = null;
                     hasParallelProcess = false;
 
                     parallelizationAttempts = 0;
@@ -230,15 +219,9 @@ public class ActionQueueManager : MonoBehaviour
 
         yield return new WaitUntil(() => currParallelItems.All(i => i.hasFinished));
 
-        // if (parallelItemTypes.Count == 0)
-        // {
         currParallelItems.Clear();
         parallelItemTypes.Clear();
-        currParallelItemType = null;
         hasParallelProcess = false;
-        // }
-        // else
-        //     currParallelItemType = parallelItemTypes.Dequeue();
 
         yield return null;
     }

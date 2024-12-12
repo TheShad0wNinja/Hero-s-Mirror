@@ -51,6 +51,8 @@ public abstract class Unit : MonoBehaviour
         AnimationFinished = true;
 
         SetupEvents();
+
+        AdditionalInitilize();
     }
 
     void SetupEvents()
@@ -63,6 +65,16 @@ public abstract class Unit : MonoBehaviour
             passive.SubscribeToEvent(null);
         }
     }
+
+    void OnDisable()
+    {
+        foreach (var passive in passives)
+        {
+            passive.UnsubscribeToEvent(null);
+        }
+    }
+
+    protected virtual void AdditionalInitilize() {}
 
     public void TriggerEffects(CombatManager m)
     {

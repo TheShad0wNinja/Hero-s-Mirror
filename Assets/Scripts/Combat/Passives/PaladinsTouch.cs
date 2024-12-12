@@ -10,6 +10,11 @@ public class PaladinsTouch : PassiveSO
         // CombatEvent.Instance.UnitStatusEffect = Execute;
     }
 
+    public override void UnsubscribeToEvent(Passive instance)
+    {
+        // throw new NotImplementedException();
+    }
+
     // void Execute(Unit unit, StatusEffect statusEffect)
     // {
     //     if (statusEffect.IsBuff && statusEffect.name == "shield" || statusEffect.name == "heal")

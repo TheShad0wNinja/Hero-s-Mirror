@@ -20,6 +20,6 @@ MonoBehaviour:
   isOffensive: 1
   positiveSkill: {fileID: 11400000, guid: a39c387c88f814cd78bb854172b455cf, type: 2}
   negativeSkill: {fileID: 11400000, guid: 18af91858f351443588955b50e238d38, type: 2}
-  probability: 1
+  probability: 0.25
   positiveUnitIsEnemy: 0
   negativeUnitIsEnemy: 0

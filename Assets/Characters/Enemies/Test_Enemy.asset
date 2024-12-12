@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96fd327dca051426db2c890e137e452d, type: 3}
-  m_Name: Jester Fortunes Favor
+  m_Script: {fileID: 11500000, guid: 3ef82c6e24d274b069dda6d6e9a86ad2, type: 3}
+  m_Name: Test_Enemy
   m_EditorClassIdentifier: 
-  probability: 1
-  skill: {fileID: 11400000, guid: 49c0fd93e29cc4dc1bb6f446797fdd70, type: 2}
-  unit: {fileID: 11400000, guid: 65615470d7ec04426b017b094ad27649, type: 2}
+  targetType: 5
+  numberOfTargets: 2
+  sprite: {fileID: 0}
+  skillName: AAAA
+  animationName: AC_Test
+  isOffensive: 1
+  damage: 2

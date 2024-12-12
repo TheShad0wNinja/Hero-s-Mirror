@@ -12,6 +12,12 @@ public class FortunesFavor : PassiveSO
             CombatEvent.Instance.NewTurn += Execute;
     }
 
+    public override void UnsubscribeToEvent(Passive instance)
+    {
+        if (CombatEvent.Instance != null)
+            CombatEvent.Instance.NewTurn -= Execute;
+    }
+
     void Execute(CombatManager cm)
     {
         float ranVal = Random.Range(0f, 1f);        

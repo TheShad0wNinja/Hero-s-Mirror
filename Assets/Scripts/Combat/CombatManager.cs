@@ -36,10 +36,10 @@ public class CombatManager : MonoBehaviour
     public TurnState turnState = TurnState.PLAYER_TURN;
     public int currentRound = 1;
 
-    SkillSO selectedSkill;
+    public SkillSO selectedSkill;
+    public Unit selectedUnit = null;
     List<Unit> selectedTargets = new();
 
-    Unit selectedUnit = null;
 
     void Start()
     {
@@ -71,7 +71,6 @@ public class CombatManager : MonoBehaviour
         if (CombatEvent.Instance != null)
         {
             CombatEvent.Instance.ActionsCompleted += HandleActionsCompleted;
-            // CombatEvent.Instance.OnSkill.AddListener(HandleOnSkill);
             CombatEvent.Instance.UnitDeath += HandleOnDeath;
         }
 
@@ -118,9 +117,9 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    void HandleSkillSelected(SkillSO skill)
+    public void HandleSkillSelected(SkillSO skill)
     {
-        turnState = TurnState.PLAYER_SKILL_SELECTED;
+        turnState = selectedUnit.IsEnemy ? TurnState.ENEMY_SKILL_SELECTED : TurnState.PLAYER_SKILL_SELECTED;
 
         selectedSkill = skill;
 
@@ -140,6 +139,9 @@ public class CombatManager : MonoBehaviour
                 break;
             case TargetType.ENEMY_UNIT_ALL:
                 ExecuteSelectedSkill(enemyUnits.ToList().FindAll(u => u != selectedUnit));
+                break;
+            default:
+                CombatEvent.OnTurnChanged(this);
                 break;
         }
     }
@@ -164,10 +166,58 @@ public class CombatManager : MonoBehaviour
             uiChannel.OnRemoveSelectors();
             uiChannel.OnUnitSelect(unit);
             turnState = TurnState.PLAYER_UNIT_SELECTED;
+            CombatEvent.OnTurnChanged(this);
             selectedUnit = unit;
             uiChannel.OnAssignSkills(unit.skills);
             uiChannel.OnTurnChange(turnState, new List<Unit> { unit });
         }
+    }
+
+    public void HandleEnemyMainUnitSelect(Unit unit)
+    {
+        selectedUnit = unit;
+        turnState = TurnState.ENEMY_UNIT_SELECTED;
+        CombatEvent.OnTurnChanged(this);
+    }
+
+    public void HandleEnemyTargetUnitSelect(List<Unit> units)
+    {
+        selectedTargets.AddRange(units);
+        // ExecuteSelectedSkill(selectedTargets);
+        Debug.Log($"LIGMA: SELECTED {string.Join(", ", selectedTargets)}");
+        Debug.Log($"LIGMA: SELECTED UNIT {selectedUnit}");
+
+        ExecuteSelectedSkill(selectedTargets);
+
+        // switch (selectedSkill.targetType)
+        // {
+
+        //     case TargetType.ENEMY_UNIT_SINGLE:
+        //         if (unit.IsEnemy)
+        //             ExecuteSelectedSkill(unit);
+        //         break;
+
+        //     case TargetType.ENEMY_UNIT_MULTIPLE:
+        //         if (unit.IsEnemy && !selectedTargets.Contains(unit))
+        //             selectedTargets.Add(unit);
+
+        //         if (!(selectedTargets.Count < selectedSkill.numberOfTargets && selectedTargets.Count < enemyUnits.Count))
+        //             ExecuteSelectedSkill(selectedTargets);
+        //         break;
+
+        //     case TargetType.PLAYER_UNIT_SINGLE:
+        //         if (!unit.IsEnemy && unit != selectedUnit)
+        //             ExecuteSelectedSkill(unit);
+        //         break;
+
+        //     case TargetType.PLAYER_UNIT_MULTIPLE:
+        //         if (!unit.IsEnemy && unit != selectedUnit && !selectedTargets.Contains(unit))
+        //             selectedTargets.Add(unit);
+
+        //         if (!(selectedTargets.Count < selectedSkill.numberOfTargets && selectedTargets.Count < playerUnits.Count))
+        //             ExecuteSelectedSkill(selectedTargets);
+        //         break;
+        // }
     }
 
     void HandleTargetUnitSelect(Unit unit)
@@ -213,10 +263,20 @@ public class CombatManager : MonoBehaviour
         if (selectedSkill.targetType != TargetType.UNIT_ALL && selectedSkill.targetType != TargetType.SELF)
             ActionQueueManager.EnqueueEngageUnitsAction(selectedUnit, units, !selectedUnit.IsEnemy);
 
+        if (selectedUnit.IsEnemy)
+            Debug.Log("LIGMA: SKILL " + selectedSkill);
+
         ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, units, !selectedUnit.IsEnemy);
 
-        uiChannel.OnRemoveSelectors();
-        turnState = TurnState.PLAYER_ACTION_PERFORMING;
+        if (selectedUnit.IsEnemy)
+            turnState = TurnState.ENEMY_ACTION_PERFORMING;
+        else
+        {
+            uiChannel.OnRemoveSelectors();
+            turnState = TurnState.PLAYER_ACTION_PERFORMING;
+        }
+        CombatEvent.OnTurnChanged(this);
+
     }
 
     void ExecuteSelectedSkill(Unit unit)
@@ -226,8 +286,14 @@ public class CombatManager : MonoBehaviour
 
         ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit, !selectedUnit.IsEnemy);
 
-        uiChannel.OnRemoveSelectors();
-        turnState = TurnState.PLAYER_ACTION_PERFORMING;
+        if (selectedUnit.IsEnemy)
+            turnState = TurnState.ENEMY_ACTION_PERFORMING;
+        else
+        {
+            uiChannel.OnRemoveSelectors();
+            turnState = TurnState.PLAYER_ACTION_PERFORMING;
+        }
+        CombatEvent.OnTurnChanged(this);
     }
 
     void HandleUnitHover(Unit unit)
@@ -310,6 +376,7 @@ public class CombatManager : MonoBehaviour
                 selectedUnit.HasTurn = false;
                 selectedUnit = null;
                 selectedTargets.Clear();
+                selectedSkill = null;
 
                 turnState = TurnState.ENEMY_TURN;
                 uiChannel.OnTurnChange(turnState, playerUnits);
@@ -320,6 +387,7 @@ public class CombatManager : MonoBehaviour
                 selectedUnit.HasTurn = false;
                 selectedUnit = null;
                 selectedTargets.Clear();
+                selectedSkill = null;
 
                 turnState = TurnState.PLAYER_TURN;
                 uiChannel.OnTurnChange(turnState, playerUnits);

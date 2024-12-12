@@ -28,4 +28,9 @@ public class DoubleStrike : PassiveSO
             hasRepeatedThisTurn = true;
         }
     }
+
+    public override void UnsubscribeToEvent(Passive instance)
+    {
+        // throw new System.NotImplementedException();
+    }
 }

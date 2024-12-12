@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 238824564}
   - component: {fileID: 238824563}
   - component: {fileID: 238824562}
+  - component: {fileID: 238824566}
   m_Layer: 0
   m_Name: Enemy (1)
   m_TagString: Unit
@@ -337,7 +338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitData: {fileID: 11400000, guid: 8467d9a6297d2405a9c977a5bacc6d18, type: 2}
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: fbadd5e9b2dbc4c3294e421efd38bf07, type: 2}
   passives: []
   activeEffects: []
   rangedAttackSpawn: {fileID: 0}
@@ -411,6 +413,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &238824566
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238824561}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8a4bbc2ebbf54f27ba7c6aeca3ed36e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &255161954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,6 +2081,7 @@ GameObject:
   - component: {fileID: 1680066895}
   - component: {fileID: 1680066894}
   - component: {fileID: 1680066893}
+  - component: {fileID: 1680066897}
   m_Layer: 0
   m_Name: Enemy (2)
   m_TagString: Unit
@@ -2123,7 +2147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitData: {fileID: 11400000, guid: 8467d9a6297d2405a9c977a5bacc6d18, type: 2}
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: fbadd5e9b2dbc4c3294e421efd38bf07, type: 2}
   passives: []
   activeEffects: []
   rangedAttackSpawn: {fileID: 0}
@@ -2191,12 +2216,33 @@ Transform:
   m_GameObject: {fileID: 1680066892}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.85, y: 2.86, z: 0}
   m_LocalScale: {x: 1.33, y: 3.17, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1680066897
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680066892}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8a4bbc2ebbf54f27ba7c6aeca3ed36e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1711628154
 GameObject:
   m_ObjectHideFlags: 0
@@ -2209,6 +2255,7 @@ GameObject:
   - component: {fileID: 1711628156}
   - component: {fileID: 1711628155}
   - component: {fileID: 1711628158}
+  - component: {fileID: 1711628159}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Unit
@@ -2229,7 +2276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitData: {fileID: 11400000, guid: 8467d9a6297d2405a9c977a5bacc6d18, type: 2}
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: fbadd5e9b2dbc4c3294e421efd38bf07, type: 2}
   passives: []
   activeEffects: []
   rangedAttackSpawn: {fileID: 0}
@@ -2348,6 +2396,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &1711628159
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711628154}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8a4bbc2ebbf54f27ba7c6aeca3ed36e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1738621442
 GameObject:
   m_ObjectHideFlags: 0
@@ -7534,6 +7603,7 @@ GameObject:
   - component: {fileID: 1941674410}
   - component: {fileID: 1941674412}
   - component: {fileID: 1941674413}
+  - component: {fileID: 1941674414}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -7577,6 +7647,8 @@ MonoBehaviour:
   - {fileID: 1493632509}
   turnState: 0
   currentRound: 1
+  selectedSkill: {fileID: 0}
+  selectedUnit: {fileID: 0}
 --- !u!4 &1941674411
 Transform:
   m_ObjectHideFlags: 0
@@ -7621,6 +7693,18 @@ MonoBehaviour:
   rightLocation: {fileID: 1822032656}
   offsetAmount: 1.8
   movementDuration: 0.08
+--- !u!114 &1941674414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941674409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479326ce44f9e4c9094a6bbaa6036a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1957068555
 PrefabInstance:
   m_ObjectHideFlags: 0

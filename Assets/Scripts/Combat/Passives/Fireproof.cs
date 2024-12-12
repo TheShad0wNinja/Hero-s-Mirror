@@ -13,6 +13,11 @@ public class Fireproof : PassiveSO
         //     CombatEvent.Instance.UnitStatusEffect += Execute;
     }
 
+    public override void UnsubscribeToEvent(Passive instance)
+    {
+        // throw new NotImplementedException();
+    }
+
     private void Execute(Unit unit, StatusEffect statusEffect, StatusEffectAction.ActionType actionType)
     {
         if (statusEffect.effectData is Flame flame && 

@@ -294,7 +294,6 @@ public class SkillAction : ActionQueueItem
     public override IEnumerator ExecuteAction()
     {
         hasFinished = false;
-        CombatCameraManager.SwitchCamera();
         if (skill.targetType == TargetType.UNIT_ALL && skill is RandomSkill randomSkill)
         {
             List<Unit> localTargetsList = targets.ToList();
@@ -311,7 +310,7 @@ public class SkillAction : ActionQueueItem
             if (skill.animationName != "")
                 yield return unit.AnimateAction(skill);
             else
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(1f);
 
             skill.ExecuteSkill(unit, localTargetsList.ToArray());
         }
@@ -320,7 +319,7 @@ public class SkillAction : ActionQueueItem
             if (skill.animationName != "")
                 yield return unit.AnimateAction(skill);
             else
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(1f);
 
             skill.ExecuteSkill(unit, target);
         }

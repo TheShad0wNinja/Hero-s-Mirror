@@ -7,7 +7,7 @@ using TMPro;
 public class currencyDisplay : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Player PlayerCurrency;
+    public PurchaseManager PlayerCurrency;
     public TextMeshProUGUI CurrencyDisplay;
     void Awake()
     {

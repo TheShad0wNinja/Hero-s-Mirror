@@ -14,7 +14,7 @@ public class CardCharacter : MonoBehaviour
     public Image CharacterImage;
     public TextMeshProUGUI CharacterTier;
     public TextMeshProUGUI CharacterDamage;
-    public Player newCharacters;
+    public PurchaseManager newCharacters;
 
     void Awake()
     {

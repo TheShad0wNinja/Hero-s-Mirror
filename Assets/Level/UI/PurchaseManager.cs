@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PurchaseManager : MonoBehaviour
 {
     public int currency = 100;
     public ProbabilityManager shopManager;

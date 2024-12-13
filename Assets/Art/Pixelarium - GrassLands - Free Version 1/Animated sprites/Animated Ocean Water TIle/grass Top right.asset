@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: grass Top right
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 1998230558, guid: 00f45cc41beb31043bf8933f7630b89a, type: 3}
+  - {fileID: 931146893, guid: 00f45cc41beb31043bf8933f7630b89a, type: 3}
+  - {fileID: 1075013858, guid: 00f45cc41beb31043bf8933f7630b89a, type: 3}
+  - {fileID: 1550258218, guid: 00f45cc41beb31043bf8933f7630b89a, type: 3}
+  - {fileID: -1512138901, guid: 00f45cc41beb31043bf8933f7630b89a, type: 3}
+  - {fileID: 2035488127, guid: 00f45cc41beb31043bf8933f7630b89a, type: 3}
+  - {fileID: 25134461, guid: 00f45cc41beb31043bf8933f7630b89a, type: 3}
+  - {fileID: -1406822174, guid: 00f45cc41beb31043bf8933f7630b89a, type: 3}
+  m_MinSpeed: 3
+  m_MaxSpeed: 3
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UI_Behaviour_Manager : MonoBehaviour
 {
-    public static UI_Behaviour_Manager Instance { get; private set; } // Singleton instance
+    public static UI_Behaviour_Manager Instance { get; private set; }
 
     public Dictionary<Potion, int> ownedPotions = new Dictionary<Potion, int>();
 
@@ -20,17 +20,16 @@ public class UI_Behaviour_Manager : MonoBehaviour
 
     private void Awake()
     {
-        // Ensure there's only one instance of this manager
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Make persistent across scenes
+            DontDestroyOnLoad(gameObject);
             CreateCharacters();
             CreateItems();
         }
         else
         {
-            Destroy(gameObject); // Prevent duplicate instances
+            Destroy(gameObject);
         }
     }
 

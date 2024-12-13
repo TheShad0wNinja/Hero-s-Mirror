@@ -49,48 +49,44 @@ public class Map_Manager : MonoBehaviour
         characterSlots.Add(characterSlot2);
         characterSlots.Add(characterSlot3);
     }
-    int SlotIndex() 
+    int SlotIndex()
     {
-        if (characterSlot1 == null) 
-        {
-            count = 0;
+        if (characterSlot1 == null)
             return 1;
-        }
-        else if (characterSlot2 == null)
-        {
-            count = 0;
+        if (characterSlot2 == null)
             return 2;
-        }
-        else if (characterSlot3 == null)
-        {
-            count = 0;
+        if (characterSlot3 == null)
             return 3;
-        }
-        if (count == 2) count = 0;
-        count++;
-        return count;
+
+        count = (count + 1) % 3; 
+        return count + 1;
     }
+
     public void ResetUI(int slotIndex = 0)
     {
         switch (slotIndex)
         {
             case 1:
                 ClearSlot(ref character1, ref characterSlot1, characterIllustration1, characterName1, characterLevel1, characterRarity1);
+                count = 0;
                 break;
             case 2:
                 ClearSlot(ref character2, ref characterSlot2, characterIllustration2, characterName2, characterLevel2, characterRarity2);
+                count = 1;
                 break;
             case 3:
                 ClearSlot(ref character3, ref characterSlot3, characterIllustration3, characterName3, characterLevel3, characterRarity3);
+                count = 2; 
                 break;
             default:
                 ClearAllSlots();
+                count = 0; 
                 break;
         }
-        
 
         lastSelectedSlot = null;
     }
+
 
     private void ClearSlot(ref Character character, ref GameObject characterSlot, Image illustration, TextMeshProUGUI name, TextMeshProUGUI level, TextMeshProUGUI rarity)
     {

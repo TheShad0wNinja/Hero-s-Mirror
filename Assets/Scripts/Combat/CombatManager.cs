@@ -43,8 +43,10 @@ public class CombatManager : MonoBehaviour
     List<Unit> selectedTargets = new();
 
 
-    void Start()
+    public void StartCombat()
     {
+        units.AddRange(playerUnits);
+        // List<Character> characterList = UI_Behaviour_Manager.Instance.
         int enemyIdx = 0, playerIdx = 0;
         foreach (var unit in units)
         {
@@ -201,36 +203,6 @@ public class CombatManager : MonoBehaviour
         Debug.Log($"LIGMA: SELECTED UNIT {selectedUnit}");
 
         ExecuteSelectedSkill(selectedTargets);
-
-        // switch (selectedSkill.targetType)
-        // {
-
-        //     case TargetType.ENEMY_UNIT_SINGLE:
-        //         if (unit.IsEnemy)
-        //             ExecuteSelectedSkill(unit);
-        //         break;
-
-        //     case TargetType.ENEMY_UNIT_MULTIPLE:
-        //         if (unit.IsEnemy && !selectedTargets.Contains(unit))
-        //             selectedTargets.Add(unit);
-
-        //         if (!(selectedTargets.Count < selectedSkill.numberOfTargets && selectedTargets.Count < enemyUnits.Count))
-        //             ExecuteSelectedSkill(selectedTargets);
-        //         break;
-
-        //     case TargetType.PLAYER_UNIT_SINGLE:
-        //         if (!unit.IsEnemy && unit != selectedUnit)
-        //             ExecuteSelectedSkill(unit);
-        //         break;
-
-        //     case TargetType.PLAYER_UNIT_MULTIPLE:
-        //         if (!unit.IsEnemy && unit != selectedUnit && !selectedTargets.Contains(unit))
-        //             selectedTargets.Add(unit);
-
-        //         if (!(selectedTargets.Count < selectedSkill.numberOfTargets && selectedTargets.Count < playerUnits.Count))
-        //             ExecuteSelectedSkill(selectedTargets);
-        //         break;
-        // }
     }
 
     void HandleTargetUnitSelect(Unit unit)
@@ -367,7 +339,19 @@ public class CombatManager : MonoBehaviour
                     CombatEvent.OnNewTurn(this);
                     uiChannel.OnNewTurn(currentRound);
 
-                    playerUnits.ForEach(u => u.HasTurn = true);
+                    playerUnits.ForEach(u =>
+                    {
+                        u.HasTurn = true;
+                        u.Heal(u.HealthRegen);
+                        u.GainMana(u.ManaRegen);
+                    });
+
+                    enemyUnits.ForEach(u =>
+                    {
+                        u.Heal(u.HealthRegen);
+                        u.GainMana(u.ManaRegen);
+                    });
+
                 }
                 break;
         }

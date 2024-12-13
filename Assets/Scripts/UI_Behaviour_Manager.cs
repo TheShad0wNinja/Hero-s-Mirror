@@ -35,8 +35,9 @@ public class UI_Behaviour_Manager : MonoBehaviour
     {
         Character newCharacter = new (defaultCharacter);
         AddCharacter(newCharacter);
-        newCharacter = new (defaultCharacter);
-        AddCharacter(newCharacter);
+        // newCharacter = new (defaultCharacter);
+        // AddCharacter(newCharacter);
+        AddTeamCharacters(ownedCharacters);
     }
 
     public void AddPotion(Potion potion)

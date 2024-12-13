@@ -11,16 +11,19 @@ public class MouseHandler : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            foreach(var hit in hits)
+            foreach (var hit in hits)
             {
                 if (hit.collider.CompareTag("Unit"))
                 {
                     channel.RaiseOnUnitSelect(hit.collider.GetComponent<Unit>());
                 }
             }
-        } else {
+        }
+        else
+        {
             Unit unit = null;
-            foreach(var hit in hits)
+            if (hits == null) return;
+            foreach (var hit in hits)
             {
                 if (hit.collider.CompareTag("Unit"))
                 {
@@ -32,7 +35,8 @@ public class MouseHandler : MonoBehaviour
             {
                 channel.RaiseOnUnitUnhover(unit);
                 isHovered = false;
-            } else if (unit != null && !isHovered)
+            }
+            else if (unit != null && !isHovered)
             {
                 channel.RaiseOnUnitHover(unit);
                 isHovered = true;
@@ -43,7 +47,10 @@ public class MouseHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        hits = Physics2D.GetRayIntersectionAll(ray, 1500f);
+        if (Camera.main != null)
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            hits = Physics2D.GetRayIntersectionAll(ray, 1500f);
+        }
     }
 }

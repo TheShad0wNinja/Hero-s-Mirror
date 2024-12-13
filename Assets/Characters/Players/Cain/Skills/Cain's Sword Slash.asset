@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef82c6e24d274b069dda6d6e9a86ad2, type: 3}
   m_Name: Cain's Sword Slash
   m_EditorClassIdentifier: 
-  targetType: 8
+  targetType: 7
   numberOfTargets: 2
-  sprite: {fileID: 21300000, guid: 244fb3c15f54d41e7a64b02e3a2f747b, type: 3}
+  sprite: {fileID: 21300000, guid: 5eb40189665e0439c998dfb9b0e75009, type: 3}
   skillName: Sword Slash
   animationName: attack
+  hasEarlyAnimationFinish: 1
   isOffensive: 1
+  manaCost: 1
   damage: 2

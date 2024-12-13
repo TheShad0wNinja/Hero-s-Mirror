@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ public abstract class SkillSO : ScriptableObject
     public Sprite sprite;
     public string skillName;
     public string animationName;
+    public bool hasEarlyAnimationFinish;
     public bool isOffensive = true;
     public int manaCost = 1;
     public void ExecuteSkill(Unit owner, params Unit[] targets)
@@ -34,6 +36,7 @@ public abstract class SkillSO : ScriptableObject
 
         foreach (Unit target in targets)
         {
+            owner.ConsumeMana(manaCost);
             Execute(owner, target);
             CombatEvent.OnSkillPerformed(owner, this, target);
         }

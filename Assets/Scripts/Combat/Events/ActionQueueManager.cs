@@ -260,10 +260,11 @@ public class DisengageUnitsAction : ActionQueueItem
 {
     public override IEnumerator ExecuteAction()
     {
-        hasFinished = true;
-        CombatCameraManager.SwitchToDefaultCamera();
-        yield return CombatActionMovement.Instance.DisengageUnits();
         hasFinished = false;
+        yield return new WaitForSeconds(0.5f);
+        yield return CombatActionMovement.Instance.DisengageUnits();
+        CombatCameraManager.SwitchToDefaultCamera();
+        hasFinished = true;
     }
 }
 
@@ -317,7 +318,17 @@ public class SkillAction : ActionQueueItem
         else
         {
             if (skill.animationName != "")
-                yield return unit.AnimateAction(skill);
+            {
+                if (skill.hasEarlyAnimationFinish)
+                {
+                    unit.StartCoroutine(unit.AnimateAction(skill));
+                    yield return new WaitUntil(() => unit.AnimationFinished);
+                }
+                else
+                {
+                    yield return unit.AnimateAction(skill);
+                }
+            }
             else
                 yield return new WaitForSeconds(1f);
 

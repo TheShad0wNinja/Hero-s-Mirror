@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,7 @@ public class Scene_Manager : MonoBehaviour
 {
     private GameObject player;
     private Vector3 playerSavedPosition;
+    private Stack<string> stack = new();
     public static Scene_Manager Instance { get; private set; }
 
     private void Awake()
@@ -13,7 +15,7 @@ public class Scene_Manager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            playerSavedPosition = transform.position;    
+            playerSavedPosition = transform.position;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -38,6 +40,14 @@ public class Scene_Manager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void ChangeSceneAdditive(string sceneName)
+    {
+        SavePlayerPosition();
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        stack.Push(sceneName);
+        // SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+    }
+
     public void GoToHomebase()
     {
         SavePlayerPosition();
@@ -59,11 +69,21 @@ public class Scene_Manager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        player = FindObjectOfType<PlayerMovementController>()?.gameObject;
-
-        if (player != null)
+        if (mode == LoadSceneMode.Single)
         {
-            player.transform.position = playerSavedPosition;
+            stack.Clear();
+            stack.Push(scene.name);
         }
+        else if (mode == LoadSceneMode.Additive)
+        {
+            SceneManager.SetActiveScene(scene);
+        }
+
+        // player = FindObjectOfType<PlayerMovementController>()?.gameObject;
+
+        // if (player != null)
+        // {
+        //     player.transform.position = playerSavedPosition;
+        // }
     }
 }

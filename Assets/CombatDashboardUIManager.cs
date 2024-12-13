@@ -38,7 +38,7 @@ public class CombatDashboardUIManager : MonoBehaviour
     {
         healthBar.SetBarValue(unit.CurrentHealth, unit.MaxHealth); 
         manaBar.SetBarValue(unit.CurrentMana, unit.MaxMana);
-        unitNameText.text = unit.UnitName;
+        unitNameText.text = unit.name;
     }
 
     void AddNewSkill(SkillSO skill)

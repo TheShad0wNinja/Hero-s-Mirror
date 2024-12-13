@@ -18,7 +18,7 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] float rangeAttackDuration = 0.2f;
 
     public bool AnimationFinished { get; private set; }
-    public string UnitName => unitData.name;
+    public new string name => unitData.name;
     public bool IsEnemy => unitData.isEnemy;
     public int Shield { get; set; }
     public bool HasTurn { get; set; }
@@ -36,7 +36,7 @@ public abstract class Unit : MonoBehaviour
     protected SpriteRenderer sr;
     protected Animator anim;
 
-    void InitilizeUnit(Character character)
+    public void InitilizeUnit(Character character)
     {
         var stats = character.currentStats;
 
@@ -51,6 +51,14 @@ public abstract class Unit : MonoBehaviour
         CritChance = stats["criticalChance"] / 100;
         AttackBonus = stats["attackBonus"]/100;
         unitData = character.stats;
+
+        if (unitData.flipped)
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+
+        HasTurn = true;
+        AnimationFinished = true;
+
+        SetupEvents();
     }
 
     void Start()
@@ -58,8 +66,8 @@ public abstract class Unit : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
-        if (unitData.flipped)
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        // if (unitData.flipped)
+        //     transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
 
         // CurrentHealth = unitData.health;
         // MaxHealth = CurrentHealth;
@@ -68,10 +76,10 @@ public abstract class Unit : MonoBehaviour
         // Shield = unitData.shield;
         // critChance = unitData.baseCritChance;
 
-        HasTurn = true;
-        AnimationFinished = true;
+        // HasTurn = true;
+        // AnimationFinished = true;
 
-        SetupEvents();
+        // SetupEvents();
     }
 
     void SetupEvents()
@@ -81,7 +89,8 @@ public abstract class Unit : MonoBehaviour
 
         foreach (var passive in passives)
         {
-            passive.SubscribeToEvent(null);
+            Debug.Log("Ligma");
+            // passive.SubscribeToEvent(null);
         }
     }
 
@@ -89,7 +98,8 @@ public abstract class Unit : MonoBehaviour
     {
         foreach (var passive in passives)
         {
-            passive.UnsubscribeToEvent(null);
+            Debug.Log("BALLS");
+            // passive.UnsubscribeToEvent(null);
         }
     }
 
@@ -148,6 +158,16 @@ public abstract class Unit : MonoBehaviour
         return damage;
     }
 
+    public void ConsumeMana(int amount)
+    {
+        CurrentMana = Math.Max(0, CurrentMana - amount);
+    }
+
+    public void GainMana(int amount)
+    {
+        CurrentMana = Math.Min(MaxMana, CurrentMana + amount);
+    }
+
     public void TakeRawDamage(Unit attacker, int damage)
     {
         CombatEvent.OnUnitDamage(this, damage);
@@ -174,10 +194,16 @@ public abstract class Unit : MonoBehaviour
     {
         AnimationFinished = false;
 
+
         yield return Helper.WaitForAnimation(anim, 0, skill.animationName);
 
         anim.Play("Idle");
 
+        AnimationFinished = true;
+    }
+
+    public void FinishAnimationEarly()
+    {
         AnimationFinished = true;
     }
 

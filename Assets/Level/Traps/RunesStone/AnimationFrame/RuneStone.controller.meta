@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art/Hover Selector.controller.meta
+guid: abef7510950a74dcbb8246e983fc4015
+========
 guid: 2872a389f71a04844b1b7601b7aa6b92
+>>>>>>>> main:Assets/Level/Traps/RunesStone/AnimationFrame/RuneStone.controller.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 9100000

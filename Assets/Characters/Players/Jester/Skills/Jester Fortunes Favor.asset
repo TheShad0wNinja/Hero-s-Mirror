@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96fd327dca051426db2c890e137e452d, type: 3}
+  m_Name: Jester Fortunes Favor
+  m_EditorClassIdentifier: 
+  probability: 1
+  skill: {fileID: 11400000, guid: 49c0fd93e29cc4dc1bb6f446797fdd70, type: 2}
+  unit: {fileID: 11400000, guid: 65615470d7ec04426b017b094ad27649, type: 2}

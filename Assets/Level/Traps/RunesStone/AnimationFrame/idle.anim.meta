@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Characters/Players/Hanzo/Animations/Idle.anim.meta
+guid: 43905b9dc2cfe479489690fc35f7781f
+========
 guid: 96eb9451ea56bca4ab1a99341a0287dd
+>>>>>>>> main:Assets/Level/Traps/RunesStone/AnimationFrame/idle.anim.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000

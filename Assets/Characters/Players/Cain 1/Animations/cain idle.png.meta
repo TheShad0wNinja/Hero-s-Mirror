@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2c78d9c41ddbd430e8c1d40fa44b836a
+guid: f2c8a053ab3964431934dc50923cc027
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-0004- fightcain_0
+      name: cain idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 730a4b00c9a1447a29c7485f039dd099
-      internalID: -1211316459
+      spriteID: b5b803822e8fd49dc8bb66aa7da82352
+      internalID: 829214598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0004- fightcain_1
+      name: cain idle_1
       rect:
         serializedVersion: 2
         x: 64
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbf7fcf6d4cf4464f94e19b780683484
-      internalID: 526195874
+      spriteID: ecf43cdf575ef4e5087548bee812e13b
+      internalID: -2133498379
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0004- fightcain_2
+      name: cain idle_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,71 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e16634e5913945768a105463fb5be10
-      internalID: 1364131068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprite-0004- fightcain_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0d7c5167a67d74852990440ccee93646
-      internalID: -1228450996
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprite-0004- fightcain_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c9a028c650499433eb5a2ecad1c84dd5
-      internalID: -305498766
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprite-0004- fightcain_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8fc1901c979dd44389cd92ed33559d5b
-      internalID: -587921598
+      spriteID: 278dd6f79208940c1bf6f094cd89cb0a
+      internalID: -1765904926
       vertices: []
       indices: 
       edges: []
@@ -233,12 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite-0004- fightcain_0: -1211316459
-      Sprite-0004- fightcain_1: 526195874
-      Sprite-0004- fightcain_2: 1364131068
-      Sprite-0004- fightcain_3: -1228450996
-      Sprite-0004- fightcain_4: -305498766
-      Sprite-0004- fightcain_5: -587921598
+      cain idle_0: 829214598
+      cain idle_1: -2133498379
+      cain idle_2: -1765904926
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -122,59 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &24427060
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 24427062}
-  - component: {fileID: 24427061}
-  m_Layer: 0
-  m_Name: InventoryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &24427061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 24427060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90802d818321ed14ba7921ff9fc340ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownedCharactersStats:
-  - {fileID: 11400000, guid: 870cc9a59e862374388277eb2bd1830d, type: 2}
-  - {fileID: 11400000, guid: 572246a8612d0ea4abe58174cf2abbfb, type: 2}
-  - {fileID: 11400000, guid: eec6b0b72aa1ac64194eaf329829c512, type: 2}
-  - {fileID: 11400000, guid: eec6b0b72aa1ac64194eaf329829c512, type: 2}
-  - {fileID: 11400000, guid: 572246a8612d0ea4abe58174cf2abbfb, type: 2}
-  - {fileID: 11400000, guid: 870cc9a59e862374388277eb2bd1830d, type: 2}
-  ownedItemsStats: []
-  gold: 10000
---- !u!4 &24427062
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 24427060}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.98443604, y: -0.07788086, z: 0.16849661}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &121363039
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530052768345342705, guid: c903ff00e0abe4446b4d2a352c5b90ae, type: 3}
       propertyPath: m_Name
-      value: Beam Me Up Baby (3)
+      value: Outline
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -546,7 +493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &280609311
 Transform:
   m_ObjectHideFlags: 0
@@ -634,7 +581,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 10
-      m_TileSpriteIndex: 10
+      m_TileSpriteIndex: 16
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -644,7 +591,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 15
-      m_TileSpriteIndex: 11
+      m_TileSpriteIndex: 15
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -665,116 +612,6 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 9
       m_TileSpriteIndex: 9
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -4, y: 3, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 13
-      m_TileSpriteIndex: 15
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -12, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 14
-      m_TileSpriteIndex: 14
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -11, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 14
-      m_TileSpriteIndex: 14
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -10, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 11
-      m_TileSpriteIndex: 12
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -9, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 14
-      m_TileSpriteIndex: 14
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -8, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 12
-      m_TileSpriteIndex: 13
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -7, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 14
-      m_TileSpriteIndex: 14
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -6, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 14
-      m_TileSpriteIndex: 14
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -5, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 14
-      m_TileSpriteIndex: 14
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -4, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 16
-      m_TileSpriteIndex: 16
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -8, y: 5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 13
-      m_TileSpriteIndex: 15
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -804,18 +641,18 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: f44ec32068896c742a49055d70a354b6, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: d5b4a2eb93b0190478e6cf8f635508a6, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 426ea98f5fe87cb478062bf68c0da4a6, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 60f41e21ecaee774bb72eb03a8849e7d, type: 2}
-  - m_RefCount: 2
-    m_Data: {fileID: 11400000, guid: 95c42f49705eae545913dc426a8eafa4, type: 2}
-  - m_RefCount: 6
-    m_Data: {fileID: 11400000, guid: 5528114d8ae10fb45a59d1e5b8ca8c7c, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: e57046ab60100dd4c9ce08691073a5a8, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 0754cbf8546fae643b21048372bfd3a4, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -837,22 +674,22 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 3
     m_Data: {fileID: -916186086, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 1589448955, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -3309034, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -596037092, guid: 65d93405d1dd8474cad696c57c29c1e7, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -283841923, guid: 65d93405d1dd8474cad696c57c29c1e7, type: 3}
-  - m_RefCount: 6
-    m_Data: {fileID: 768804629, guid: 65d93405d1dd8474cad696c57c29c1e7, type: 3}
-  - m_RefCount: 2
-    m_Data: {fileID: -979019107, guid: 65d93405d1dd8474cad696c57c29c1e7, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -1817857309, guid: 65d93405d1dd8474cad696c57c29c1e7, type: 3}
+    m_Data: {fileID: 1589448955, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 16
+  - m_RefCount: 5
     m_Data:
       e00: 1
       e01: 0
@@ -871,7 +708,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 16
+  - m_RefCount: 5
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -1208,15 +1045,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
+  m_sharedMaterial: {fileID: 2071153013417432278, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294180608
-  m_fontColor: {r: 0, g: 1, b: 0.9532273, a: 1}
+    rgba: 4278263654
+  m_fontColor: {r: 0.4, g: 0.12156863, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1611,7 +1448,7 @@ GameObject:
   - component: {fileID: 622776152}
   - component: {fileID: 622776151}
   m_Layer: 0
-  m_Name: Beam Me Up Baby
+  m_Name: Beam Me Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6785,7 +6622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.4, y: 47.1}
+  m_AnchoredPosition: {x: -15, y: 50}
   m_SizeDelta: {x: 361.6687, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791672621
@@ -6808,17 +6645,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Darrack's Masnion
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4d19ff9a6dbc29343b17f8a99e3ca11e, type: 2}
-  m_sharedMaterial: {fileID: -7158884647845470282, guid: 4d19ff9a6dbc29343b17f8a99e3ca11e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
+  m_sharedMaterial: {fileID: 2071153013417432278, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278979596
-  m_fontColor: {r: 0.047058824, g: 0.047058824, b: 0.047058824, a: 1}
+    rgba: 4278263654
+  m_fontColor: {r: 0.4, g: 0.12156863, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6871,7 +6708,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -28.89746, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7293,15 +7130,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
+  m_sharedMaterial: {fileID: 2071153013417432278, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294180608
-  m_fontColor: {r: 0, g: 1, b: 0.9532273, a: 1}
+    rgba: 4278263654
+  m_fontColor: {r: 0.4, g: 0.12156863, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7449,7 +7286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530052768345342705, guid: c903ff00e0abe4446b4d2a352c5b90ae, type: 3}
       propertyPath: m_Name
-      value: Beam Me Up Baby (5)
+      value: Outline
       objectReference: {fileID: 0}
     - target: {fileID: 5105141963118921201, guid: c903ff00e0abe4446b4d2a352c5b90ae, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b
@@ -7951,15 +7788,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 14
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c60e66eed57e3dd4da361343a9d401e7, type: 2}
+  m_sharedMaterial: {fileID: 105739149141622855, guid: c60e66eed57e3dd4da361343a9d401e7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291034880
-  m_fontColor: {r: 0, g: 1, b: 0.7633357, a: 1}
+    rgba: 4278263654
+  m_fontColor: {r: 0.4, g: 0.12156863, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7976,8 +7813,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8476,7 +8313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530052768345342705, guid: c903ff00e0abe4446b4d2a352c5b90ae, type: 3}
       propertyPath: m_Name
-      value: Beam Me Up Baby (2)
+      value: Outline
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9089,15 +8926,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 14
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c60e66eed57e3dd4da361343a9d401e7, type: 2}
+  m_sharedMaterial: {fileID: 105739149141622855, guid: c60e66eed57e3dd4da361343a9d401e7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291034880
-  m_fontColor: {r: 0, g: 1, b: 0.7633357, a: 1}
+    rgba: 4278263654
+  m_fontColor: {r: 0.4, g: 0.12156863, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9114,8 +8951,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9474,7 +9311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530052768345342705, guid: c903ff00e0abe4446b4d2a352c5b90ae, type: 3}
       propertyPath: m_Name
-      value: Beam Me Up Baby (4)
+      value: Outline
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44382,6 +44219,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -49, y: -6, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 9
+      m_TileSpriteIndex: 9
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -46, y: -6, z: 0}
     second:
       serializedVersion: 2
@@ -53215,8 +53062,8 @@ Tilemap:
   - first: {x: -2, y: 4, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 9
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -83452,9 +83299,29 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 1898, y: 979, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 9
+      m_TileSpriteIndex: 9
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 1840, y: 1007, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 9
+      m_TileSpriteIndex: 9
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 927
+  - m_RefCount: 926
     m_Data: {fileID: 11400000, guid: 12547cc705bd4364b912ac66d5d8c540, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 5e22ef41078e0a748803004f9460f237, type: 2}
@@ -83472,7 +83339,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 67b4d2dc14061f74aaa3a06178140bf6, type: 2}
   - m_RefCount: 47
     m_Data: {fileID: 11400000, guid: 8ca0f9f735c711546be0c76260a6497b, type: 2}
-  - m_RefCount: 331
+  - m_RefCount: 335
     m_Data: {fileID: 11400000, guid: 1f053d7568e36554fa633c5eaa0dca69, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: a715b335d829412418aeeb8691c1cf1a, type: 2}
@@ -83519,7 +83386,7 @@ Tilemap:
   - m_RefCount: 141
     m_Data: {fileID: 11400000, guid: b160ef08f4e10ec4c92ba945eaa6263e, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 927
+  - m_RefCount: 926
     m_Data: {fileID: 1086360156, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: -2049115061, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
@@ -83537,7 +83404,7 @@ Tilemap:
     m_Data: {fileID: -891793346, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
   - m_RefCount: 47
     m_Data: {fileID: 84374164, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
-  - m_RefCount: 331
+  - m_RefCount: 335
     m_Data: {fileID: -807498209, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -467934698, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
@@ -83584,7 +83451,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -677735185, guid: 7573279a0882b5944a55e64599d096e0, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 7373
+  - m_RefCount: 7376
     m_Data:
       e00: 1
       e01: 0
@@ -83603,13 +83470,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 7373
+  - m_RefCount: 7376
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -46, y: -57, z: 0}
-  m_Size: {x: 85, y: 103, z: 1}
+  m_Origin: {x: -49, y: -57, z: 0}
+  m_Size: {x: 1948, y: 1065, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -84126,15 +83993,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
+  m_sharedMaterial: {fileID: 2071153013417432278, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294180608
-  m_fontColor: {r: 0, g: 1, b: 0.95464826, a: 1}
+    rgba: 4278263654
+  m_fontColor: {r: 0.4, g: 0.12156863, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -84655,15 +84522,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
+  m_sharedMaterial: {fileID: 2071153013417432278, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294180608
-  m_fontColor: {r: 0, g: 1, b: 0.95464826, a: 1}
+    rgba: 4278263654
+  m_fontColor: {r: 0.4, g: 0.12156863, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -84970,15 +84837,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
+  m_sharedMaterial: {fileID: 2071153013417432278, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294180608
-  m_fontColor: {r: 0, g: 1, b: 0.9532273, a: 1}
+    rgba: 4278263654
+  m_fontColor: {r: 0.4, g: 0.12156863, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -85106,15 +84973,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
+  m_sharedMaterial: {fileID: 2071153013417432278, guid: 4dddc859d1aeba34784d5281cf8da2a5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294180608
-  m_fontColor: {r: 0, g: 1, b: 0.95464826, a: 1}
+    rgba: 4278263654
+  m_fontColor: {r: 0.4, g: 0.12156863, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -85671,15 +85538,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 14
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c60e66eed57e3dd4da361343a9d401e7, type: 2}
+  m_sharedMaterial: {fileID: 105739149141622855, guid: c60e66eed57e3dd4da361343a9d401e7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291034880
-  m_fontColor: {r: 0, g: 1, b: 0.7633357, a: 1}
+    rgba: 4278263654
+  m_fontColor: {r: 0.4, g: 0.12156863, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -85696,8 +85563,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -85886,7 +85753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterSlot: {fileID: 5400822120736478257, guid: bdb4c824e3b046142b58c7c05e2948da, type: 3}
   contentContainer: {fileID: 420337945}
-  nullImage: {fileID: 0}
+  nullImage: {fileID: 21300000, guid: b13c014df4c2bb44f8a00148168d16e0, type: 3}
   popupPanel: {fileID: 1893515997}
   characterIllustration1: {fileID: 1538173613}
   characterName1: {fileID: 1750431669}
@@ -85950,7 +85817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530052768345342705, guid: c903ff00e0abe4446b4d2a352c5b90ae, type: 3}
       propertyPath: m_Name
-      value: Beam Me Up Baby (1)
+      value: Outline
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -85974,4 +85841,3 @@ SceneRoots:
   - {fileID: 1897079027}
   - {fileID: 1624850708}
   - {fileID: 1092702033}
-  - {fileID: 24427062}

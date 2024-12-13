@@ -65,6 +65,10 @@ public class UI_Behaviour_Manager : MonoBehaviour
     {
         ownedCharacters.Add(character);
     }
+    public void AddItem(Item item)
+    {
+        ownedItems.Add(item);
+    }
     public void AddTeamCharacters(List<Character> characters)
     {
         teamAssembleCharacters = characters;

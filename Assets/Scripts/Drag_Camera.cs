@@ -21,7 +21,7 @@ public class Drag_Camera : MonoBehaviour
     private Vector3 nextPosition;
     private bool hasReachedStart = false;
     private bool zoomOut = false;
-    private string locationName = "Home Base";
+    private string locationName = "Village";
     private int locationsUnlocked = 3;
     [SerializeField] GameObject unitAssemblyPanel;
 

@@ -5,7 +5,8 @@ using UnityEngine;
 public class CraftingPuzzelManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public PlayerMovement Player;
+    // TODO: USE NEW INVENTORY
+    // public PlayerMovement Player;
     public bool WithinPlayerRadius = false;
 
     void Start()
@@ -18,19 +19,20 @@ public class CraftingPuzzelManager : MonoBehaviour
     {
 
     }
-    public void CreatePuzzelItem()
-    {
+    // public void CreatePuzzelItem()
+    // {
 
-        if (Player.inventory.Count < 3 && WithinPlayerRadius)
-        {
-            Debug.Log("You still need to collect all the items");
-        }
-        else if (Player.inventory.Count == 3 && WithinPlayerRadius)
-        {
-            Debug.Log("All items were picked up");
+    // TODO: USE NEW INVENTORY
+    //     if (Player.inventory.Count < 3 && WithinPlayerRadius)
+    //     {
+    //         Debug.Log("You still need to collect all the items");
+    //     }
+    //     else if (Player.inventory.Count == 3 && WithinPlayerRadius)
+    //     {
+    //         Debug.Log("All items were picked up");
 
-        }
-    }
+    //     }
+    // }
     void OnTriggerEnter2D(Collider2D Other)
     {
         if (Other.gameObject.tag == "Player" || Other.gameObject.tag == "DetectionRadius")

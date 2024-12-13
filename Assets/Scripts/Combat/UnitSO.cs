@@ -6,20 +6,27 @@ using UnityEngine;
 public class UnitSO : ScriptableObject
 {
     [Header("Attributes")]
-    public string unitName;
-    public Sprite sprite;
+    public new string name;
+    public string description;
+    public Sprite pixelArt;
     public bool flipped;
+    public rarityEnum rarity;
     public bool isEnemy;
 
     [Header("Stats")]
-    public int baseMana;
-    public int maxMana;
-    public int baseHealth; 
-    public int maxHealth; 
-    public int baseShield = 0;
-    public float baseAttackBonus = 1;
-    public float baseCritChance = 0.1f;
+    public int health;
+    public int healthRegenerationRate;
+    public int mana;
+    public int manaRegenrationRate;
+    public int shield;
+    public int attackBonus = 100;
+    public int baseCritChance = 1;
 
     [Header("Animation")]
     public bool hasHitAnimation;
 }
+
+public enum rarityEnum
+{
+    Common = 1, Rare = 2, Epic = 3, Legendary = 4, Mythical = 5
+};

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,10 +53,15 @@ public class ArmoryManager : MonoBehaviour
         }
         InitializeEquipmentSlots();
         FillItemSlots();
-        SetCharacter(inventoryManager.ownedCharacters[currentCharacterIndex]);
-        RefreshItemSlots();
-        LoadCharacterEquippedItems();
-        UpdateCharacterStats();
+
+        if (inventoryManager.ownedCharacters.Count > 0)
+        {
+            SetCharacter(inventoryManager.ownedCharacters[currentCharacterIndex]);
+            LoadCharacterEquippedItems();
+            RefreshItemSlots();
+            UpdateCharacterStats();
+        }
+
     }
 
     public void EquipItem()
@@ -227,7 +233,7 @@ public class ArmoryManager : MonoBehaviour
         unequippedItems.Clear();
         foreach (Item child in inventoryManager.ownedItems)
         {
-            if(!equippedItems.Contains(child)) unequippedItems.Add(child);
+            if (!equippedItems.Contains(child)) unequippedItems.Add(child);
         }
     }
 
@@ -240,15 +246,20 @@ public class ArmoryManager : MonoBehaviour
     private void UpdateCharacterStats()
     {
         characterName.text = currentCharacter.name;
-        characterLevel.text = $"Level :     { currentCharacter.Level.ToString()}";
+        characterLevel.text = $"Level : {currentCharacter.Level.ToString()}";
         characterRarity.text = currentCharacter.rarityName;
         characterStats.text = "";
+
         int counter = 0;
         foreach (var stat in currentCharacter.currentStats)
         {
-            characterStats.text += $"{stat.Key} :     {stat.Value}\t\t";
+            string headerValue = Regex.Replace(stat.Key, "(\\B[A-Z])", " $1");
+            characterStats.text += $"{headerValue} : {stat.Value}\t\t";
             counter++;
-            if (counter == 2) { counter = 0; characterStats.text += "\n"; };
+            if (counter == 2) { 
+                counter = 0; 
+                characterStats.text += "\n"; 
+            };
         }
     }
 }

@@ -11,6 +11,7 @@ public class CombatDashboardUIManager : MonoBehaviour
     public GameObject skillsPanel;
     public ProgressBarController healthBar, manaBar;
     List<GameObject> currentSkills = new();
+
     // Start is called before the first frame update
     void Start()
     {

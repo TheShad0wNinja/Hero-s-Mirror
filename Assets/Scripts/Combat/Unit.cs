@@ -18,46 +18,60 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] float rangeAttackDuration = 0.2f;
 
     public bool AnimationFinished { get; private set; }
-    public string UnitName => unitData.unitName;
+    public string UnitName => unitData.name;
     public bool IsEnemy => unitData.isEnemy;
     public int Shield { get; set; }
     public bool HasTurn { get; set; }
     public bool IsDead { get; set; }
     // public int CurrentHealth { get ; private set; }
-    public int CurrentHealth {get; private set; }
-    public int MaxHealth { get ; private set; }
-    public int CurrentMana{ get; private set; }
-    public int MaxMana{ get; private set; }
+    public int CurrentHealth { get; private set; }
+    public int MaxHealth { get; private set; }
+    public int HealthRegen { get; private set; }
+    public int CurrentMana { get; private set; }
+    public int MaxMana { get; private set; }
+    public int ManaRegen { get; private set; }
+    public float AttackBonus { get; set; }
+    public float CritChance { get; set; }
 
-    SpriteRenderer sr;
-    Animator anim;
-    // int CurrentHealth;
-    float attackbonus = 1;
-    float critChance = 0.1f;
+    protected SpriteRenderer sr;
+    protected Animator anim;
+
+    void InitilizeUnit(Character character)
+    {
+        var stats = character.currentStats;
+
+        CurrentHealth = stats["health"];
+        MaxHealth = CurrentHealth;
+        HealthRegen = stats["healthRegeneration"];
+
+        CurrentMana = stats["mana"];
+        MaxMana = CurrentMana;
+        ManaRegen = stats["manaRegeneration"];
+        Shield = stats["shield"];
+        CritChance = stats["criticalChance"] / 100;
+        AttackBonus = stats["attackBonus"]/100;
+        unitData = character.stats;
+    }
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        if (unitData.sprite != null)
-            sr.sprite = unitData.sprite;
 
         if (unitData.flipped)
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
 
-        CurrentHealth = unitData.baseHealth;
-        MaxHealth = CurrentHealth;
-        CurrentMana = unitData.baseMana;
-        MaxMana = CurrentMana;
-        Shield = unitData.baseShield;
-        attackbonus = unitData.baseAttackBonus;
-        critChance = unitData.baseCritChance;
+        // CurrentHealth = unitData.health;
+        // MaxHealth = CurrentHealth;
+        // CurrentMana = unitData.mana;
+        // MaxMana = CurrentMana;
+        // Shield = unitData.shield;
+        // critChance = unitData.baseCritChance;
 
         HasTurn = true;
         AnimationFinished = true;
 
         SetupEvents();
-
     }
 
     void SetupEvents()
@@ -150,8 +164,8 @@ public abstract class Unit : MonoBehaviour
     public void Heal(int amount)
     {
         CombatEvent.OnUnitHeal(this, amount);
-        if (CurrentHealth + amount > unitData.baseHealth)
-            CurrentHealth = unitData.baseHealth;
+        if (CurrentHealth + amount > unitData.health)
+            CurrentHealth = unitData.health;
         else
             CurrentHealth += amount;
     }

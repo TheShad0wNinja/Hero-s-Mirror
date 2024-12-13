@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character
 {
-    Character_Stats stats = null;
+    public UnitSO stats = null;
     public Dictionary<string, int> currentStats = new Dictionary<string, int>();
     public Dictionary<string, Item> equipedItems = new Dictionary<string, Item>();
     public int xp = 0;
@@ -13,32 +13,29 @@ public class Character
     public int Level = 1;
     public string name;
     public string description;
-    public Sprite pixelArt;
     public Sprite image;
     public string rarityName;
     public int rarityTier;
 
-    public Character(Character_Stats stats) 
+    public Character(UnitSO unitSO) 
     {
-        this.stats = stats;
+        stats = unitSO;
         CheckValues();
     }
     public void CheckValues()
     {
         currentStats.Add("health", stats.health);
-        currentStats.Add("damage", stats.damage);
-        currentStats.Add("armor", stats.armor);
-        currentStats.Add("shield", stats.shield);
-        currentStats.Add("regeneration", stats.regeneration);
-        currentStats.Add("dodge", stats.dodge);
-        currentStats.Add("criticalChance", stats.criticalChance);
+        currentStats.Add("healthRegeneration", stats.healthRegenerationRate);
         currentStats.Add("mana", stats.mana);
-        this.name = stats.name;
-        this.description = stats.description;
-        this.pixelArt = stats.pixelArt;
-        this.image = stats.image;
-        this.rarityName = stats.rarity.ToString();
-        this.rarityTier = (int)stats.rarity;
+        currentStats.Add("manaRegeneration", stats.healthRegenerationRate);
+        currentStats.Add("attackBonus", 1);
+        currentStats.Add("shield", stats.shield);
+        currentStats.Add("criticalChance", stats.baseCritChance);
+        name = stats.name;
+        description = stats.description;
+        image = stats.pixelArt;
+        rarityName = stats.rarity.ToString();
+        rarityTier = (int)stats.rarity;
         equipedItems.Add("Helmet", null);
         equipedItems.Add("Armor", null);
         equipedItems.Add("Weapon", null);

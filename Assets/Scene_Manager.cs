@@ -13,6 +13,7 @@ public class Scene_Manager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            playerSavedPosition = transform.position;    
             DontDestroyOnLoad(gameObject);
         }
         else

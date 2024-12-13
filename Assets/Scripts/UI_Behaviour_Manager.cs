@@ -6,15 +6,15 @@ public class UI_Behaviour_Manager : MonoBehaviour
 {
     public static UI_Behaviour_Manager Instance { get; private set; }
 
-    public Dictionary<Potion, int> ownedPotions = new Dictionary<Potion, int>();
+    public Dictionary<Potion, int> ownedPotions = new();
 
-    public List<Character_Stats> ownedCharactersStats = new List<Character_Stats>();
-    public List<Character> ownedCharacters = new List<Character>();
+    public List<Character> ownedCharacters = new();
 
-    public List<Item_Stats> ownedItemsStats = new List<Item_Stats>();
-    public List<Item> ownedItems = new List<Item>();
+    public List<Item_Stats> ownedItemsStats = new();
+    public List<Item> ownedItems = new();
 
-    public List<Character> teamAssembleCharacters = new List<Character>();
+    public List<Character> teamAssembleCharacters = new();
+    public UnitSO defaultCharacter;
 
     public int gold = 10000;
 
@@ -24,30 +24,19 @@ public class UI_Behaviour_Manager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            CreateCharacters();
-            CreateItems();
         }
-        else
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
     }
 
-    void CreateCharacters() // temp till character structure is defined
+    private void Start()
     {
-        foreach (var element in ownedCharactersStats)
-        {
-            ownedCharacters.Add(new Character(element));
-        }
-    }
-
-    void CreateItems() // temp till item structure is defined
-    {
-        foreach (var element in ownedItemsStats)
-        {
-            Debug.Log(element.name); 
-            ownedItems.Add(new Item(element));
-        }
+        Character newCharacter = new (defaultCharacter);
+        AddCharacter(newCharacter);
+        newCharacter = new (defaultCharacter);
+        AddCharacter(newCharacter);
     }
 
     public void AddPotion(Potion potion)

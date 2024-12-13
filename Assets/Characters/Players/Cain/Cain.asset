@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
   m_Name: Cain
   m_EditorClassIdentifier: 
-  unitName: Cain
-  sprite: {fileID: 0}
+  name: Cain
+  description: The Main Character
+  pixelArt: {fileID: 829214598, guid: f2c8a053ab3964431934dc50923cc027, type: 3}
   flipped: 1
+  rarity: 5
   isEnemy: 0
-  baseMana: 10
-  maxMana: 20
-  baseHealth: 10
-  maxHealth: 20
-  baseShield: 2
-  baseAttackBonus: 1
-  baseCritChance: 0.1
+  health: 20
+  healthRegenerationRate: 1
+  mana: 20
+  manaRegenrationRate: 0
+  shield: 0
+  attackBonus: 100
+  baseCritChance: 1
+  hasHitAnimation: 0

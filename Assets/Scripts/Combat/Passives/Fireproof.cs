@@ -22,7 +22,7 @@ public class Fireproof : PassiveSO
     {
         if (statusEffect.effectData is Flame flame && 
             actionType == StatusEffectAction.ActionType.TICK 
-            && unit.UnitName == self.unitName)
+            && unit.UnitName == self.name)
         {
             unit.Heal(flame.flameDamage);
         }

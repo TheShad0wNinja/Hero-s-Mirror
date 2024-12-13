@@ -23,7 +23,7 @@ public class FortunesFavor : PassiveSO
         float ranVal = Random.Range(0f, 1f);        
         if (ranVal <= probability) 
         {
-            var jester = cm.playerUnits.Find(u => u.UnitName == unit.unitName);
+            var jester = cm.playerUnits.Find(u => u.UnitName == unit.name);
             // ActionQueueManager.EnqueueEngageUnitsAction(jester, cm.enemyUnits, !jester.IsEnemy);
             ActionQueueManager.EnqueueSkillAction(jester, skill, cm.enemyUnits, !jester.IsEnemy);
             // ActionQueueManager.EnqueueDisengageUnitsAction();

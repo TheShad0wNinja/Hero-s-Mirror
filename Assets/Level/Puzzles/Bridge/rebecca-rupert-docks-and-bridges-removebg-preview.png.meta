@@ -1,0 +1,1271 @@
+fileFormatVersion: 2
+guid: 5c5afbe0c5a0a984a9f7caead0c45185
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 599
+        width: 167
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f44074eb5bff3fa47b86e58350eb14ff
+      internalID: -1613661200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 599
+        width: 165
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9072fb8c659b6949a684e7b3b4bee5e
+      internalID: 2042478613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 527
+        width: 164
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 854e7950143350b49b20a50f92f6334a
+      internalID: 679204101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 527
+        width: 164
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df2aa9ae17ed2564bb8618cc8aa9f1f9
+      internalID: -1714129601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 451
+        width: 29
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a667acb48c69d9540a7f22d13f7b0dd1
+      internalID: -1367795479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 448
+        width: 29
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18094f3c8e707184c8d5f3e834c15c3e
+      internalID: -362043638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 447
+        width: 28
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a22b64b447935524fba7aa693e6247d1
+      internalID: -469390578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 493
+        width: 11
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61150161c70b6094d911b45b96f5737e
+      internalID: -1926024750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 451
+        width: 29
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c3f6c783b98f5e49a43cc15866b0ac6
+      internalID: -1564640721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 449
+        width: 29
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f11a298397c1a0248908d0a7f902e064
+      internalID: -304619475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 447
+        width: 29
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea22c9447551227488b6f8bfd8cd64ed
+      internalID: -1821945908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 493
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcf3d85686348274c997db679cf9c984
+      internalID: 1616827250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 466
+        width: 9
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61dfc7ff3a712244791c44f55d0a3577
+      internalID: -1562632989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 466
+        width: 9
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80af6508aae774a47ae812cfa3d3f1aa
+      internalID: 1935836899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 437
+        width: 10
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c89009589648bdc4f84199a3f6583a7c
+      internalID: 835163529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_15
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 437
+        width: 10
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6014449d439020b47b51bf7460e15932
+      internalID: 1651446087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_16
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 364
+        width: 45
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c383e483d1259bf4a8b8e56e3953adf6
+      internalID: -1542052104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_17
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 363
+        width: 49
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a15c6b1de08fb14482687180712d91c
+      internalID: 191181495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_18
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 363
+        width: 23
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a94dd770c488ff42bf8614c9d8da4ba
+      internalID: -1165177562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_19
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 363
+        width: 12
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077f912c2044a0248981823e7c277683
+      internalID: -1305147219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_20
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 363
+        width: 11
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df6dc07f77247194eb550be6628ace8e
+      internalID: 96269806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_21
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 363
+        width: 46
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 946e25039734f9148a04c57198670701
+      internalID: 38688365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_22
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 363
+        width: 49
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1b40a0d8e25dfc4b83c5b22b60a6294
+      internalID: -208764270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_23
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 363
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 301cad3e06477d4478f15b241f4a4ab5
+      internalID: -967865955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_24
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 363
+        width: 11
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090a659fb3738e040a7f7a01f30508eb
+      internalID: 865680572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_25
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 332
+        width: 11
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2479e966b4e48e4dbedab5e3fafbfd8
+      internalID: 1678783749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_26
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 326
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df4901340188af443a9e3cb19bfc0797
+      internalID: -245462233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_27
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 326
+        width: 7
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32c0f75cecea01542a8f9af5277c5edf
+      internalID: 1282048537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_28
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 326
+        width: 7
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e6d517f0636b07468facbd9da713d5e
+      internalID: 1121290086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_29
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 326
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a88843c2aff2f545aa8f2c40ce7fd0f
+      internalID: 532161947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_30
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 332
+        width: 11
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 896a543edbd42754996ce54f9d149e41
+      internalID: 1571893409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_31
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 250
+        width: 179
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8d8980d058592445856a7405bf463ad
+      internalID: 929099222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_32
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 250
+        width: 180
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0750a1f293800b4f89b48981557d1b0
+      internalID: -2109561553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_33
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 169
+        width: 179
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a42afc7c86d2c994193ce1d7ce330283
+      internalID: 606505467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_34
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 169
+        width: 180
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27d3100b644504440abc7c4e0fc16817
+      internalID: -335809412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_35
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 92
+        width: 42
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f246dbf2990de04bb4117495c25d9fd
+      internalID: -3261474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_36
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 90
+        width: 41
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24872dc35a671c64aac9a629ccb9654e
+      internalID: 1312286793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_37
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 88
+        width: 43
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46b34d74ff8fe954892f3d0509bbe2dc
+      internalID: -1043318629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_38
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 139
+        width: 11
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eaff9c2d0edd20448c632c90d5dbb46
+      internalID: -666688647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_39
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 92
+        width: 42
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33e20459626df854584e413dcaa152ad
+      internalID: 1090933428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_40
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 90
+        width: 40
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 995e812af5dceb849b5892876e9fd6b9
+      internalID: -1221585015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_41
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 88
+        width: 42
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2965bd6f7113024cbf31dafa46b1bfa
+      internalID: -2016212139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_42
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 139
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16877000b64fbe642a9aedb525b4dcbf
+      internalID: 805092526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_43
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 111
+        width: 10
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c688b55bda28ee4b984c42db7ecbfa6
+      internalID: -601271068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_44
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 111
+        width: 9
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9327ca2f83896174a99f601583fde3ce
+      internalID: 302703871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_45
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 83
+        width: 10
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a62e74e5a2d7aee42b137f3107fb52c2
+      internalID: -190874590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_46
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 83
+        width: 10
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3285d6c05342d7f409ac3c6df5a96099
+      internalID: -1877919283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_47
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4
+        width: 55
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 474f6593d865ebb46966aa8dcfe15127
+      internalID: 2080719387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_48
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 4
+        width: 60
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b581a223e15d9e44b280e6873794fba
+      internalID: 1920120184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_49
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 4
+        width: 109
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5603dfe84ae4ea9438cf1d75f2127492
+      internalID: -350224779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_50
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 4
+        width: 60
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73fc02ad03f95cb469afb330ba83b123
+      internalID: 1939619390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rebecca-rupert-docks-and-bridges-removebg-preview_51
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 4
+        width: 55
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b103e51e7f251ed45a76f4a95b6813ce
+      internalID: 37873916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      rebecca-rupert-docks-and-bridges-removebg-preview_0: -1613661200
+      rebecca-rupert-docks-and-bridges-removebg-preview_1: 2042478613
+      rebecca-rupert-docks-and-bridges-removebg-preview_10: -1821945908
+      rebecca-rupert-docks-and-bridges-removebg-preview_11: 1616827250
+      rebecca-rupert-docks-and-bridges-removebg-preview_12: -1562632989
+      rebecca-rupert-docks-and-bridges-removebg-preview_13: 1935836899
+      rebecca-rupert-docks-and-bridges-removebg-preview_14: 835163529
+      rebecca-rupert-docks-and-bridges-removebg-preview_15: 1651446087
+      rebecca-rupert-docks-and-bridges-removebg-preview_16: -1542052104
+      rebecca-rupert-docks-and-bridges-removebg-preview_17: 191181495
+      rebecca-rupert-docks-and-bridges-removebg-preview_18: -1165177562
+      rebecca-rupert-docks-and-bridges-removebg-preview_19: -1305147219
+      rebecca-rupert-docks-and-bridges-removebg-preview_2: 679204101
+      rebecca-rupert-docks-and-bridges-removebg-preview_20: 96269806
+      rebecca-rupert-docks-and-bridges-removebg-preview_21: 38688365
+      rebecca-rupert-docks-and-bridges-removebg-preview_22: -208764270
+      rebecca-rupert-docks-and-bridges-removebg-preview_23: -967865955
+      rebecca-rupert-docks-and-bridges-removebg-preview_24: 865680572
+      rebecca-rupert-docks-and-bridges-removebg-preview_25: 1678783749
+      rebecca-rupert-docks-and-bridges-removebg-preview_26: -245462233
+      rebecca-rupert-docks-and-bridges-removebg-preview_27: 1282048537
+      rebecca-rupert-docks-and-bridges-removebg-preview_28: 1121290086
+      rebecca-rupert-docks-and-bridges-removebg-preview_29: 532161947
+      rebecca-rupert-docks-and-bridges-removebg-preview_3: -1714129601
+      rebecca-rupert-docks-and-bridges-removebg-preview_30: 1571893409
+      rebecca-rupert-docks-and-bridges-removebg-preview_31: 929099222
+      rebecca-rupert-docks-and-bridges-removebg-preview_32: -2109561553
+      rebecca-rupert-docks-and-bridges-removebg-preview_33: 606505467
+      rebecca-rupert-docks-and-bridges-removebg-preview_34: -335809412
+      rebecca-rupert-docks-and-bridges-removebg-preview_35: -3261474
+      rebecca-rupert-docks-and-bridges-removebg-preview_36: 1312286793
+      rebecca-rupert-docks-and-bridges-removebg-preview_37: -1043318629
+      rebecca-rupert-docks-and-bridges-removebg-preview_38: -666688647
+      rebecca-rupert-docks-and-bridges-removebg-preview_39: 1090933428
+      rebecca-rupert-docks-and-bridges-removebg-preview_4: -1367795479
+      rebecca-rupert-docks-and-bridges-removebg-preview_40: -1221585015
+      rebecca-rupert-docks-and-bridges-removebg-preview_41: -2016212139
+      rebecca-rupert-docks-and-bridges-removebg-preview_42: 805092526
+      rebecca-rupert-docks-and-bridges-removebg-preview_43: -601271068
+      rebecca-rupert-docks-and-bridges-removebg-preview_44: 302703871
+      rebecca-rupert-docks-and-bridges-removebg-preview_45: -190874590
+      rebecca-rupert-docks-and-bridges-removebg-preview_46: -1877919283
+      rebecca-rupert-docks-and-bridges-removebg-preview_47: 2080719387
+      rebecca-rupert-docks-and-bridges-removebg-preview_48: 1920120184
+      rebecca-rupert-docks-and-bridges-removebg-preview_49: -350224779
+      rebecca-rupert-docks-and-bridges-removebg-preview_5: -362043638
+      rebecca-rupert-docks-and-bridges-removebg-preview_50: 1939619390
+      rebecca-rupert-docks-and-bridges-removebg-preview_51: 37873916
+      rebecca-rupert-docks-and-bridges-removebg-preview_6: -469390578
+      rebecca-rupert-docks-and-bridges-removebg-preview_7: -1926024750
+      rebecca-rupert-docks-and-bridges-removebg-preview_8: -1564640721
+      rebecca-rupert-docks-and-bridges-removebg-preview_9: -304619475
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

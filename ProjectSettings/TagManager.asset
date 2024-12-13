@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Unit
+  - pickUpObject
+  - DetectionRadius
+  - craftingStump
   layers:
   - Default
   - TransparentFX
@@ -39,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 2436756737
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

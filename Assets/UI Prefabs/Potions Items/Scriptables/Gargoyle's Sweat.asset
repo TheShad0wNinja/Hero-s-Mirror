@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e8075ac0530564dbe6d2ab95eda4e2, type: 3}
+  m_Name: Gargoyle's Sweat
+  m_EditorClassIdentifier: 
+  name: Gargoyle's Sweat
+  description: The great stoney gargoyles sweat alot in the morning, owr troops collect
+    it with a bucket.
+  pixelArt: {fileID: 21300000, guid: d97f3da837c1bbc4db935acf9a4c7825, type: 3}
+  image: {fileID: 21300000, guid: d97f3da837c1bbc4db935acf9a4c7825, type: 3}
+  price: 500
+  health: 1000
+  damage: 0
+  armor: 100
+  shield: 2000
+  regeneration: 100
+  dodge: 0
+  criticalChance: 0
+  mana: 0

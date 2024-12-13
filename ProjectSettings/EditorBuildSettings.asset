@@ -5,7 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Level/Scenes/PotionShop.unity
+    guid: d4da50b57b1e8174d8896aeb7b524be6
+  - enabled: 1
+    path: Assets/Level/Scenes/Training.unity
+    guid: 922ef6d1820e9d945a6cfadca7a0f98a
+  - enabled: 1
+    path: Assets/Level/Scenes/Map.unity
+    guid: 64a70b1bdd3a35b448ad1b6107ca4ba7
+  - enabled: 1
+    path: Assets/Level/Scenes/Armory.unity
+    guid: 7f06ed2a2d223e64d9b8b63c76202377
+  - enabled: 1
+    path: Assets/Level/Scenes/HomeBase.unity
+    guid: 4884dedf0c4254c719993606626b44da
   m_configObjects: {}

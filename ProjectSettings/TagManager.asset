@@ -8,11 +8,12 @@ TagManager:
   - pickUpObject
   - DetectionRadius
   - craftingStump
+  - DialoguePanel
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

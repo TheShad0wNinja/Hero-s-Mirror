@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class CombatUIManager : MonoBehaviour
 {
-    public Unit test;
     public GameObject hoverSelector;
     public GameObject selectSelector;
     public TextMeshProUGUI notifactionText;
@@ -15,15 +14,15 @@ public class CombatUIManager : MonoBehaviour
     public Canvas selectorCanvas;
     public TextMeshProUGUI currentTurnText;
     public TextMeshProUGUI currentRoundText;
-    public GameObject skillBoxPrefap;
-    public GameObject skillsPanel;
     public CombatUIChannel uiChannel;
     public MouseChannel mouseChannel;
     public CombatEvent combatEvent;
 
+    public ProgressBarController healthBar;
+    public ProgressBarController manaBar;
+
     List<GameObject> currentSelectors = new();
     GameObject currentHoverSelector;
-    List<GameObject> currentSkills = new();
 
     void Start()
     {
@@ -44,7 +43,6 @@ public class CombatUIManager : MonoBehaviour
             uiChannel.NewTurn += HandleNewTurn;            
 
             uiChannel.TurnChanged += HandleTurnChange;
-            uiChannel.AssignSkills += AddNewSkills;
 
             uiChannel.UnitHovered += HandleUnitHover;
             uiChannel.UnitSelected += HandleUnitSelect;
@@ -75,7 +73,6 @@ public class CombatUIManager : MonoBehaviour
         switch (turnState)
         {
             case TurnState.ENEMY_TURN or TurnState.PLAYER_TURN:
-                RemoveAllSkills();
                 RemoveAllSelectors();
                 break;
         }
@@ -162,28 +159,28 @@ public class CombatUIManager : MonoBehaviour
 
     }
 
-    void AddNewSkill(SkillSO skill)
-    {
-        var instance = Instantiate(skillBoxPrefap, skillsPanel.transform);
-        instance.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => uiChannel.OnSkillSelected(skill));
-        SkillItemController itemController = instance.GetComponent<SkillItemController>();
-        itemController.SetSkillTitle(skill.skillName);
-        if (skill.sprite != null)
-            itemController.SetImageSprite(skill.sprite);
-        currentSkills.Add(instance);
-    }
+    // void AddNewSkill(SkillSO skill)
+    // {
+    //     var instance = Instantiate(skillBoxPrefap, skillsPanel.transform);
+    //     instance.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => uiChannel.OnSkillSelected(skill));
+    //     SkillItemController itemController = instance.GetComponent<SkillItemController>();
+    //     itemController.SetSkillTitle(skill.skillName);
+    //     if (skill.sprite != null)
+    //         itemController.SetImageSprite(skill.sprite);
+    //     currentSkills.Add(instance);
+    // }
 
-    void AddNewSkills(List<SkillSO> skills)
-    {
-        RemoveAllSkills();
-        skills.ForEach(skill => AddNewSkill(skill));
-    }
+    // void AddNewSkills(List<SkillSO> skills)
+    // {
+    //     RemoveAllSkills();
+    //     skills.ForEach(skill => AddNewSkill(skill));
+    // }
 
-    void RemoveAllSkills()
-    {
-        currentSkills.ForEach(s => Destroy(s));
-        currentSkills.Clear();
-    }
+    // void RemoveAllSkills()
+    // {
+    //     currentSkills.ForEach(s => Destroy(s));
+    //     currentSkills.Clear();
+    // }
 
 
     private void TriggerStatusEffectEffect(Unit arg0, StatusEffect arg1, StatusEffectAction.ActionType actionType)

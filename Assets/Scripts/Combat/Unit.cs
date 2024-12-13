@@ -23,11 +23,15 @@ public abstract class Unit : MonoBehaviour
     public int Shield { get; set; }
     public bool HasTurn { get; set; }
     public bool IsDead { get; set; }
+    // public int CurrentHealth { get ; private set; }
+    public int CurrentHealth {get; private set; }
+    public int MaxHealth { get ; private set; }
+    public int CurrentMana{ get; private set; }
+    public int MaxMana{ get; private set; }
 
     SpriteRenderer sr;
     Animator anim;
-    int currentHealth;
-    int currentMana;
+    // int CurrentHealth;
     float attackbonus = 1;
     float critChance = 0.1f;
 
@@ -41,8 +45,10 @@ public abstract class Unit : MonoBehaviour
         if (unitData.flipped)
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
 
-        currentHealth = unitData.baseHealth;
-        currentMana = unitData.baseMana;
+        CurrentHealth = unitData.baseHealth;
+        MaxHealth = CurrentHealth;
+        CurrentMana = unitData.baseMana;
+        MaxMana = CurrentMana;
         Shield = unitData.baseShield;
         attackbonus = unitData.baseAttackBonus;
         critChance = unitData.baseCritChance;
@@ -131,8 +137,8 @@ public abstract class Unit : MonoBehaviour
     public void TakeRawDamage(Unit attacker, int damage)
     {
         CombatEvent.OnUnitDamage(this, damage);
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
             Kill(attacker);
     }
 
@@ -144,10 +150,10 @@ public abstract class Unit : MonoBehaviour
     public void Heal(int amount)
     {
         CombatEvent.OnUnitHeal(this, amount);
-        if (currentHealth + amount > unitData.baseHealth)
-            currentHealth = unitData.baseHealth;
+        if (CurrentHealth + amount > unitData.baseHealth)
+            CurrentHealth = unitData.baseHealth;
         else
-            currentHealth += amount;
+            CurrentHealth += amount;
     }
 
     public IEnumerator AnimateAction(SkillSO skill)

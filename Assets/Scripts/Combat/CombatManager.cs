@@ -181,6 +181,7 @@ public class CombatManager : MonoBehaviour
             CombatEvent.OnTurnChanged(this);
             selectedUnit = unit;
             uiChannel.OnAssignSkills(unit.skills);
+            uiChannel.OnAssignStats(unit);
             uiChannel.OnTurnChange(turnState, new List<Unit> { unit });
         }
     }

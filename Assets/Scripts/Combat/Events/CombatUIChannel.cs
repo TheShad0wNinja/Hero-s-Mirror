@@ -10,6 +10,7 @@ public class CombatUIChannel : ScriptableObject
 {
     public UnityAction<SkillSO> SkillSelected;
     public UnityAction<List<SkillSO>> AssignSkills;
+    public UnityAction<Unit> AssignStats;
     public UnityAction<TurnState, List<Unit>> TurnChanged;
     public UnityAction<Unit> UnitSelected;
     public UnityAction<Unit> UnitHovered;
@@ -27,6 +28,12 @@ public class CombatUIChannel : ScriptableObject
     {
         Debug.Log($"ASSIGNING SKILLS");
         AssignSkills?.Invoke(skills);
+    }
+
+    public void OnAssignStats(Unit unit)
+    {
+        Debug.Log($"ASSIGNING SKILLS");
+        AssignStats?.Invoke(unit);
     }
 
     public void OnTurnChange(TurnState turn,List<Unit> units)
@@ -55,7 +62,7 @@ public class CombatUIChannel : ScriptableObject
 
     public void OnNewTurn(int roundNumber)
     {
-        Debug.Log("OnNewTurn Event Raised");
+        // Debug.Log("OnNewTurn Event Raised");
         NewTurn?.Invoke(roundNumber);
     }
 }

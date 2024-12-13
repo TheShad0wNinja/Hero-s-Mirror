@@ -58,6 +58,7 @@ MonoBehaviour:
   rangedAttackSpawn: {fileID: 8493344951766592040}
   projectile: {fileID: 8853300094489202584, guid: d91c9deb209384558b66b33f590f9ebd, type: 3}
   rangeAttackDistance: 4
+  rangeAttackDuration: 0.2
 --- !u!95 &-5909693587686485137
 Animator:
   serializedVersion: 5
@@ -120,12 +121,12 @@ SpriteRenderer:
   m_SortingLayerID: 1639048971
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ab8350805f397487e8dc3b2f297cf1cd, type: 3}
+  m_Sprite: {fileID: -1687215452, guid: 208cfe301a5f7427cabf830c3ae1ba2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2.5}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -168,7 +169,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 4, y: 4}
-    newSize: {x: 2, y: 2.5}
+    newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

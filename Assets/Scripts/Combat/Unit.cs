@@ -187,6 +187,8 @@ public abstract class Unit : MonoBehaviour
     {
         AnimationFinished = false;
 
+        yield return ParticleManager.TriggerHitEffect(gameObject);
+
         if (unitData.hasHitAnimation)
         {
             yield return Helper.WaitForAnimation(anim, 0, "Hit");

@@ -324,8 +324,6 @@ public class SkillAction : ActionQueueItem
             skill.ExecuteSkill(unit, target);
         }
 
-        yield return new WaitForSeconds(0.5f);
-
         hasFinished = true;
         yield return null;
     }

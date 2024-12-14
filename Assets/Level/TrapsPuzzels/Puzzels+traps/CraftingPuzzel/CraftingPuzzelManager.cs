@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CraftingPuzzelManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class CraftingPuzzelManager : MonoBehaviour
         else if (Player.inventory.Count == 3 && WithinPlayerRadius)
         {
             Debug.Log("All items were picked up");
+            SceneManager.LoadScene(1); // Loads the scene at index 1 in Build Settings
 
         }
     }

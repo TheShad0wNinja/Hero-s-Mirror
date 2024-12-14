@@ -10,16 +10,6 @@ public class ItemSlot : MonoBehaviour
     private Image oldObjectImage;       // The Image component of the old object
     public PuzzelItems Items;           // Reference to the puzzle items (this should have access to the image component)
 
-    void Start()
-    {
-        // Initialize if needed
-    }
-
-    void Update()
-    {
-        // Logic for continuous updates if needed
-    }
-
     public void SendIndex()
     {
         // Pass the index to the other script (CraftingTableManager)
@@ -38,10 +28,7 @@ public class ItemSlot : MonoBehaviour
                 // Assign the sprite from the puzzle item (Items) to the Image component of this GameObject
                 oldObjectImage.sprite = Items.ItemSprite;
             }
-            else
-            {
-                Debug.LogError("Old object does not have an Image component!");
-            }
+          
         }
         else
         {

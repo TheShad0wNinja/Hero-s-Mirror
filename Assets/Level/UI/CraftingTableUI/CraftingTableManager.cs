@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class CraftingTableManager : MonoBehaviour
@@ -10,15 +11,13 @@ public class CraftingTableManager : MonoBehaviour
     public List<PuzzelItemSlot> listofpuzzelItems;    // List of puzzle items
     public List<ItemSlot> listofGridSlots;             // List of grid slots
     public List<PuzzelItems> correctPuzzelorder;       // Correct puzzle order
-
     public int currentSelectedItemPosition;            // Index of the selected item
     public int currentSelectedSlotPosition;            // Index of the selected slot
     public PuzzelItems selectedItem;                    // The selected item GameObject
-    public int numofPresses = 0;
     public int numofCorrect = 0;
-    public TextMeshProUGUI numofCorrectText;    
+    public TextMeshProUGUI numofCorrectText;
     public TextMeshProUGUI headerText;
-    
+
 
 
     // Function to receive index of the selected item
@@ -38,40 +37,35 @@ public class CraftingTableManager : MonoBehaviour
         {
             listofpuzzelItems[i].Items.correctSpot = false;
         }
-numofCorrectText.text = numofCorrect.ToString();;
+        numofCorrectText.text = numofCorrect.ToString();
     }
     void Update()
-{
-    if (currentSelectedSlotPosition != 0 && currentSelectedItemPosition != 0 && numofPresses < 4)
     {
-        for (int i = 0; i < listofpuzzelItems.Count; i++)
+        if (currentSelectedSlotPosition != 0 && currentSelectedItemPosition != 0)
         {
-            if (listofpuzzelItems[i].Items != null)
+            for (int i = 0; i < listofpuzzelItems.Count; i++)
             {
-                if (listofpuzzelItems[i].Items.index == currentSelectedItemPosition)
+                if (listofpuzzelItems[i].Items != null && listofpuzzelItems[i].Items.index == currentSelectedItemPosition)
                 {
 
                     selectedItem = listofpuzzelItems[i].Items;
-
                     // Change the parent sprite color before adding the item
-
                     if (AddItem())
                     {
                         listofpuzzelItems[i].updateUI();
                         listofpuzzelItems[i].Items = null;
-                        numofPresses++;
 
                         currentSelectedSlotPosition = 0;
                         currentSelectedItemPosition = 0;
                         break;
                     }
+
                 }
             }
-        }
 
-        checkMatching();
+            checkMatching();
+        }
     }
-}
 
 
 
@@ -104,43 +98,32 @@ numofCorrectText.text = numofCorrect.ToString();;
     {
         for (int i = 0; i < correctPuzzelorder.Count; i++)
         {
-
             if (correctPuzzelorder[i] != null)
             {
-
                 if (correctPuzzelorder[i] == listofGridSlots[i].Items && correctPuzzelorder[i].correctSpot == false)
                 {
                     correctPuzzelorder[i].correctSpot = true;
                     numofCorrect++;  // Increment correct pieces count
                     Debug.Log("You got one right!");
-numofCorrectText.text = numofCorrect.ToString();
-
+                    numofCorrectText.text = numofCorrect.ToString();
                     // Exit the loop after finding a match
                     break;
                 }
             }
 
         }
-
         // Check if all pieces are correctly placed
         if (numofCorrect == 4)
         {
             Debug.Log("Congrats, you got them all right!");
             headerText.text = "You got them all right!";
-
-
+            SwitchScenes();
         }
     }
-    public void checkCorrect()
+    public void SwitchScenes()
     {
-        if(numofCorrect == 4)
-        {
-            // exit the scene
-        }
-        else
-        {
-         headerText.text = "Not correct! Please try again ";
+        SceneManager.LoadScene(0); // Loads the scene at index 0 in Build Settings
 
-        }
     }
+
 }

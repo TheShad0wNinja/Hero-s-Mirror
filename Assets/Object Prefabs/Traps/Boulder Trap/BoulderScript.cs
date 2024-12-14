@@ -8,23 +8,14 @@ public class BoulderScript : MonoBehaviour
     private HeroList heroList;
     private List<int> heroes;
     [SerializeField] private float pushForce = 10f;
+    UI_Behaviour_Manager inventoryManager;
+    [SerializeField] int leastDamage = 1;
+    [SerializeField] int MaxDamage = 10;
 
 
     private void Start()
     {
-        heroList = FindObjectOfType<HeroList>();
-        if (heroList != null)
-        {
-            heroes = heroList.HeroLists;
-            foreach (int hero in heroes)
-            {
-                Debug.Log("Hero ID: " + hero);
-            }
-        }
-        else
-        {
-            Debug.LogError("HeroList not found!");
-        }
+        inventoryManager = UI_Behaviour_Manager.Instance;
     }
 
 
@@ -33,8 +24,9 @@ public class BoulderScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             StartCoroutine(disableMovement(other.gameObject));
-            int randomHero = heroes[Random.Range(0, heroes.Count)];
-            damageHero(randomHero);
+            int randomHero = Random.Range(0, inventoryManager.teamAssembleCharacters.Count);
+            DamageHero(randomHero);
+            
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
@@ -51,15 +43,29 @@ public class BoulderScript : MonoBehaviour
         player.GetComponent<PlayerMovementController>().enabled = true;
     }
 
-    private void damageHero(int hero)
+    private void DamageHero(int hero)
     {
-        int damage = Random.Range(1, 11);
-        hero -= damage;
-        Debug.Log("Hero took " + damage + " damage. Remaining health: " + hero);
-        int index = heroes.IndexOf(hero + damage);
-        if (index != -1)
+        bool canBeDamaged = true;
+        int count = 0;
+        int index = hero;
+        while (canBeDamaged)
         {
-            heroes[index] = hero;
+            int damage = Random.Range(leastDamage, MaxDamage + 1);
+            if (inventoryManager.teamAssembleCharacters[index].currentHealth > 0)
+            {
+                inventoryManager.teamAssembleCharacters[index].currentHealth -= damage;
+                canBeDamaged = false;
+                FindObjectOfType<Level_UI_Manager>().UpdateUI();
+            }
+            else 
+            {
+                count++;
+                index = (index +1) %3;
+            }
+            if (count == 2) 
+            {
+                canBeDamaged = false;
+            }
         }
     }
 }

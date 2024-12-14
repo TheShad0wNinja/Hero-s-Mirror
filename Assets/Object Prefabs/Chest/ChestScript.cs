@@ -6,7 +6,7 @@ using TMPro;
 public class ChestScript : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
-    [SerializeField] Sprite spriter;
+    [SerializeField] Sprite spriteAfter;
     [SerializeField] Item_Stats item;
     [SerializeField] int ChestGold;
     [SerializeField] private GameObject textBubblePrefab;
@@ -23,7 +23,7 @@ public class ChestScript : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isRewardGiven)
         {
-            spriteRenderer.sprite = spriter;
+            spriteRenderer.sprite = spriteAfter;
             GiveReward();
             textBubbleInstance = Instantiate(textBubblePrefab, transform.position + Vector3.up, Quaternion.identity);
             textBubbleInstance.GetComponentInChildren<TextMeshPro>().text = "+" + ChestGold;

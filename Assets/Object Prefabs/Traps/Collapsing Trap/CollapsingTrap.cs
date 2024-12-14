@@ -1,15 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollapsingTrap : MonoBehaviour
 {
-    [SerializeField] private Transform teleportLocation;
     [SerializeField] private float collapseDelay = 2f;
     private bool isTriggered = false;
     private GameObject playerOnFloor = null;
     SpriteRenderer spriteRenderer;
     Color color;
+    [SerializeField] string nextSceneName;
 
 
     void Awake()
@@ -51,9 +53,17 @@ public class CollapsingTrap : MonoBehaviour
             }
         }
 
-        if (player != null && teleportLocation != null)
+        if(SceneManager.GetActiveScene().name != nextSceneName)
         {
-            player.transform.position = teleportLocation.position;
+            Time.timeScale = 0f;
+            SceneManager.LoadScene(nextSceneName, LoadSceneMode.Additive);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(nextSceneName));
+            Time.timeScale = 1f;
+        }
+        else if(SceneManager.GetActiveScene().name == nextSceneName)
+        {
+            SceneManager.UnloadSceneAsync(nextSceneName);
+            Time.timeScale = 1f;
         }
         
         isTriggered = false;

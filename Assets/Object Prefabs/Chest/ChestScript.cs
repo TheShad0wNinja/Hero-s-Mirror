@@ -8,7 +8,7 @@ public class ChestScript : MonoBehaviour
     SpriteRenderer spriteRenderer;
     [SerializeField] Sprite spriter;
     [SerializeField] Item_Stats item;
-    [SerializeField] int gold;
+    [SerializeField] int ChestGold;
     [SerializeField] private GameObject textBubblePrefab;
     private GameObject textBubbleInstance;
     bool isRewardGiven = false;
@@ -26,7 +26,7 @@ public class ChestScript : MonoBehaviour
             spriteRenderer.sprite = spriter;
             GiveReward();
             textBubbleInstance = Instantiate(textBubblePrefab, transform.position + Vector3.up, Quaternion.identity);
-            textBubbleInstance.GetComponentInChildren<TextMeshPro>().text = "+" + gold;
+            textBubbleInstance.GetComponentInChildren<TextMeshPro>().text = "+" + ChestGold;
             textBubbleInstance.transform.SetParent(transform);
             isRewardGiven = true;
         }
@@ -56,7 +56,7 @@ public class ChestScript : MonoBehaviour
 
     private void GiveReward()
     {
-        UI_Behaviour_Manager.Instance.gold += gold;
+        UI_Behaviour_Manager.Instance.gold += ChestGold;
         FindObjectOfType<Level_UI_Manager>().UpdateUI();
     }
 }

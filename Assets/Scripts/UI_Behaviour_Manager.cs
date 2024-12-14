@@ -35,8 +35,13 @@ public class UI_Behaviour_Manager : MonoBehaviour
     {
         Character newCharacter = new (defaultCharacter);
         AddCharacter(newCharacter);
+        teamAssembleCharacters.Add(newCharacter);//remove later , for testing purposes
         newCharacter = new (defaultCharacter);
         AddCharacter(newCharacter);
+        teamAssembleCharacters.Add(newCharacter);//remove later , for testing purposes
+        newCharacter = new(defaultCharacter);
+        AddCharacter(newCharacter);
+        teamAssembleCharacters.Add(newCharacter);//remove later , for testing purposes
     }
 
     public void AddPotion(Potion potion)

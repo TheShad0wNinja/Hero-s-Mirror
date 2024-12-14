@@ -57,5 +57,6 @@ public class ChestScript : MonoBehaviour
     private void GiveReward()
     {
         UI_Behaviour_Manager.Instance.gold += gold;
+        FindObjectOfType<Level_UI_Manager>().UpdateUI();
     }
 }

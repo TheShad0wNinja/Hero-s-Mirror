@@ -24,6 +24,10 @@ public class ProgressBarController : MonoBehaviour
 
         endCurr.fillAmount = endPercentage;
         middleCurr.fillAmount = midPercentage;
-        barText.text = $"{curr}/{max}";
+        string barOutput;
+        if (curr >= 0) barOutput = $"{curr}/{max}";
+        else barOutput = "0";
+
+        barText.text = barOutput;
     }
 }

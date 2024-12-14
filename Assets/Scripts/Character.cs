@@ -16,7 +16,7 @@ public class Character
     public Sprite image;
     public string rarityName;
     public int rarityTier;
-
+    public int currentHealth;
     public Character(UnitSO unitSO) 
     {
         stats = unitSO;
@@ -96,6 +96,7 @@ public class Character
                 }
             }
         }
+        currentHealth = currentStats["health"];
     }
 
 }

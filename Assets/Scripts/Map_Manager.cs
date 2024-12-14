@@ -35,6 +35,8 @@ public class Map_Manager : MonoBehaviour
     private GameObject characterSlot1, characterSlot2, characterSlot3;
     List<GameObject> characterSlots = new List<GameObject>();
 
+    string sceneName;
+
    int count = 0;
     private void Start()
     {
@@ -177,7 +179,7 @@ public class Map_Manager : MonoBehaviour
         if (character1 != null && character2 != null && character3 != null)
         {
             inventoryManager.AddTeamCharacters(new List<Character> { character1, character2, character3 });
-            // load Level Scene
+            Scene_Manager.Instance.ChangeScene(sceneName);
         }
         else
         {
@@ -188,5 +190,9 @@ public class Map_Manager : MonoBehaviour
     private void OpenPopUp()
     {
         popupPanel.SetActive(true);
+    }
+    public void setSceneName(string secneName) 
+    {
+        this.sceneName = secneName;
     }
 }

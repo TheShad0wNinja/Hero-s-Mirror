@@ -6543,6 +6543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationName: Home Base
+  sceneName: HomeBase
 --- !u!61 &775776839
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8366,6 +8367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationName: Barrack's mansion
+  sceneName: Barracks
 --- !u!61 &1221025947
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9204,6 +9206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationName: Town
+  sceneName: null
 --- !u!61 &1462978299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -83906,6 +83909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationName: Dungeon
+  sceneName: Dungeon
 --- !u!61 &1697510017
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -84435,6 +84439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationName: King's Castle
+  sceneName: KingRoom
 --- !u!61 &1849882280
 BoxCollider2D:
   m_ObjectHideFlags: 0

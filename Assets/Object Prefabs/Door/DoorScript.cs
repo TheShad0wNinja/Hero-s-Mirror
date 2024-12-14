@@ -1,24 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class DoorScript : MonoBehaviour
 {
-    PlayerMovementController player;
     [SerializeField] Sprite openDoor;
     SpriteRenderer spriteRenderer;
+    bool canOpenKey = false;
+    bool canOpenPuzzle = false;
+
+    [SerializeField] private GameObject textBubblePrefab;
+    private GameObject textBubbleInstance;
+
     void Start()
     {
-        player = FindObjectOfType<PlayerMovementController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void FixedUpdate()
+    public void UnlockDoorKey() 
     {
-        if(player.runeSolved == true)
+        canOpenKey = true;
+    }
+    public void UnlockDoorPuzzle ()
+    {
+        canOpenPuzzle = true;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Player") ) 
         {
-            spriteRenderer.sprite = openDoor;
-            GetComponent<BoxCollider2D>().enabled = false;
+            if (canOpenKey && canOpenPuzzle)
+            {
+                spriteRenderer.sprite = openDoor;
+                GetComponent<BoxCollider2D>().enabled = false;
+            }
+            else if (canOpenKey && !canOpenPuzzle)
+            {
+                InstantiateBubble("Look for a rubix cube buddy");
+            }
+            else if (canOpenPuzzle && !canOpenKey)
+            {
+                InstantiateBubble("I have 2 locks, sorry");
+            }
+            else 
+            {
+                InstantiateBubble("Hey");
+            }
         }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Player")) 
+        {
+            Destroy(textBubbleInstance);
+        }
+    }
+    void InstantiateBubble(string input) 
+    {
+        textBubbleInstance = Instantiate(textBubblePrefab, transform.position + Vector3.up, Quaternion.identity);
+        textBubbleInstance.GetComponentInChildren<TextMeshPro>().text = input;
+        textBubbleInstance.transform.SetParent(transform);
     }
 }

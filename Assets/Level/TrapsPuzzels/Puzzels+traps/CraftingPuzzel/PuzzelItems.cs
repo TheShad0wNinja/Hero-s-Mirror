@@ -8,4 +8,6 @@ public class PuzzelItems : ScriptableObject
     // Start is called before the first frame update public string armorName;
     public string ItemName;
     public Sprite ItemSprite;
+    public int index;
+    public bool correctSpot = false;
 }

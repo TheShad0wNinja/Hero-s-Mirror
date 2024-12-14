@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/CombatCameraManager.cs.meta
+guid: a34f8e6115ebc4c7abfd4a0bb879248b
+========
+guid: a5c61cf63eebf1f469d7a9372a49cf25
+>>>>>>>> fe99adc7 (Homebase):Assets/Blacksmith_Manager.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

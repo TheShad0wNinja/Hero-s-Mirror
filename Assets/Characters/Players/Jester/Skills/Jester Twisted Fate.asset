@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b7be4f51d7b648db9ea8310aaef9cae, type: 3}
+  m_Name: Jester Twisted Fate
+  m_EditorClassIdentifier: 
+  targetType: 1
+  numberOfTargets: 1
+  sprite: {fileID: 0}
+  skillName: Twisted Fate
+  animationName: 
+  isOffensive: 1
+  positiveSkill: {fileID: 11400000, guid: 61bc9870838134d15934ade61081af9e, type: 2}
+  negativeSkill: {fileID: 11400000, guid: a0f5d7e2d1e2742a0af6bdcf2abb7c2b, type: 2}
+  probability: 0.5
+  positiveUnitIsEnemy: 0
+  negativeUnitIsEnemy: 1

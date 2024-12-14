@@ -13,6 +13,7 @@ public class ChestScript : MonoBehaviour
     private GameObject textBubbleInstance;
     bool isRewardGiven = false;
 
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
 
 
 public class CraftingTableManager : MonoBehaviour
@@ -17,7 +18,7 @@ public class CraftingTableManager : MonoBehaviour
     public int numofCorrect = 0;
     public TextMeshProUGUI numofCorrectText;
     public TextMeshProUGUI headerText;
-
+    public FadeAnimation fadeAnimation;
 
 
     // Function to receive index of the selected item
@@ -33,14 +34,18 @@ public class CraftingTableManager : MonoBehaviour
     }
     void Start()
     {
+        fadeAnimation.FadeIn();
+
         for (int i = 0; i < listofpuzzelItems.Count; i++)
         {
             listofpuzzelItems[i].Items.correctSpot = false;
         }
         numofCorrectText.text = numofCorrect.ToString();
+
     }
     void Update()
     {
+
         if (currentSelectedSlotPosition != 0 && currentSelectedItemPosition != 0)
         {
             for (int i = 0; i < listofpuzzelItems.Count; i++)
@@ -123,7 +128,8 @@ public class CraftingTableManager : MonoBehaviour
     public void SwitchScenes()
     {
         SceneManager.LoadScene(0); // Loads the scene at index 0 in Build Settings
-
     }
+
+
 
 }

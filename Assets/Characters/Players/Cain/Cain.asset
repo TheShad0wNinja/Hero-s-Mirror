@@ -15,6 +15,7 @@ MonoBehaviour:
   name: Cain
   description: The Main Character
   pixelArt: {fileID: 829214598, guid: f2c8a053ab3964431934dc50923cc027, type: 3}
+  portrait: {fileID: 21300000, guid: 97fdf466cf8d9412f93f8bf9e4128cee, type: 3}
   flipped: 1
   rarity: 5
   isEnemy: 0

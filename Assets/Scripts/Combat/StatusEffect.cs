@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class StatusEffect
@@ -7,6 +8,7 @@ public class StatusEffect
     public int duration;
     public bool IsExpired => duration <= 0;
     public bool IsBuff => effectData.isBuff;
+    public Sprite Image => effectData.image;
     public StatusEffectSO effectData;
     public StatusEffect(StatusEffectSO effectSO)
     {

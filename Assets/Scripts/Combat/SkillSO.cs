@@ -14,6 +14,7 @@ public enum TargetType
     ENEMY_UNIT_SINGLE,
     ENEMY_UNIT_MULTIPLE,
     ENEMY_UNIT_ALL,
+    SKIP,
 }
 
 public abstract class SkillSO : ScriptableObject
@@ -22,6 +23,7 @@ public abstract class SkillSO : ScriptableObject
     public int numberOfTargets = 1;
     public Sprite sprite;
     public string skillName;
+    public string description;
     public string animationName;
     public bool hasEarlyAnimationFinish;
     public bool isOffensive = true;

@@ -10,11 +10,10 @@ public class Potion
     public Dictionary<string, int> currentStatsFiltered = new Dictionary<string, int>();
     public string name;
     public string description;
-    public Sprite pixelArt;
     public Sprite image;
     public int price;
 
-    public Potion(Potion_Stats potion) 
+    public Potion(Potion_Stats potion)
     {
         this.stats = potion;
         checkValues();
@@ -23,18 +22,16 @@ public class Potion
     {
         this.name = stats.name;
         this.description = stats.description;
-        this.pixelArt = stats.pixelArt;
         this.image = stats.image;
         this.price = stats.price;
         Dictionary<string, int> temp = new Dictionary<string, int>();
         temp.Add("health", stats.health);
-        temp.Add("damage", stats.damage);
-        temp.Add("armor", stats.armor);
-        temp.Add("shield", stats.shield);
-        temp.Add("regeneration", stats.regeneration);
-        temp.Add("dodge", stats.dodge);
-        temp.Add("criticalChance", stats.criticalChance);
+        temp.Add("healthRegeneration", stats.healthRegenerationRate);
         temp.Add("mana", stats.mana);
+        temp.Add("manaRegeneration", stats.healthRegenerationRate);
+        temp.Add("attackBonus", 1);
+        temp.Add("shield", stats.shield);
+        temp.Add("criticalChance", stats.criticalChance);
         foreach (var item in temp)
         {
             if (item.Value != 0)

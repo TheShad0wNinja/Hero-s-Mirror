@@ -17,6 +17,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   skillName: Heavy  Attack
   animationName: Attack
+  hasEarlyAnimationFinish: 1
   isOffensive: 1
   manaCost: 3
   damage: 4

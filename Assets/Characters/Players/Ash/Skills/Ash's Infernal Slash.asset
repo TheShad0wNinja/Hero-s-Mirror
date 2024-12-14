@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetType: 9
   numberOfTargets: 1
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: ac8c9461ee07b4968a0937acccf836e5, type: 3}
   skillName: Infernal Slash
+  description: Ash unleashes a sweeping strike with his blazing sword, sending a
+    wave of flames across the battlefield, damaging all enemies.
   animationName: Attack
+  hasEarlyAnimationFinish: 1
   isOffensive: 1
+  manaCost: 1
   statusEffect: {fileID: 11400000, guid: e46d5122b537b4d22a6931f4cb4c873c, type: 2}
   damageAmount: 4

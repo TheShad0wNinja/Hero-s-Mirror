@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/CombatCameraManager.cs.meta
-guid: 40fee6dcdb6b24cb2a5e1a6ee6c7868a
-========
-guid: a5c61cf63eebf1f469d7a9372a49cf25
->>>>>>>> fe99adc7 (Homebase):Assets/Blacksmith_Manager.cs.meta
+guid: 161ffe3c8b0ba4021b12bc015397c1a8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

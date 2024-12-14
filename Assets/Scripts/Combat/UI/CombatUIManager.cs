@@ -10,23 +10,49 @@ public class CombatUIManager : MonoBehaviour
     public GameObject hoverSelector;
     public GameObject selectSelector;
     public TextMeshProUGUI notifactionText;
-    public Canvas canvas;
     public Canvas selectorCanvas;
     public TextMeshProUGUI currentTurnText;
     public TextMeshProUGUI currentRoundText;
     public CombatUIChannel uiChannel;
-    public MouseChannel mouseChannel;
-    public CombatEvent combatEvent;
-
-    public ProgressBarController healthBar;
-    public ProgressBarController manaBar;
 
     List<GameObject> currentSelectors = new();
     GameObject currentHoverSelector;
 
-    void Start()
+    public void StartCombatUI()
     {
         SetupEvents();
+    }
+
+    void OnDisable()
+    {
+        RemoveEvents();
+    }
+
+    void RemoveEvents()
+    {
+        CombatEvent.Instance.UnitDamage -= TriggerDamageEffect;
+        CombatEvent.Instance.UnitHeal -= TriggerHealEffect;
+        CombatEvent.Instance.UnitShieldDamage -= TriggerDamageEffect;
+        CombatEvent.Instance.SkillPerformed -= TriggerSkillEffect;
+        CombatEvent.Instance.UnitStatusEffect -= TriggerStatusEffectEffect;
+        CombatEvent.Instance.UnitDeath -= TriggerDeathEffect;
+
+        if (uiChannel != null)
+        {
+            uiChannel.NewTurn -= HandleNewTurn;
+
+            uiChannel.TurnChanged -= HandleTurnChange;
+
+            uiChannel.UnitHovered -= HandleUnitHover;
+            uiChannel.UnitSelected -= HandleUnitSelect;
+            uiChannel.RemoveSelectors -= RemoveAllSelectors;
+        }
+
+        if (MouseManager.Instance != null)
+        {
+            MouseManager.Instance.OnUnitUnhover -= HandleUnitUnhover;
+        }
+
     }
 
     void SetupEvents()
@@ -40,7 +66,7 @@ public class CombatUIManager : MonoBehaviour
 
         if (uiChannel != null)
         {
-            uiChannel.NewTurn += HandleNewTurn;            
+            uiChannel.NewTurn += HandleNewTurn;
 
             uiChannel.TurnChanged += HandleTurnChange;
 
@@ -49,12 +75,13 @@ public class CombatUIManager : MonoBehaviour
             uiChannel.RemoveSelectors += RemoveAllSelectors;
         }
 
-        if (mouseChannel != null)
+        if (MouseManager.Instance != null)
         {
-            mouseChannel.OnUnitUnhover += HandleUnitUnhover;
+            MouseManager.Instance.OnUnitUnhover += HandleUnitUnhover;
         }
 
     }
+
 
     void HandleNewTurn(int currentRound)
     {
@@ -114,6 +141,7 @@ public class CombatUIManager : MonoBehaviour
 
     private void HandleUnitHover(Unit unit)
     {
+        RemoveHoverSelector();
         CreateUnitSelector(unit, true);
     }
 
@@ -215,7 +243,7 @@ public class CombatUIManager : MonoBehaviour
 
     void CreateText(Vector3 position, string text, float duration)
     {
-        var a = Instantiate(notifactionText, canvas.transform);
+        var a = Instantiate(notifactionText, selectorCanvas.transform);
         a.transform.position = Camera.main.WorldToScreenPoint(position);
         a.text = text;
         StartCoroutine(RemoveAfterX(a, duration));

@@ -16,6 +16,7 @@ MonoBehaviour:
   numberOfTargets: 2
   sprite: {fileID: 21300000, guid: 22621d4ff885a4aeba1e44a26c86d465, type: 3}
   skillName: Slash and Stab
+  description: A sword slash that causes the target to bleed.
   animationName: attack
   hasEarlyAnimationFinish: 0
   isOffensive: 1

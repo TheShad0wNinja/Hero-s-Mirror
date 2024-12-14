@@ -5,19 +5,26 @@ using UnityEngine;
 
 public class EnemyBrain : MonoBehaviour
 {
-    void Start()
+    void OnEnable()
     {
         if (CombatEvent.Instance != null)
         {
-            Debug.Log("ALLO");
-            CombatEvent.Instance.TurnChanged = HandleTurnChange;
+            CombatEvent.Instance.TurnChanged += HandleTurnChange;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (CombatEvent.Instance != null)
+        {
+            CombatEvent.Instance.TurnChanged += HandleTurnChange;
         }
     }
 
     private void HandleTurnChange(CombatManager cm)
     {
-        Debug.Log("LIGMA: " + cm.turnState);
-        switch (cm.turnState)
+        Debug.Log("LIGMA: " + cm.CurrTurnState);
+        switch (cm.CurrTurnState)
         {
             case TurnState.ENEMY_TURN:
                 HandleEnemyTurnStart(cm);
@@ -59,6 +66,11 @@ public class EnemyBrain : MonoBehaviour
                 => cm.enemyUnits.OrderBy(_ => rnd.Next()).Take(numOfTargets).ToList(),
             _ => new List<Unit>()
         };
+
+        foreach(var x in selectedTargets)
+        {
+            Debug.Log(x.name);
+        }
 
         cm.HandleEnemyTargetUnitSelect(selectedTargets);
     }

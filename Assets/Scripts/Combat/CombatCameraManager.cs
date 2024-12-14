@@ -36,8 +36,4 @@ public class CombatCameraManager : MonoBehaviour
         Instance.actionCamera.Priority = 20;
         Instance.defaultCamera.Priority = 10;
     }
-
-    public static void SwitchCamera()
-    {
-    }
 }

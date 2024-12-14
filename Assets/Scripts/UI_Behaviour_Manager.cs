@@ -51,6 +51,17 @@ public class UI_Behaviour_Manager : MonoBehaviour
             ownedPotions.Add(potion, 1);
         }
     }
+
+    public void RemovePotion(Potion potion)
+    {
+        if (ownedPotions.ContainsKey(potion))
+        {
+            ownedPotions[potion]--;
+            if (ownedPotions[potion] <= 0)
+                ownedPotions.Remove(potion);
+        }
+
+    }
     public void AddCharacter(Character character)
     {
         ownedCharacters.Add(character);

@@ -27,11 +27,13 @@ public class Scene_Manager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
     public void ChangeScene(string sceneName)
@@ -45,7 +47,12 @@ public class Scene_Manager : MonoBehaviour
         SavePlayerPosition();
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         stack.Push(sceneName);
-        // SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+    }
+
+    public void GoToPreviousScene()
+    {
+        string currScene = stack.Pop();
+        SceneManager.UnloadSceneAsync(currScene);
     }
 
     public void GoToHomebase()
@@ -69,15 +76,16 @@ public class Scene_Manager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Loaded: " + scene.name);
         if (mode == LoadSceneMode.Single)
         {
             stack.Clear();
-            stack.Push(scene.name);
         }
         else if (mode == LoadSceneMode.Additive)
         {
             SceneManager.SetActiveScene(scene);
         }
+        stack.Push(scene.name);
 
         // player = FindObjectOfType<PlayerMovementController>()?.gameObject;
 
@@ -85,5 +93,11 @@ public class Scene_Manager : MonoBehaviour
         // {
         //     player.transform.position = playerSavedPosition;
         // }
+    }
+
+    private void OnSceneUnloaded(Scene current)
+    {
+        Debug.Log("UNLOADED: " + current.name);
+        // SceneManager.SetActiveScene(SceneManager.GetSceneByName(stack.Peek()));
     }
 }

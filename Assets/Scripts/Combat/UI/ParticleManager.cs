@@ -26,11 +26,12 @@ public class ParticleManager : MonoBehaviour
             var ogMaterial = sr.material;
             for (int i = 0; i < Instance.hitLoops; i++)
             {
-                yield return wfs;
                 sr.material = Instance.hitMaterial;
 
                 yield return wfs;
                 sr.material = ogMaterial;
+
+                yield return wfs;
 
             }
 

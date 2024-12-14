@@ -12,14 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
   m_Name: Talon
   m_EditorClassIdentifier: 
-  unitName: Talon
-  sprite: {fileID: 21300000, guid: ab8350805f397487e8dc3b2f297cf1cd, type: 3}
+  name: Talon
+  description: "Once a promising young hunter, Talon\u2019s life took a dark turn
+    after witnessing the brutal slaughter of his family by a monstrous beast. Consumed
+    by rage and grief, he vowed to take revenge on all creatures that dared to cross
+    his path. However, his relentless quest for vengeance twisted him into something
+    far more dreadful. Talon developed an insatiable thirst for bloodshed, reveling
+    in the thrill of the hunt. His passion for knives transformed into an obsession,
+    with each blade he wielded becoming a tool of terror. As the years passed, Talon
+    grew increasingly ruthless, leaving a trail of destruction in his wake. Villages
+    trembled at the mere mention of his name, for he was no longer just a monster
+    hunter but a feared executioner. Talon took perverse pleasure in the hunt, relishing
+    the fear and chaos he inflicted, and cementing his legacy as a harbinger of death
+    and despair. "
+  pixelArt: {fileID: 1446652815, guid: d990c42eb48824511891107a0f8d1f8f, type: 3}
+  portrait: {fileID: 21300000, guid: 18127d26eabe841bab514e56cd298686, type: 3}
   flipped: 1
+  rarity: 1
   isEnemy: 0
-  baseMana: 10
-  maxMana: 10
-  baseHealth: 10
-  maxHealth: 10
-  baseShield: 0
-  baseAttackBonus: 1
-  baseCritChance: 0.1
+  health: 10
+  healthRegenerationRate: 2
+  mana: 10
+  manaRegenrationRate: 1
+  shield: 0
+  attackBonus: 100
+  baseCritChance: 0
+  hasHitAnimation: 0

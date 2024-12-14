@@ -12,15 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
   m_Name: Monster Knight
   m_EditorClassIdentifier: 
-  unitName: Skeleton
-  sprite: {fileID: 0}
+  name: Monster Knight
+  description: Monster
+  pixelArt: {fileID: 0}
   flipped: 1
+  rarity: 1
   isEnemy: 1
-  baseMana: 10
-  maxMana: 10
-  baseHealth: 10
-  maxHealth: 10
-  baseShield: 0
-  baseAttackBonus: 1
-  baseCritChance: 0.1
+  health: 10
+  healthRegenerationRate: 1
+  mana: 10
+  manaRegenrationRate: 1
+  shield: 5
+  attackBonus: 100
+  baseCritChance: 0
   hasHitAnimation: 1

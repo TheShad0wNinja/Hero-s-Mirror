@@ -8,7 +8,7 @@ public class TeleportTrap : MonoBehaviour
 private bool isTriggered;
 private GameObject playerOnFloor = null;
 private SpriteRenderer spriteRenderer;
-[SerializeField] private float startingAlpha = 0.1f;
+[SerializeField] private float startingAlpha = 0f;
 [SerializeField] private float teleportTime = 0.7f;
 
 

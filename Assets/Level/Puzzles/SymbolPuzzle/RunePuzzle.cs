@@ -4,14 +4,15 @@ using UnityEngine.UI;
 
 public class RunePuzzle : MonoBehaviour
 {
-    public Button[] runeButtons; // Assign all rune buttons in the inspector
-    public string[] correctRunes; // Set correct rune names in the inspector
+    public Button[] runeButtons; 
+    public string[] correctRunes;
     private string[] selectedRunes = new string[3];
     private int currentSelection = 0;
     private int incorrectGuesses = 0;
 
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject postProcessing;
+    [SerializeField] private PlayerMovementController player;
 
 
     void Start()
@@ -20,6 +21,7 @@ public class RunePuzzle : MonoBehaviour
         {
             rune.onClick.AddListener(() => OnRuneClick(rune.name));
         }
+        player = FindObjectOfType<PlayerMovementController>();
     }
 
     void OnRuneClick(string runeName)
@@ -29,11 +31,9 @@ public class RunePuzzle : MonoBehaviour
             selectedRunes[currentSelection] = runeName;
             currentSelection++;
 
-            // Change button color to indicate selection
             Button clickedButton = System.Array.Find(runeButtons, b => b.name == runeName);
             clickedButton.image.color = Color.yellow;
 
-            // Check if it's correct
             if (System.Array.Exists(correctRunes, correctRune => correctRune == runeName))
             {
                 Debug.Log($"{runeName} is correct!");
@@ -44,7 +44,6 @@ public class RunePuzzle : MonoBehaviour
                 incorrectGuesses++;
             }
 
-            // End logic
             if (currentSelection == 3)
             {
                 if (incorrectGuesses >= 3)
@@ -73,15 +72,15 @@ public class RunePuzzle : MonoBehaviour
 
         if (correctCount == 3)
         {
-            Debug.Log("You Win!");
-            // Add win logic here
+            player.runeSolved = true;
+            canvas.SetActive(false);
+            postProcessing.SetActive(false);
+            ResetGame();
         }
         else
         {
-            Debug.Log("Try Again!");
+            ResetGame();
         }
-
-        ResetGame();
     }
 
     void ResetGame()
@@ -91,7 +90,7 @@ public class RunePuzzle : MonoBehaviour
 
         foreach (Button rune in runeButtons)
         {
-            rune.image.color = Color.white; // Reset button colors
+            rune.image.color = Color.white;
         }
     }
 

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Load_UI : MonoBehaviour
 {
     public static Load_UI Instance;
 
     public GameObject leveUIPanelPrefab;
-    private GameObject levelPanel;
+    public GameObject levelPanel;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -20,14 +21,17 @@ public class Load_UI : MonoBehaviour
     }
     private void FindOrCreateLevelPanel()
     {
-        levelPanel = GameObject.FindGameObjectWithTag("LevelPanel");
-
-        if (levelPanel == null)
+        if (SceneManager.GetActiveScene().name != "HomeBase") 
         {
-            GameObject canvas = GameObject.Find("Canvas");
-            if (canvas == null) throw new System.Exception("Canvas not found in scene.");
+            levelPanel = GameObject.FindGameObjectWithTag("LevelPanel");
 
-            levelPanel = Instantiate(leveUIPanelPrefab, canvas.transform);
+            if (levelPanel == null)
+            {
+                GameObject canvas = GameObject.Find("Canvas");
+                if (canvas == null) throw new System.Exception("Canvas not found in scene.");
+
+                levelPanel = Instantiate(leveUIPanelPrefab, canvas.transform);
+            }
         }
     }
     void Start()

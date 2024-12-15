@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c111ec5207f3f47ad8628ea9eb8420, type: 3}
+  m_Name: Before convo
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - unitImage: {fileID: 21300000, guid: 42702980fd1e88840aca3b6525b2e4d9, type: 3}
+    unitName: Indiana Loans
+    dialogueText: It's good to see you again, the Duke's castle sure is pretty in
+      the morning
+  - unitImage: {fileID: 21300000, guid: 45942da1a2e8f8c4893215f0a4454ef4, type: 3}
+    unitName: Cain
+    dialogueText: Countless have bled to build this liar for this vial demon, i will
+      honor their memory and leave this place as a monument, tarnished by the duke's
+      blood
+  - unitImage: {fileID: 21300000, guid: 515c7598409bf6f4aba03b47d41b47bc, type: 3}
+    unitName: Indiana Loans
+    dialogueText: Uhhh...
+  - unitImage: {fileID: 21300000, guid: 515c7598409bf6f4aba03b47d41b47bc, type: 3}
+    unitName: Indiana Loans
+    dialogueText: Just give me ma moneyyyy...! i mean call on me again if you need
+      a hint (-100G)

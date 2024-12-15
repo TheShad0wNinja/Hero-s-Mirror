@@ -20,7 +20,10 @@ public class Key_Pickable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            textBubbleInstance = Instantiate(textBubblePrefab, transform.position + Vector3.up, Quaternion.identity);
+            if (textBubbleInstance == null) 
+            {
+                textBubbleInstance = Instantiate(textBubblePrefab, transform.position + Vector3.up, Quaternion.identity);
+            }
             textBubbleInstance.GetComponentInChildren<TextMeshPro>().text = "Key Acquired";
             textBubbleInstance.transform.SetParent(transform);
             door.GetComponent<DoorScript>().UnlockDoorKey();

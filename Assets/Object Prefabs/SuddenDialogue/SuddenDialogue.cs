@@ -16,7 +16,7 @@ public class SuddenDialogue : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            dialogueManager.InitializeConversation(conversation);
+            dialogueManager.InitializeConversation(conversation, this.gameObject);
         }
     }
 }

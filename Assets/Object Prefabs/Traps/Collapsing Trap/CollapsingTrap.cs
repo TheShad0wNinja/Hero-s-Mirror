@@ -13,12 +13,12 @@ public class CollapsingTrap : MonoBehaviour
     Color color;
     [SerializeField] string nextSceneName;
 
-
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         color = spriteRenderer.color;
     }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !isTriggered)
@@ -51,21 +51,90 @@ public class CollapsingTrap : MonoBehaviour
                 spriteRenderer.color = color;
                 yield return null;
             }
-        }
+            Scene originalScene = SceneManager.GetActiveScene();
+            if (SceneManager.GetActiveScene().name != nextSceneName)
+            {
+                player.GetComponent<PlayerMovementController>().enabled = false;
 
-        if(SceneManager.GetActiveScene().name != nextSceneName)
-        {
-            Time.timeScale = 0f;
-            SceneManager.LoadScene(nextSceneName, LoadSceneMode.Additive);
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(nextSceneName));
-            Time.timeScale = 1f;
+                AsyncOperation loadOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+                while (!loadOperation.isDone)
+                {
+                    Debug.Log($"Scene Loading Progress: {loadOperation.progress}");
+                    yield return null;
+                }
+                Scene sceneToSet = SceneManager.GetSceneByName(nextSceneName);
+                if (sceneToSet.isLoaded)
+                {
+                    SceneManager.SetActiveScene(sceneToSet);
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == nextSceneName)
+            {
+                AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(nextSceneName);
+                while (!unloadOperation.isDone)
+                {
+                    yield return null;
+                }
+                SceneManager.SetActiveScene(originalScene);
+                FindObjectOfType<PlayerMovementController>().enabled = true;
+            }
+            isTriggered = false;
         }
-        else if(SceneManager.GetActiveScene().name == nextSceneName)
-        {
-            SceneManager.UnloadSceneAsync(nextSceneName);
-            Time.timeScale = 1f;
-        }
-        
-        isTriggered = false;
     }
+
+// private IEnumerator CollapseFloor(GameObject player)
+// {
+//     Debug.Log("Starting CollapseFloor Coroutine");
+
+//     // Fade out the floor's sprite
+//     if (spriteRenderer != null)
+//     {
+//         for (float t = 0; t < 1f; t += Time.deltaTime / collapseDelay)
+//         {
+//             color.a = Mathf.Lerp(1f, 0f, t);
+//             spriteRenderer.color = color;
+//             yield return null; // Ensures coroutine execution
+//         }
+//     }
+
+//     Debug.Log("Current Scene: " + SceneManager.GetActiveScene().name);
+//     Debug.Log("Next Scene: " + nextSceneName);
+
+//     // Deactivate player before loading the new scene
+//     Debug.Log("Deactivating player...");
+//     player.GetComponent<PlayerMovementController>().enabled = false;
+
+//     // Load the next scene
+//     Debug.Log($"Loading scene: {nextSceneName}");
+//     AsyncOperation loadOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+
+//     while (!loadOperation.isDone)
+//     {
+//         Debug.Log($"Scene Loading Progress: {loadOperation.progress}");
+//         yield return null; // Waits until the scene is fully loaded
+//     }
+
+//     Debug.Log($"Scene '{nextSceneName}' loaded.");
+
+//     // Verify the scene is loaded and valid
+//     Scene loadedScene = SceneManager.GetSceneByName(nextSceneName);
+//     Debug.Log($"Scene '{nextSceneName}' IsValid: {loadedScene.IsValid()}, IsLoaded: {loadedScene.isLoaded}");
+
+//     if (loadedScene.IsValid() && loadedScene.isLoaded)
+//     {
+//         Debug.Log($"Setting active scene to: {nextSceneName}");
+//         SceneManager.SetActiveScene(loadedScene);
+//         Debug.Log("Active Scene Set: " + SceneManager.GetActiveScene().name);
+//     }
+//     else
+//     {
+//         Debug.LogError($"Failed to set active scene: {nextSceneName}");
+//     }
+
+//     isTriggered = false;
+// }
+
+
+
+
 }

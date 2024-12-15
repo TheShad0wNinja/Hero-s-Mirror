@@ -8,7 +8,6 @@ public class PlayerMovementController : MonoBehaviour
     Vector2 _prevInput;
     Rigidbody2D _rb;
     Animator _anim;
-    public bool runeSolved = false;
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();    

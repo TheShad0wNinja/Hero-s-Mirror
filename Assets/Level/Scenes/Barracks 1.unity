@@ -14490,6 +14490,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4652255739628845845, guid: 29e00201c9b372f43be0c63e3d4b8016, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 230873579}
     - target: {fileID: 5944166333933809927, guid: 29e00201c9b372f43be0c63e3d4b8016, type: 3}
       propertyPath: m_Name
       value: Collapsing trap

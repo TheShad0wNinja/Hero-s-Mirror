@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 [Serializable]
 public class Potion
@@ -29,7 +28,7 @@ public class Potion
         temp.Add("healthRegeneration", stats.healthRegenerationRate);
         temp.Add("mana", stats.mana);
         temp.Add("manaRegeneration", stats.healthRegenerationRate);
-        temp.Add("attackBonus", 1);
+        temp.Add("attackBonus", stats.attackBonus);
         temp.Add("shield", stats.shield);
         temp.Add("criticalChance", stats.criticalChance);
         foreach (var item in temp)

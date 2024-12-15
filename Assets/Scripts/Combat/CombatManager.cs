@@ -199,7 +199,7 @@ public class CombatManager : MonoBehaviour
         CombatEnemyManager.Instance.ClearEnemyList();
         playerUnits.Clear();
         enemyUnits.Clear();
-        Scene_Manager.Instance.GoToPreviousScene();
+        Scene_Manager.Instance.GoToPreviousSceneAdditive();
     }
 
     private void HandlePotionSelected(Potion potion)

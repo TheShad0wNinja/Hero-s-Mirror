@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/Combat.unity
     guid: 8aae19f233f644325aa298f3e634df51
+  - enabled: 1
+    path: Assets/Level/Scenes/Traps_Test.unity
+    guid: 5e73ca3cea536724ab7e041fad211a38
   m_configObjects: {}

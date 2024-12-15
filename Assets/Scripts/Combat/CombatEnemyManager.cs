@@ -9,11 +9,13 @@ public class CombatEnemyManager : MonoBehaviour
     void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(this);
+        }
         else if (Instance != null)
             Destroy(this);
 
-        DontDestroyOnLoad(this);
     }
 
     public void ClearEnemyList()

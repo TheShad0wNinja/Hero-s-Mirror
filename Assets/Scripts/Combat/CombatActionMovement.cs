@@ -21,6 +21,7 @@ public class CombatActionMovement : MonoBehaviour
     public static CombatActionMovement Instance { get; private set; }
 
     SpriteRenderer selectedUnitSr;
+    int selectedUnitPrevOrder;
 
     void Start()
     {
@@ -39,7 +40,10 @@ public class CombatActionMovement : MonoBehaviour
 
         selectedUnitSr = selectedUnit.GetComponent<SpriteRenderer>();
         if (selectedUnitSr)
+        {
+            selectedUnitPrevOrder = selectedUnitSr.sortingOrder;
             selectedUnitSr.sortingOrder = 50;
+        }
 
         // Debug.Log("ABVDLFJ");
         // selectedUnitSpriteRenderer = selectedUnit.GetComponent<SpriteRenderer>();

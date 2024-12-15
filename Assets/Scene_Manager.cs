@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Scene_Manager : MonoBehaviour
 {
-    private GameObject player;
-    private Vector3 playerSavedPosition;
+    private GameObject prevPlayer;
+    private Vector3 prevPlayerPosition;
+    private bool hasPrevPosition = false;
     private Stack<string> stack = new();
     public static Scene_Manager Instance { get; private set; }
 
@@ -15,7 +18,6 @@ public class Scene_Manager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            playerSavedPosition = transform.position;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -44,35 +46,65 @@ public class Scene_Manager : MonoBehaviour
 
     public void ChangeSceneAdditive(string sceneName)
     {
-        SavePlayerPosition();
+        SavePlayerInstance();
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         stack.Push(sceneName);
     }
 
-    public void GoToPreviousScene()
+    public void GoToPreviousSceneAdditive()
     {
         string currScene = stack.Pop();
         SceneManager.UnloadSceneAsync(currScene);
+        ReturnPlayerInstance();
     }
+
 
     public void GoToHomebase()
     {
-        SavePlayerPosition();
         SceneManager.LoadScene("HomeBase");
+    }
+
+    public void GoToHomebaseOrigin()
+    {
+        hasPrevPosition = false;
+        SceneManager.LoadScene("HomeBase");
+    }
+
+    private void ReturnPlayerInstance()
+    {
+        if (prevPlayer != null)
+        {
+            prevPlayer.SetActive(true);
+            prevPlayer = null;
+        }
+    }
+
+    private void SavePlayerInstance()
+    {
+        prevPlayer = FindObjectOfType<PlayerMovementController>()?.gameObject;
+        prevPlayer?.SetActive(false);
+    }
+
+    private void ReturnPlayerPosition()
+    {
+        var player = FindObjectOfType<PlayerMovementController>();
+        if (hasPrevPosition && player != null)
+        {
+            player.transform.position = prevPlayerPosition;
+            hasPrevPosition = false;
+        }
     }
 
     private void SavePlayerPosition()
     {
-        if (player == null)
-        {
-            player = FindObjectOfType<PlayerMovementController>()?.gameObject;
-        }
-
+        var player = FindObjectOfType<PlayerMovementController>();
         if (player != null)
         {
-            playerSavedPosition = player.transform.position;
+            hasPrevPosition = true;
+            prevPlayerPosition = player.transform.position;
         }
     }
+
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -80,24 +112,17 @@ public class Scene_Manager : MonoBehaviour
         if (mode == LoadSceneMode.Single)
         {
             stack.Clear();
+            ReturnPlayerPosition();
         }
         else if (mode == LoadSceneMode.Additive)
         {
             SceneManager.SetActiveScene(scene);
         }
         stack.Push(scene.name);
-
-        // player = FindObjectOfType<PlayerMovementController>()?.gameObject;
-
-        // if (player != null)
-        // {
-        //     player.transform.position = playerSavedPosition;
-        // }
     }
 
-    private void OnSceneUnloaded(Scene current)
+    private void OnSceneUnloaded(Scene scene)
     {
-        Debug.Log("UNLOADED: " + current.name);
-        // SceneManager.SetActiveScene(SceneManager.GetSceneByName(stack.Peek()));
+        Debug.Log("Unloaded: " + scene.name);
     }
 }

@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class CraftingPuzzelManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public PlayerMovement Player;
+    public PlayerPuzzelController Player;
     public bool WithinPlayerRadius = false;
+    public bool puzzelCompleted = false;
 
     void Start()
     {
@@ -31,7 +32,7 @@ public class CraftingPuzzelManager : MonoBehaviour
         {
             Debug.Log("All items were picked up");
             SceneManager.LoadScene(1); // Loads the scene at index 1 in Build Settings
-
+            puzzelCompleted = true; // opens the door
         }
     }
     void OnTriggerEnter2D(Collider2D Other)

@@ -1,75 +1,97 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PurchaseManager : MonoBehaviour
+public class UnitPurchaseManager : MonoBehaviour
 {
-    public int currency = 100;
-    public ProbabilityManager shopManager;
-    public ItemProbility blacksmithShopManager;
-    public CardCharacter cardCharacterDisplay; // Reference to CardCharacter script
+    //[SerializeField] int commonProbability = 50;
+    [SerializeField] int rareProbability = 34;
+    [SerializeField] int epicProbability = 10;
+    [SerializeField] int legendaryProbability = 5;
+    [SerializeField] int mythicProbability = 1;
 
-    public List<CharacterData> characterlist = new List<CharacterData>();
-    public List<WeaponData> weaponlist = new List<WeaponData>();
-    public List<ArmorData> armorlist = new List<ArmorData>();
+    [SerializeField] int numOfButtonPressed = 0;
+    [SerializeField] GameObject popupPanel;
+    private int randomNumber = 0;
 
-    public currencyDisplay Bank;
-    public CardItemDisplay cardWeaponDisplay;
-    private int armorOrWeapon = 0; // zero = no yet, 1 - 50 = armor, 51 - 100 = weapon
 
+    [SerializeField] Image illustrantion;
+    [SerializeField] TextMeshProUGUI goldText;
+    [SerializeField] TextMeshProUGUI nameText;
+    [SerializeField] TextMeshProUGUI rarityText;
+    [SerializeField] TextMeshProUGUI statsText;
+
+    public int costPerPurchase = 100;
+    public List<UnitSO> characterScriptables;
+    UI_Behaviour_Manager inventoryManager;
+    private void Start()
+    {
+        inventoryManager = UI_Behaviour_Manager.Instance;
+        goldText.text = inventoryManager.gold.ToString();
+    }
     public void PurchaseRandomCharacter()
     {
-
-        int characterCost = 10; // Cost of a random character
-
-        if (currency >= characterCost)
+        GenerateRandomCharacter();
+        if (inventoryManager.gold >= costPerPurchase)
         {
-            currency -= characterCost;
-            CharacterData newCharacter = shopManager.GenerateRandomCharacter();// creates new characters each time
-            characterlist.Add(newCharacter);
-            cardCharacterDisplay.UpdateCharacterData(newCharacter);
-            Debug.Log($"You received: {newCharacter.characterName}");
-            Bank.UpdateCurrency();
+            inventoryManager.gold -= costPerPurchase;
+            goldText.text = inventoryManager.gold.ToString();
+            //newCharacter = null;
         }
         else
         {
-            Debug.Log("Not enough currency!");
+            popupPanel.SetActive(true);
         }
 
     }
 
-    public void PurchaseRandomItems()
+    void UpdateCharacterUI(Character newCharacter) 
     {
+        nameText.text = newCharacter.name;
+        illustrantion.sprite = newCharacter.image;
+        rarityText.text = newCharacter.rarityName;
+        statsText.text = "";
 
-        int weaponCost = 10; // Cost of a random character
-        armorOrWeapon = Random.Range(1, 101);// zero = no yet, 1 - 50 = armor, 51 - 100 = weapon
-
-        if (currency >= weaponCost)
+        foreach (var stat in newCharacter.currentStats)
         {
-            currency -= weaponCost;
-            if (armorOrWeapon > 0 && armorOrWeapon < 50) // generates armor 
-            {
-                ArmorData newArmor = blacksmithShopManager.GenerateRandomArmor();// creates new weapon each time
-                armorlist.Add(newArmor);
-                Debug.Log($"You received: {newArmor.armorName}");
-                cardWeaponDisplay.UpdateItemDisplayData(null, newArmor);
-
-            }
-            else if (armorOrWeapon > 51 && armorOrWeapon < 100)// generates weapon
-            {
-                WeaponData newWeapon = blacksmithShopManager.GenerateRandomWeapon();// creates new weapon each time
-                weaponlist.Add(newWeapon);
-                Debug.Log($"You received: {newWeapon.weaponName}");
-                cardWeaponDisplay.UpdateItemDisplayData(newWeapon, null);
-            }
-
-            Bank.UpdateCurrency();
+            statsText.text += $"{stat.Key}    :    {stat.Value}\n";
         }
-        else
+    }
+
+    public void GenerateRandomCharacter()
+    {
+        numOfButtonPressed++;
+        int randomizer = Random.Range(0, characterScriptables.Count);
+        UnitSO newCharacterScriptable = characterScriptables[randomizer];
+        randomNumber = Random.Range(1, 101); // 1-100
+        if (numOfButtonPressed == 1 && randomNumber < 9) // makes sure that on first try player doesnt get high characters
         {
-            Debug.Log("Not enough currency!");
+            randomNumber = Random.Range(10, 21);
         }
 
-
+        if (randomNumber <= mythicProbability)
+        {
+            newCharacterScriptable.rarity = rarityEnum.Mythical;
+        }
+        else if (randomNumber <= mythicProbability + legendaryProbability)
+        {
+            newCharacterScriptable.rarity = rarityEnum.Legendary;
+        }
+        else if (randomNumber <= mythicProbability + legendaryProbability + epicProbability)
+        {
+            newCharacterScriptable.rarity = rarityEnum.Epic;
+        }
+        else if (randomNumber <= mythicProbability + legendaryProbability + epicProbability + rareProbability)
+        {
+            newCharacterScriptable.rarity = rarityEnum.Rare;
+        }
+        else 
+        {
+            newCharacterScriptable.rarity = rarityEnum.Common;
+        }
+        Character newCharacter = new Character(newCharacterScriptable);
+        inventoryManager.AddCharacter(newCharacter);
+        UpdateCharacterUI(newCharacter);
     }
 }

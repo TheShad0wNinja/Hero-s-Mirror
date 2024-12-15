@@ -8,17 +8,12 @@ public class Lever : MonoBehaviour
     public FireBlockage newFire;
     public bool FireState = true;
     public bool WithinPlayerRadius = false;
-    private Animator animator;
 
     void Start()
     {
 
     }
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
 
-    }
     // Update is called once per frame
     void Update()
     {
@@ -28,7 +23,6 @@ public class Lever : MonoBehaviour
     {
         if (WithinPlayerRadius)
         {
-            animator.SetBool("TurnedOn",FireState );
             FireState = newFire.FireSwitch(FireState);
         }
     }
@@ -46,9 +40,9 @@ public class Lever : MonoBehaviour
 
         }
     }
-    void OnTriggerExit2D(Collider2D other)
+     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("DetectionRadius") || other.CompareTag("Player"))
+        if (other.CompareTag("DetectionRadius") || other.CompareTag("Player") )
         {
             WithinPlayerRadius = false;
 

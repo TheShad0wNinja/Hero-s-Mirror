@@ -7,12 +7,11 @@ public class ChestScript : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     [SerializeField] Sprite spriteAfter;
-    [SerializeField] Item_Stats item;
     [SerializeField] int ChestGold;
     [SerializeField] private GameObject textBubblePrefab;
     private GameObject textBubbleInstance;
     bool isRewardGiven = false;
-
+    public bool canOpen = true;
 
     private void Awake()
     {
@@ -21,7 +20,7 @@ public class ChestScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isRewardGiven)
+        if (other.CompareTag("Player") && !isRewardGiven && canOpen)
         {
             spriteRenderer.sprite = spriteAfter;
             GiveReward();
@@ -35,7 +34,7 @@ public class ChestScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")&& canOpen)
         {
             Destroy(textBubbleInstance);
         }

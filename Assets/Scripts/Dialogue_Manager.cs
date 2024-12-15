@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Dialogue_Manager : MonoBehaviour
@@ -20,6 +22,9 @@ public class Dialogue_Manager : MonoBehaviour
     private Coroutine typingCoroutine;
     private bool isTyping;
     public float typingSpeed = 0.05f;
+    public UnityAction<GameObject> onDialogueEnd;
+    private GameObject currentUser;
+
 
     private void Awake()
     {
@@ -52,8 +57,9 @@ public class Dialogue_Manager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
-    public void InitializeConversation(Conversation conversation)
+    public void InitializeConversation(Conversation conversation, GameObject user)
     {
+        currentUser = user;
         if (conversation == null || conversation.dialogueEntries.Length == 0) return;
         currentDialogues = conversation.dialogueEntries;
         currentIndex = 0;
@@ -93,6 +99,7 @@ public class Dialogue_Manager : MonoBehaviour
 
     private void HandleContinue()
     {
+        Debug.Log("isTyping :" + isTyping);
         if (isTyping)
         {
             StopCoroutine(typingCoroutine);
@@ -114,6 +121,8 @@ public class Dialogue_Manager : MonoBehaviour
     private void EndDialogue()
     {
         dialoguePanel.SetActive(false);
+        onDialogueEnd?.Invoke(currentUser);
+        //currentUser = null;
         Time.timeScale = 1f;
     }
     private Transform FindChildRecursive(Transform parent, string childName)

@@ -8,8 +8,9 @@ public class DoorScript : MonoBehaviour
 {
     [SerializeField] Sprite openDoor;
     SpriteRenderer spriteRenderer;
-    bool canOpenKey = false;
-    bool canOpenPuzzle = false;
+    public bool canOpenKey = false;
+    public bool canOpenPuzzle = false;
+    public string sceneName ="";
 
     [SerializeField] private GameObject textBubblePrefab;
     private GameObject textBubbleInstance;
@@ -35,6 +36,14 @@ public class DoorScript : MonoBehaviour
             {
                 spriteRenderer.sprite = openDoor;
                 GetComponent<BoxCollider2D>().enabled = false;
+                if (sceneName == "")
+                {
+                    Scene_Manager.Instance.GoToHomebaseOrigin();
+                }
+                else 
+                {
+                    Scene_Manager.Instance.ChangeScene(sceneName);
+                }
             }
             else if (canOpenKey && !canOpenPuzzle)
             {

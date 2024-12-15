@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: PuzzelItems1
   m_EditorClassIdentifier: 
   ItemName: Sack
-  ItemSprite: {fileID: 0}
+  ItemSprite: {fileID: 21300000, guid: acdb2f8f542c0a64e86e045c062aa9cd, type: 3}
+  index: 4
+  correctSpot: 0

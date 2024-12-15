@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
+  m_Name: Emberfang Dagger
+  m_EditorClassIdentifier: 
+  name: Emberfang Dagger
+  description: Forged in the heart of a volcano, this dagger was once wielded by
+    a fire sorcerer who could summon flames with every strike.
+  pixelArt: {fileID: 0}
+  image: {fileID: 0}
+  itemType: 4
+  rarity: 1
+  health: 0
+  healthRegenerationRate: 0
+  mana: 0
+  manaRegenrationRate: 0
+  shield: 0
+  attackBonus: 10
+  criticalChance: 5

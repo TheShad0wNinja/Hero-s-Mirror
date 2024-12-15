@@ -72,23 +72,23 @@ public class Blacksmith_Manager : MonoBehaviour
 
         if (randomNumber <= mythicProbability)
         {
-            newItemScriptable.rarity = Item_Stats.rarityEnum.Mythical;
+            newItemScriptable.rarity = rarityEnum.Mythical;
         }
         else if (randomNumber <= mythicProbability + legendaryProbability)
         {
-            newItemScriptable.rarity = Item_Stats.rarityEnum.Legendary;
+            newItemScriptable.rarity = rarityEnum.Legendary;
         }
         else if (randomNumber <= mythicProbability + legendaryProbability + epicProbability)
         {
-            newItemScriptable.rarity = Item_Stats.rarityEnum.Epic;
+            newItemScriptable.rarity = rarityEnum.Epic;
         }
         else if (randomNumber <= mythicProbability + legendaryProbability + epicProbability + rareProbability)
         {
-            newItemScriptable.rarity = Item_Stats.rarityEnum.Rare;
+            newItemScriptable.rarity = rarityEnum.Rare;
         }
         else
         {
-            newItemScriptable.rarity = Item_Stats.rarityEnum.Common;
+            newItemScriptable.rarity = rarityEnum.Common;
         }
         Item newItem = new Item(newItemScriptable);
         inventoryManager.AddItem(newItem);

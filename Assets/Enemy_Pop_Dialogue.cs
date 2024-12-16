@@ -15,7 +15,7 @@ public class Enemy_Pop_Dialogue : MonoBehaviour
     [SerializeField] Conversation conversation2;
     [SerializeField] ParticleSystem deathParticles;
     bool switchConvo = false;
-    public int xp, gold;
+    public int gold;
     public List<UnitSO> enemies;
     public CombatBackgroundTypes combatBackgroundType = CombatBackgroundTypes.FOREST;
     bool hasTriggered = false;
@@ -37,6 +37,7 @@ public class Enemy_Pop_Dialogue : MonoBehaviour
     private void Start()
     {
         Dialogue_Manager.Instance.onDialogueEnd += dialougueEnded;
+        CombatEnemyManager.Instance.OnCombatEnd += dialougueEnded2;
     }
     void dialougueEnded(GameObject user)
     {
@@ -47,16 +48,20 @@ public class Enemy_Pop_Dialogue : MonoBehaviour
                 initiateCombat();
                 hasTriggered = true;
             }
-            else
+            else if (switchConvo) 
             {
-                if (!switchConvo) CombatWon();
-                else
-                {
-                    Death();
-                }
+                Death();
             }
         }
-        void CombatWon()
+    }
+    void dialougueEnded2(bool s) 
+    {
+        if (s)
+        {
+            if (!switchConvo) CombatWon();
+        }
+    }
+    void CombatWon()
         {
             Dialogue_Manager.Instance.InitializeConversation(conversation2, gameObject);
             switchConvo = true;
@@ -75,4 +80,3 @@ public class Enemy_Pop_Dialogue : MonoBehaviour
             Load_UI.Instance.levelPanel.GetComponent<Level_UI_Manager>().UpdateUI();
         }
     }
-}

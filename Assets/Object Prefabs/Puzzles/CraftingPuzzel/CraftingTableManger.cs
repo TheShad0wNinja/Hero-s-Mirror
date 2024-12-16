@@ -129,7 +129,7 @@ public class CraftingTableManager : MonoBehaviour
     }
     public void SwitchScenes()
     {
-        SceneManager.LoadScene(0); // Loads the scene at index 0 in Build Settings
+        SceneManager.UnloadSceneAsync("Dungeon level");
     }
 
 

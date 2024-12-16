@@ -7,7 +7,7 @@ public class MeleeAndEffectSkill : SkillSO
     [SerializeField] int damageAmount;
     protected override void Execute(Unit owner, Unit target)
     {
-        int dmg = owner.CritChance <= Random.Range(0, 1f) ? Mathf.RoundToInt(damageAmount * owner.AttackBonus * 1.2f) : Mathf.RoundToInt(damageAmount * owner.AttackBonus);
+        int dmg = owner.CritChance <= Random.Range(0, 1f) ? Mathf.RoundToInt(damageAmount + (damageAmount * owner.AttackBonus * 1.2f)) : Mathf.RoundToInt(damageAmount + (damageAmount * owner.AttackBonus));
         ActionQueueManager.EnqueueDamageAction(owner, target, dmg);
         ActionQueueManager.EnqueueStatusEffectAction(target, new(statusEffect));
     }

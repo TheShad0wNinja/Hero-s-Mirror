@@ -18,6 +18,7 @@ public class UI_Behaviour_Manager : MonoBehaviour
 
     public int gold = 10000;
 
+    public int count = 0;
     private void Awake()
     {
         if (Instance == null)

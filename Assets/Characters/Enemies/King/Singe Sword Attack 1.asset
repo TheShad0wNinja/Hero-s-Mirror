@@ -16,8 +16,9 @@ MonoBehaviour:
   numberOfTargets: 1
   sprite: {fileID: 0}
   skillName: Sword Attack
+  description: 
   animationName: Attack
   hasEarlyAnimationFinish: 1
   isOffensive: 1
-  manaCost: 2
+  manaCost: 0
   damage: 5

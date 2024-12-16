@@ -181,7 +181,7 @@ TextureImporter:
         width: 32
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,6 +189,48 @@ TextureImporter:
       bones: []
       spriteID: 7001de0cc96c4a141b18e0a46f201e11
       internalID: -605477804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FG_Cellar_C_4
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 0
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cb1962d2a32e414e861a37635cc90c7
+      internalID: -1572180326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FG_Cellar_C_5
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 33
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f53fc31b9c645a54485acbbd474b35ca
+      internalID: 716241962
       vertices: []
       indices: 
       edges: []
@@ -208,6 +250,8 @@ TextureImporter:
       FG_Cellar_C_1: -1028001377
       FG_Cellar_C_2: 1572057127
       FG_Cellar_C_3: -605477804
+      FG_Cellar_C_4: -1572180326
+      FG_Cellar_C_5: 716241962
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

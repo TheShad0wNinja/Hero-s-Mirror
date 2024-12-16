@@ -22,11 +22,12 @@ public class Drag_Camera : MonoBehaviour
     private bool hasReachedStart = false;
     private bool zoomOut = false;
     private string locationName = "Village";
-    private int locationsUnlocked = 3;
+    private int locationsUnlocked;
     [SerializeField] GameObject unitAssemblyPanel;
 
     private void Start()
     {
+        locationsUnlocked = UI_Behaviour_Manager.Instance.count;
         Transform initialLocation = locations[0];
         targetStartPosition = new Vector3(initialLocation.position.x, initialLocation.position.y, -10);
         transform.position = new Vector3(initialLocation.position.x, initialLocation.position.y, targetStartPosition.z);
@@ -39,6 +40,7 @@ public class Drag_Camera : MonoBehaviour
 
     public void TransferRevision(Transform newLocation, string newLocationName)
     {
+        locationsUnlocked = UI_Behaviour_Manager.Instance.count;
         for (int i = 0; i <= locationsUnlocked; i++)
         {
             if (locations[i] == newLocation)

@@ -10,6 +10,8 @@ public class SpikeScript : MonoBehaviour
     UI_Behaviour_Manager inventoryManager;
     [SerializeField] int leastDamage = 1;
     [SerializeField] int MaxDamage = 10;
+    Audio_Manager audioManager;
+    AudioClip audioClip;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -17,6 +19,8 @@ public class SpikeScript : MonoBehaviour
 
     private void Start()
     {
+        audioManager = FindObjectOfType<Audio_Manager>();
+        audioClip = Resources.Load<AudioClip>("spikeSound");
         inventoryManager = UI_Behaviour_Manager.Instance;
         StartCoroutine(ActivateTrap());
     }
@@ -27,6 +31,7 @@ public class SpikeScript : MonoBehaviour
         {
         anim.SetBool("activated", true);
         GetComponent<Collider2D>().enabled = true;
+        audioManager.PlaySFX(audioClip);
         yield return new WaitForSeconds(activationTime);
         GetComponent<Collider2D>().enabled = false;
         anim.SetBool("activated", false);

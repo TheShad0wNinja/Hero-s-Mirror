@@ -20,7 +20,7 @@ public class Scene_Manager : MonoBehaviour
 
     void Start()
     {
-        audio_Manager = FindObjectOfType<Audio_Manager>();
+        audio_Manager = Audio_Manager.instance;
 
     }
 
@@ -156,7 +156,7 @@ public class Scene_Manager : MonoBehaviour
         Debug.Log("Loaded: " + scene.name);
 
         // Load the background music, ensuring the file is in Resources/forest.wav (without extension in the path)
-
+/*
         switch (scene.name)
         {
             case "HomeBase_Old_Combat":
@@ -218,6 +218,7 @@ public class Scene_Manager : MonoBehaviour
             default:
                 break;
         }
+*/
 
         if (mode == LoadSceneMode.Single)
 

@@ -16,6 +16,11 @@ MonoBehaviour:
   numberOfTargets: 1
   sprite: {fileID: 21300000, guid: 16494e1282dc64011b30a18226e6a26a, type: 3}
   skillName: Warden's Blessing
+  description: Shehawyn Grants all allies a powerful shield that lasts until the
+    end of combat. The shield absorbs damage but can be destroyed if it takes too
+    much damage
   animationName: 
+  hasEarlyAnimationFinish: 0
   isOffensive: 0
+  manaCost: 1
   buffEffect: {fileID: 11400000, guid: 067aa6edd5e394a14a85f45955e687a2, type: 2}

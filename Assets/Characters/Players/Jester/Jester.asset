@@ -12,14 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
   m_Name: Jester
   m_EditorClassIdentifier: 
-  unitName: Jester The Jester
-  sprite: {fileID: 21300000, guid: 6f7a2c5a89e7e42e286af5fe4a3c0dba, type: 3}
+  name: Jester The Jester
+  description: "Jester The Jester was once a jester in a noble\u2019s court, where
+    his quick wit and charm kept the lord\u2019s spirits high. But a cruel twist
+    of fate left him homeless after the lord\u2019s sudden death, with the court
+    dissolving and his life thrown into uncertainty. Now, wandering the land, Jester
+    uses his talents to aid those in need, relying on chance to guide his survival.
+    His ability to bring joy or despair depends on the whims of fate, and he clings
+    to the hope that, someday, his luck will turn and offer him a purpose once more. "
+  pixelArt: {fileID: 1163319929, guid: b5dbb5420ba9849c6a2cfdb5ce70c9e9, type: 3}
+  portrait: {fileID: 21300000, guid: 36dcaa20a8df74a02beea7745ca46a48, type: 3}
   flipped: 1
+  rarity: 1
   isEnemy: 0
-  baseMana: 0
-  maxMana: 0
-  baseHealth: 0
-  maxHealth: 0
-  baseShield: 0
-  baseAttackBonus: 1
-  baseCritChance: 0.1
+  health: 10
+  healthRegenerationRate: 1
+  mana: 20
+  manaRegenrationRate: 2
+  shield: 0
+  attackBonus: 100
+  baseCritChance: 0
+  hasHitAnimation: 0

@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0687417656bf548c69e0b9924b71c6b1, type: 3}
   m_Name: Cain's Slash and Stab
   m_EditorClassIdentifier: 
-  targetType: 8
+  targetType: 7
   numberOfTargets: 2
-  sprite: {fileID: 21300000, guid: 98a796f0fff51443593b4d0f21a79e35, type: 3}
+  sprite: {fileID: 21300000, guid: 22621d4ff885a4aeba1e44a26c86d465, type: 3}
   skillName: Slash and Stab
+  description: A sword slash that causes the target to bleed.
   animationName: attack
+  hasEarlyAnimationFinish: 0
   isOffensive: 1
-  statusEffectSO: {fileID: 11400000, guid: 16dcb83a3b7b64f6784547447fafcdf5, type: 2}
+  manaCost: 2
+  statusEffectSO: {fileID: 11400000, guid: d18b9c1db86494db58cd847df4821a08, type: 2}

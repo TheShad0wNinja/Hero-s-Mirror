@@ -16,6 +16,10 @@ MonoBehaviour:
   numberOfTargets: 1
   sprite: {fileID: 21300000, guid: 8a274307bd4154a9789ca0e42a8c1c18, type: 3}
   skillName: Purifying Light
+  description: Shehawyn removes debuffs from all allies and heals a small amount
+    of health.
   animationName: 
+  hasEarlyAnimationFinish: 0
   isOffensive: 0
-  healAmount: 2
+  manaCost: 3
+  healAmount: 4

@@ -9,38 +9,64 @@ public class CombatUIManager : MonoBehaviour
 {
     public GameObject hoverSelector;
     public GameObject selectSelector;
-    public TextMeshProUGUI notifactionText;
-    public Canvas canvas;
+    // public TextMeshProUGUI notifactionText;
     public Canvas selectorCanvas;
     public TextMeshProUGUI currentTurnText;
     public TextMeshProUGUI currentRoundText;
     public CombatUIChannel uiChannel;
-    public MouseChannel mouseChannel;
-    public CombatEvent combatEvent;
-
-    public ProgressBarController healthBar;
-    public ProgressBarController manaBar;
 
     List<GameObject> currentSelectors = new();
     GameObject currentHoverSelector;
 
-    void Start()
+    public void StartCombatUI()
     {
         SetupEvents();
     }
 
-    void SetupEvents()
+    void OnDisable()
     {
-        CombatEvent.Instance.UnitDamage += TriggerDamageEffect;
-        CombatEvent.Instance.UnitHeal += TriggerHealEffect;
-        CombatEvent.Instance.UnitShieldDamage += TriggerDamageEffect;
-        CombatEvent.Instance.SkillPerformed += TriggerSkillEffect;
-        CombatEvent.Instance.UnitStatusEffect += TriggerStatusEffectEffect;
-        CombatEvent.Instance.UnitDeath += TriggerDeathEffect;
+        RemoveEvents();
+    }
+
+    void RemoveEvents()
+    {
+        // CombatEvent.Instance.UnitDamage -= TriggerDamageEffect;
+        // CombatEvent.Instance.UnitHeal -= TriggerHealEffect;
+        // CombatEvent.Instance.UnitShieldDamage -= TriggerDamageEffect;
+        // CombatEvent.Instance.SkillPerformed -= TriggerSkillEffect;
+        // CombatEvent.Instance.UnitStatusEffect -= TriggerStatusEffectEffect;
+        // CombatEvent.Instance.UnitDeath -= TriggerDeathEffect;
 
         if (uiChannel != null)
         {
-            uiChannel.NewTurn += HandleNewTurn;            
+            uiChannel.NewTurn -= HandleNewTurn;
+
+            uiChannel.TurnChanged -= HandleTurnChange;
+
+            uiChannel.UnitHovered -= HandleUnitHover;
+            uiChannel.UnitSelected -= HandleUnitSelect;
+            uiChannel.RemoveSelectors -= RemoveAllSelectors;
+        }
+
+        if (MouseManager.Instance != null)
+        {
+            MouseManager.Instance.OnUnitUnhover -= HandleUnitUnhover;
+        }
+
+    }
+
+    void SetupEvents()
+    {
+        // CombatEvent.Instance.UnitDamage += TriggerDamageEffect;
+        // CombatEvent.Instance.UnitHeal += TriggerHealEffect;
+        // CombatEvent.Instance.UnitShieldDamage += TriggerDamageEffect;
+        // CombatEvent.Instance.SkillPerformed += TriggerSkillEffect;
+        // CombatEvent.Instance.UnitStatusEffect += TriggerStatusEffectEffect;
+        // CombatEvent.Instance.UnitDeath += TriggerDeathEffect;
+
+        if (uiChannel != null)
+        {
+            uiChannel.NewTurn += HandleNewTurn;
 
             uiChannel.TurnChanged += HandleTurnChange;
 
@@ -49,12 +75,13 @@ public class CombatUIManager : MonoBehaviour
             uiChannel.RemoveSelectors += RemoveAllSelectors;
         }
 
-        if (mouseChannel != null)
+        if (MouseManager.Instance != null)
         {
-            mouseChannel.OnUnitUnhover += HandleUnitUnhover;
+            MouseManager.Instance.OnUnitUnhover += HandleUnitUnhover;
         }
 
     }
+
 
     void HandleNewTurn(int currentRound)
     {
@@ -114,6 +141,7 @@ public class CombatUIManager : MonoBehaviour
 
     private void HandleUnitHover(Unit unit)
     {
+        RemoveHoverSelector();
         CreateUnitSelector(unit, true);
     }
 
@@ -183,48 +211,48 @@ public class CombatUIManager : MonoBehaviour
     // }
 
 
-    private void TriggerStatusEffectEffect(Unit arg0, StatusEffect arg1, StatusEffectAction.ActionType actionType)
-    {
-        CreateText(arg0.transform.position + Vector3.up * 3, $"{arg0.name} inflicted with {arg1.name} [{actionType}]", 2f);
-    }
+    // private void TriggerStatusEffectEffect(Unit arg0, StatusEffect arg1, StatusEffectAction.ActionType actionType)
+    // {
+    //     CreateText(arg0.transform.position + Vector3.up * 3, $"{arg0.name} inflicted with {arg1.name} [{actionType}]", 2f);
+    // }
 
-    void TriggerSkillEffect(Unit attacker, SkillSO skill, Unit target)
-    {
-        CreateText(attacker.transform.position, $"{skill.name}", 1f);
-    }
+    // void TriggerSkillEffect(Unit attacker, SkillSO skill, Unit target)
+    // {
+    //     CreateText(attacker.transform.position, $"{skill.name}", 1f);
+    // }
 
-    void TriggerDamageEffect(Unit unit, int damage)
-    {
-        CreateText(unit.transform.position + Vector3.down * 1, $"Health -{damage}", 1.5f);
-    }
+    // void TriggerDamageEffect(Unit unit, int damage)
+    // {
+    //     CreateText(unit.transform.position + Vector3.down * 1, $"Health -{damage}", 1.5f);
+    // }
 
-    void TriggerHealEffect(Unit unit, int damage)
-    {
-        CreateText(unit.transform.position + Vector3.down * 1, $"Health +{damage}", 1.5f);
-    }
+    // void TriggerHealEffect(Unit unit, int damage)
+    // {
+    //     CreateText(unit.transform.position + Vector3.down * 1, $"Health +{damage}", 1.5f);
+    // }
 
-    void TriggerShieldDamageEffect(Unit unit, int damage)
-    {
-        CreateText(unit.transform.position + Vector3.up * 1, $"Shield -{damage}", 1.5f);
-    }
+    // void TriggerShieldDamageEffect(Unit unit, int damage)
+    // {
+    //     CreateText(unit.transform.position + Vector3.up * 1, $"Shield -{damage}", 1.5f);
+    // }
 
-    private void TriggerDeathEffect(Unit arg0, Unit arg1)
-    {
-        CreateText(arg1.transform.position + Vector3.down * 3, $"{arg1.name} Died", 3f);
-    }
+    // private void TriggerDeathEffect(Unit arg0, Unit arg1)
+    // {
+    //     CreateText(arg1.transform.position + Vector3.down * 3, $"{arg1.name} Died", 3f);
+    // }
 
-    void CreateText(Vector3 position, string text, float duration)
-    {
-        var a = Instantiate(notifactionText, canvas.transform);
-        a.transform.position = Camera.main.WorldToScreenPoint(position);
-        a.text = text;
-        StartCoroutine(RemoveAfterX(a, duration));
-    }
+    // void CreateText(Vector3 position, string text, float duration)
+    // {
+    //     var a = Instantiate(notifactionText, selectorCanvas.transform);
+    //     a.transform.position = Camera.main.WorldToScreenPoint(position);
+    //     a.text = text;
+    //     StartCoroutine(RemoveAfterX(a, duration));
+    // }
 
-    IEnumerator RemoveAfterX(TextMeshProUGUI a, float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        Destroy(a.gameObject);
-        yield return null;
-    }
+    // IEnumerator RemoveAfterX(TextMeshProUGUI a, float seconds)
+    // {
+    //     yield return new WaitForSeconds(seconds);
+    //     Destroy(a.gameObject);
+    //     yield return null;
+    // }
 }

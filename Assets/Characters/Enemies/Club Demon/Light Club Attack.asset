@@ -16,7 +16,9 @@ MonoBehaviour:
   numberOfTargets: 1
   sprite: {fileID: 0}
   skillName: Light Club Attack
+  description: 
   animationName: Attack_Alt
+  hasEarlyAnimationFinish: 1
   isOffensive: 1
-  manaCost: 1
+  manaCost: 2
   damage: 2

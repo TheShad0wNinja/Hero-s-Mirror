@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Combat Event", fileName = "Combat Event")]
+[CreateAssetMenu(menuName = "Events/Combat Event", fileName = "Combat Event")]
 public class CombatEvent : ScriptableObject
 {
     public UnityAction<Unit, Unit> UnitDeath;

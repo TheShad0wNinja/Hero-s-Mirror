@@ -5,19 +5,26 @@ using UnityEngine;
 
 public class EnemyBrain : MonoBehaviour
 {
-    void Start()
+    void OnEnable()
     {
         if (CombatEvent.Instance != null)
         {
-            Debug.Log("ALLO");
-            CombatEvent.Instance.TurnChanged = HandleTurnChange;
+            CombatEvent.Instance.TurnChanged += HandleTurnChange;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (CombatEvent.Instance != null)
+        {
+            CombatEvent.Instance.TurnChanged += HandleTurnChange;
         }
     }
 
     private void HandleTurnChange(CombatManager cm)
     {
-        Debug.Log("LIGMA: " + cm.turnState);
-        switch (cm.turnState)
+        Debug.Log("LIGMA: " + cm.CurrTurnState);
+        switch (cm.CurrTurnState)
         {
             case TurnState.ENEMY_TURN:
                 HandleEnemyTurnStart(cm);
@@ -65,7 +72,7 @@ public class EnemyBrain : MonoBehaviour
 
     private void HandleEnemySkillSelection(CombatManager cm)
     {
-        var availableSkills = cm.selectedUnit.skills;
+        var availableSkills = cm.selectedUnit.skills.FindAll(s => s.manaCost <= cm.selectedUnit.CurrentMana);
         var randIdx = UnityEngine.Random.Range(0, availableSkills.Count);
         cm.HandleSkillSelected(availableSkills[randIdx]);
     }

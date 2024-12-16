@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetType: 1
   numberOfTargets: 1
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: bc06e6dc0f7454b6a816aca50a18e8e5, type: 3}
   skillName: Twisted Fate
+  description: Jester uses magic with a 50% chance to fully heal all allies or a
+    50% chance to inflict a harmful debuff on his team
   animationName: 
+  hasEarlyAnimationFinish: 0
   isOffensive: 1
+  manaCost: 1
   positiveSkill: {fileID: 11400000, guid: 61bc9870838134d15934ade61081af9e, type: 2}
   negativeSkill: {fileID: 11400000, guid: a0f5d7e2d1e2742a0af6bdcf2abb7c2b, type: 2}
   probability: 0.5

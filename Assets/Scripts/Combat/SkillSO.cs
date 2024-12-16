@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public enum TargetType
     ENEMY_UNIT_SINGLE,
     ENEMY_UNIT_MULTIPLE,
     ENEMY_UNIT_ALL,
+    SKIP,
 }
 
 public abstract class SkillSO : ScriptableObject
@@ -21,7 +23,9 @@ public abstract class SkillSO : ScriptableObject
     public int numberOfTargets = 1;
     public Sprite sprite;
     public string skillName;
+    public string description;
     public string animationName;
+    public bool hasEarlyAnimationFinish;
     public bool isOffensive = true;
     public int manaCost = 1;
     public void ExecuteSkill(Unit owner, params Unit[] targets)
@@ -34,6 +38,7 @@ public abstract class SkillSO : ScriptableObject
 
         foreach (Unit target in targets)
         {
+            owner.ConsumeMana(manaCost);
             Execute(owner, target);
             CombatEvent.OnSkillPerformed(owner, this, target);
         }

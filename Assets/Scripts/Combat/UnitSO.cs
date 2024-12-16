@@ -9,6 +9,7 @@ public class UnitSO : ScriptableObject
     public new string name;
     public string description;
     public Sprite pixelArt;
+    public Sprite portrait;
     public bool flipped;
     public rarityEnum rarity;
     public bool isEnemy;

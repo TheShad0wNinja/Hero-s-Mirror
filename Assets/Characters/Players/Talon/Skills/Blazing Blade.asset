@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetType: 7
   numberOfTargets: 1
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c7e5f9185e4a344b8b336ed2b2f6459c, type: 3}
   skillName: Blazing Blade
+  description: Talon throws a sharp knife at a single enemy, dealing light damage.
   animationName: Attack
+  hasEarlyAnimationFinish: 0
   isOffensive: 1
+  manaCost: 1
   statusEffect: {fileID: 11400000, guid: 61cd5edc10ab6420b9c6a45d034c4ae5, type: 2}
   damageAmount: 4

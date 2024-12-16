@@ -47,7 +47,7 @@ public class PlayerMovementController : MonoBehaviour
             _anim.Play("idleLeft");
         else if (_prevInput.y > 0)
             _anim.Play("idleUp");
-        else 
+        else if (_prevInput.y < 0)
             _anim.Play("idleDown");
     }
 

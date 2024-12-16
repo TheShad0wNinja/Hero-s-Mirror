@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4743843922499864993}
   - component: {fileID: 8241154884972393499}
-  - component: {fileID: 4349914319653030701}
-  - component: {fileID: 7144936646329133973}
+  - component: {fileID: 3482849463557460860}
+  - component: {fileID: 5183923925911094033}
+  - component: {fileID: 5680187984802112821}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 241.00896, y: -17, z: -0.024590962}
-  m_LocalScale: {x: 12.1122265, y: 11.868504, z: 1}
+  m_LocalScale: {x: 1.063841, y: 1.0424343, z: 0.087832}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,39 +73,43 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8685f8cf5370c9844a2c5849e156b74b, type: 3}
-  m_Color: {r: 1, g: 0.040440213, b: 0, a: 1}
+  m_SortingLayerID: 1639048971
+  m_SortingLayer: 2
+  m_SortingOrder: 4325
+  m_Sprite: {fileID: -20749332, guid: 7c02f755f71cd487d979c528a7229baa, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4349914319653030701
-MonoBehaviour:
+--- !u!95 &3482849463557460860
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577743692341465108}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54904951d6c68664a8ddbe6ca5544ab0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conversation1: {fileID: 11400000, guid: fed281ca84610e24bb678ec0716d0cff, type: 2}
-  conversation2: {fileID: 11400000, guid: 2499df5d2a29d40408298f100b673c6a, type: 2}
-  deathParticles: {fileID: 7335039563483120742, guid: 0dafafd4907c25c4790709fde1b6e632, type: 3}
-  xp: 100
-  gold: 200
---- !u!58 &7144936646329133973
-CircleCollider2D:
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d640c1cc54cc84a79b64938b7df0c77f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &5183923925911094033
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -132,9 +137,27 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.002064786, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.17072876
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 3.77, y: 2.39}
+  m_Direction: 1
+--- !u!114 &5680187984802112821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577743692341465108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433d79d18cc1cda42a7c7818ff0030bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conversation1: {fileID: 0}
+  conversation2: {fileID: 0}
+  deathParticles: {fileID: 7335039563483120742, guid: 0dafafd4907c25c4790709fde1b6e632, type: 3}
+  gold: 100
+  enemies: []
+  combatBackgroundType: 0

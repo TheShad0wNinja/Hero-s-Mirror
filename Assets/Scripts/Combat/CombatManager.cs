@@ -188,7 +188,9 @@ public class CombatManager : MonoBehaviour
 
     private void HandleGameEnd()
     {
+        var playerWon = playerUnits.Count > 0;
         CombatEnemyManager.Instance.ClearEnemyList();
+        CombatEnemyManager.Instance.OnCombatEnd(playerWon);
         playerUnits.Clear();
         enemyUnits.Clear();
         Scene_Manager.Instance.GoToPreviousSceneAdditive();

@@ -203,7 +203,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1bd15a7cee4e34fddadecd4e22790547, type: 2}
   - {fileID: 11400000, guid: aac84076717074a5f9efbc6c242590e6, type: 2}
   - {fileID: 11400000, guid: 7973ba67422eb4d2a844fac1a78e50be, type: 2}
-  - {fileID: 11400000, guid: 70aef33852eb04727baf3d34a4ce628a, type: 2}
   passives: []
   activeEffects: []
   rangedAttackSpawn: {fileID: 9065537754072419826}

@@ -20,5 +20,5 @@ MonoBehaviour:
   animationName: Attack_Alt
   hasEarlyAnimationFinish: 1
   isOffensive: 1
-  manaCost: 2
+  manaCost: 0
   damage: 2

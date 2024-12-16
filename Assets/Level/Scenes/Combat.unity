@@ -943,7 +943,7 @@ MonoBehaviour:
   enemyInfoPrefab: {fileID: 5275182745808814165, guid: 77d57acaf86b34a6c9c1eba8778e97b1, type: 3}
   enemyListPanel: {fileID: 1767336746}
   portrait: {fileID: 170114541}
-  defaultPortrait: {fileID: 21300000, guid: 99c0e7f9e43ab4ebc971a32ea1edb63a, type: 3}
+  defaultPortrait: {fileID: 21300000, guid: 2e23ab0ab0326469b8187f4accde0644, type: 3}
   potionItemPrefab: {fileID: 6660589799843262561, guid: 84ddadfc21742414caf4d9bacf85d9b4, type: 3}
   potionList: {fileID: 809255041}
   statusEffectManager: {fileID: 637844249}

@@ -108,6 +108,13 @@ public class LeverPuzzle : MonoBehaviour
 
     private void OnPuzzleSolved()
     {
-        FindObjectOfType<PuzzleDoor>().UnlockDoorPuzzle();
+        if (FindObjectOfType<PuzzleDoor>() == true)
+        {
+            FindObjectOfType<PuzzleDoor>().UnlockDoorPuzzle();
+        }
+        else 
+        {
+            FindObjectOfType<DoorScript>().UnlockDoorPuzzle();
+        }
     }
 }

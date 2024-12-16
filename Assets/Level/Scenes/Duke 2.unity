@@ -15566,8 +15566,12 @@ PrefabInstance:
       value: 0.0063939095
       objectReference: {fileID: 0}
     - target: {fileID: 6878773593659811933, guid: 3446a3050871d8b4599a76417e1eecbd, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.9375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878773593659811933, guid: 3446a3050871d8b4599a76417e1eecbd, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.65625
+      value: 0.90625
       objectReference: {fileID: 0}
     - target: {fileID: 8459959918735494766, guid: 3446a3050871d8b4599a76417e1eecbd, type: 3}
       propertyPath: openDoor
@@ -15577,7 +15581,8 @@ PrefabInstance:
       propertyPath: sceneName
       value: Duke 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8914571571629451744, guid: 3446a3050871d8b4599a76417e1eecbd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -15695,6 +15700,7 @@ MonoBehaviour:
   ownedItemsStats: []
   defaultCharacter: {fileID: 11400000, guid: e72a82910a6c842e79c59ae141ae9ef7, type: 2}
   gold: 10000
+  count: 0
 --- !u!1001 &611750408
 PrefabInstance:
   m_ObjectHideFlags: 0

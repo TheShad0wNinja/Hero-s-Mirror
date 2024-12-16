@@ -38,6 +38,7 @@ public class DoorScript : MonoBehaviour
                 GetComponent<BoxCollider2D>().enabled = false;
                 if (sceneName == "")
                 {
+                    UI_Behaviour_Manager.Instance.count++;
                     Scene_Manager.Instance.GoToHomebaseOrigin();
                 }
                 else 

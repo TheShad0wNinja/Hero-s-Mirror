@@ -43,12 +43,13 @@ public class Enemy_Pop_Dialogue : MonoBehaviour
     {
         if (gameObject == user)
         {
-            if (!hasTriggered)
+            if (switchConvo == false)
             {
                 initiateCombat();
                 hasTriggered = true;
+                this.GetComponent<CapsuleCollider2D>().enabled = false;
             }
-            else if (switchConvo) 
+            else
             {
                 Death();
             }
@@ -56,9 +57,12 @@ public class Enemy_Pop_Dialogue : MonoBehaviour
     }
     void dialougueEnded2(bool s) 
     {
-        if (s)
+        if (s && hasTriggered)
         {
-            if (!switchConvo) CombatWon();
+            print("end1");
+            CombatEnemyManager.Instance.OnCombatEnd -= dialougueEnded2;
+            switchConvo = true;
+            Invoke("CombatWon",0.5f);
         }
     }
     void CombatWon()
@@ -72,7 +76,7 @@ public class Enemy_Pop_Dialogue : MonoBehaviour
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             Reward();
             Dialogue_Manager.Instance.onDialogueEnd -= dialougueEnded;
-            Destroy(gameObject);
+        Destroy(this.gameObject);
         }
         void Reward()
         {

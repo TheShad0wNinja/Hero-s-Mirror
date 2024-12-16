@@ -6,6 +6,7 @@ public class Next_Level_Door : MonoBehaviour
 {
     [SerializeField] Sprite openDoor;
     SpriteRenderer spriteRenderer;
+    public string sceneName = "";
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +17,13 @@ public class Next_Level_Door : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
+            if (sceneName == "")
+            {
+
+            }
             spriteRenderer.sprite = openDoor;
             GetComponent<BoxCollider2D>().enabled = false;
+            Scene_Manager.Instance.ChangeScene(sceneName);
         }
     }
 }

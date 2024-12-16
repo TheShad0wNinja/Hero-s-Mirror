@@ -36,14 +36,14 @@ public class Audio_Manager : MonoBehaviour
         }
     }
 
-    public void PlayMusic(AudioClip musicClip, float volume = 1.0f)
+    public void PlayMusic(AudioClip musicClip, float volume = 0.1f)
     {
         musicSource.clip = musicClip;
         musicSource.volume = volume;
         musicSource.Play();
     }
 
-    public void PlaySFX(AudioClip sfxClip, float volume = 1.0f, float minPitch = 0.9f, float maxPitch = 1.1f)
+    public void PlaySFX(AudioClip sfxClip, float volume = 0.1f, float minPitch = 0.9f, float maxPitch = 1.1f)
     {
         // Set the audio source to the current index, set the clip and volume, and play it
         sfxSources[currentAudioSourceIndex].pitch = Random.Range(minPitch, maxPitch);

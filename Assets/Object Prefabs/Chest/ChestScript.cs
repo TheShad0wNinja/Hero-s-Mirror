@@ -12,16 +12,24 @@ public class ChestScript : MonoBehaviour
     private GameObject textBubbleInstance;
     bool isRewardGiven = false;
     public bool canOpen = true;
+    Audio_Manager audioManager;
+    AudioClip audioClip;
+
+
 
     private void Awake()
     {
+        audioManager = FindObjectOfType<Audio_Manager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioClip = Resources.Load<AudioClip>("ChestOpen");
+        Debug.Log(audioClip);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !isRewardGiven && canOpen)
         {
+            audioManager.PlaySFX(audioClip);
             spriteRenderer.sprite = spriteAfter;
             GiveReward();
             textBubbleInstance = Instantiate(textBubblePrefab, transform.position + Vector3.up, Quaternion.identity);

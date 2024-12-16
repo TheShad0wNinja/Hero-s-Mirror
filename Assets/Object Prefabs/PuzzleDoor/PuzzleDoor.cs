@@ -12,9 +12,13 @@ public class PuzzleDoor : MonoBehaviour
 
     [SerializeField] private GameObject textBubblePrefab;
     private GameObject textBubbleInstance;
+    Audio_Manager audioManager;
+    AudioClip audioClip;
 
     void Start()
     {
+        audioManager = FindObjectOfType<Audio_Manager>();
+        audioClip = Resources.Load<AudioClip>("DoorOpen");
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -32,6 +36,7 @@ public class PuzzleDoor : MonoBehaviour
         {
             if (canOpenKey && canOpenPuzzle)
             {
+                audioManager.PlaySFX(audioClip);
                 spriteRenderer.sprite = openDoor;
                 GetComponent<BoxCollider2D>().enabled = false;
             }

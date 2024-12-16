@@ -4,12 +4,18 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 2f;
+    [SerializeField] float audioCooldown = 0.5f;
     Vector2 _movementInput;
     Vector2 _prevInput;
     Rigidbody2D _rb;
     Animator _anim;
+    Audio_Manager audioManager;
+    AudioClip audioClip;
+    float lastAudioTime;
     void Awake()
     {
+        audioManager = FindObjectOfType<Audio_Manager>();
+        audioClip = Resources.Load<AudioClip>("PlayerMove");
         _rb = GetComponent<Rigidbody2D>();    
         _anim = GetComponentInChildren<Animator>();
     }
@@ -17,11 +23,17 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         GetKeyInput();        
     }
 
     void FixedUpdate()
     {
+        if (_movementInput != Vector2.zero && Time.time >= lastAudioTime + audioCooldown)
+        {
+            audioManager.PlaySFX(audioClip);
+            lastAudioTime = Time.time;
+        }
         Move();
     }
 

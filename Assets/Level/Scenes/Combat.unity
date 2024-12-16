@@ -879,9 +879,9 @@ GameObject:
   m_Component:
   - component: {fileID: 637844246}
   - component: {fileID: 637844245}
-  - component: {fileID: 637844247}
   - component: {fileID: 637844248}
   - component: {fileID: 637844249}
+  - component: {fileID: 637844250}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -922,31 +922,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2058065444}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &637844247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 637844244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9b8aec99a1f4d9b8a1714d64fd34c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiChannel: {fileID: 11400000, guid: 1d068324b7dd146058c9f6638c6e70a6, type: 2}
-  unitNameText: {fileID: 1908045424}
-  skillBoxPrefap: {fileID: 6660589799843262561, guid: 8d70640a4e9d842429244ed866680287, type: 3}
-  skillsPanel: {fileID: 365286956}
-  healthBar: {fileID: 1021910574}
-  manaBar: {fileID: 454856517}
-  enemyInfoPrefab: {fileID: 5275182745808814165, guid: 77d57acaf86b34a6c9c1eba8778e97b1, type: 3}
-  enemyListPanel: {fileID: 1767336746}
-  portrait: {fileID: 170114541}
-  defaultPortrait: {fileID: 21300000, guid: 2e23ab0ab0326469b8187f4accde0644, type: 3}
-  potionItemPrefab: {fileID: 6660589799843262561, guid: 84ddadfc21742414caf4d9bacf85d9b4, type: 3}
-  potionList: {fileID: 809255041}
-  statusEffectManager: {fileID: 637844249}
 --- !u!114 &637844248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,7 +931,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 637844244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40fee6dcdb6b24cb2a5e1a6ee6c7868a, type: 3}
+  m_Script: {fileID: 11500000, guid: bbc3e67904036437d8e08faa9cb7ebd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCamera: {fileID: 1537319832}
@@ -988,6 +963,31 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 0c77c50a84b4240e1890200f9e9eff5a, type: 3}
   statusEffectList: {fileID: 1029187388}
   statusEffectPrefab: {fileID: 2439485112765635658, guid: ab941dbd6af24455582c7efbdb77c39a, type: 3}
+--- !u!114 &637844250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637844244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c29bbd940284438093126a8e20b675b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiChannel: {fileID: 11400000, guid: 1d068324b7dd146058c9f6638c6e70a6, type: 2}
+  unitNameText: {fileID: 1908045424}
+  skillBoxPrefap: {fileID: 6660589799843262561, guid: 8d70640a4e9d842429244ed866680287, type: 3}
+  skillsPanel: {fileID: 365286956}
+  healthBar: {fileID: 1021910574}
+  manaBar: {fileID: 454856517}
+  enemyInfoPrefab: {fileID: 5275182745808814165, guid: 77d57acaf86b34a6c9c1eba8778e97b1, type: 3}
+  enemyListPanel: {fileID: 1767336746}
+  portrait: {fileID: 170114541}
+  defaultPortrait: {fileID: 0}
+  potionItemPrefab: {fileID: 6660589799843262561, guid: 84ddadfc21742414caf4d9bacf85d9b4, type: 3}
+  potionList: {fileID: 809255041}
+  statusEffectManager: {fileID: 637844249}
 --- !u!1 &701312357
 GameObject:
   m_ObjectHideFlags: 0

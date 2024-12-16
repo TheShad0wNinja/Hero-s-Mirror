@@ -42,8 +42,8 @@ public abstract class Unit : MonoBehaviour
     {
         var stats = character.currentStats;
 
-        CurrentHealth = stats["health"];
-        MaxHealth = CurrentHealth;
+        MaxHealth = stats["health"];
+        CurrentHealth = character.currentHealth;
         HealthRegen = stats["healthRegeneration"];
 
         CurrentMana = stats["mana"];

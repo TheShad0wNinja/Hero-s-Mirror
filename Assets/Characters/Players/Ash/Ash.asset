@@ -12,14 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
   m_Name: Ash
   m_EditorClassIdentifier: 
-  unitName: Ash
-  sprite: {fileID: 21300000, guid: 0178be9df92424873b029c56ed8db385, type: 3}
+  name: Ash
+  description: 'Ash was born in the heart of a volcanic wasteland, where her tribe
+    revered fire as a sacred force. From an early age, she displayed an unnatural
+    connection to flame, earning her both fear and awe. When her village was attacked
+    by an icy invader, Ash unleashed her fiery rage, wielding her sword with blinding
+    speed and summoning the very fire that had protected her people for centuries.
+    Now, as a wandering warrior, she seeks to master her volatile powers, using them
+    to scorch anyone who threatens those she loves. '
+  pixelArt: {fileID: 74685836, guid: 0d448d818f7c44780891df79518d693f, type: 3}
+  portrait: {fileID: 21300000, guid: 4ae782497b94a4719956c5f507d0ca59, type: 3}
   flipped: 1
+  rarity: 1
   isEnemy: 0
-  baseMana: 10
-  maxMana: 10
-  baseHealth: 10
-  maxHealth: 10
-  baseShield: 0
-  baseAttackBonus: 1
-  baseCritChance: 0.1
+  health: 15
+  healthRegenerationRate: 2
+  mana: 10
+  manaRegenrationRate: 2
+  shield: 0
+  attackBonus: 110
+  baseCritChance: 0
+  hasHitAnimation: 0

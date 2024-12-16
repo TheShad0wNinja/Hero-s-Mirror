@@ -24,6 +24,7 @@ public class Enemy_Pop_Dialogue : MonoBehaviour
     }
     void dialougueEnded(GameObject user) 
     {
+        // start combat
         print("dialogue ended");
         print("is user : " + (gameObject == user));
         if (gameObject == user) 

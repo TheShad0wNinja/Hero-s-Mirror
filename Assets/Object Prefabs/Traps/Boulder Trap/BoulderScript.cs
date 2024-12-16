@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class BoulderScript : MonoBehaviour
 {
-    private HeroList heroList;
-    private List<int> heroes;
     [SerializeField] private float pushForce = 10f;
     UI_Behaviour_Manager inventoryManager;
     [SerializeField] int leastDamage = 1;

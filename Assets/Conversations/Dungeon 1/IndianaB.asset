@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c111ec5207f3f47ad8628ea9eb8420, type: 3}
+  m_Name: IndianaB
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - unitImage: {fileID: 21300000, guid: 515c7598409bf6f4aba03b47d41b47bc, type: 3}
+    unitName: Indiana Loans
+    dialogueText: Dungeon walls bring the life out of ya! come around for a tip
+  - unitImage: {fileID: 21300000, guid: 45942da1a2e8f8c4893215f0a4454ef4, type: 3}
+    unitName: Cain
+    dialogueText: Dude where do you come from!

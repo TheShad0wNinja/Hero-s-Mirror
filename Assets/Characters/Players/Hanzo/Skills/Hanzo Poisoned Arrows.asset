@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetType: 7
   numberOfTargets: 1
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 540735d1917d544079b930b0ad018944, type: 3}
   skillName: Poisoned Arrow
+  description: 'Coats arrows with a deadly toxin that deals damage over time, weakening
+    enemies. '
   animationName: Attack
+  hasEarlyAnimationFinish: 0
   isOffensive: 1
+  manaCost: 1
   statusEffect: {fileID: 11400000, guid: 65c32dcd919eb4152ae032722c7e42bf, type: 2}
   damageAmount: 4

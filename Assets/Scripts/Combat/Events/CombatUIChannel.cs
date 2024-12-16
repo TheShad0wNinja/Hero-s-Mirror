@@ -9,14 +9,17 @@ using UnityEngine.Events;
 public class CombatUIChannel : ScriptableObject
 {
     public UnityAction<SkillSO> SkillSelected;
-    public UnityAction<List<SkillSO>> AssignSkills;
+    public UnityAction<Potion> PotionSelected;
     public UnityAction<Unit> AssignStats;
+    public UnityAction<Unit> UpdateStats;
+    public UnityAction<List<Unit>> AssignEnemies;
     public UnityAction<TurnState, List<Unit>> TurnChanged;
     public UnityAction<Unit> UnitSelected;
     public UnityAction<Unit> UnitHovered;
     public UnityAction<int> NewTurn;
-
+    public UnityAction RemoveUnitInfo;
     public UnityAction RemoveSelectors;
+    public UnityAction UpdatePotion;
 
     public void OnSkillSelected(SkillSO skill)
     {
@@ -24,16 +27,20 @@ public class CombatUIChannel : ScriptableObject
         SkillSelected?.Invoke(skill);
     }
 
-    public void OnAssignSkills(List<SkillSO> skills)
+    public void OnPotionSelected(Potion potion)
     {
-        Debug.Log($"ASSIGNING SKILLS");
-        AssignSkills?.Invoke(skills);
+        PotionSelected?.Invoke(potion);
     }
 
     public void OnAssignStats(Unit unit)
     {
         Debug.Log($"ASSIGNING SKILLS");
         AssignStats?.Invoke(unit);
+    }
+
+    public void OnUpdateStats(Unit unit)
+    {
+        UpdateStats?.Invoke(unit);
     }
 
     public void OnTurnChange(TurnState turn,List<Unit> units)
@@ -64,5 +71,20 @@ public class CombatUIChannel : ScriptableObject
     {
         // Debug.Log("OnNewTurn Event Raised");
         NewTurn?.Invoke(roundNumber);
+    }
+
+    public void OnAssignEnemies(List<Unit> enemies)
+    {
+        AssignEnemies?.Invoke(enemies);
+    }
+
+    public void OnRemoveUnitInfo()
+    {
+        RemoveUnitInfo?.Invoke();
+    }
+
+    public void UpdatePotions()
+    {
+        UpdatePotion.Invoke();
     }
 }

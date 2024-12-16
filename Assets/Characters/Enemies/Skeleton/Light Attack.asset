@@ -17,6 +17,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   skillName: Light  Attack
   animationName: Attack
+  hasEarlyAnimationFinish: 1
   isOffensive: 1
   manaCost: 1
   damage: 2

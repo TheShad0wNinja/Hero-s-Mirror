@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
+  m_Name: Shehawyn Shehawyn Starforged
+  m_EditorClassIdentifier: 
+  name: Shehawyn Starforged
+  description: 'He was a Paladin who devoted his entire life to the temple, dedicating
+    his every action to his faith. Having spent most of his years within its hallowed
+    walls, he had never encountered the world beyond, knowing only the fellowship
+    of his fellow knights and the enemies he fought to protect the temple. His existence
+    was one of solitude and duty, bound by sacred oaths and unyielding devotion,
+    with no room for the outside world or its complexities. '
+  pixelArt: {fileID: -472705524, guid: 3f5057e97152b46aaa818ae80c7a9312, type: 3}
+  portrait: {fileID: 21300000, guid: c1fff7de9da03465faff3025d64a5362, type: 3}
+  flipped: 1
+  rarity: 1
+  isEnemy: 0
+  health: 30
+  healthRegenerationRate: 4
+  mana: 10
+  manaRegenrationRate: 2
+  shield: 10
+  attackBonus: 100
+  baseCritChance: 0
+  hasHitAnimation: 0

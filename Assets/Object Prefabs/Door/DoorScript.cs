@@ -68,6 +68,10 @@ public class DoorScript : MonoBehaviour
     }
     void InstantiateBubble(string input) 
     {
+        if(textBubbleInstance != null)
+        {
+            Destroy(textBubbleInstance);
+        }
         textBubbleInstance = Instantiate(textBubblePrefab, transform.position + Vector3.up, Quaternion.identity);
         textBubbleInstance.GetComponentInChildren<TextMeshPro>().text = input;
         textBubbleInstance.transform.SetParent(transform);

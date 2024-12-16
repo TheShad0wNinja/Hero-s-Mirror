@@ -6,11 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< HEAD:Assets/Characters/Enemies/Skeleton/Animations/Hit.anim
   m_Name: Hit
-========
-  m_Name: idleLeft
->>>>>>>> main:Assets/Characters/Players/ChibiCain/Animations/idleLeft.anim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -25,7 +21,6 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-<<<<<<<< HEAD:Assets/Characters/Enemies/Skeleton/Animations/Hit.anim
       value: {fileID: -816955060, guid: ee6efc5da111b4b71853735dcbe93685, type: 3}
     - time: 0.1
       value: {fileID: 1071175306, guid: ee6efc5da111b4b71853735dcbe93685, type: 3}
@@ -33,15 +28,6 @@ AnimationClip:
       value: {fileID: -995770157, guid: ee6efc5da111b4b71853735dcbe93685, type: 3}
     - time: 0.3
       value: {fileID: -542591221, guid: ee6efc5da111b4b71853735dcbe93685, type: 3}
-========
-      value: {fileID: 1969714583, guid: 69a95b2d44ccd4edb850ce103c8a14aa, type: 3}
-    - time: 0.1
-      value: {fileID: 901315287, guid: 69a95b2d44ccd4edb850ce103c8a14aa, type: 3}
-    - time: 0.2
-      value: {fileID: 1192472036, guid: 69a95b2d44ccd4edb850ce103c8a14aa, type: 3}
-    - time: 0.3
-      value: {fileID: 514235028, guid: 69a95b2d44ccd4edb850ce103c8a14aa, type: 3}
->>>>>>>> main:Assets/Characters/Players/ChibiCain/Animations/idleLeft.anim
     attribute: m_Sprite
     path: 
     classID: 212
@@ -64,17 +50,10 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-<<<<<<<< HEAD:Assets/Characters/Enemies/Skeleton/Animations/Hit.anim
     - {fileID: -816955060, guid: ee6efc5da111b4b71853735dcbe93685, type: 3}
     - {fileID: 1071175306, guid: ee6efc5da111b4b71853735dcbe93685, type: 3}
     - {fileID: -995770157, guid: ee6efc5da111b4b71853735dcbe93685, type: 3}
     - {fileID: -542591221, guid: ee6efc5da111b4b71853735dcbe93685, type: 3}
-========
-    - {fileID: 1969714583, guid: 69a95b2d44ccd4edb850ce103c8a14aa, type: 3}
-    - {fileID: 901315287, guid: 69a95b2d44ccd4edb850ce103c8a14aa, type: 3}
-    - {fileID: 1192472036, guid: 69a95b2d44ccd4edb850ce103c8a14aa, type: 3}
-    - {fileID: 514235028, guid: 69a95b2d44ccd4edb850ce103c8a14aa, type: 3}
->>>>>>>> main:Assets/Characters/Players/ChibiCain/Animations/idleLeft.anim
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

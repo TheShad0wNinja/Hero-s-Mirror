@@ -7,7 +7,7 @@ public class Key_Pickable : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject textBubblePrefab;
-    [SerializeField] private GameObject door;
+
     private GameObject textBubbleInstance;
 
 
@@ -26,7 +26,7 @@ public class Key_Pickable : MonoBehaviour
             }
             textBubbleInstance.GetComponentInChildren<TextMeshPro>().text = "Key Acquired";
             textBubbleInstance.transform.SetParent(transform);
-            door.GetComponent<DoorScript>().UnlockDoorKey();
+            FindObjectOfType<PuzzleDoor>().UnlockDoorKey();
             Color color = spriteRenderer.color;
             color.a = 0f;
             spriteRenderer.color = color;

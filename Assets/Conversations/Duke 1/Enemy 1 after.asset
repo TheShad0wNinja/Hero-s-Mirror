@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c111ec5207f3f47ad8628ea9eb8420, type: 3}
+  m_Name: Enemy 1 after
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - unitImage: {fileID: 21300000, guid: 8685f8cf5370c9844a2c5849e156b74b, type: 3}
+    unitName: Duke Guard
+    dialogueText: I am no monster, you brutal funion
+  - unitImage: {fileID: 21300000, guid: 8685f8cf5370c9844a2c5849e156b74b, type: 3}
+    unitName: Duke Guard
+    dialogueText: ehum
+  - unitImage: {fileID: 21300000, guid: 8685f8cf5370c9844a2c5849e156b74b, type: 3}
+    unitName: Duke Guard
+    dialogueText: Aaaaauuuuuuuugh!
+  - unitImage: {fileID: 21300000, guid: 45942da1a2e8f8c4893215f0a4454ef4, type: 3}
+    unitName: Cain
+    dialogueText: Okay..

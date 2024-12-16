@@ -12,14 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
   m_Name: Hanzo
   m_EditorClassIdentifier: 
-  unitName: Hanzo
-  sprite: {fileID: 0}
+  name: Hanzo
+  description: 'Hanzo grew up under the watchful eye of his father, a master archer
+    renowned for his skill and honor, who taught him precision, patience, and the
+    duty to protect the innocent. After years of training together, Hanzo''s father
+    passed peacefully, leaving Hanzo devastated and heartbroken. At his father''s
+    grave, Hanzo swore an oath to carry on his legacy and become an archer worthy
+    of his name. Now, with every arrow he fires, Hanzo honors his father''s lessons,
+    fighting to defend the weak and uphold the values instilled in him, preserving
+    the spirit of the man who shaped him.      Hanzo is a skilled combat unit, proficient
+    with the bow and dedicated to protecting the innocent. He can be recruited to
+    join your ranks, bringing his precision and unwavering sense of duty to the battlefield. '
+  pixelArt: {fileID: -1173316183, guid: 705064f21a8484bf7afe69da79a8985d, type: 3}
+  portrait: {fileID: 21300000, guid: edd79e48d645c467fa681f08ec634b5c, type: 3}
   flipped: 1
+  rarity: 1
   isEnemy: 0
-  baseMana: 10
-  maxMana: 10
-  baseHealth: 10
-  maxHealth: 10
-  baseShield: 2
-  baseAttackBonus: 1
-  baseCritChance: 0.1
+  health: 10
+  healthRegenerationRate: 3
+  mana: 20
+  manaRegenrationRate: 3
+  shield: 0
+  attackBonus: 100
+  baseCritChance: 12
+  hasHitAnimation: 0

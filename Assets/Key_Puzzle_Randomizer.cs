@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Key_Puzzle_Randomizer : MonoBehaviour
 {
-    public ParticleSystem particleSystem;
+    public ParticleSystem particleSystem = null;
     [SerializeField] GameObject chest;
     [SerializeField] GameObject door;
     public float interval = 2f; 

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e8075ac0530564dbe6d2ab95eda4e2, type: 3}
+  m_Name: Whisperwind Flask
+  m_EditorClassIdentifier: 
+  name: Whisperwind Flask
+  description: Originating from sky temples, it was brewed with air spirit blessings
+    to aid messengers in peril.
+  image: {fileID: 21300000, guid: 3d5cbb35ad6ea5248bda671879dad580, type: 3}
+  price: 400
+  health: 0
+  healthRegenerationRate: 0
+  mana: 0
+  manaRegenrationRate: 0
+  shield: 30
+  attackBonus: 0
+  criticalChance: 20

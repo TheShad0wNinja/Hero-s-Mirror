@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 9ce526e4f2c3ca14394e8ba0a07d98ed
+=======
+guid: 33e88c86d7ffa90418313aba20d87fdd
+>>>>>>> add-items-and-potions
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

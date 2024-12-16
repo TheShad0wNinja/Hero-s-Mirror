@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c111ec5207f3f47ad8628ea9eb8420, type: 3}
+  m_Name: Cain
+  m_EditorClassIdentifier: 
+  dialogueEntries:
+  - unitImage: {fileID: 21300000, guid: 45942da1a2e8f8c4893215f0a4454ef4, type: 3}
+    unitName: Cain
+    dialogueText: "Every life I took... it haunts me. They weren\u2019t monsters...
+      they were people. Innocent, defending their homes, their king. And I... I was
+      the real monster all along."
+  - unitImage: {fileID: 21300000, guid: 45942da1a2e8f8c4893215f0a4454ef4, type: 3}
+    unitName: Cain
+    dialogueText: "(He clenches his fists, his voice trembling with regret) My quest
+      for justice\u2026 it was built on lies. Eric\u2019s power, his curse\u2014it
+      blinded me, twisted me into what I hated most. Those I thought were allies
+      were just puppets\u2026 all of it\u2026 was my doing."
+  - unitImage: {fileID: 21300000, guid: 45942da1a2e8f8c4893215f0a4454ef4, type: 3}
+    unitName: Cain
+    dialogueText: "(Cain looks up at the crumbling castle around him) This throne\u2026
+      this dungeon\u2026 it\u2019s all I deserve. The lives I\u2019ve stolen, the
+      destruction I\u2019ve caused\u2026 I can\u2019t undo it."
+  - unitImage: {fileID: 21300000, guid: 45942da1a2e8f8c4893215f0a4454ef4, type: 3}
+    unitName: Cain
+    dialogueText: "(He leans back, his voice heavy with sorrow) I'll stay here. Waiting.
+      Hoping that one day, a true hero will come\u2014someone who can end this nightmare
+      and free me from the monster I've become."
+  - unitImage: {fileID: 21300000, guid: 45942da1a2e8f8c4893215f0a4454ef4, type: 3}
+    unitName: Cain
+    dialogueText: "(Cain\u2019s voice fades, as the screen transitions to black,
+      leaving only his final whisper) Until then... I will bear the weight of my
+      sins... alone."

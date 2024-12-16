@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
+  m_Name: Boots of the Lurking Hunter
+  m_EditorClassIdentifier: 
+  name: Boots of the Lurking Hunter
+  description: Worn by elite hunters, these boots allow the wearer to track and hunt
+    without leaving a trace.
+  pixelArt: {fileID: -189830271, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: -189830271, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  itemType: 1
+  rarity: 3
+  health: 0
+  healthRegenerationRate: 0
+  mana: 10
+  manaRegenrationRate: 12
+  shield: 20
+  attackBonus: 0
+  criticalChance: 0

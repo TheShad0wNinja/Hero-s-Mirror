@@ -8798,6 +8798,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5680187984802112821, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
+      propertyPath: gold
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680187984802112821, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
+      propertyPath: conversation1
+      value: 
+      objectReference: {fileID: 11400000, guid: bb74a55e6a2b46849bde5831d47f68b4, type: 2}
+    - target: {fileID: 5680187984802112821, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
+      propertyPath: conversation2
+      value: 
+      objectReference: {fileID: 11400000, guid: 6611628b40ee95946b7688355894cfcf, type: 2}
+    - target: {fileID: 5680187984802112821, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d9706c0b1d1a742a0bd4cf92acc07fdb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

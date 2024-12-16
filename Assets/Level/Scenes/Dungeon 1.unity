@@ -19048,6 +19048,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0.003968635, y: -4.828133e-10}
   m_Size: {x: 0.33883232, y: 0.21213666}
   m_Direction: 1
+--- !u!114 &360215751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360215749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433d79d18cc1cda42a7c7818ff0030bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conversation1: {fileID: 11400000, guid: fed281ca84610e24bb678ec0716d0cff, type: 2}
+  conversation2: {fileID: 11400000, guid: 2499df5d2a29d40408298f100b673c6a, type: 2}
+  deathParticles: {fileID: 7335039563483120742, guid: 0dafafd4907c25c4790709fde1b6e632, type: 3}
+  xp: 100
+  gold: 1000
 --- !u!1001 &495975538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21756,12 +21773,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7144936646329133973, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
+    - {fileID: 4349914319653030701, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 577743692341465108, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 360215750}
+    - targetCorrespondingSourceObject: {fileID: 577743692341465108, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 360215751}
   m_SourcePrefab: {fileID: 100100000, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
 --- !u!1 &1586563839
 GameObject:

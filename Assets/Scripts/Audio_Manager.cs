@@ -5,8 +5,6 @@ using UnityEngine;
 public class Audio_Manager : MonoBehaviour
 {
     public static Audio_Manager instance;
-
-    
     [SerializeField] private int maxAudioSources = 10;
     private List<AudioSource> sfxSources = new List<AudioSource>();
     private int currentAudioSourceIndex = 0;

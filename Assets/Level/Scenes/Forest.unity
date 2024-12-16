@@ -462,6 +462,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad954df7ff550314aa97a0709a8e809d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &244829703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 244829704}
+  - component: {fileID: 244829705}
+  m_Layer: 0
+  m_Name: Audio_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &244829704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244829703}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 463762579}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &244829705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244829703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c0a19f913695b4bbd8c14ff3e972c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAudioSources: 10
 --- !u!1 &261044756
 GameObject:
   m_ObjectHideFlags: 0
@@ -26100,6 +26145,7 @@ Transform:
   - {fileID: 2003980898}
   - {fileID: 198450702}
   - {fileID: 1350122029}
+  - {fileID: 244829704}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &580035193
@@ -37440,7 +37486,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1338681593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e44751a4e769042999d07c666118b6, type: 3}
+  m_Script: {fileID: 11500000, guid: db8ded3d74e31405c84d3cdf9d39ff9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1350122028

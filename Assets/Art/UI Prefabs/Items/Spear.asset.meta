@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art/UI Prefabs/Items/Spear.asset.meta
 guid: 76505b3721bbeb746afe557e27b299a0
+========
+guid: 0ec453a31bc35334ba9cd80dfe768df4
+>>>>>>>> 49efa584f (Items fixed):Assets/Art/UI Prefabs/Items/Armor/Breastplate of the Starforged.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Belt of the Sea King
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Art/UI Prefabs/Items/Amulets/Belt of the Sea King.asset
   name: amulet of the Sea King
   description: Forged by trident-wielding sea kings, this belt was once worn by the
     ruler of the hidden city of Hydros.
@@ -20,9 +21,23 @@ MonoBehaviour:
   itemType: 2
   rarity: 1
   health: 0
+=======
+  name: ring of the Ancient Seer
+  description: Created by an ancient order of seers, this amulet grants its wearer
+    brief visions of what is to come, giving them the foresight to avoid danger.
+  pixelArt: {fileID: 21300000, guid: 8ed067b3e7b348d44a040a251939fc74, type: 3}
+  image: {fileID: 21300000, guid: 961253b5a3f73e84cb3686384346997f, type: 3}
+  itemType: 2
+  rarity: 3
+  health: 10
+>>>>>>> 49efa584f (Items fixed):Assets/UI Prefabs/Items/Amulets/ring of the Ancient Seer.asset
   healthRegenerationRate: 0
-  mana: 0
+  mana: 10
   manaRegenrationRate: 0
+<<<<<<< HEAD:Assets/Art/UI Prefabs/Items/Amulets/Belt of the Sea King.asset
   shield: 20
+=======
+  shield: 10
+>>>>>>> 49efa584f (Items fixed):Assets/UI Prefabs/Items/Amulets/ring of the Ancient Seer.asset
   attackBonus: 0
   criticalChance: 0

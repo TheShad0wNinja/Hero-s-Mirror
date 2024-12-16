@@ -12,8 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7c12ac2fa704b6381a58b64ad8c9db, type: 3}
   m_Name: DefaultShield Effect
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Characters/DefaultShield Effect.asset
   duration: 3
   isBuff: 1
   multiplier: 1
   image: {fileID: 0}
   shieldAmount: 4
+=======
+  name: Mask of the Silent Predator
+  description: Worn by the elusive assassins of the Silent Fang, this mask allows
+    its wearer to become one with the shadows.
+  pixelArt: {fileID: 611717419, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: 611717419, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  itemType: 0
+  rarity: 1
+  health: 0
+  healthRegenerationRate: 0
+  mana: 10
+  manaRegenrationRate: 0
+  shield: 0
+  attackBonus: 0
+  criticalChance: 20
+>>>>>>> 49efa584f (Items fixed):Assets/UI Prefabs/Items/Helmet/Ski Mask.asset

@@ -97,7 +97,8 @@ public class Scene_Manager : MonoBehaviour
         {
             foreach (var light in prevLights)
             {
-                light.gameObject.SetActive(true);
+                if (light.lightType == Light2D.LightType.Global)
+                    light.gameObject.SetActive(true);
             }
 
             prevLights = null;
@@ -109,7 +110,8 @@ public class Scene_Manager : MonoBehaviour
         var lights = FindObjectsOfType<Light2D>();
         foreach (var light in lights)
         {
-            light.gameObject.SetActive(false);
+            if (light.lightType == Light2D.LightType.Global)
+                light.gameObject.SetActive(false);
         }
     }
 

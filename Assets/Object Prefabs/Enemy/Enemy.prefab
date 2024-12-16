@@ -137,7 +137,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -155,9 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433d79d18cc1cda42a7c7818ff0030bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conversation1: {fileID: 0}
-  conversation2: {fileID: 0}
+  conversation1: {fileID: 11400000, guid: 62a86100bcd7dcd4a88fda6fdabc2374, type: 2}
+  conversation2: {fileID: 11400000, guid: 923b39069a2a93d4c8b6c820a6f897a0, type: 2}
   deathParticles: {fileID: 7335039563483120742, guid: 0dafafd4907c25c4790709fde1b6e632, type: 3}
   gold: 100
-  enemies: []
+  enemies:
+  - {fileID: 11400000, guid: 57f0eb7a680b74fb8b42db03e273ef4d, type: 2}
   combatBackgroundType: 0

@@ -73,7 +73,15 @@ public class Rune_Puzzle : MonoBehaviour
 
         if (correctCount == 3)
         {
-            FindObjectOfType<PuzzleDoor>().UnlockDoorPuzzle();
+            if (FindObjectOfType<PuzzleDoor>() == true)
+            {
+                FindObjectOfType<PuzzleDoor>().UnlockDoorPuzzle();
+            }
+            else 
+            {
+                FindObjectOfType<DoorScript>().UnlockDoorPuzzle();
+            }
+
             canvas.SetActive(false);
             postProcessing.SetActive(false);
             ResetGame();

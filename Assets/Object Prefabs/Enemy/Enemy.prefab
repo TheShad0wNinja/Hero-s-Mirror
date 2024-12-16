@@ -15,7 +15,7 @@ GameObject:
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 8685f8cf5370c9844a2c5849e156b74b, type: 3}
   m_Color: {r: 1, g: 0.040440213, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,11 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54904951d6c68664a8ddbe6ca5544ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conversation1: {fileID: 11400000, guid: f3442d54c6a618745baba4c4321d244f, type: 2}
-  conversation2: {fileID: 11400000, guid: c981f33d28747cb4f892a95855214925, type: 2}
+  conversation1: {fileID: 11400000, guid: fed281ca84610e24bb678ec0716d0cff, type: 2}
+  conversation2: {fileID: 11400000, guid: 2499df5d2a29d40408298f100b673c6a, type: 2}
   deathParticles: {fileID: 7335039563483120742, guid: 0dafafd4907c25c4790709fde1b6e632, type: 3}
-  xp: 0
-  gold: 0
+  xp: 100
+  gold: 200
 --- !u!58 &7144936646329133973
 CircleCollider2D:
   m_ObjectHideFlags: 0

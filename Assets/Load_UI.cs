@@ -21,7 +21,7 @@ public class Load_UI : MonoBehaviour
     }
     private void FindOrCreateLevelPanel()
     {
-        if (SceneManager.GetActiveScene().name != "HomeBase" && SceneManager.GetActiveScene().name != "Combat") 
+        if (SceneManager.GetActiveScene().name != "HomeBase" && SceneManager.GetActiveScene().name != "Combat" ) 
         {
             levelPanel = GameObject.FindGameObjectWithTag("LevelPanel");
 

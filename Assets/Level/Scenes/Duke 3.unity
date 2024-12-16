@@ -69958,6 +69958,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5680187984802112821, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
+      propertyPath: conversation1
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ef2aff767e8a6e418b67e2e0158513e, type: 2}
+    - target: {fileID: 5680187984802112821, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
+      propertyPath: conversation2
+      value: 
+      objectReference: {fileID: 11400000, guid: 5cf3f47cbc4f83b449fdf9eea56f6e56, type: 2}
+    - target: {fileID: 5680187984802112821, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
+      propertyPath: enemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680187984802112821, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d3698b9509ab04d37989f27de4c2ce9f, type: 2}
     - target: {fileID: 7144936646329133973, guid: f6cf3ee0d8a0084448e369ee4121b69e, type: 3}
       propertyPath: m_Radius
       value: 0.19594255

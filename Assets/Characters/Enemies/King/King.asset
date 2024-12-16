@@ -15,8 +15,9 @@ MonoBehaviour:
   name: The Monster King
   description: 
   pixelArt: {fileID: 21300000, guid: 13f997d90d65346feb349a7b7468acca, type: 3}
+  portrait: {fileID: 0}
   flipped: 1
-  rarity: 5
+  rarity: 3
   isEnemy: 1
   health: 40
   healthRegenerationRate: 5

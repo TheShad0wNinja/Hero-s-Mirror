@@ -16,7 +16,9 @@ MonoBehaviour:
   numberOfTargets: 1
   sprite: {fileID: 0}
   skillName: Bloody Club Attack
+  description: 
   animationName: Attack
+  hasEarlyAnimationFinish: 1
   isOffensive: 1
   manaCost: 4
   statusEffect: {fileID: 11400000, guid: 5858c15d6d3884421b6b6ca1bcc35b33, type: 2}

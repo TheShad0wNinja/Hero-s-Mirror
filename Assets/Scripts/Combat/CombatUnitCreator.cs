@@ -4,11 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 public class CombatUnitCreator : MonoBehaviour
 {
     public List<UnitPrefab> unitPrefabs;
     public CombatManager combatManager;
     public CombatUIManager combatUIManager;
+    public List<BackgroundTypes> backgroundTypes;
+    public SpriteRenderer backgroundSpriteRenderer;
+    
+    [Serializable]
+    public class BackgroundTypes 
+    {
+        public Sprite sprite;
+        public CombatBackgroundTypes type;
+    }
 
     [Serializable]
     public class UnitPrefab
@@ -50,6 +60,7 @@ public class CombatUnitCreator : MonoBehaviour
             }
         }
 
+        backgroundSpriteRenderer.sprite = backgroundTypes.Find(b => b.type == CombatEnemyManager.Instance.combatBackgroundType)?.sprite;
         combatManager.StartCombat(units);
         combatUIManager.StartCombatUI();
     }

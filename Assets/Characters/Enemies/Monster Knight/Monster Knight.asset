@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Monster Knight
   m_EditorClassIdentifier: 
   name: Monster Knight
-  description: Monster
-  pixelArt: {fileID: 0}
+  description: 
+  pixelArt: {fileID: 21300000, guid: f670745fee9f74175a5f98a52bf2f502, type: 3}
+  portrait: {fileID: 21300000, guid: fa5ffbb41399a4d38b195996df7172ce, type: 3}
   flipped: 1
   rarity: 1
   isEnemy: 1
-  health: 10
+  health: 12
   healthRegenerationRate: 1
   mana: 10
-  manaRegenrationRate: 1
+  manaRegenrationRate: 4
   shield: 5
   attackBonus: 100
   baseCritChance: 0

@@ -67,17 +67,12 @@ public class EnemyBrain : MonoBehaviour
             _ => new List<Unit>()
         };
 
-        foreach(var x in selectedTargets)
-        {
-            Debug.Log(x.name);
-        }
-
         cm.HandleEnemyTargetUnitSelect(selectedTargets);
     }
 
     private void HandleEnemySkillSelection(CombatManager cm)
     {
-        var availableSkills = cm.selectedUnit.skills;
+        var availableSkills = cm.selectedUnit.skills.FindAll(s => s.manaCost <= cm.selectedUnit.CurrentMana);
         var randIdx = UnityEngine.Random.Range(0, availableSkills.Count);
         cm.HandleSkillSelected(availableSkills[randIdx]);
     }

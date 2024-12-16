@@ -6,8 +6,11 @@ using UnityEngine;
 public class CombatCameraManager : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera defaultCamera, actionCamera;
+    [SerializeField] float shakeIntensity = 1f;
+    [SerializeField] float shakeDuration = 0.2f;
 
     public static CombatCameraManager Instance;
+    float prevBlendTime;
 
     void Start()
     {
@@ -19,6 +22,21 @@ public class CombatCameraManager : MonoBehaviour
         defaultCamera.Priority = 20;
         actionCamera.Priority = 10;
 
+        var brain = Camera.main.GetComponent<CinemachineBrain>();
+
+        prevBlendTime = brain.m_DefaultBlend.m_Time;
+        brain.m_DefaultBlend.m_Time = 0.1f;
+
+    }
+
+    void OnDisable()
+    {
+        if (Camera.main != null)
+        {
+            var brain = Camera.main.GetComponent<CinemachineBrain>();
+
+            brain.m_DefaultBlend.m_Time = prevBlendTime;
+        }
     }
 
     public static void SwitchToDefaultCamera()

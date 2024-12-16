@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class Scene_Manager : MonoBehaviour
@@ -10,6 +11,7 @@ public class Scene_Manager : MonoBehaviour
     private GameObject prevPlayer;
     private Vector3 prevPlayerPosition;
     private bool hasPrevPosition = false;
+    private Light2D[] prevLights;
     private Stack<string> stack = new();
     public static Scene_Manager Instance { get; private set; }
 
@@ -51,13 +53,22 @@ public class Scene_Manager : MonoBehaviour
         stack.Push(sceneName);
     }
 
+    public void ChangeSceneAdditiveRemoveLight(string sceneName)
+    {
+        SavePreviousLight();
+        SavePlayerInstance();
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        stack.Push(sceneName);
+    }
+
+
     public void GoToPreviousSceneAdditive()
     {
         string currScene = stack.Pop();
         SceneManager.UnloadSceneAsync(currScene);
         ReturnPlayerInstance();
+        ReturnLights();
     }
-
 
     public void GoToHomebase()
     {
@@ -68,6 +79,28 @@ public class Scene_Manager : MonoBehaviour
     {
         hasPrevPosition = false;
         SceneManager.LoadScene("HomeBase");
+    }
+
+    private void ReturnLights()
+    {
+        if (prevLights != null)
+        {
+            foreach (var light in prevLights)
+            {
+                light.gameObject.SetActive(true);
+            }
+
+            prevLights = null;
+        }
+    }
+
+    private void SavePreviousLight()
+    {
+        var lights = FindObjectsOfType<Light2D>();
+        foreach (var light in lights)
+        {
+            light.gameObject.SetActive(false);
+        }
     }
 
     private void ReturnPlayerInstance()

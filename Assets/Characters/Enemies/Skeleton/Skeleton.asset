@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Skeleton
   description: 
-  pixelArt: {fileID: 0}
+  pixelArt: {fileID: -1674899920, guid: e2ffd85e4b670480c9c975be04b58983, type: 3}
+  portrait: {fileID: 21300000, guid: 0e82859f7b4954dcc928ea3399d0a92b, type: 3}
   flipped: 1
   rarity: 1
   isEnemy: 1
-  health: 10
+  health: 5
   healthRegenerationRate: 1
-  mana: 10
-  manaRegenrationRate: 0
+  mana: 6
+  manaRegenrationRate: 1
   shield: 0
   attackBonus: 100
   baseCritChance: 0

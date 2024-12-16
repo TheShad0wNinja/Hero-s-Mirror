@@ -52,8 +52,7 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: be93c0ee8b0b04f78b04f66604f606c1, type: 2}
   - {fileID: 11400000, guid: 5cd4cae34e7ae487281f2eb5e372a43e, type: 2}
-  passives:
-  - {fileID: 11400000, guid: e83137490e3764e829019e4faf2819b9, type: 2}
+  passives: []
   activeEffects: []
   rangedAttackSpawn: {fileID: 0}
   projectile: {fileID: 0}

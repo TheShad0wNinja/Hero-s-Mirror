@@ -14,7 +14,7 @@ public class UI_Behaviour_Manager : MonoBehaviour
     public List<Item> ownedItems = new();
 
     public List<Character> teamAssembleCharacters = new();
-    public UnitSO defaultCharacter;
+    public List<UnitSO > defaultCharacter;
 
     public int gold = 10000;
 
@@ -33,8 +33,9 @@ public class UI_Behaviour_Manager : MonoBehaviour
 
     private void Start()
     {
-        Character newCharacter = new (defaultCharacter);
-        AddCharacter(newCharacter);
+        // Character newCharacter = new (defaultCharacter);
+        // AddCharacter(newCharacter);
+        defaultCharacter.ForEach(c => AddCharacter(new Character(c)));
         // newCharacter = new (defaultCharacter);
         // AddCharacter(newCharacter);
         AddTeamCharacters(ownedCharacters);

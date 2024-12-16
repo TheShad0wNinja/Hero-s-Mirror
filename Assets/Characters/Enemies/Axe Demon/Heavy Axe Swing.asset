@@ -16,7 +16,9 @@ MonoBehaviour:
   numberOfTargets: 2
   sprite: {fileID: 0}
   skillName: Heavy Axe Swing
+  description: 
   animationName: Attack
+  hasEarlyAnimationFinish: 1
   isOffensive: 1
   manaCost: 2
   damage: 4

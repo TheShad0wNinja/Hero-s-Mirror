@@ -14,7 +14,7 @@ public class StatusEffect
     {
         effectData = effectSO;
         duration = effectData.duration;
-        name = effectSO.name;
+        name = effectSO.GetType().FullName;
     }
 
     public void ApplyEffect(Unit target)

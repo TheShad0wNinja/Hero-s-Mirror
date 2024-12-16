@@ -14,7 +14,10 @@ public class CombatDashboardUIManager : MonoBehaviour
     public ProgressBarController healthBar, manaBar;
     public GameObject enemyInfoPrefab, enemyListPanel;
     public Image portrait;
+    public Sprite defaultPortrait;
     public GameObject potionItemPrefab, potionList;
+    public StatusEffectManager statusEffectManager;
+
     List<GameObject> currentSkills = new();
     List<GameObject> currentPotions = new();
     Dictionary<Unit, EnemyInfoController> activeEnemies = new();
@@ -34,6 +37,7 @@ public class CombatDashboardUIManager : MonoBehaviour
         {
             CombatEvent.Instance.UnitDamage += HandleDamage;
             CombatEvent.Instance.UnitDeath += HandleDeath;
+            // CombatEvent.Instance.UnitStatusEffect += HandleStatusEffect;
         }
     }
 
@@ -52,7 +56,8 @@ public class CombatDashboardUIManager : MonoBehaviour
         {
             CombatEvent.Instance.UnitDamage -= HandleDamage;
             CombatEvent.Instance.UnitDeath -= HandleDeath;
-        }
+            // CombatEvent.Instance.UnitStatusEffect -= HandleStatusEffect;
+        } 
     }
 
     private void HandleDeath(Unit _, Unit unit)
@@ -86,9 +91,6 @@ public class CombatDashboardUIManager : MonoBehaviour
     {
         foreach (var enemy in enemies)
         {
-            Debug.Log(enemy);
-            Debug.Log(enemyInfoPrefab);
-            Debug.Log(enemyListPanel);
             var box = Instantiate(enemyInfoPrefab, enemyListPanel.transform);
             var controller = box.GetComponent<EnemyInfoController>();
             controller.UpdateInfo(enemy);
@@ -100,14 +102,12 @@ public class CombatDashboardUIManager : MonoBehaviour
     {
         healthBar.SetBarValue(unit.CurrentHealth, unit.MaxHealth); 
         manaBar.SetBarValue(unit.CurrentMana, unit.MaxMana);
-        // unitNameText.text = unit.name;
-        // if (unit.portrait != null)
-        //     portrait.sprite = unit.portrait;
-        // if (unit.IsFlipped)
-        //     portrait.transform.localScale *= new Vector2(-1, 1);
-        // AddNewSkills(unit.skills);
+
         AssignPotionList();
+        AddNewSkills(unit.skills, unit.CurrentMana);
+        statusEffectManager.UpdateStatusEffects(unit.activeEffects);
     }
+
 
     private void AssignUnitStats(Unit unit)
     {
@@ -116,10 +116,13 @@ public class CombatDashboardUIManager : MonoBehaviour
         unitNameText.text = unit.name;
         if (unit.portrait != null)
             portrait.sprite = unit.portrait;
+        else
+            portrait.sprite = defaultPortrait;
         if (unit.IsFlipped)
             portrait.transform.localScale *= new Vector2(-1, 1);
-        AddNewSkills(unit.skills);
+        AddNewSkills(unit.skills, unit.CurrentMana);
         AssignPotionList();
+        statusEffectManager.UpdateStatusEffects(unit.activeEffects);
     }
 
     private void AssignPotionList()
@@ -151,16 +154,23 @@ public class CombatDashboardUIManager : MonoBehaviour
         healthBar.Clear(); 
         manaBar.Clear();
         unitNameText.text = "";
-        portrait.sprite = null;
+        portrait.sprite = defaultPortrait;
         portrait.transform.localScale = new Vector2(1, 1);
         RemoveAllSkills();
         RemovePotionList();
     }
 
-    void AddNewSkill(SkillSO skill)
+    void AddNewSkill(SkillSO skill, int manaAmount)
     {
         var instance = Instantiate(skillBoxPrefap, skillsPanel.transform);
-        instance.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => uiChannel.OnSkillSelected(skill));
+        var button = instance.GetComponent<UnityEngine.UI.Button>();
+        if (skill.manaCost <= manaAmount)
+        {
+            button.onClick.AddListener(() => uiChannel.OnSkillSelected(skill));
+        } else
+        {
+            button.interactable = false;
+        }
         SkillItemController itemController = instance.GetComponent<SkillItemController>();
         itemController.SetSkillTitle(skill.skillName);
         itemController.SetSkillDesc(skill.description);
@@ -170,10 +180,10 @@ public class CombatDashboardUIManager : MonoBehaviour
         currentSkills.Add(instance);
     }
 
-    void AddNewSkills(List<SkillSO> skills)
+    void AddNewSkills(List<SkillSO> skills, int manaAmount)
     {
         RemoveAllSkills();
-        skills.ForEach(skill => AddNewSkill(skill));
+        skills.ForEach(skill => AddNewSkill(skill, manaAmount));
     }
 
     void RemoveAllSkills()

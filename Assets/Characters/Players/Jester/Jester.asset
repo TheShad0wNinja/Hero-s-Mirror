@@ -27,7 +27,7 @@ MonoBehaviour:
   isEnemy: 0
   health: 10
   healthRegenerationRate: 1
-  mana: 10
+  mana: 20
   manaRegenrationRate: 2
   shield: 0
   attackBonus: 100

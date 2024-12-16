@@ -19,8 +19,4 @@ public class Trap_test : MonoBehaviour
             didTeleport = true;
         }
     }
-    // void OnParticleSystemStopped()
-    // {
-        
-    // }
 }

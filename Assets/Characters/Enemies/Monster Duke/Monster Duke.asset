@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7444983b7e764455e9064053d0a17111, type: 3}
+  m_Name: Monster Duke
+  m_EditorClassIdentifier: 
+  name: Monster Duke
+  description: 
+  pixelArt: {fileID: 683677511, guid: ad5e65ef5da6041d9b2b9ba286739337, type: 3}
+  portrait: {fileID: 21300000, guid: 625fe5733949a4874aa2c341395fb06f, type: 3}
+  flipped: 0
+  rarity: 1
+  isEnemy: 1
+  health: 25
+  healthRegenerationRate: 4
+  mana: 30
+  manaRegenrationRate: 5
+  shield: 5
+  attackBonus: 100
+  baseCritChance: 10
+  hasHitAnimation: 0

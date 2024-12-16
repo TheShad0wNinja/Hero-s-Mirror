@@ -76,17 +76,10 @@ public class CombatManager : MonoBehaviour
         for (int i = 0; i < unitList.Count; i++)
         {
             Unit unit = unitList[i];
-            BoxCollider2D collider = unit.GetComponent<BoxCollider2D>();
             SpriteRenderer spriteRenderer = unit.GetComponent<SpriteRenderer>();
 
-
-            if (collider == null)
-                continue;
-
-            float colliderWidth = collider.bounds.size.x;
-
             // Calculate target position with perspective adjustment
-            float perspectiveFactor = Mathf.Lerp(1f, 0.6f, (float)i / (totalCount - 1)); // Smooth scaling
+            float perspectiveFactor = Mathf.Lerp(1f, 0.6f, (totalCount - (float)i) / totalCount); // Smooth scaling
             float targetY = startY - i * perspectivePositionFactor * perspectiveFactor;
 
             // Calculate scale with perspective adjustment
@@ -96,7 +89,7 @@ public class CombatManager : MonoBehaviour
             unit.transform.position = new Vector3(currentX, targetY, 0);
             unit.transform.localScale = new Vector3(unit.transform.localScale.x > 0 ? scaleFactor : -scaleFactor, scaleFactor, 1f);
 
-            currentX += side * (colliderWidth * scaleFactor + unitPlacementOffset);
+            currentX += side * (scaleFactor + unitPlacementOffset);
 
             spriteRenderer.sortingOrder = -(int)(targetY * 10);
         }
@@ -126,7 +119,6 @@ public class CombatManager : MonoBehaviour
         uiChannel.OnTurnChange(CurrTurnState, null);
         uiChannel.OnNewTurn(currentRound);
     }
-
 
     void OnDisable()
     {
@@ -206,7 +198,7 @@ public class CombatManager : MonoBehaviour
     {
         selectedUnit.UsePotion(potion); 
         uiChannel.UpdatePotions();
-        uiChannel.OnAssignStats(selectedUnit);
+        uiChannel.OnUpdateStats(selectedUnit);
     }
 
     public void HandleSkillSelected(SkillSO skill)
@@ -347,11 +339,6 @@ public class CombatManager : MonoBehaviour
 
     void ExecuteSelectedSkill(Unit unit)
     {
-        if (selectedSkill.targetType != TargetType.UNIT_ALL && selectedSkill.targetType != TargetType.SELF)
-            ActionQueueManager.EnqueueEngageUnitsAction(selectedUnit, new List<Unit>() { unit }, !selectedUnit.IsEnemy);
-
-        ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit, !selectedUnit.IsEnemy);
-
         if (selectedUnit.IsEnemy)
             CurrTurnState = TurnState.ENEMY_ACTION_PERFORMING;
         else
@@ -359,7 +346,14 @@ public class CombatManager : MonoBehaviour
             uiChannel.OnRemoveSelectors();
             CurrTurnState = TurnState.PLAYER_ACTION_PERFORMING;
         }
+
         CombatEvent.OnTurnChanged(this);
+
+        if (selectedSkill.targetType != TargetType.UNIT_ALL && selectedSkill.targetType != TargetType.SELF)
+            ActionQueueManager.EnqueueEngageUnitsAction(selectedUnit, new List<Unit>() { unit }, !selectedUnit.IsEnemy);
+
+        ActionQueueManager.EnqueueSkillAction(selectedUnit, selectedSkill, unit, !selectedUnit.IsEnemy);
+
     }
 
     void HandleUnitHover(Unit unit)
@@ -434,6 +428,7 @@ public class CombatManager : MonoBehaviour
                     });
 
                 }
+
                 break;
         }
     }

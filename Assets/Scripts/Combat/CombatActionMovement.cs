@@ -45,12 +45,6 @@ public class CombatActionMovement : MonoBehaviour
             selectedUnitSr.sortingOrder = 50;
         }
 
-        // Debug.Log("ABVDLFJ");
-        // selectedUnitSpriteRenderer = selectedUnit.GetComponent<SpriteRenderer>();
-        // Debug.Log("aaavx " + selectedUnitSpriteRenderer.name);
-        // selectedUnitSpriteRenderer.sortingOrder = 1;
-
-
         int offset = 0;
 
         foreach(var targetUnit in targetUnits)
@@ -95,7 +89,7 @@ public class CombatActionMovement : MonoBehaviour
     public IEnumerator DisengageUnits()
     {
         if (selectedUnitSr) {
-            selectedUnitSr.sortingOrder = 0;
+            selectedUnitSr.sortingOrder = selectedUnitPrevOrder;
             selectedUnitSr = null;
         }
 

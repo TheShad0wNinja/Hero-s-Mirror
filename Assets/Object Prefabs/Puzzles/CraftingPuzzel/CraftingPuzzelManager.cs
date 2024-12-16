@@ -23,7 +23,7 @@ public class CraftingPuzzelManager : MonoBehaviour
     }
     public void CreatePuzzelItem()
     {
-
+Debug.Log("teehee");
         if (Player.inventory.Count < 3 && WithinPlayerRadius)
         {
             Debug.Log("You still need to collect all the items");
@@ -31,7 +31,7 @@ public class CraftingPuzzelManager : MonoBehaviour
         else if (Player.inventory.Count == 3 && WithinPlayerRadius)
         {
             Debug.Log("All items were picked up");
-            SceneManager.LoadScene(10); // Loads the scene at index 1 in Build Settings
+            SceneManager.LoadScene(11); // Loads the scene at index 1 in Build Settings
             puzzelCompleted = true; // opens the door
         }
     }

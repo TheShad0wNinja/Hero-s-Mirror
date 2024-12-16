@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 public class CollapsingTrap : MonoBehaviour
 {
     [SerializeField] private float collapseDelay = 2f;
-    private bool isTriggered = false;
     private GameObject playerOnFloor = null;
     SpriteRenderer spriteRenderer;
     Color color;
-    [SerializeField] string nextSceneName;
+    [SerializeField] string teleportScene;
+    public bool returnTeleporter;
+    bool didTeleport = false;
 
     void Awake()
     {
@@ -21,9 +22,8 @@ public class CollapsingTrap : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isTriggered)
+        if (other.CompareTag("Player") && !didTeleport)
         {
-            isTriggered = true;
             playerOnFloor = other.gameObject;
             StartCoroutine(CollapseFloor(other.gameObject));
         }
@@ -33,7 +33,6 @@ public class CollapsingTrap : MonoBehaviour
     {
         if (other.CompareTag("Player") && other.gameObject == playerOnFloor)
         {
-            isTriggered = false;
             playerOnFloor = null;
             StopAllCoroutines();
             color.a = 1f;
@@ -51,35 +50,15 @@ public class CollapsingTrap : MonoBehaviour
                 spriteRenderer.color = color;
                 yield return null;
             }
-            Scene originalScene = SceneManager.GetActiveScene();
-            if (SceneManager.GetActiveScene().name != nextSceneName)
-            {
-                player.GetComponent<PlayerMovementController>().enabled = false;
-
-                AsyncOperation loadOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
-                while (!loadOperation.isDone)
-                {
-                    Debug.Log($"Scene Loading Progress: {loadOperation.progress}");
-                    yield return null;
-                }
-                Scene sceneToSet = SceneManager.GetSceneByName(nextSceneName);
-                if (sceneToSet.isLoaded)
-                {
-                    SceneManager.SetActiveScene(sceneToSet);
-                }
-            }
-            else if (SceneManager.GetActiveScene().name == nextSceneName)
-            {
-                AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(nextSceneName);
-                while (!unloadOperation.isDone)
-                {
-                    yield return null;
-                }
-                SceneManager.SetActiveScene(originalScene);
-                FindObjectOfType<PlayerMovementController>().enabled = true;
-            }
-            isTriggered = false;
         }
+
+        if(returnTeleporter == true){
+            Scene_Manager.Instance.GoToPreviousSceneAdditive();
+        }
+        else{
+            Scene_Manager.Instance.ChangeSceneAdditive(teleportScene);
+        }
+        didTeleport = true;
     }
 
 // private IEnumerator CollapseFloor(GameObject player)
@@ -98,15 +77,15 @@ public class CollapsingTrap : MonoBehaviour
 //     }
 
 //     Debug.Log("Current Scene: " + SceneManager.GetActiveScene().name);
-//     Debug.Log("Next Scene: " + nextSceneName);
+//     Debug.Log("Next Scene: " + teleportScene);
 
 //     // Deactivate player before loading the new scene
 //     Debug.Log("Deactivating player...");
 //     player.GetComponent<PlayerMovementController>().enabled = false;
 
 //     // Load the next scene
-//     Debug.Log($"Loading scene: {nextSceneName}");
-//     AsyncOperation loadOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+//     Debug.Log($"Loading scene: {teleportScene}");
+//     AsyncOperation loadOperation = SceneManager.LoadSceneAsync(teleportScene, LoadSceneMode.Additive);
 
 //     while (!loadOperation.isDone)
 //     {
@@ -114,21 +93,21 @@ public class CollapsingTrap : MonoBehaviour
 //         yield return null; // Waits until the scene is fully loaded
 //     }
 
-//     Debug.Log($"Scene '{nextSceneName}' loaded.");
+//     Debug.Log($"Scene '{teleportScene}' loaded.");
 
 //     // Verify the scene is loaded and valid
-//     Scene loadedScene = SceneManager.GetSceneByName(nextSceneName);
-//     Debug.Log($"Scene '{nextSceneName}' IsValid: {loadedScene.IsValid()}, IsLoaded: {loadedScene.isLoaded}");
+//     Scene loadedScene = SceneManager.GetSceneByName(teleportScene);
+//     Debug.Log($"Scene '{teleportScene}' IsValid: {loadedScene.IsValid()}, IsLoaded: {loadedScene.isLoaded}");
 
 //     if (loadedScene.IsValid() && loadedScene.isLoaded)
 //     {
-//         Debug.Log($"Setting active scene to: {nextSceneName}");
+//         Debug.Log($"Setting active scene to: {teleportScene}");
 //         SceneManager.SetActiveScene(loadedScene);
 //         Debug.Log("Active Scene Set: " + SceneManager.GetActiveScene().name);
 //     }
 //     else
 //     {
-//         Debug.LogError($"Failed to set active scene: {nextSceneName}");
+//         Debug.LogError($"Failed to set active scene: {teleportScene}");
 //     }
 
 //     isTriggered = false;

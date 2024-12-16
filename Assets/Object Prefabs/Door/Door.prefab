@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 675118963070545659}
   - component: {fileID: 6878773593659811933}
   - component: {fileID: 8459959918735494766}
+  - component: {fileID: -8914571571629451744}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -144,4 +145,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openDoor: {fileID: 21300000, guid: 09e60d382bea54d4683b29685c0f78e9, type: 3}
+  canOpenKey: 0
+  canOpenPuzzle: 0
+  sceneName: 
+  textBubblePrefab: {fileID: 3798255178852343585, guid: f3cd0a839916eac489c6bb6375726d1f, type: 3}
+--- !u!114 &-8914571571629451744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4353416188289690738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd54e26f13adf748bd28029869501e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openDoor: {fileID: 21300000, guid: 09e60d382bea54d4683b29685c0f78e9, type: 3}
+  canOpenKey: 0
+  canOpenPuzzle: 0
   textBubblePrefab: {fileID: 3798255178852343585, guid: f3cd0a839916eac489c6bb6375726d1f, type: 3}

@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activationTime: 2
+  leastDamage: 5
+  MaxDamage: 10
 --- !u!95 &5366086899801895018
 Animator:
   serializedVersion: 5

@@ -196,6 +196,10 @@ PrefabInstance:
       propertyPath: nextSceneName
       value: TrapLevel
       objectReference: {fileID: 0}
+    - target: {fileID: 4652255739628845845, guid: 29e00201c9b372f43be0c63e3d4b8016, type: 3}
+      propertyPath: teleportScene
+      value: TrapLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 5944166333933809927, guid: 29e00201c9b372f43be0c63e3d4b8016, type: 3}
       propertyPath: m_Name
       value: Collapsing trap

@@ -22,7 +22,7 @@ public class DoubleStrike : PassiveSO
     void HandleEvent(Unit unit, SkillSO skill, Unit target)
     {
         float randValue = Random.Range(0f, 1f);
-        if (unit.UnitName == unitSO.name && randValue <= probability && !hasRepeatedThisTurn && skill == repeatableSkill)
+        if (unit.name == unitSO.name && randValue <= probability && !hasRepeatedThisTurn && skill == repeatableSkill)
         {
             ActionQueueManager.EnqueueSkillAction(unit, skill, target, !unit.IsEnemy);
             hasRepeatedThisTurn = true;

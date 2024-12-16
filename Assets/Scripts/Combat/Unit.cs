@@ -18,7 +18,7 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] float rangeAttackDuration = 0.2f;
 
     public bool AnimationFinished { get; private set; }
-    public string UnitName => unitData.name;
+    public new string name => unitData.name;
     public bool IsEnemy => unitData.isEnemy;
     public int Shield { get; set; }
     public bool HasTurn { get; set; }
@@ -32,11 +32,13 @@ public abstract class Unit : MonoBehaviour
     public int ManaRegen { get; private set; }
     public float AttackBonus { get; set; }
     public float CritChance { get; set; }
-
+    public Sprite image => unitData.pixelArt;
+    public Sprite portrait => unitData.portrait;
+    public bool IsFlipped => unitData.flipped;
     protected SpriteRenderer sr;
     protected Animator anim;
 
-    void InitilizeUnit(Character character)
+    public void InitilizeUnit(Character character)
     {
         var stats = character.currentStats;
 
@@ -49,29 +51,22 @@ public abstract class Unit : MonoBehaviour
         ManaRegen = stats["manaRegeneration"];
         Shield = stats["shield"];
         CritChance = stats["criticalChance"] / 100;
-        AttackBonus = stats["attackBonus"]/100;
+        AttackBonus = stats["attackBonus"] / 100;
         unitData = character.stats;
+
+        if (unitData.flipped)
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+
+        HasTurn = true;
+        AnimationFinished = true;
+
+        SetupEvents();
     }
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-
-        if (unitData.flipped)
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-
-        // CurrentHealth = unitData.health;
-        // MaxHealth = CurrentHealth;
-        // CurrentMana = unitData.mana;
-        // MaxMana = CurrentMana;
-        // Shield = unitData.shield;
-        // critChance = unitData.baseCritChance;
-
-        HasTurn = true;
-        AnimationFinished = true;
-
-        SetupEvents();
     }
 
     void SetupEvents()
@@ -81,7 +76,8 @@ public abstract class Unit : MonoBehaviour
 
         foreach (var passive in passives)
         {
-            passive.SubscribeToEvent(null);
+            Debug.Log("Ligma");
+            // passive.SubscribeToEvent(null);
         }
     }
 
@@ -89,8 +85,12 @@ public abstract class Unit : MonoBehaviour
     {
         foreach (var passive in passives)
         {
-            passive.UnsubscribeToEvent(null);
+            Debug.Log("BALLS");
+            // passive.UnsubscribeToEvent(null);
         }
+
+        if (CombatEvent.Instance != null)
+            CombatEvent.Instance.NewTurn -= TriggerEffects;
     }
 
 
@@ -132,28 +132,72 @@ public abstract class Unit : MonoBehaviour
     {
         if (Shield > 0)
         {
-            if (Shield < damage)
-            {
-                CombatEvent.OnUnitShieldDamage(this, Shield);
-                damage -= Shield;
-                Shield = 0;
-            }
-            else
-            {
-                CombatEvent.OnUnitShieldDamage(this, damage);
-                Shield -= damage;
-                damage = 0;
-            }
+            Shield = Math.Max(0, Shield - damage);
+            damage = Math.Max(0, damage - Shield);
+            CombatEvent.OnUnitShieldDamage(this, Shield);
+            // if (Shield < damage)
+            // {
+            //     damage -= Shield;
+            //     Shield = 0;
+            // }
+            // else
+            // {
+            //     CombatEvent.OnUnitShieldDamage(this, damage);
+            //     Shield -= damage;
+            //     damage = 0;
+            // }
         }
         return damage;
     }
-
     public void TakeRawDamage(Unit attacker, int damage)
     {
-        CombatEvent.OnUnitDamage(this, damage);
         CurrentHealth -= damage;
+        CombatEvent.OnUnitDamage(this, damage);
         if (CurrentHealth <= 0)
             Kill(attacker);
+    }
+
+    public void ConsumeMana(int amount)
+    {
+        CurrentMana = Math.Max(0, CurrentMana - amount);
+    }
+
+    public void GainMana(int amount)
+    {
+        CurrentMana = Math.Min(MaxMana, CurrentMana + amount);
+    }
+
+    public void UsePotion(Potion potion)
+    {
+        foreach(var k in potion.currentStatsFiltered)
+        {
+            switch(k.Key)
+            {
+                case "health":
+                    Heal(k.Value);
+                    break;
+                case "healthRegeneration":
+                    HealthRegen += k.Value;
+                    break;
+                case "mana":
+                    GainMana(k.Value);
+                    break;
+                case "manaRegeneration":
+                    ManaRegen += k.Value;
+                    break;
+                case "attackBonus":
+                    AttackBonus += k.Value / 100;
+                    break;
+                case "shield":
+                    Shield += k.Value;
+                    break;
+                case "criticalChance":
+                    CritChance += k.Value / 100;
+                    break;
+            }
+        }
+
+        UI_Behaviour_Manager.Instance.RemovePotion(potion);
     }
 
     private void Kill(Unit attacker)
@@ -164,10 +208,7 @@ public abstract class Unit : MonoBehaviour
     public void Heal(int amount)
     {
         CombatEvent.OnUnitHeal(this, amount);
-        if (CurrentHealth + amount > unitData.health)
-            CurrentHealth = unitData.health;
-        else
-            CurrentHealth += amount;
+        CurrentHealth = Math.Min(MaxHealth, CurrentHealth + amount);
     }
 
     public IEnumerator AnimateAction(SkillSO skill)
@@ -178,6 +219,11 @@ public abstract class Unit : MonoBehaviour
 
         anim.Play("Idle");
 
+        AnimationFinished = true;
+    }
+
+    public void FinishAnimationEarly()
+    {
         AnimationFinished = true;
     }
 
@@ -224,5 +270,22 @@ public abstract class Unit : MonoBehaviour
 
         AnimationFinished = true;
         yield return null;
+    }
+
+    void OnMouseEnter()
+    {
+        // Debug.Log("Enter : " + this.name);
+        MouseManager.Instance?.RaiseOnUnitHover(this);
+    }
+
+    void OnMouseDown()
+    {
+        MouseManager.Instance?.RaiseOnUnitSelect(this);
+    }
+
+    void OnMouseExit()
+    {
+        // Debug.Log("Exit : " + this.name);
+        MouseManager.Instance?.RaiseOnUnitUnhover(this);
     }
 }

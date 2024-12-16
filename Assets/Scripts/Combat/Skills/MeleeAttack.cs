@@ -7,7 +7,8 @@ public class MeleeAttack : SkillSO
 
     protected override void Execute(Unit owner, Unit target)
     {
-        ActionQueueManager.EnqueueDamageAction(owner, target, damage);
+        int dmg = owner.CritChance <= Random.Range(0, 1f) ? Mathf.RoundToInt(damage * owner.AttackBonus * 1.2f) : Mathf.RoundToInt(damage * owner.AttackBonus);
+        ActionQueueManager.EnqueueDamageAction(owner, target, dmg);
     }
 
     protected override void RegisterParallelTypes()

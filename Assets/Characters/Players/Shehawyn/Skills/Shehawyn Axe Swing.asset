@@ -16,6 +16,9 @@ MonoBehaviour:
   numberOfTargets: 2
   sprite: {fileID: 21300000, guid: 5d6d9a95fab39416f941c51dba730381, type: 3}
   skillName: Axe Swing
+  description: "Swings the axe at multiple enemies dealing moderate damage\t    "
   animationName: Attack
+  hasEarlyAnimationFinish: 0
   isOffensive: 1
+  manaCost: 1
   damage: 5

@@ -14,8 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetType: 7
   numberOfTargets: 1
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: ac8c9461ee07b4968a0937acccf836e5, type: 3}
   skillName: Flame Edge
+  description: 'Ash was born in the heart of a volcanic wasteland, where her tribe
+    revered fire as a sacred force. From an early age, she displayed an unnatural
+    connection to flame, earning her both fear and awe. When her village was attacked
+    by an icy invader, Ash unleashed her fiery rage, wielding her sword with blinding
+    speed and summoning the very fire that had protected her people for centuries.
+    Now, as a wandering warrior, she seeks to master her volatile powers, using them
+    to scorch anyone who threatens those she loves. '
   animationName: Attack
+  hasEarlyAnimationFinish: 1
   isOffensive: 1
+  manaCost: 1
   damage: 4

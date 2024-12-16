@@ -39,13 +39,13 @@ public class Item
         this.type = stats.itemType.ToString();
 
         baseStats.Add("health", stats.health * rarityTier);
-        baseStats.Add("damage", stats.damage * rarityTier);
-        baseStats.Add("armor", stats.armor * rarityTier);
-        baseStats.Add("shield", stats.shield * rarityTier);
-        baseStats.Add("regeneration", stats.regeneration * rarityTier);
-        baseStats.Add("dodge", stats.dodge * rarityTier);
-        baseStats.Add("criticalChance", stats.criticalChance * rarityTier);
+        baseStats.Add("healthRegeneration", stats.healthRegenerationRate * rarityTier);
         baseStats.Add("mana", stats.mana * rarityTier);
+        baseStats.Add("manaRegeneration", stats.healthRegenerationRate * rarityTier);
+        baseStats.Add("attackBonus", stats.attackBonus);
+        baseStats.Add("shield", stats.shield * rarityTier);
+        baseStats.Add("criticalChance", stats.criticalChance);
+
         foreach (var item in baseStats)
         {
             if (item.Value != 0)

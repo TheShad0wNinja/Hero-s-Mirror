@@ -30,4 +30,10 @@ public class ProgressBarController : MonoBehaviour
 
         barText.text = barOutput;
     }
+
+    internal void Clear()
+    {
+        SetBarValue(0, 0);
+        barText.text = "";
+    }
 }

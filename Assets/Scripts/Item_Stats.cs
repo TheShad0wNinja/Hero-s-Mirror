@@ -11,17 +11,15 @@ public class Item_Stats : ScriptableObject
     public Sprite image;
     public enum itemTypeEnum { Helmet, Boot, Amulet, Armor, Weapon };
     public itemTypeEnum itemType;
-    public enum rarityEnum { Common = 1, Rare = 2, Epic = 3, Legendary = 4, Mythical = 5 };
     public rarityEnum rarity;
 
 
     [Header("values for Stat buff/debuff")]
     public int health;
-    public int damage;
-    public int armor;
-    public int shield;
-    public int regeneration;
-    public int dodge;
-    public int criticalChance;
+    public int healthRegenerationRate;
     public int mana;
+    public int manaRegenrationRate;
+    public int shield;
+    public int attackBonus;
+    public int criticalChance;
 }

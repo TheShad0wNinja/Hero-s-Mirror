@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetType: 8
   numberOfTargets: 2
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 9df4edc6ec92f4d46916b795fbbc172b, type: 3}
   skillName: Piercing Arrow
+  description: ' Fires an arrow that pierces through armor and can hit multiple enemies
+    causing bleed on each target'
   animationName: Attack
+  hasEarlyAnimationFinish: 0
   isOffensive: 1
+  manaCost: 1
   statusEffect: {fileID: 11400000, guid: f97a804a36a1e4c22aa4df15d6443a8c, type: 2}
   damage: 3

@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Helm of the Arcane Scholar
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
+  name: ' Helm of the Arcane Scholar'
+  description: Once worn by the greatest mages of the Arcane Academy, it channels
+    the wisdom and power of centuries of study.
+  pixelArt: {fileID: -780139396, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: -780139396, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
   itemType: 0
-  rarity: 0
+  rarity: 2
   health: 0
   healthRegenerationRate: 0
   mana: 0
   manaRegenrationRate: 0
-  shield: 0
-  attackBonus: 0
+  shield: 20
+  attackBonus: 5
   criticalChance: 0

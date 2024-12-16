@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Helm of the Valiant Guardian
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
+  name: Helm of the Valiant Guardian
+  description: Worn by the defenders of the last stronghold of the Valiant Order,
+    it symbolizes courage in the face of certain defeat.
+  pixelArt: {fileID: 1256128317, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: 1256128317, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
   itemType: 0
-  rarity: 0
+  rarity: 3
   health: 0
   healthRegenerationRate: 0
   mana: 0
-  manaRegenrationRate: 0
-  shield: 0
+  manaRegenrationRate: 10
+  shield: 30
   attackBonus: 0
   criticalChance: 0

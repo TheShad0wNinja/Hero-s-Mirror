@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Shadowstrike Bow
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
-  itemType: 0
-  rarity: 0
+  name: Shadowstrike Bow
+  description: reated by an elusive assassin guild, this bow is made for those who
+    strike from the shadows without a sound
+  pixelArt: {fileID: 1826420790, guid: 873e1bf65492574448d14f7d8e8283e1, type: 3}
+  image: {fileID: 1826420790, guid: 873e1bf65492574448d14f7d8e8283e1, type: 3}
+  itemType: 4
+  rarity: 2
   health: 0
   healthRegenerationRate: 0
-  mana: 0
+  mana: 14
   manaRegenrationRate: 0
   shield: 0
-  attackBonus: 0
+  attackBonus: 36
   criticalChance: 0

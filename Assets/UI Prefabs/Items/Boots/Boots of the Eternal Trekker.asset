@@ -16,8 +16,8 @@ MonoBehaviour:
   description: Once worn by a nomadic tribe that never settled, these boots are said
     to carry the spirit of wanderlust itself, compelling the wearer to never stop
     exploring.
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
+  pixelArt: {fileID: 21300000, guid: 424688f8c7fd874409d9b9f276204b2b, type: 3}
+  image: {fileID: 21300000, guid: 424688f8c7fd874409d9b9f276204b2b, type: 3}
   itemType: 1
   rarity: 2
   health: 15

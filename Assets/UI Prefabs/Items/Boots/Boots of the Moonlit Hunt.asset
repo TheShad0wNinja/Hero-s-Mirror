@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Boots of the Moonlit Hunt
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
-  itemType: 0
-  rarity: 0
+  name: Boots of the Moonlit Hunt
+  description: Worn by hunters under the light of the full moon, these boots were
+    enchanted by lunar deities to aid in finding prey.
+  pixelArt: {fileID: -913442908, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: -913442908, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  itemType: 1
+  rarity: 4
   health: 0
   healthRegenerationRate: 0
-  mana: 0
+  mana: 10
   manaRegenrationRate: 0
-  shield: 0
+  shield: 40
   attackBonus: 0
   criticalChance: 0

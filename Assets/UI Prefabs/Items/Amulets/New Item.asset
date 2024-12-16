@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: New Item
   m_EditorClassIdentifier: 
-  name: 
-  description: 
+  name: amulet of the Swiftfoot
+  description: Crafted by a race of nomadic elves, this amulet was said to be woven
+    from the silk of a speed-enhancing spider.
   pixelArt: {fileID: 0}
   image: {fileID: 0}
-  itemType: 0
-  rarity: 0
-  health: 0
+  itemType: 2
+  rarity: 1
+  health: 10
   healthRegenerationRate: 0
   mana: 0
-  manaRegenrationRate: 0
+  manaRegenrationRate: 10
   shield: 0
   attackBonus: 0
   criticalChance: 0

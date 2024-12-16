@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Cord of the Nightwalker
   description: ' Crafted by shadowy thieves, this belt was used by the infamous Nightwalkers
     to blend seamlessly into darkness.'
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
+  pixelArt: {fileID: 21300000, guid: de7320a339fbdb24aa0548f174946f86, type: 3}
+  image: {fileID: 21300000, guid: d12e92ce52887c744bd3da946edaa267, type: 3}
   itemType: 0
   rarity: 1
   health: 0

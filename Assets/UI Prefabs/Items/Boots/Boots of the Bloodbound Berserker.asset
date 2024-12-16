@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Boots of the Bloodbound Berserker
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
-  itemType: 0
-  rarity: 0
-  health: 0
+  name: Boots of the Bloodbound Berserker
+  description: Forged in the heart of a raging battlefield, these boots were worn
+    by berserkers who thrived on the fury of battle.
+  pixelArt: {fileID: 21300000, guid: 285a7075a84627f4a9b5f1a21eaa703c, type: 3}
+  image: {fileID: 21300000, guid: 285a7075a84627f4a9b5f1a21eaa703c, type: 3}
+  itemType: 1
+  rarity: 5
+  health: 20
   healthRegenerationRate: 0
-  mana: 0
+  mana: 10
   manaRegenrationRate: 0
-  shield: 0
+  shield: 50
   attackBonus: 0
   criticalChance: 0

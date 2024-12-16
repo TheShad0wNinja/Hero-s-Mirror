@@ -15,14 +15,14 @@ MonoBehaviour:
   name: Emberfang Dagger
   description: Forged in the heart of a volcano, this dagger was once wielded by
     a fire sorcerer who could summon flames with every strike.
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
+  pixelArt: {fileID: 1540596971, guid: 873e1bf65492574448d14f7d8e8283e1, type: 3}
+  image: {fileID: 1540596971, guid: 873e1bf65492574448d14f7d8e8283e1, type: 3}
   itemType: 4
-  rarity: 1
+  rarity: 3
   health: 0
   healthRegenerationRate: 0
   mana: 0
   manaRegenrationRate: 0
   shield: 0
-  attackBonus: 10
+  attackBonus: 25
   criticalChance: 5

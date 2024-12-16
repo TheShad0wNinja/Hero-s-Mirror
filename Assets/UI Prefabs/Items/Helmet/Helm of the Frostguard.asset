@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
+  m_Name: Helm of the Frostguard
+  m_EditorClassIdentifier: 
+  name: Helm of the Frostguard
+  description: ' Forged in the icy caves of the Frostguard Fortress, this helm was
+    created to withstand the harshest of winters.'
+  pixelArt: {fileID: -952646277, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: -952646277, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  itemType: 0
+  rarity: 4
+  health: 0
+  healthRegenerationRate: 0
+  mana: 20
+  manaRegenrationRate: 0
+  shield: 40
+  attackBonus: 0
+  criticalChance: 0

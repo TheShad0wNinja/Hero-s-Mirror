@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Bloodletter Sword
   m_EditorClassIdentifier: 
   name: Bloodletter Sword
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
+  description: Forged by a blood mage, this sword grows hungrier with every battle
+    and feeds on the lifeblood of its victims.
+  pixelArt: {fileID: -1559042651, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: -1559042651, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
   itemType: 0
-  rarity: 0
+  rarity: 5
   health: 0
   healthRegenerationRate: 0
   mana: 0
   manaRegenrationRate: 0
   shield: 0
-  attackBonus: 0
-  criticalChance: 0
+  attackBonus: 60
+  criticalChance: 25

@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Warcry Axe
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
-  itemType: 0
-  rarity: 0
+  name: Warcry axe
+  description: Wielded by a great barbarian king, this axe is said to roar with the
+    spirits of fallen warriors, inspiring those who fight alongside it.
+  pixelArt: {fileID: -171120243, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: -171120243, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  itemType: 4
+  rarity: 1
   health: 0
   healthRegenerationRate: 0
-  mana: 0
+  mana: 10
   manaRegenrationRate: 0
   shield: 0
-  attackBonus: 0
+  attackBonus: 25
   criticalChance: 0

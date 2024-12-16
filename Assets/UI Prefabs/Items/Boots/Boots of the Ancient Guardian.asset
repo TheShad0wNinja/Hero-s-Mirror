@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Boots of the Ancient Guardian
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
-  itemType: 0
-  rarity: 0
+  name: Boots of the Ancient Guardian
+  description: These boots were worn by the first guardians of a forgotten temple
+  pixelArt: {fileID: 21300000, guid: 14e837ec2819091439c5884fb8f6df4c, type: 3}
+  image: {fileID: 21300000, guid: 14e837ec2819091439c5884fb8f6df4c, type: 3}
+  itemType: 1
+  rarity: 1
   health: 0
   healthRegenerationRate: 0
-  mana: 0
+  mana: 10
   manaRegenrationRate: 0
-  shield: 0
+  shield: 10
   attackBonus: 0
   criticalChance: 0

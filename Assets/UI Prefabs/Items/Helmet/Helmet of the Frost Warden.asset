@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Helmet of the Frost Warden
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
+  name: Helmet of the Frost Warden
+  description: "Crafted by the ancient Frost Wardens to protect against the harshest
+    winters, it\u2019s said to channel the power of the Frozen Realm."
+  pixelArt: {fileID: -1895875595, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: -1895875595, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
   itemType: 0
-  rarity: 0
+  rarity: 1
   health: 0
   healthRegenerationRate: 0
   mana: 0
   manaRegenrationRate: 0
-  shield: 0
+  shield: 10
   attackBonus: 0
-  criticalChance: 0
+  criticalChance: 5

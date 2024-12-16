@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Boots of the Glacier Walker
   m_EditorClassIdentifier: 
   name: Boots of the Glacier Walker
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
-  itemType: 0
-  rarity: 0
-  health: 0
+  description: Crafted by the ancient frost giants, these boots were made for navigating
+    frozen wastelands and mountain peaks.
+  pixelArt: {fileID: 720128802, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: 720128802, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  itemType: 1
+  rarity: 4
+  health: 20
   healthRegenerationRate: 0
   mana: 0
   manaRegenrationRate: 0
-  shield: 0
+  shield: 30
   attackBonus: 0
   criticalChance: 0

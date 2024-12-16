@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Boots of the Iron Sole
   m_EditorClassIdentifier: 
   name: Boots of the Iron Sole
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
-  itemType: 0
-  rarity: 0
+  description: These boots were once worn by an infamous gladiator who fought in
+    the arena,
+  pixelArt: {fileID: 793429475, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: 793429475, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  itemType: 1
+  rarity: 3
   health: 0
   healthRegenerationRate: 0
-  mana: 0
+  mana: 20
   manaRegenrationRate: 0
-  shield: 0
+  shield: 10
   attackBonus: 0
   criticalChance: 0

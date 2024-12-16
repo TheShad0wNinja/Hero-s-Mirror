@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Dagger of the Phantom
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
-  itemType: 0
-  rarity: 0
+  name: Dagger of the Phantom
+  description: This dagger was crafted by a phantom smith, said to be able to slip
+    through the air as silently as a shadow.
+  pixelArt: {fileID: -4244960, guid: 873e1bf65492574448d14f7d8e8283e1, type: 3}
+  image: {fileID: -4244960, guid: 873e1bf65492574448d14f7d8e8283e1, type: 3}
+  itemType: 4
+  rarity: 4
   health: 0
   healthRegenerationRate: 0
   mana: 0
   manaRegenrationRate: 0
   shield: 0
-  attackBonus: 0
-  criticalChance: 0
+  attackBonus: 35
+  criticalChance: 10

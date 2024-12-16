@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058bbbbc2765b8c43bb0412dc3783108, type: 3}
   m_Name: Boots of the Silent Wind
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  pixelArt: {fileID: 0}
-  image: {fileID: 0}
-  itemType: 0
-  rarity: 0
+  name: Boots of the Silent Wind
+  description: Created by a master of wind magic
+  pixelArt: {fileID: 590772573, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  image: {fileID: 590772573, guid: f4dd604b6ce023544af386c7618947d9, type: 3}
+  itemType: 1
+  rarity: 5
   health: 0
   healthRegenerationRate: 0
-  mana: 0
+  mana: 20
   manaRegenrationRate: 0
-  shield: 0
+  shield: 40
   attackBonus: 0
-  criticalChance: 0
+  criticalChance: 10

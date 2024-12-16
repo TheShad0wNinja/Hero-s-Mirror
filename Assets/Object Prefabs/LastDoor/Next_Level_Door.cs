@@ -16,8 +16,8 @@ public class Next_Level_Door : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-                spriteRenderer.sprite = openDoor;
-                GetComponent<BoxCollider2D>().enabled = false;
+            spriteRenderer.sprite = openDoor;
+            GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }

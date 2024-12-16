@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Windows;
 
-public class DoorScript : MonoBehaviour
+public class PuzzleDoor : MonoBehaviour
 {
     [SerializeField] Sprite openDoor;
     SpriteRenderer spriteRenderer;
     public bool canOpenKey = false;
     public bool canOpenPuzzle = false;
-    public string sceneName ="";
 
     [SerializeField] private GameObject textBubblePrefab;
     private GameObject textBubbleInstance;
@@ -36,14 +34,6 @@ public class DoorScript : MonoBehaviour
             {
                 spriteRenderer.sprite = openDoor;
                 GetComponent<BoxCollider2D>().enabled = false;
-                if (sceneName == "")
-                {
-                    Scene_Manager.Instance.GoToHomebaseOrigin();
-                }
-                else 
-                {
-                    Scene_Manager.Instance.ChangeScene(sceneName);
-                }
             }
             else if (canOpenKey && !canOpenPuzzle)
             {
@@ -68,10 +58,6 @@ public class DoorScript : MonoBehaviour
     }
     void InstantiateBubble(string input) 
     {
-        if(textBubbleInstance != null)
-        {
-            Destroy(textBubbleInstance);
-        }
         textBubbleInstance = Instantiate(textBubblePrefab, transform.position + Vector3.up, Quaternion.identity);
         textBubbleInstance.GetComponentInChildren<TextMeshPro>().text = input;
         textBubbleInstance.transform.SetParent(transform);

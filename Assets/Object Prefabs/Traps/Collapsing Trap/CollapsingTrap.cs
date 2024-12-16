@@ -13,9 +13,13 @@ public class CollapsingTrap : MonoBehaviour
     [SerializeField] string teleportScene;
     public bool returnTeleporter;
     bool didTeleport = false;
+    Audio_Manager audioManager;
+    AudioClip audioClip;
 
     void Awake()
     {
+        audioManager = FindObjectOfType<Audio_Manager>();
+        audioClip = Resources.Load<AudioClip>("CollapsingTrap");
         spriteRenderer = GetComponent<SpriteRenderer>();
         color = spriteRenderer.color;
     }
@@ -53,9 +57,11 @@ public class CollapsingTrap : MonoBehaviour
         }
 
         if(returnTeleporter == true){
+            audioManager.PlaySFX(audioClip);
             Scene_Manager.Instance.GoToPreviousSceneAdditive();
         }
         else{
+            audioManager.PlaySFX(audioClip);
             Scene_Manager.Instance.ChangeSceneAdditive(teleportScene);
         }
         didTeleport = true;

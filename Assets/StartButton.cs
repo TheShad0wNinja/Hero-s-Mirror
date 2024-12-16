@@ -6,9 +6,10 @@ public class StartButton : MonoBehaviour
 {
     Scene_Manager sceneManager;
 
+
     void Start()
     {
-        sceneManager = Scene_Manager.Instance;
+        sceneManager = FindObjectOfType<Scene_Manager>();
     }
 
     public void StartGame()

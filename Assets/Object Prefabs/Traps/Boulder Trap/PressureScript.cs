@@ -9,11 +9,19 @@ public class PressureScript : MonoBehaviour
     [SerializeField] private Transform targetPosition; // Position of the pressure plate where the boulder will roll to
     [SerializeField] private float speed = 2f;
     private bool isActivated = false;
+    Audio_Manager audioManager;
+    AudioClip audioClip;
 
+    private void Start()
+    {
+        audioManager = FindObjectOfType<Audio_Manager>();
+        audioClip = Resources.Load<AudioClip>("BoulderTrap");
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !isActivated)
         {
+            audioManager.PlaySFX(audioClip);
             isActivated = true;
             StartCoroutine(MoveBoulder());
         }

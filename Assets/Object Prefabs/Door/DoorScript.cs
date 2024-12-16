@@ -11,12 +11,16 @@ public class DoorScript : MonoBehaviour
     public bool canOpenKey = false;
     public bool canOpenPuzzle = false;
     public string sceneName ="";
+    Audio_Manager audioManager;
+    AudioClip audioClip;
 
     [SerializeField] private GameObject textBubblePrefab;
     private GameObject textBubbleInstance;
 
     void Start()
     {
+        audioManager = FindObjectOfType<Audio_Manager>();
+        audioClip = Resources.Load<AudioClip>("DoorOpen");
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -34,6 +38,7 @@ public class DoorScript : MonoBehaviour
         {
             if (canOpenKey && canOpenPuzzle)
             {
+                audioManager.PlaySFX(audioClip);
                 spriteRenderer.sprite = openDoor;
                 GetComponent<BoxCollider2D>().enabled = false;
                 if (sceneName == "")

@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class TeleportTrap : MonoBehaviour
 {
-[SerializeField] private Transform teleportLocation;
-private bool isTriggered;
-private GameObject playerOnFloor = null;
-private SpriteRenderer spriteRenderer;
-[SerializeField] private float startingAlpha = 0f;
-[SerializeField] private float teleportTime = 0.7f;
+    [SerializeField] private Transform teleportLocation;
+    private bool isTriggered;
+    private GameObject playerOnFloor = null;
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private float startingAlpha = 0f;
+    [SerializeField] private float teleportTime = 0.7f;
+    Audio_Manager audioManager;
+    AudioClip audioClip;
 
 
 
 private void Start()
 {
+    audioManager = FindObjectOfType<Audio_Manager>();
+    audioClip = Resources.Load<AudioClip>("teleportSound");
     spriteRenderer = GetComponent<SpriteRenderer>();
     SetSpriteAlpha(startingAlpha);
 }
@@ -48,6 +52,7 @@ private void OnTriggerEnter2D(Collider2D other)
         if (player != null && teleportLocation != null)
         {
             player.transform.position = teleportLocation.position;
+            audioManager.PlaySFX(audioClip);
         }
         isTriggered = false;
     }

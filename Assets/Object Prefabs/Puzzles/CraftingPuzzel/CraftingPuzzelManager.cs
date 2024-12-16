@@ -3,14 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
+using UnityEngine.Windows;
 public class CraftingPuzzelManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public PlayerPuzzelController Player;
     public bool WithinPlayerRadius = false;
     public bool puzzelCompleted = false;
-
+    [SerializeField] private GameObject textBubblePrefab;
+    private GameObject textBubbleInstance;
+    public DoorScript puzzelCompleteddoor;
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
 
@@ -21,43 +28,47 @@ public class CraftingPuzzelManager : MonoBehaviour
     {
 
     }
-    public void CreatePuzzelItem()
-    {
-Debug.Log("teehee");
-        if (Player.inventory.Count < 3 && WithinPlayerRadius)
-        {
-            Debug.Log("You still need to collect all the items");
-        }
-        else if (Player.inventory.Count == 3 && WithinPlayerRadius)
-        {
-            Debug.Log("All items were picked up");
-            SceneManager.LoadScene(11); // Loads the scene at index 1 in Build Settings
-            puzzelCompleted = true; // opens the door
-        }
-    }
+
     void OnTriggerEnter2D(Collider2D Other)
     {
+
         if (Other.gameObject.tag == "Player" || Other.gameObject.tag == "DetectionRadius")
         {
-            WithinPlayerRadius = true;
 
+            if (Player.inventory.Count < 3)
+            {
+                InstantiateBubble("find items to start puzzel");
+
+                Debug.Log("You still need to collect all the items");
+            }
+            else if (Player.inventory.Count == 3)
+            {
+                
+
+                Debug.Log("All items were picked up");
+                SceneManager.LoadScene("CraftingTableUI");
+
+
+
+            }
         }
-        else
-        {
-            Debug.Log("You are too far away");
-            WithinPlayerRadius = false;
 
 
-        }
     }
+
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("DetectionRadius") || other.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
         {
-            WithinPlayerRadius = false;
-
+            Destroy(textBubbleInstance);
         }
 
+    }
+    void InstantiateBubble(string input)
+    {
+        textBubbleInstance = Instantiate(textBubblePrefab, transform.position + Vector3.up, Quaternion.identity);
+        textBubbleInstance.GetComponentInChildren<TextMeshPro>().text = input;
+        textBubbleInstance.transform.SetParent(transform);
     }
 
 }

@@ -24,6 +24,6 @@ MonoBehaviour:
   mana: 40
   manaRegenrationRate: 4
   shield: 0
-  attackBonus: 100
+  attackBonus: 110
   baseCritChance: 20
   hasHitAnimation: 0

@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CombatEnemyManager : MonoBehaviour
 {
     public List<Character> EnemyCharacters { get; private set; } = new();
     public static CombatEnemyManager Instance { get; private set; }
+    public UnityAction<bool> OnCombatEnd;
     public CombatBackgroundTypes combatBackgroundType;
 
     void Awake()

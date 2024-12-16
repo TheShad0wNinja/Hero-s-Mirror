@@ -71,4 +71,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/Combat.unity
     guid: 8aae19f233f644325aa298f3e634df51
+  - enabled: 1
+    path: Assets/Level/Scenes/Forest.unity
+    guid: bca70123a913034459015f4758c538c8
   m_configObjects: {}

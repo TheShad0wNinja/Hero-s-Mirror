@@ -6,8 +6,6 @@ using UnityEngine;
 public class CombatCameraManager : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera defaultCamera, actionCamera;
-    [SerializeField] float shakeIntensity = 1f;
-    [SerializeField] float shakeDuration = 0.2f;
 
     public static CombatCameraManager Instance;
     float prevBlendTime;

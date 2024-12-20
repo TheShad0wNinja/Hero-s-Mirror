@@ -44,7 +44,7 @@ public class DoorScript : MonoBehaviour
                 if (sceneName == "")
                 {
                     UI_Behaviour_Manager.Instance.count++;
-                    Scene_Manager.Instance.GoToHomebaseOrigin();
+                    Scene_Manager.Instance.GoToHomebase();
                 }
                 else 
                 {

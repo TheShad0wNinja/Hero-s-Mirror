@@ -193,7 +193,7 @@ public class CombatManager : MonoBehaviour
         CombatEnemyManager.Instance.OnCombatEnd(playerWon);
         playerUnits.Clear();
         enemyUnits.Clear();
-        Scene_Manager.Instance.GoToPreviousSceneAdditive();
+        Scene_Manager.Instance.UnloadAdditiveScene();
     }
 
     private void HandlePotionSelected(Potion potion)

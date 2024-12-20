@@ -14,20 +14,6 @@ public class CraftingPuzzelManager : MonoBehaviour
     [SerializeField] private GameObject textBubblePrefab;
     private GameObject textBubbleInstance;
     public DoorScript puzzelCompleteddoor;
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     void OnTriggerEnter2D(Collider2D Other)
     {

@@ -14,7 +14,6 @@ public class CombatEnemyManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
         }
         else if (Instance != null)
             Destroy(this);

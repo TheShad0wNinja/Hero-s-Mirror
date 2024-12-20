@@ -58,11 +58,11 @@ public class CollapsingTrap : MonoBehaviour
 
         if(returnTeleporter == true){
             audioManager.PlaySFX(audioClip);
-            Scene_Manager.Instance.GoToPreviousSceneAdditive();
+            Scene_Manager.Instance.UnloadAdditiveScene();
         }
         else{
             audioManager.PlaySFX(audioClip);
-            Scene_Manager.Instance.ChangeSceneAdditive(teleportScene);
+            Scene_Manager.Instance.LoadAdditiveScene(teleportScene);
         }
         didTeleport = true;
     }

@@ -12,9 +12,9 @@ public class Trap_test : MonoBehaviour
         if (other.CompareTag("Player"))    
         {
             if (goToTest)
-                Scene_Manager.Instance.ChangeSceneAdditive("Traps_Test");
+                Scene_Manager.Instance.LoadAdditiveScene("Traps_Test");
             else
-                Scene_Manager.Instance.GoToPreviousSceneAdditive();
+                Scene_Manager.Instance.UnloadAdditiveScene();
 
             didTeleport = true;
         }

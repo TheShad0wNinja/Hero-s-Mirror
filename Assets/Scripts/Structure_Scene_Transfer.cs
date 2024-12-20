@@ -17,7 +17,7 @@ public class Structure_Scene_Transfer : MonoBehaviour
         if (collision.transform.CompareTag("Player") && !enteredTriggers.Contains(triggerID))
         {
             enteredTriggers.Add(triggerID);
-            Scene_Manager.Instance.ChangeScene(sceneName);
+            Scene_Manager.Instance.ChangeSceneWithSave(sceneName);
         }
     }
 

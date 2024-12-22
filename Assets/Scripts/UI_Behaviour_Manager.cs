@@ -14,7 +14,8 @@ public class UI_Behaviour_Manager : MonoBehaviour
     public List<Item> ownedItems = new();
 
     public List<Character> teamAssembleCharacters = new();
-    public UnitSO  defaultCharacter;
+    public UnitSO defaultCharacter;
+    public List<UnitSO> defaultCharacters;
 
     public int gold = 10000;
 
@@ -33,15 +34,22 @@ public class UI_Behaviour_Manager : MonoBehaviour
 
     private void Start()
     {
-        Character newCharacter = new (defaultCharacter);
-        AddCharacter(newCharacter);
-        teamAssembleCharacters.Add(newCharacter);
-        newCharacter = new (defaultCharacter);
-        AddCharacter(newCharacter);
-        teamAssembleCharacters.Add(newCharacter);
-        newCharacter = new(defaultCharacter);
-        AddCharacter(newCharacter);
-        teamAssembleCharacters.Add(newCharacter);
+        if (defaultCharacters.Count > 0)
+        {
+            foreach(var x in defaultCharacters)
+            {
+                var newChar = new Character(x);
+                AddCharacter(newChar);
+                teamAssembleCharacters.Add(newChar);
+            }
+        }
+        else if (defaultCharacter != null)
+        {
+            var newChar = new Character(defaultCharacter);
+            AddCharacter(newChar);
+            teamAssembleCharacters.Add(newChar);
+        }
+
     }
 
     public void AddPotion(Potion potion)

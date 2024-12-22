@@ -14,6 +14,7 @@ public class Character
     public string name;
     public string description;
     public Sprite image;
+    public Sprite portrait => stats.portrait;
     public string rarityName;
     public int rarityTier;
     public int currentHealth;
